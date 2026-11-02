@@ -1,0 +1,595 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Keka HR Software – Features, Benefits & Complete Guide</title>
+
+<meta name="description" content="Discover Keka HR software, its features, payroll management, employee attendance, performance management and benefits for modern businesses.">
+
+<meta name="keywords" content="Keka, Keka HR, Keka HR software, Keka payroll, HR management software">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f7f8fc;
+    color: #20243a;
+    line-height: 1.8;
+}
+
+/* Navigation */
+
+header {
+    background: #ffffff;
+    padding: 18px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 3px 20px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 27px;
+    font-weight: 800;
+    color: #635bdb;
+}
+
+nav a {
+    text-decoration: none;
+    color: #34384e;
+    margin-left: 25px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+nav a:hover {
+    color: #635bdb;
+}
+
+/* Hero */
+
+.hero {
+    padding: 100px 8%;
+    background: linear-gradient(120deg, #29236d, #635bdb, #8677ed);
+    color: white;
+    text-align: center;
+}
+
+.hero span {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    padding: 7px 18px;
+    border-radius: 30px;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: clamp(36px, 5vw, 58px);
+    line-height: 1.2;
+    max-width: 850px;
+    margin: auto;
+}
+
+.hero p {
+    max-width: 700px;
+    margin: 22px auto;
+    color: #e5e3ff;
+    font-size: 17px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 14px 30px;
+    background: #ffffff;
+    color: #5147c7;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 15px;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #e8e5ff;
+    transform: translateY(-3px);
+}
+
+.btn-primary {
+    background: #635bdb;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #4941b5;
+}
+
+/* Main content */
+
+.container {
+    max-width: 1150px;
+    margin: 65px auto;
+    padding: 0 22px;
+}
+
+.article {
+    background: white;
+    padding: 45px;
+    border-radius: 15px;
+    box-shadow: 0 5px 30px rgba(30,30,70,0.05);
+}
+
+.article h2 {
+    color: #29236d;
+    font-size: 28px;
+    margin: 35px 0 15px;
+}
+
+.article h2:first-child {
+    margin-top: 0;
+}
+
+.article p {
+    margin-bottom: 18px;
+    color: #62677a;
+}
+
+.article ul {
+    padding-left: 25px;
+    margin-bottom: 20px;
+    color: #62677a;
+}
+
+.article li {
+    margin-bottom: 10px;
+}
+
+/* Feature cards */
+
+.section-title {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.section-title h2 {
+    font-size: 34px;
+    color: #29236d;
+}
+
+.section-title p {
+    color: #777b8e;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.card {
+    background: white;
+    padding: 30px;
+    border-radius: 13px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.04);
+    transition: 0.3s;
+    border: 1px solid #eeeefa;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(75,65,180,0.12);
+}
+
+.card .icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.card h3 {
+    color: #39327f;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 14px;
+    color: #74788a;
+}
+
+/* CTA */
+
+.cta {
+    text-align: center;
+    padding: 65px 25px;
+    border-radius: 16px;
+    background: linear-gradient(120deg, #29236d, #635bdb);
+    color: white;
+}
+
+.cta h2 {
+    font-size: 34px;
+    margin-bottom: 15px;
+}
+
+.cta p {
+    color: #e3e1ff;
+    max-width: 650px;
+    margin: auto;
+}
+
+/* FAQ */
+
+.faq {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+.faq h3 {
+    color: #39327f;
+    margin-bottom: 8px;
+}
+
+.faq p {
+    color: #74788a;
+}
+
+/* Footer */
+
+footer {
+    background: #201c50;
+    color: white;
+    text-align: center;
+    padding: 35px 20px;
+    margin-top: 70px;
+}
+
+footer p {
+    color: #cbc9e9;
+    font-size: 14px;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Responsive */
+
+@media(max-width: 800px) {
+    .features {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    header {
+        padding: 15px 5%;
+    }
+
+    nav a {
+        margin-left: 10px;
+        font-size: 12px;
+    }
+
+    .article {
+        padding: 28px;
+    }
+}
+
+@media(max-width: 550px) {
+    .features {
+        grid-template-columns: 1fr;
+    }
+
+    header {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    nav a {
+        margin: 0 7px;
+    }
+
+    .hero {
+        padding: 70px 20px;
+    }
+
+    .article {
+        padding: 22px;
+    }
+
+    .section-title h2,
+    .cta h2 {
+        font-size: 27px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Header -->
+
+<header>
+    <div class="logo">TechGuide</div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#features">Features</a>
+        <a href="#faq">FAQ</a>
+    </nav>
+</header>
+
+<!-- Hero Section -->
+
+<section class="hero" id="home">
+
+    <span>Complete Software Guide</span>
+
+    <h1>Keka HR Software: Everything You Need to Know</h1>
+
+    <p>
+        Explore Keka, a modern HR and payroll management platform
+        designed to simplify employee management, payroll,
+        attendance tracking and workplace productivity.
+    </p>
+
+    <a href="https://gitapp.download/"
+       class="btn">
+       Visit Our Website →
+    </a>
+
+</section>
+
+<!-- Article -->
+
+<main class="container" id="about">
+
+<article class="article">
+
+    <h2>What is Keka?</h2>
+
+    <p>
+        Keka is a cloud-based Human Resource Management System
+        (HRMS) designed to help businesses manage their workforce
+        more efficiently. It brings multiple HR activities together
+        in one platform, helping organizations simplify everyday
+        administrative tasks.
+    </p>
+
+    <p>
+        From employee information and payroll processing to
+        attendance tracking and performance management, Keka
+        provides tools that help HR professionals manage important
+        workplace operations.
+    </p>
+
+    <h2>How Does Keka HR Software Work?</h2>
+
+    <p>
+        Keka provides a centralized platform where employees,
+        managers and HR administrators can access relevant
+        workforce information. Businesses can configure workflows,
+        manage employee records and automate several routine
+        HR processes.
+    </p>
+
+    <p>
+        Employees can use self-service features to access their
+        information, submit leave requests and view relevant
+        employment details, depending on their organization's
+        configuration.
+    </p>
+
+    <h2>Important Features of Keka</h2>
+
+    <ul>
+        <li>Employee information and HR management.</li>
+        <li>Payroll processing and expense management.</li>
+        <li>Attendance and leave management.</li>
+        <li>Recruitment and employee onboarding.</li>
+        <li>Performance management and employee reviews.</li>
+        <li>Workforce reporting and analytics.</li>
+    </ul>
+
+    <h2>Benefits of Using Keka</h2>
+
+    <p>
+        One of the main advantages of an integrated HR platform
+        is that it reduces the need to manage different HR tasks
+        through disconnected systems. Keka helps organizations
+        centralize employee information and streamline their
+        internal workflows.
+    </p>
+
+    <p>
+        Its digital tools can also help reduce repetitive
+        administrative work, improve access to employee
+        information and support better coordination between
+        HR teams, managers and employees.
+    </p>
+
+    <h2>Who Can Use Keka?</h2>
+
+    <p>
+        Keka can be useful for growing businesses, established
+        organizations, HR departments, payroll administrators
+        and managers who want a centralized approach to
+        workforce management.
+    </p>
+
+    <h2>Conclusion</h2>
+
+    <p>
+        Keka is a comprehensive HR and payroll management
+        solution that brings essential workforce processes
+        together. Its combination of employee management,
+        attendance, payroll, recruitment and performance
+        tools makes it a platform worth exploring for
+        organizations looking to modernize their HR operations.
+    </p>
+
+</article>
+
+</main>
+
+<!-- Features -->
+
+<section class="container" id="features">
+
+    <div class="section-title">
+        <h2>Explore Keka Features</h2>
+        <p>Discover tools that simplify modern workforce management.</p>
+    </div>
+
+    <div class="features">
+
+        <div class="card">
+            <div class="icon">👥</div>
+            <h3>Employee Management</h3>
+            <p>Manage employee profiles, documents and organizational information in one place.</p>
+        </div>
+
+        <div class="card">
+            <div class="icon">💰</div>
+            <h3>Payroll Management</h3>
+            <p>Organize salary processing, payroll information and expense-related workflows.</p>
+        </div>
+
+        <div class="card">
+            <div class="icon">⏰</div>
+            <h3>Attendance Tracking</h3>
+            <p>Manage employee attendance, work schedules, shifts and leave requests.</p>
+        </div>
+
+        <div class="card">
+            <div class="icon">📈</div>
+            <h3>Performance Management</h3>
+            <p>Support employee reviews, goals, feedback and performance development.</p>
+        </div>
+
+        <div class="card">
+            <div class="icon">🎯</div>
+            <h3>Recruitment</h3>
+            <p>Organize hiring activities, candidate tracking and employee onboarding.</p>
+        </div>
+
+        <div class="card">
+            <div class="icon">📊</div>
+            <h3>HR Analytics</h3>
+            <p>Access workforce insights and reports to support business decisions.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Call to Action -->
+
+<section class="container">
+
+    <div class="cta">
+
+        <h2>Explore More With Us</h2>
+
+        <p>
+            Looking for more software guides, technology
+            information and useful online resources?
+            Visit our website to explore more.
+        </p>
+
+        <a href="https://gitapp.download/"
+           class="btn">
+           Visit GitApp Now →
+        </a>
+
+    </div>
+
+</section>
+
+<!-- FAQ -->
+
+<section class="container" id="faq">
+
+    <div class="section-title">
+        <h2>Frequently Asked Questions</h2>
+        <p>Common questions about Keka HR software.</p>
+    </div>
+
+    <div class="faq">
+        <h3>1. What is Keka used for?</h3>
+        <p>
+            Keka is used for HR management, payroll,
+            employee attendance, recruitment and
+            performance management.
+        </p>
+    </div>
+
+    <div class="faq">
+        <h3>2. Is Keka a cloud-based platform?</h3>
+        <p>
+            Yes. Keka provides cloud-based HR and
+            workforce management solutions.
+        </p>
+    </div>
+
+    <div class="faq">
+        <h3>3. Can employees use Keka?</h3>
+        <p>
+            Yes. Employees can access available
+            self-service tools such as leave requests,
+            attendance and employment information.
+        </p>
+    </div>
+
+    <div class="faq">
+        <h3>4. Does Keka support payroll management?</h3>
+        <p>
+            Yes. Payroll processing and related
+            management features are among its
+            core capabilities.
+        </p>
+    </div>
+
+</section>
+
+<!-- Footer -->
+
+<footer>
+
+    <h2>TechGuide</h2>
+
+    <p>
+        Your destination for technology guides
+        and software information.
+    </p>
+
+    <p style="margin-top:15px;">
+        <a href="https://gitapp.download/">
+            Visit Our Website
+        </a>
+    </p>
+
+    <p style="margin-top:20px;">
+        © 2026 TechGuide. All Rights Reserved.
+    </p>
+
+</footer>
+
+</body>
+</html>
