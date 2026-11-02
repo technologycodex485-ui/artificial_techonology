@@ -5,11 +5,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Keka HR Software: Features, Benefits and Complete Guide</title>
+<title>Affinity Designer: Features, Benefits and Complete Guide | GitApp</title>
 
-<meta name="description" content="Discover Keka HR software, its payroll management, employee attendance, recruitment, performance management and business automation features.">
+<meta name="description" content="Explore Affinity Designer, its professional vector design tools, digital illustration, graphic design features, benefits and creative possibilities.">
 
-<meta name="keywords" content="Keka, Keka HR, Keka HR software, Keka payroll, HR management software">
+<meta name="keywords" content="Affinity Designer, Affinity Designer software, Affinity graphic design, vector design software, graphic design tools">
 
 <style>
 * {
@@ -23,200 +23,225 @@ html {
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background: #f6f8fc;
-    color: #243047;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f5f7fc;
+    color: #1d2940;
     line-height: 1.8;
 }
 
-/* Navigation */
+a {
+    text-decoration: none;
+}
+
+/* NAVBAR */
 
 .navbar {
-    background: #ffffff;
-    padding: 18px 8%;
+    background: #101323;
+    padding: 18px 7%;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+    justify-content: space-between;
 }
 
 .logo {
     font-size: 27px;
     font-weight: 800;
-    color: #6654e8;
+    color: white;
 }
 
-.navbar a {
-    text-decoration: none;
-    color: #28334a;
-    margin-left: 22px;
+.logo span {
+    color: #9b8aff;
+}
+
+.nav-links a {
+    color: #e5e7eb;
+    margin-left: 25px;
+    font-size: 14px;
     font-weight: 600;
 }
 
-/* Hero Section */
+/* HERO SECTION */
 
 .hero {
-    padding: 95px 8%;
-    background: linear-gradient(120deg, #241c63, #6556dc);
-    color: white;
+    background:
+    radial-gradient(circle at 80% 20%, #6848d8 0, transparent 35%),
+    linear-gradient(120deg, #101323, #25204f);
+    padding: 105px 7%;
     text-align: center;
+    color: white;
 }
 
-.hero .tag {
+.hero-label {
     display: inline-block;
-    background: rgba(255,255,255,.15);
-    padding: 7px 18px;
+    background: #ffffff18;
+    border: 1px solid #ffffff35;
+    color: #d9d1ff;
+    padding: 8px 20px;
     border-radius: 30px;
-    margin-bottom: 20px;
+    font-size: 13px;
+    margin-bottom: 25px;
 }
 
 .hero h1 {
-    font-size: clamp(34px, 5vw, 54px);
-    line-height: 1.2;
-    max-width: 850px;
+    max-width: 950px;
     margin: auto;
+    font-size: clamp(35px, 5vw, 58px);
+    line-height: 1.2;
+    letter-spacing: -1px;
 }
 
 .hero p {
-    max-width: 720px;
-    margin: 20px auto 30px;
-    color: #e2e0ff;
-    font-size: 18px;
+    max-width: 750px;
+    margin: 25px auto 32px;
+    font-size: 17px;
+    color: #d2d4e6;
 }
 
-/* Buttons */
+/* BUTTONS */
 
 .btn {
     display: inline-block;
-    padding: 14px 29px;
-    background: #ffbd59;
-    color: #222044;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: bold;
+    background: linear-gradient(90deg, #a78bfa, #6849dc);
+    padding: 14px 30px;
+    border-radius: 9px;
+    color: white;
+    font-weight: 700;
     transition: .3s;
 }
 
 .btn:hover {
-    background: #ffffff;
-    transform: translateY(-3px);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px #0004;
 }
 
-.btn-secondary {
+.btn-outline {
     background: transparent;
-    border: 2px solid white;
-    color: white;
-    margin-left: 10px;
+    border: 1px solid #ffffff90;
+    margin-left: 12px;
 }
 
-.btn-secondary:hover {
-    background: white;
-    color: #30256f;
-}
-
-/* Main Layout */
+/* MAIN CONTAINER */
 
 .container {
     max-width: 1150px;
-    margin: 55px auto;
-    padding: 0 22px;
+    margin: 60px auto;
+    padding: 0 20px;
 }
 
-.content {
+.article {
     background: white;
-    padding: 45px;
-    border-radius: 15px;
-    box-shadow: 0 8px 35px rgba(30,40,80,.06);
+    border-radius: 18px;
+    padding: 48px;
+    box-shadow: 0 12px 40px #1725540d;
 }
 
-.content h2 {
-    color: #33277c;
+.article h2 {
     font-size: 29px;
-    margin: 35px 0 15px;
+    color: #272052;
+    margin: 38px 0 15px;
+    line-height: 1.4;
 }
 
-.content h3 {
-    color: #5144bb;
+.article h3 {
+    color: #5542a9;
     font-size: 21px;
-    margin: 22px 0 8px;
+    margin: 18px 0 8px;
 }
 
-.content p {
-    margin-bottom: 16px;
-    color: #586477;
+.article p {
+    color: #667085;
+    margin-bottom: 17px;
 }
 
-.content ul {
+.article ul {
     padding-left: 25px;
-    margin-bottom: 20px;
+    color: #667085;
 }
 
-.content li {
+.article li {
     margin-bottom: 9px;
-    color: #586477;
 }
 
-/* Feature Cards */
+/* INTRODUCTION BOX */
 
-.features {
+.intro {
+    padding: 25px;
+    background: #f0edff;
+    border-left: 5px solid #8061e9;
+    border-radius: 10px;
+    margin: 25px 0;
+}
+
+/* FEATURE CARDS */
+
+.feature-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    gap: 22px;
     margin: 25px 0;
 }
 
 .feature-card {
-    padding: 25px;
-    border: 1px solid #e9e7fb;
-    border-radius: 12px;
     background: #faf9ff;
+    border: 1px solid #ebe7fb;
+    padding: 26px;
+    border-radius: 14px;
     transition: .3s;
 }
 
 .feature-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(70,50,150,.1);
+    box-shadow: 0 12px 25px #28205212;
+}
+
+.icon {
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    background: #eeeaff;
+    border-radius: 12px;
+    font-size: 23px;
 }
 
 .feature-card h3 {
-    margin-top: 0;
+    margin-top: 15px;
 }
 
-/* Highlight */
+/* HIGHLIGHT BOX */
 
 .highlight {
-    background: #f0efff;
-    border-left: 5px solid #6654e8;
-    padding: 22px;
-    border-radius: 8px;
+    background: #f6f3ff;
+    border-radius: 12px;
+    padding: 23px;
     margin: 25px 0;
 }
 
-/* CTA */
+/* CTA SECTION */
 
 .cta {
-    background: linear-gradient(120deg, #33277c, #7060ec);
-    padding: 45px 25px;
+    background: linear-gradient(120deg, #191735, #5942b9);
+    padding: 55px 25px;
     text-align: center;
+    border-radius: 16px;
+    margin: 45px 0;
     color: white;
-    border-radius: 15px;
-    margin-top: 40px;
 }
 
 .cta h2 {
     color: white;
-    margin: 0 0 12px;
+    margin-top: 0;
 }
 
 .cta p {
-    color: #e9e7ff;
-    margin-bottom: 22px;
+    color: #e1dcff;
+    margin: 15px auto 25px;
 }
 
 /* FAQ */
 
 .faq-item {
-    padding: 18px 0;
+    padding: 20px 0;
     border-bottom: 1px solid #e8e8ef;
 }
 
@@ -224,47 +249,46 @@ body {
     margin-top: 0;
 }
 
-/* Footer */
+/* FOOTER */
 
 footer {
+    background: #101323;
+    padding: 40px 20px;
     text-align: center;
-    background: #19163d;
-    color: white;
-    padding: 30px 15px;
-    margin-top: 60px;
+    color: #d1d5e4;
 }
 
 footer a {
-    color: #ffbd59;
-    text-decoration: none;
+    color: #a78bfa;
 }
 
-/* Responsive */
+/* RESPONSIVE DESIGN */
 
 @media(max-width: 700px) {
+
     .navbar {
         flex-direction: column;
-        gap: 12px;
+        gap: 15px;
     }
 
-    .navbar a {
+    .nav-links a {
         margin: 0 7px;
-        font-size: 13px;
+        font-size: 12px;
     }
 
     .hero {
-        padding: 65px 20px;
+        padding: 70px 20px;
     }
 
-    .features {
-        grid-template-columns: 1fr;
-    }
-
-    .content {
+    .article {
         padding: 25px 20px;
     }
 
-    .btn-secondary {
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .btn-outline {
         margin: 12px 0 0;
     }
 }
@@ -273,319 +297,415 @@ footer a {
 
 <body>
 
-<!-- Navigation -->
+<!-- NAVIGATION -->
 
 <header class="navbar">
-    <div class="logo">GitApp</div>
 
-    <nav>
+    <div class="logo">Git<span>App</span></div>
+
+    <nav class="nav-links">
         <a href="#home">Home</a>
         <a href="#about">About</a>
         <a href="#features">Features</a>
         <a href="#faq">FAQ</a>
     </nav>
+
 </header>
 
-<!-- Hero -->
+<!-- HERO -->
 
 <section class="hero" id="home">
 
-    <span class="tag">Complete Software Guide</span>
+    <span class="hero-label">
+        COMPLETE GRAPHIC DESIGN SOFTWARE GUIDE
+    </span>
 
-    <h1>Keka HR Software: A Complete Guide to Modern HR Management</h1>
+    <h1>Affinity Designer: A Complete Guide to Professional Graphic Design</h1>
 
     <p>
-        Explore Keka, an HR and payroll management platform
-        designed to simplify employee management, payroll,
-        attendance, recruitment and workplace operations.
+        Discover Affinity Designer and the creative possibilities
+        of modern graphic design. Learn about vector illustrations,
+        digital artwork, typography and professional design tools.
     </p>
 
     <a href="https://gitapp.download/"
        class="btn"
        target="_blank"
        rel="noopener noreferrer">
-       Visit GitApp
+       Explore GitApp →
     </a>
 
-    <a href="#about" class="btn btn-secondary">
-       Read Article
+    <a href="#about" class="btn btn-outline">
+       Read Full Article
     </a>
 
 </section>
 
-<!-- Article -->
+<!-- ARTICLE -->
 
 <main class="container">
 
-<article class="content" id="about">
+<article class="article" id="about">
 
-<h2>What Is Keka?</h2>
+<h2>What Is Affinity Designer?</h2>
 
 <p>
-Keka is a modern human resource management and payroll
-software platform that helps businesses manage their
-workforce and organize important HR activities.
-It brings multiple employee management processes
-together in one digital environment.
+Affinity Designer is a popular name in professional
+graphic design and vector illustration. It has been
+widely used by designers to create logos, icons,
+branding materials, digital illustrations and
+other creative projects.
 </p>
 
 <p>
-From employee information and attendance tracking to
-payroll processing and performance management, Keka
-provides tools that help HR departments organize
-their everyday responsibilities more efficiently.
+The Affinity creative software has evolved into a
+unified application that combines vector design,
+photo editing and page layout capabilities.
+This gives creative professionals a flexible
+environment for working on different types
+of visual projects.
 </p>
 
-<h2>Why Is Keka HR Software Important?</h2>
+<div class="intro">
+<strong>Quick Overview:</strong>
+Affinity provides professional creative tools
+for graphic designers, illustrators, digital
+artists and businesses that need high-quality
+visual content.
+</div>
+
+<h2>Why Is Affinity Popular Among Designers?</h2>
 
 <p>
-Managing employees manually can become challenging
-as a company grows. HR teams need to maintain employee
-records, calculate salaries, monitor attendance,
-manage leave requests and coordinate recruitment.
+Graphic design requires precision, flexibility
+and creative control. Designers need software
+that allows them to create professional artwork,
+edit shapes, manage layers and work with colors
+and typography.
 </p>
 
 <p>
-Keka aims to simplify these processes by bringing
-important HR functions into a connected platform.
-This can help organizations reduce repetitive
-administrative work and improve access to employee
-information.
+Affinity provides a range of tools that support
+these activities. Its vector capabilities make
+it useful for creating scalable graphics, while
+its pixel and layout features expand the types
+of projects users can complete.
 </p>
 
-<h2 id="features">Main Features of Keka</h2>
+<h2 id="features">Top Features of Affinity Designer</h2>
 
 <p>
-Keka offers several tools that support different
-areas of human resource management.
-Some of its important features include:
+Affinity includes various creative tools
+for different graphic design requirements.
+Here are some of the major capabilities:
 </p>
 
-<div class="features">
+<div class="feature-grid">
 
-    <div class="feature-card">
-        <h3>01. Payroll Management</h3>
-        <p>
-        Payroll tools help businesses organize salary
-        calculations, deductions, payslips and payroll
-        processing activities.
-        </p>
-    </div>
+<div class="feature-card">
+<div class="icon">✏️</div>
+<h3>Vector Graphic Design</h3>
+<p>
+Create scalable logos, icons, shapes,
+illustrations and branding elements
+with precise vector editing tools.
+</p>
+</div>
 
-    <div class="feature-card">
-        <h3>02. Attendance Management</h3>
-        <p>
-        Businesses can manage employee attendance,
-        working hours, shifts and leave information
-        through centralized workflows.
-        </p>
-    </div>
+<div class="feature-card">
+<div class="icon">🎨</div>
+<h3>Digital Illustration</h3>
+<p>
+Develop creative artwork using drawing
+tools, brushes, curves, colors
+and flexible editing options.
+</p>
+</div>
 
-    <div class="feature-card">
-        <h3>03. Employee Management</h3>
-        <p>
-        Employee records, documents, organizational
-        information and other important details can
-        be managed in one place.
-        </p>
-    </div>
+<div class="feature-card">
+<div class="icon">🔤</div>
+<h3>Typography Tools</h3>
+<p>
+Design attractive text layouts,
+work with typography styles
+and create professional visual compositions.
+</p>
+</div>
 
-    <div class="feature-card">
-        <h3>04. Recruitment and Hiring</h3>
-        <p>
-        Recruitment tools support candidate tracking,
-        interview coordination, hiring workflows
-        and employee onboarding.
-        </p>
-    </div>
+<div class="feature-card">
+<div class="icon">🖼️</div>
+<h3>Pixel Editing</h3>
+<p>
+Combine vector graphics with pixel-based
+artwork and add textures or finishing
+details to creative projects.
+</p>
+</div>
 
-    <div class="feature-card">
-        <h3>05. Performance Management</h3>
-        <p>
-        Performance tools support employee goals,
-        reviews, continuous feedback and
-        performance evaluation.
-        </p>
-    </div>
+<div class="feature-card">
+<div class="icon">📐</div>
+<h3>Precision and Alignment</h3>
+<p>
+Use guides, grids, snapping and alignment
+features to organize graphic elements
+with greater accuracy.
+</p>
+</div>
 
-    <div class="feature-card">
-        <h3>06. Employee Self-Service</h3>
-        <p>
-        Employees can access relevant HR information
-        and manage supported requests through
-        self-service features.
-        </p>
-    </div>
+<div class="feature-card">
+<div class="icon">📁</div>
+<h3>File Export Options</h3>
+<p>
+Prepare designs for different uses
+with supported export formats
+and document workflows.
+</p>
+</div>
 
 </div>
 
-<h2>Benefits of Using Keka</h2>
+<h2>What Can You Create With Affinity?</h2>
 
 <p>
-A connected HR management platform can offer
-several advantages to organizations.
-Keka provides tools designed to support
-more organized workforce operations.
+Affinity provides creative tools for a wide
+range of graphic design projects. Depending
+on the tools and workflow you choose,
+you can create different types of visual content.
 </p>
 
 <ul>
-    <li>Centralized employee information.</li>
-    <li>Organized payroll management.</li>
-    <li>Convenient attendance and leave tracking.</li>
-    <li>Structured recruitment and onboarding.</li>
-    <li>Performance tracking and employee feedback.</li>
-    <li>Improved visibility into HR activities.</li>
+<li>Professional business logos and brand identities.</li>
+<li>Social media graphics and marketing banners.</li>
+<li>Website layouts and user interface designs.</li>
+<li>Digital illustrations and concept artwork.</li>
+<li>Icons, stickers and creative graphics.</li>
+<li>Posters, brochures and print materials.</li>
+<li>Typography-based designs and visual artwork.</li>
+</ul>
+
+<h2>Benefits of Using Affinity for Graphic Design</h2>
+
+<p>
+One of the major advantages of a flexible
+design application is the ability to work
+on multiple creative tasks in one environment.
+Affinity offers tools that support different
+stages of the design process.
+</p>
+
+<ul>
+<li>Flexible vector design and illustration tools.</li>
+<li>Professional control over shapes and curves.</li>
+<li>Creative typography and text formatting.</li>
+<li>Support for different types of visual projects.</li>
+<li>Customizable workspace and creative workflows.</li>
+<li>Tools for both vector and pixel-based artwork.</li>
+<li>Export options for digital and print projects.</li>
 </ul>
 
 <div class="highlight">
-    <strong>Important:</strong>
-    Features, availability and compliance capabilities
-    can vary depending on the selected Keka plan,
-    configuration and supported region.
+<strong>Helpful Tip:</strong>
+Choose the right document dimensions and color
+settings before beginning a project. For example,
+RGB is generally suitable for digital graphics,
+while print projects may require CMYK settings
+according to the printer's specifications.
 </div>
 
-<h2>How Does Keka Help HR Teams?</h2>
+<h2>Is Affinity Suitable for Beginners?</h2>
 
 <p>
-HR professionals handle many responsibilities,
-including employee communication, salary administration,
-recruitment, attendance and workplace policies.
-Managing these activities across separate systems
-can make everyday work more complicated.
+Yes. Beginners can explore Affinity by starting
+with basic shapes, drawing tools, colors and
+simple typography. Learning these fundamentals
+helps new designers understand how graphic
+design applications work.
 </p>
 
 <p>
-Keka brings several of these functions together.
-This gives HR teams a centralized environment
-for managing employee-related processes and
-accessing relevant workforce information.
+As users gain experience, they can explore
+advanced vector editing, layers, brushes,
+gradients and professional design workflows.
+Practicing with small projects is a useful
+way to develop creative skills.
 </p>
 
-<h2>Is Keka Suitable for Businesses?</h2>
+<h2>Affinity for Professional Designers</h2>
 
 <p>
-Keka may be useful for organizations looking
-to organize their HR operations through digital
-workflows. Small, medium and larger businesses
-can evaluate its modules according to their
-workforce requirements.
+Professional designers often work on projects
+that require precision, consistency and
+high-quality output. These projects may include
+branding systems, marketing materials,
+illustrations and website graphics.
 </p>
 
 <p>
-Before selecting any HR software, businesses
-should compare pricing, features, integrations,
-customer support, data security and local
-payroll compliance requirements.
+Affinity's combination of vector, pixel
+and layout capabilities can support these
+creative workflows. Designers should
+evaluate its tools and file compatibility
+according to their individual requirements.
+</p>
+
+<h2>Affinity Designer vs Traditional Design Software</h2>
+
+<p>
+Graphic design applications can differ
+in their features, pricing models,
+workflow and compatibility.
+</p>
+
+<p>
+Affinity's newer unified application brings
+multiple creative disciplines together.
+This can be useful for users who want
+vector graphics, photo editing and layout
+tools within one customizable workspace.
+</p>
+
+<p>
+The best application depends on your
+creative goals, experience, required
+features and preferred working environment.
+</p>
+
+<h2>System Requirements and Compatibility</h2>
+
+<p>
+Before installing any creative software,
+check the official system requirements
+for your operating system and hardware.
+Compatibility can depend on your device,
+operating system version and available memory.
+</p>
+
+<p>
+Also check the supported import and export
+formats if you regularly exchange project
+files with clients or other designers.
 </p>
 
 <h2>Final Thoughts</h2>
 
 <p>
-Keka is an HR and payroll management platform
-that combines employee management, attendance,
-payroll, recruitment and performance-related
-tools. Its centralized approach can help
-organizations structure their HR operations
-and manage important workforce activities.
+Affinity Designer remains an important
+search term for people interested in
+professional vector design and illustration.
+The current Affinity application expands
+this creative experience by bringing
+vector, pixel and layout tools together.
 </p>
 
 <p>
-Choosing the right HR software depends on
-business requirements, available features
-and organizational goals. Evaluating the
-platform through its official website is
-a useful starting point.
+Whether you are a beginner learning graphic
+design or an experienced creative professional,
+exploring the available tools can help you
+discover new ways to create digital artwork,
+logos, illustrations and visual content.
 </p>
 
-<!-- Call To Action -->
+<!-- CALL TO ACTION -->
 
 <div class="cta">
 
-    <h2>Explore More on GitApp</h2>
+<h2>Explore More Software and Technology Guides</h2>
 
-    <p>
-    Visit our website to explore more software
-    information, technology guides and useful resources.
-    </p>
+<p>
+Visit GitApp for more software information,
+creative resources and useful technology guides.
+</p>
 
-    <a href="https://gitapp.download/"
-       class="btn"
-       target="_blank"
-       rel="noopener noreferrer">
-       Visit Our Website →
-    </a>
+<a href="https://gitapp.download/"
+class="btn"
+target="_blank"
+rel="noopener noreferrer">
+Visit GitApp Now →
+</a>
 
 </div>
 
 <!-- FAQ -->
 
-<section id="faq">
-
-<h2>Frequently Asked Questions About Keka</h2>
+<h2 id="faq">Frequently Asked Questions</h2>
 
 <div class="faq-item">
-    <h3>1. What is Keka used for?</h3>
-    <p>
-    Keka is used for HR management, payroll,
-    employee attendance, recruitment and
-    performance management.
-    </p>
+<h3>1. What is Affinity Designer used for?</h3>
+<p>
+Affinity Designer is commonly used for
+vector graphics, logos, illustrations,
+icons and professional graphic design.
+</p>
 </div>
 
 <div class="faq-item">
-    <h3>2. Does Keka provide payroll management?</h3>
-    <p>
-    Yes. Keka includes payroll management tools
-    that help businesses organize salary processing
-    and related activities.
-    </p>
+<h3>2. Is Affinity good for beginners?</h3>
+<p>
+Yes. Beginners can learn basic shapes,
+drawing, typography and vector editing
+before moving to advanced design tools.
+</p>
 </div>
 
 <div class="faq-item">
-    <h3>3. Can employees manage leave in Keka?</h3>
-    <p>
-    Yes. Its leave management features allow
-    employees and managers to handle supported
-    leave requests and approvals.
-    </p>
+<h3>3. Can Affinity create professional logos?</h3>
+<p>
+Yes. Its vector design tools can be used
+to create scalable logos, icons
+and professional branding graphics.
+</p>
 </div>
 
 <div class="faq-item">
-    <h3>4. Is Keka suitable for small businesses?</h3>
-    <p>
-    Keka can be considered by small businesses
-    depending on their workforce needs, budget
-    and required HR features.
-    </p>
+<h3>4. Is Affinity free to use?</h3>
+<p>
+The current all-new Affinity application
+was announced as free in October 2025.
+Check the official website for the latest
+account and access requirements.
+</p>
 </div>
 
 <div class="faq-item">
-    <h3>5. Where can I learn more about Keka?</h3>
-    <p>
-    You can visit the official Keka website
-    to explore its features, available plans
-    and product information.
-    </p>
+<h3>5. Can Affinity be used for digital illustration?</h3>
+<p>
+Yes. Affinity provides vector drawing,
+brushes, curves, colors and pixel-based
+creative tools for digital artwork.
+</p>
 </div>
 
-</section>
+<div class="faq-item">
+<h3>6. Where can I learn more about Affinity?</h3>
+<p>
+You can explore the official Affinity
+website for product information,
+features, downloads and tutorials.
+</p>
+</div>
 
 </article>
 
 </main>
 
-<!-- Footer -->
+<!-- FOOTER -->
 
 <footer>
-    <p>© 2026 GitApp. All Rights Reserved.</p>
 
-    <p>
-    <a href="https://gitapp.download/">
-    Visit gitapp.download
-    </a>
-    </p>
+<h3>GitApp</h3>
 
-    <p>Informational article. GitApp is not affiliated with Keka.</p>
+<p>Discover Software, Creative Tools and Technology Guides.</p>
+
+<p>
+<a href="https://gitapp.download/">
+https://gitapp.download/
+</a>
+</p>
+
+<p>© 2026 GitApp. All Rights Reserved.</p>
+
+<p>GitApp is an independent website and is not affiliated with Affinity or Canva.</p>
+
 </footer>
 
 </body>
