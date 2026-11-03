@@ -1,0 +1,891 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Discover BetterTouchTool for Mac. Customize trackpad gestures, keyboard shortcuts, mouse buttons, window management, and powerful automations.">
+  <meta name="keywords" content="BetterTouchTool, BetterTouchTool Mac, macOS gestures, Mac automation, trackpad customization, Mac productivity">
+  <title>BetterTouchTool for Mac – Customize Your Mac Experience</title>
+
+  <style>
+    :root {
+      --bg: #101014;
+      --panel: #19191f;
+      --panel-light: #22222a;
+      --text: #f5f4f8;
+      --muted: #a4a2b0;
+      --purple: #a78bfa;
+      --lime: #c5f36b;
+      --border: rgba(255,255,255,.09);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    .container {
+      width: min(1120px, 90%);
+      margin: auto;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      background: rgba(16,16,20,.92);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(15px);
+    }
+
+    .navbar {
+      min-height: 76px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 21px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .logo span { color: var(--lime); }
+
+    nav {
+      display: flex;
+      gap: 25px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    nav a:hover { color: var(--lime); }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 21px;
+      border-radius: 9px;
+      font-size: 14px;
+      font-weight: 750;
+      transition: .25s;
+      text-align: center;
+    }
+
+    .btn-primary {
+      background: var(--lime);
+      color: #171914;
+    }
+
+    .btn-primary:hover {
+      background: #d8ff91;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(197,243,107,.15);
+    }
+
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,.22);
+      color: white;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--purple);
+      color: var(--purple);
+    }
+
+    .hero {
+      padding: 105px 0 90px;
+      background:
+        radial-gradient(ellipse at 80% 20%, rgba(139,92,246,.19), transparent 38%),
+        radial-gradient(ellipse at 15% 70%, rgba(197,243,107,.08), transparent 35%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      align-items: center;
+      gap: 55px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      color: var(--lime);
+      background: rgba(197,243,107,.09);
+      border: 1px solid rgba(197,243,107,.2);
+      border-radius: 30px;
+      padding: 6px 13px;
+      font-size: 12px;
+      font-weight: 750;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 23px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 6vw, 67px);
+      line-height: 1.08;
+      letter-spacing: -2.8px;
+      margin-bottom: 23px;
+    }
+
+    h1 span {
+      color: var(--purple);
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 17px;
+      max-width: 590px;
+      margin-bottom: 30px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 13px;
+      flex-wrap: wrap;
+    }
+
+    .product-visual {
+      background: linear-gradient(145deg, #282432, #17171e);
+      border: 1px solid rgba(167,139,250,.25);
+      padding: 24px;
+      border-radius: 22px;
+      box-shadow: 0 30px 90px rgba(0,0,0,.35);
+      transform: rotate(1deg);
+    }
+
+    .window-top {
+      display: flex;
+      gap: 7px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .dot {
+      height: 9px;
+      width: 9px;
+      border-radius: 50%;
+      background: #777;
+    }
+
+    .dot:first-child { background: #ff7777; }
+    .dot:nth-child(2) { background: #f4c35f; }
+    .dot:nth-child(3) { background: #8fdc83; }
+
+    .visual-title {
+      font-size: 13px;
+      color: var(--muted);
+      margin: 20px 0 12px;
+    }
+
+    .gesture {
+      background: #25242e;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 15px;
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .gesture strong { font-size: 13px; }
+    .gesture small { color: var(--muted); }
+    .gesture-icon { font-size: 22px; }
+
+    .tag {
+      color: var(--lime);
+      font-size: 11px;
+      background: rgba(197,243,107,.1);
+      padding: 4px 8px;
+      border-radius: 5px;
+    }
+
+    section { padding: 85px 0; }
+
+    .section-heading {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 45px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(29px, 4vw, 42px);
+      line-height: 1.2;
+      letter-spacing: -1.5px;
+      margin-bottom: 15px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+    }
+
+    .intro {
+      background: #15151b;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .article-copy {
+      max-width: 850px;
+      margin: auto;
+    }
+
+    .article-copy h2 {
+      font-size: 29px;
+      margin: 34px 0 13px;
+      letter-spacing: -1px;
+    }
+
+    .article-copy p {
+      color: #b9b7c3;
+      margin-bottom: 17px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .feature-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 27px;
+      transition: .25s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(167,139,250,.55);
+    }
+
+    .feature-icon {
+      font-size: 28px;
+      margin-bottom: 17px;
+    }
+
+    .feature-card h3 {
+      font-size: 18px;
+      margin-bottom: 9px;
+    }
+
+    .feature-card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .steps {
+      background: #17171e;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .step-list {
+      max-width: 780px;
+      margin: auto;
+      display: grid;
+      gap: 15px;
+    }
+
+    .step {
+      display: flex;
+      gap: 20px;
+      padding: 22px;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      background: var(--panel);
+    }
+
+    .step-number {
+      flex-shrink: 0;
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      background: rgba(167,139,250,.14);
+      color: var(--purple);
+      font-weight: 800;
+    }
+
+    .step p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 4px;
+    }
+
+    .note {
+      max-width: 780px;
+      margin: 25px auto 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .use-cases {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .use-case {
+      background: linear-gradient(140deg, #24212f, #19191f);
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+    }
+
+    .use-case h3 { margin-bottom: 9px; }
+    .use-case p { color: var(--muted); font-size: 14px; }
+
+    .faq-list {
+      max-width: 820px;
+      margin: auto;
+    }
+
+    details {
+      padding: 20px 4px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    details p {
+      color: var(--muted);
+      padding-top: 12px;
+      font-size: 14px;
+    }
+
+    .cta {
+      text-align: center;
+      background:
+        radial-gradient(ellipse at center, rgba(167,139,250,.19), transparent 65%),
+        #191820;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cta h2 {
+      font-size: clamp(30px, 5vw, 46px);
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .cta p {
+      color: var(--muted);
+      max-width: 620px;
+      margin: 0 auto 27px;
+    }
+
+    footer {
+      padding: 30px 0;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    footer a { color: var(--lime); }
+
+    @media (max-width: 800px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .feature-grid { grid-template-columns: repeat(2, 1fr); }
+      nav { display: none; }
+    }
+
+    @media (max-width: 560px) {
+      .hero { padding: 75px 0; }
+      section { padding: 65px 0; }
+      .feature-grid, .use-cases { grid-template-columns: 1fr; }
+      .product-visual { transform: none; }
+      h1 { letter-spacing: -1.8px; }
+      .navbar > .btn { padding: 10px 13px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container navbar">
+    <a href="#" class="logo">GIT<span>APP.</span></a>
+
+    <nav>
+      <a href="#about">Overview</a>
+      <a href="#features">Features</a>
+      <a href="#getting-started">Getting Started</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+
+    <a class="btn btn-primary" href="https://gitapp.download/">
+      Explore GitApp ↗
+    </a>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="container hero-grid">
+
+      <div>
+        <span class="eyebrow">Mac Productivity & Customization</span>
+
+        <h1>
+          Make Your Mac Work
+          <span>Your Way.</span>
+        </h1>
+
+        <p>
+          BetterTouchTool gives Mac users more control over the way they
+          interact with their computers. Customize gestures, create powerful
+          shortcuts, automate repetitive tasks, and build a workflow that
+          feels natural to you.
+        </p>
+
+        <div class="hero-buttons">
+          <a class="btn btn-primary" href="https://gitapp.download/">
+            Visit GitApp →
+          </a>
+
+          <a class="btn btn-outline" href="#features">
+            Discover Features
+          </a>
+        </div>
+      </div>
+
+      <div class="product-visual">
+        <div class="window-top">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+
+        <div class="visual-title">YOUR CUSTOM WORKFLOW</div>
+
+        <div class="gesture">
+          <div>
+            <strong>Three-Finger Swipe</strong><br>
+            <small>Switch desktop</small>
+          </div>
+          <span class="gesture-icon">✋</span>
+        </div>
+
+        <div class="gesture">
+          <div>
+            <strong>Custom Keyboard Shortcut</strong><br>
+            <small>Launch your favorite app</small>
+          </div>
+          <span class="gesture-icon">⌨️</span>
+        </div>
+
+        <div class="gesture">
+          <div>
+            <strong>Window Management</strong><br>
+            <small>Snap and resize windows</small>
+          </div>
+          <span class="tag">ACTIVE</span>
+        </div>
+
+        <div class="gesture">
+          <div>
+            <strong>Automated Actions</strong><br>
+            <small>Connect multiple tasks</small>
+          </div>
+          <span class="gesture-icon">⚡</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="intro" id="about">
+    <div class="container article-copy">
+
+      <h2>What Is BetterTouchTool?</h2>
+
+      <p>
+        BetterTouchTool is a macOS customization and automation application
+        developed by Folivora AI. It helps users personalize how they control
+        their Mac by connecting gestures, mouse inputs, keyboard shortcuts,
+        and other triggers to useful actions.
+      </p>
+
+      <p>
+        Instead of relying only on the default macOS controls, you can create
+        your own interactions. For example, a trackpad gesture can open an
+        application, a keyboard shortcut can organize a window, or a mouse
+        button can trigger a multi-step workflow.
+      </p>
+
+      <p>
+        BetterTouchTool is particularly useful for people who spend many hours
+        working on a Mac and want their everyday actions to feel faster,
+        more consistent, and easier to control.
+      </p>
+
+      <h2>Why Do Mac Users Choose BetterTouchTool?</h2>
+
+      <p>
+        The biggest advantage is flexibility. You can start with one simple
+        shortcut and gradually build more advanced configurations as your
+        needs change. Its triggers and actions can also be combined, making
+        it useful for both everyday productivity and specialized workflows.
+      </p>
+
+    </div>
+  </section>
+
+  <section id="features">
+    <div class="container">
+
+      <div class="section-heading">
+        <span class="eyebrow">Powerful Tools</span>
+        <h2>Explore the Features of BetterTouchTool</h2>
+        <p>
+          A flexible collection of customization and automation tools
+          designed to give you more control over macOS.
+        </p>
+      </div>
+
+      <div class="feature-grid">
+
+        <article class="feature-card">
+          <div class="feature-icon">👆</div>
+          <h3>Trackpad Gestures</h3>
+          <p>
+            Create custom multi-finger taps, swipes, clicks, and other
+            gestures on your MacBook trackpad or Magic Trackpad.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">🖱️</div>
+          <h3>Mouse Customization</h3>
+          <p>
+            Assign actions to mouse buttons, configure combinations,
+            and personalize supported mouse controls.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">⌨️</div>
+          <h3>Keyboard Shortcuts</h3>
+          <p>
+            Set up global or app-specific hotkeys and typed sequences
+            to launch actions without navigating through menus.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">🪟</div>
+          <h3>Window Management</h3>
+          <p>
+            Snap windows to screen edges, create custom snap areas,
+            resize windows, and switch between open applications.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>Automation & Actions</h3>
+          <p>
+            Connect multiple actions into workflows and use conditions
+            to make automations respond to your working environment.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">🎛️</div>
+          <h3>Stream Deck Support</h3>
+          <p>
+            Configure supported Stream Deck devices and macro pads
+            to run actions, shortcuts, and custom workflows.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">📋</div>
+          <h3>Clipboard Manager</h3>
+          <p>
+            Search your clipboard history, preview copied content,
+            and use convenient options for managing copied items.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">🧩</div>
+          <h3>Floating Menus & Widgets</h3>
+          <p>
+            Build custom menus, on-screen controls, and widgets
+            to keep useful actions close at hand.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">💻</div>
+          <h3>Scripting & Shortcuts</h3>
+          <p>
+            Extend your workflows with supported scripting options,
+            Apple Shortcuts, and remote-control features.
+          </p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="steps" id="getting-started">
+    <div class="container">
+
+      <div class="section-heading">
+        <span class="eyebrow">Getting Started</span>
+        <h2>How to Get Started with BetterTouchTool</h2>
+        <p>
+          Follow these basic steps to begin customizing your Mac.
+        </p>
+      </div>
+
+      <div class="step-list">
+
+        <div class="step">
+          <span class="step-number">01</span>
+          <div>
+            <h3>Visit the Official Website</h3>
+            <p>
+              Open the BetterTouchTool website and review the available
+              information, features, and download options.
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <span class="step-number">02</span>
+          <div>
+            <h3>Download and Install</h3>
+            <p>
+              Download the application, extract the archive, move the app
+              into your Applications folder, and launch it.
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <span class="step-number">03</span>
+          <div>
+            <h3>Choose an Input Device</h3>
+            <p>
+              Start with your trackpad, mouse, keyboard, or another
+              supported input device.
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <span class="step-number">04</span>
+          <div>
+            <h3>Create Your First Trigger</h3>
+            <p>
+              Select a gesture or shortcut, then assign an action such
+              as opening an app or arranging a window.
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <span class="step-number">05</span>
+          <div>
+            <h3>Test and Improve Your Workflow</h3>
+            <p>
+              Try your new configuration and adjust it until the controls
+              feel comfortable and reliable.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="note">
+        Compatibility note: BetterTouchTool's documentation currently
+        lists macOS 12 or later as a requirement. Check the official
+        download page for current compatibility and installation guidance.
+      </p>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+
+      <div class="section-heading">
+        <span class="eyebrow">Made for Different Workflows</span>
+        <h2>Who Can Benefit from BetterTouchTool?</h2>
+        <p>
+          Its customizable controls make it useful for a wide range
+          of Mac users.
+        </p>
+      </div>
+
+      <div class="use-cases">
+
+        <div class="use-case">
+          <h3>👨‍💻 Developers</h3>
+          <p>
+            Create shortcuts for frequently used tools, manage windows,
+            and automate repetitive development tasks.
+          </p>
+        </div>
+
+        <div class="use-case">
+          <h3>🎨 Designers</h3>
+          <p>
+            Set up custom gestures and shortcuts for creative applications
+            and make common operations easier to access.
+          </p>
+        </div>
+
+        <div class="use-case">
+          <h3>📚 Students & Professionals</h3>
+          <p>
+            Organize windows, launch apps quickly, and simplify everyday
+            computer tasks with personalized controls.
+          </p>
+        </div>
+
+        <div class="use-case">
+          <h3>🎬 Content Creators</h3>
+          <p>
+            Connect supported input devices and macro pads to actions
+            that help manage editing and production workflows.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="intro">
+    <div class="container">
+
+      <div class="section-heading">
+        <span class="eyebrow">Common Questions</span>
+        <h2>Frequently Asked Questions</h2>
+        <p>
+          A few helpful answers before you start using BetterTouchTool.
+        </p>
+      </div>
+
+      <div class="faq-list">
+
+        <details>
+          <summary>What is BetterTouchTool used for?</summary>
+          <p>
+            BetterTouchTool is used to customize Mac input devices,
+            create keyboard shortcuts, configure gestures, manage windows,
+            and automate different tasks.
+          </p>
+        </details>
+
+        <details>
+          <summary>Does BetterTouchTool work with MacBook trackpads?</summary>
+          <p>
+            Yes. It supports custom gestures for built-in MacBook trackpads
+            and Apple's Magic Trackpad.
+          </p>
+        </details>
+
+        <details>
+          <summary>Can I customize my mouse with BetterTouchTool?</summary>
+          <p>
+            Yes. You can assign actions to supported mouse buttons and
+            configure additional mouse interactions.
+          </p>
+        </details>
+
+        <details>
+          <summary>Does BetterTouchTool support keyboard shortcuts?</summary>
+          <p>
+            Yes. It supports global and app-specific shortcuts, along
+            with other keyboard-based triggers.
+          </p>
+        </details>
+
+        <details>
+          <summary>Is BetterTouchTool free?</summary>
+          <p>
+            BetterTouchTool offers a 45-day trial. Continued use requires
+            an appropriate license. Check the developer's official pricing
+            page for current license details.
+          </p>
+        </details>
+
+        <details>
+          <summary>Where can I download BetterTouchTool?</summary>
+          <p>
+            Visit the official developer website at
+            <a href="https://folivora.ai/download" target="_blank"
+               rel="noopener noreferrer">folivora.ai</a>
+            for the genuine application and installation instructions.
+          </p>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container">
+      <span class="eyebrow">Discover More Software</span>
+
+      <h2>Make Your Digital Workflow<br>Work Smarter.</h2>
+
+      <p>
+        Looking for more useful software and digital tools?
+        Visit GitApp to explore more and discover resources
+        for your everyday technology needs.
+      </p>
+
+      <a href="https://gitapp.download/" class="btn btn-primary">
+        Visit GitApp Now →
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <p>
+      © 2026 GitApp. All rights reserved.
+      | <a href="https://gitapp.download/">Visit GitApp</a>
+    </p>
+
+    <p style="margin-top:10px">
+      BetterTouchTool is a product of its respective developer.
+      This article is independent and is not affiliated with or endorsed
+      by Folivora AI. Product features, compatibility, and licensing
+      may change. Refer to the official website for current details.
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
