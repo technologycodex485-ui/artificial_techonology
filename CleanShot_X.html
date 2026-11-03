@@ -1,0 +1,1518 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>CleanShot X for Mac – Screenshots, Screen Recording & Editing</title>
+  <meta name="description" content="Discover CleanShot X for Mac, a powerful screenshot and screen recording tool with scrolling capture, annotations, OCR, video editing, and cloud sharing.">
+  <meta name="keywords" content="CleanShot X, CleanShot X for Mac, Mac screenshot app, screen recording Mac, scrolling screenshot, screenshot editor, OCR Mac">
+  <meta name="author" content="GitApp">
+  <meta name="robots" content="index, follow">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap');
+
+    :root {
+      --ink: #241b1c;
+      --muted: #766b69;
+      --cream: #faf5ef;
+      --paper: #fffdf9;
+      --red: #a83d38;
+      --red-dark: #7e2927;
+      --peach: #f2c9b7;
+      --line: #eadfd6;
+      --green: #647b65;
+      --shadow: 0 22px 65px rgba(61, 37, 31, .10);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      line-height: 1.7;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(1160px, 90%);
+      margin: auto;
+    }
+
+    /* Navigation */
+
+    header {
+      background: rgba(250, 245, 239, .94);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(14px);
+    }
+
+    .navbar {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .logo {
+      font-size: 23px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      color: var(--red);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 29px;
+      align-items: center;
+      list-style: none;
+      font-size: 13px;
+      font-weight: 700;
+      color: #625653;
+    }
+
+    .nav-links a:hover {
+      color: var(--red);
+    }
+
+    .nav-button,
+    .primary-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--red);
+      color: white;
+      border-radius: 7px;
+      padding: 13px 21px;
+      font-size: 13px;
+      font-weight: 800;
+      transition: .25s ease;
+    }
+
+    .nav-button:hover,
+    .primary-button:hover {
+      background: var(--red-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 9px 22px rgba(168, 61, 56, .2);
+    }
+
+    /* Hero */
+
+    .hero {
+      padding: 94px 0 85px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 470px;
+      height: 470px;
+      background: #f1d8c8;
+      border-radius: 50%;
+      right: -180px;
+      top: -160px;
+      opacity: .45;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.05fr;
+      gap: 65px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--red);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 11px;
+      font-weight: 800;
+      margin-bottom: 22px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 25px;
+      height: 2px;
+      background: var(--red);
+    }
+
+    h1, h2, h3 {
+      line-height: 1.2;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(43px, 5.5vw, 69px);
+      letter-spacing: -2px;
+      margin-bottom: 23px;
+      max-width: 600px;
+    }
+
+    h1 span {
+      color: var(--red);
+      font-style: italic;
+    }
+
+    .hero-description {
+      color: var(--muted);
+      max-width: 490px;
+      font-size: 16px;
+      margin-bottom: 30px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 13px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .secondary-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #cbbab0;
+      padding: 12px 20px;
+      border-radius: 7px;
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 800;
+      transition: .25s;
+    }
+
+    .secondary-button:hover {
+      border-color: var(--red);
+      color: var(--red);
+    }
+
+    .hero-note {
+      margin-top: 23px;
+      font-size: 12px;
+      color: #8a7c76;
+    }
+
+    /* Decorative app preview */
+
+    .preview-wrap {
+      position: relative;
+      padding: 22px;
+    }
+
+    .preview-card {
+      background: #fff;
+      border: 1px solid #e9dcd2;
+      border-radius: 15px;
+      padding: 15px;
+      box-shadow: var(--shadow);
+      transform: rotate(1.2deg);
+    }
+
+    .window-top {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 3px 14px;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #e7b3a9;
+    }
+
+    .dot:nth-child(2) { background: #e9c98f; }
+    .dot:nth-child(3) { background: #a5b89c; }
+
+    .window-title {
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 10px;
+      font-weight: 700;
+      color: #998a83;
+    }
+
+    .screen-art {
+      background: #eee5dc;
+      border-radius: 9px;
+      padding: 17px;
+      min-height: 290px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .screen-browser {
+      background: white;
+      border-radius: 7px;
+      padding: 15px;
+      height: 100%;
+      min-height: 255px;
+      box-shadow: 0 8px 25px rgba(50, 30, 20, .08);
+    }
+
+    .browser-line {
+      height: 7px;
+      width: 80px;
+      background: #e8dcd4;
+      border-radius: 10px;
+      margin-bottom: 17px;
+    }
+
+    .browser-heading {
+      height: 15px;
+      width: 72%;
+      background: #a83d38;
+      opacity: .85;
+      border-radius: 3px;
+      margin-bottom: 12px;
+    }
+
+    .browser-copy {
+      height: 6px;
+      background: #e8e1dc;
+      border-radius: 5px;
+      margin: 8px 0;
+    }
+
+    .browser-copy.short { width: 55%; }
+    .browser-copy.medium { width: 80%; }
+
+    .browser-image {
+      margin-top: 18px;
+      height: 90px;
+      border-radius: 5px;
+      background: linear-gradient(120deg, #d9b9a7, #a85b51 55%, #713b3b);
+      position: relative;
+    }
+
+    .annotation {
+      position: absolute;
+      right: 28px;
+      bottom: 26px;
+      background: #fff9f0;
+      border: 2px solid var(--red);
+      border-radius: 5px;
+      width: 110px;
+      height: 53px;
+      transform: rotate(-5deg);
+    }
+
+    .annotation::after {
+      content: "Look here";
+      position: absolute;
+      top: 13px;
+      left: 14px;
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--red);
+    }
+
+    .floating-tag {
+      position: absolute;
+      background: white;
+      padding: 12px 17px;
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(40, 20, 20, .12);
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--red);
+    }
+
+    .tag-one {
+      left: -10px;
+      top: 70px;
+    }
+
+    .tag-two {
+      right: -10px;
+      bottom: 65px;
+      color: var(--green);
+    }
+
+    /* Trust strip */
+
+    .quick-facts {
+      background: #fffaf5;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 25px 0;
+    }
+
+    .facts-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      text-align: center;
+    }
+
+    .fact strong {
+      display: block;
+      color: var(--red);
+      font-size: 17px;
+      font-weight: 800;
+    }
+
+    .fact span {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    /* Main sections */
+
+    section.content-section {
+      padding: 90px 0;
+    }
+
+    .section-heading {
+      max-width: 700px;
+      margin-bottom: 43px;
+    }
+
+    .section-heading h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 4vw, 46px);
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .article-layout {
+      display: grid;
+      grid-template-columns: 1.4fr .6fr;
+      gap: 55px;
+      align-items: start;
+    }
+
+    .article-copy h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 30px;
+      margin: 36px 0 15px;
+    }
+
+    .article-copy h2:first-child {
+      margin-top: 0;
+    }
+
+    .article-copy p {
+      color: #655956;
+      font-size: 15px;
+      margin-bottom: 17px;
+    }
+
+    .article-copy ul {
+      padding-left: 22px;
+      margin: 15px 0 23px;
+      color: #655956;
+      font-size: 14px;
+    }
+
+    .article-copy li {
+      margin: 9px 0;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 105px;
+    }
+
+    .sidebar-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 25px;
+      margin-bottom: 18px;
+    }
+
+    .sidebar-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      margin-bottom: 13px;
+    }
+
+    .sidebar-card p {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 17px;
+    }
+
+    .sidebar-card a {
+      font-size: 12px;
+      color: var(--red);
+      font-weight: 800;
+    }
+
+    .sidebar-list {
+      list-style: none;
+    }
+
+    .sidebar-list li {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 12px;
+      color: #685d59;
+    }
+
+    .sidebar-list li:last-child {
+      border: 0;
+    }
+
+    /* Features */
+
+    .features-section {
+      background: #f1e6dd;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 19px;
+    }
+
+    .feature-card {
+      background: #fffdf9;
+      padding: 28px;
+      border: 1px solid #eadbd0;
+      border-radius: 10px;
+      transition: .25s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(65, 40, 30, .08);
+    }
+
+    .feature-icon {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      background: #f8e7df;
+      border-radius: 10px;
+      font-size: 21px;
+      margin-bottom: 20px;
+    }
+
+    .feature-card h3 {
+      font-size: 17px;
+      margin-bottom: 11px;
+    }
+
+    .feature-card p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* Workflow */
+
+    .workflow-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 35px;
+    }
+
+    .step {
+      border-top: 2px solid var(--red);
+      padding-top: 21px;
+    }
+
+    .step-number {
+      color: var(--red);
+      font-family: 'Playfair Display', serif;
+      font-size: 38px;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .step h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .step p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* Audience */
+
+    .audience-section {
+      background: #fffaf5;
+    }
+
+    .audience-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .audience-item {
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: white;
+    }
+
+    .audience-item h3 {
+      font-size: 17px;
+      margin-bottom: 8px;
+    }
+
+    .audience-item p {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* Pricing */
+
+    .pricing-card {
+      max-width: 760px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .price-option {
+      padding: 32px;
+    }
+
+    .price-option:last-child {
+      background: #f5e8df;
+    }
+
+    .price-option h3 {
+      font-size: 19px;
+      margin-bottom: 13px;
+    }
+
+    .price {
+      font-family: 'Playfair Display', serif;
+      font-size: 39px;
+      color: var(--red);
+      margin-bottom: 5px;
+    }
+
+    .price-option p {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 17px;
+    }
+
+    .price-option ul {
+      list-style: none;
+      font-size: 12px;
+      color: #635955;
+    }
+
+    .price-option li {
+      padding: 7px 0;
+    }
+
+    /* FAQ */
+
+    .faq-list {
+      max-width: 820px;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--line);
+      padding: 22px 0;
+    }
+
+    .faq-item h3 {
+      font-size: 16px;
+      margin-bottom: 9px;
+    }
+
+    .faq-item p {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* CTA */
+
+    .final-cta {
+      background: #702f30;
+      color: white;
+      text-align: center;
+      padding: 78px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .final-cta::before,
+    .final-cta::after {
+      content: "";
+      position: absolute;
+      width: 250px;
+      height: 250px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 50%;
+    }
+
+    .final-cta::before {
+      left: -100px;
+      top: -110px;
+    }
+
+    .final-cta::after {
+      right: -100px;
+      bottom: -130px;
+    }
+
+    .final-cta h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 4vw, 48px);
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    .final-cta p {
+      max-width: 600px;
+      margin: 0 auto 26px;
+      color: #ead2cb;
+      font-size: 14px;
+      position: relative;
+    }
+
+    .final-cta .primary-button {
+      background: #fff5eb;
+      color: #702f30;
+      position: relative;
+    }
+
+    .final-cta .primary-button:hover {
+      background: white;
+    }
+
+    /* Footer */
+
+    footer {
+      background: #241b1c;
+      color: #e8dcd5;
+      padding: 34px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .footer-brand {
+      font-size: 19px;
+      font-weight: 800;
+    }
+
+    .footer-brand span {
+      color: #e18b7b;
+    }
+
+    .footer-inner p {
+      color: #b8a7a0;
+      font-size: 11px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 18px;
+      font-size: 11px;
+      color: #d7c6be;
+    }
+
+    .disclaimer {
+      border-top: 1px solid #493a38;
+      margin-top: 25px;
+      padding-top: 20px;
+      color: #a99892;
+      font-size: 10px;
+      line-height: 1.7;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 45px;
+      }
+
+      .hero-copy {
+        max-width: 700px;
+      }
+
+      .preview-wrap {
+        max-width: 620px;
+        width: 100%;
+        margin: auto;
+      }
+
+      .article-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: static;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+      }
+
+      .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 620px) {
+      .navbar {
+        min-height: 68px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .nav-button {
+        padding: 10px 13px;
+        font-size: 11px;
+      }
+
+      .hero {
+        padding: 65px 0;
+      }
+
+      .facts-grid {
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 22px;
+      }
+
+      section.content-section {
+        padding: 65px 0;
+      }
+
+      .feature-grid,
+      .workflow-grid,
+      .audience-grid,
+      .pricing-card,
+      .sidebar {
+        grid-template-columns: 1fr;
+      }
+
+      .preview-wrap {
+        padding: 10px;
+      }
+
+      .screen-art {
+        min-height: 235px;
+      }
+
+      .screen-browser {
+        min-height: 205px;
+      }
+
+      .floating-tag {
+        font-size: 9px;
+        padding: 9px 11px;
+      }
+
+      .tag-one { left: -3px; }
+      .tag-two { right: -3px; }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <div class="container navbar">
+      <a href="#" class="logo">Git<span>App.</span></a>
+
+      <ul class="nav-links">
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#workflow">How It Works</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+
+      <a class="nav-button" href="https://gitapp.download/" target="_blank" rel="noopener">
+        Explore GitApp ↗
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-grid">
+
+      <div class="hero-copy">
+        <div class="eyebrow">A smarter Mac capture workflow</div>
+
+        <h1>Make every screen capture <span>look exceptional.</span></h1>
+
+        <p class="hero-description">
+          CleanShot X brings screenshots, screen recording, annotations,
+          editing, and sharing together in one powerful Mac application.
+          Capture what matters and communicate your ideas with clarity.
+        </p>
+
+        <div class="hero-actions">
+          <a href="https://gitapp.download/" target="_blank" rel="noopener" class="primary-button">
+            Visit GitApp →
+          </a>
+
+          <a href="#features" class="secondary-button">
+            Discover Features
+          </a>
+        </div>
+
+        <p class="hero-note">
+          Designed for macOS · Screenshot and screen recording toolkit
+        </p>
+      </div>
+
+      <!-- Decorative interface preview -->
+      <div class="preview-wrap">
+        <div class="floating-tag tag-one">✦ Capture & Annotate</div>
+
+        <div class="preview-card">
+          <div class="window-top">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="window-title">CleanShot X — Capture Preview</span>
+          </div>
+
+          <div class="screen-art">
+            <div class="screen-browser">
+              <div class="browser-line"></div>
+              <div class="browser-heading"></div>
+              <div class="browser-copy medium"></div>
+              <div class="browser-copy"></div>
+              <div class="browser-copy short"></div>
+              <div class="browser-image"></div>
+              <div class="annotation"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="floating-tag tag-two">✓ Ready to share</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Quick facts -->
+  <section class="quick-facts">
+    <div class="container facts-grid">
+      <div class="fact">
+        <strong>Scrolling</strong>
+        <span>Long-page capture</span>
+      </div>
+      <div class="fact">
+        <strong>OCR</strong>
+        <span>Extract text from images</span>
+      </div>
+      <div class="fact">
+        <strong>Studio Mode</strong>
+        <span>Polished screen videos</span>
+      </div>
+      <div class="fact">
+        <strong>Cloud</strong>
+        <span>Convenient link sharing</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Article -->
+  <section class="content-section" id="overview">
+    <div class="container">
+
+      <div class="section-heading">
+        <div class="eyebrow">Product overview</div>
+        <h2>What Is CleanShot X?</h2>
+        <p>
+          A closer look at the Mac utility that turns everyday screen
+          captures into useful, polished visual communication.
+        </p>
+      </div>
+
+      <div class="article-layout">
+
+        <article class="article-copy">
+
+          <h2>A complete screenshot solution for Mac</h2>
+
+          <p>
+            <strong>CleanShot X</strong> is a screenshot and screen recording
+            application designed specifically for Mac users. It provides
+            tools for capturing screen content, editing images, recording
+            demonstrations, and sharing visual information.
+          </p>
+
+          <p>
+            Instead of switching between multiple applications to capture,
+            crop, annotate, and distribute an image, users can complete many
+            of these tasks within a single workflow. This makes it useful
+            for people who regularly explain ideas through screenshots and
+            screen recordings.
+          </p>
+
+          <h2>More than a basic screenshot tool</h2>
+
+          <p>
+            The built-in macOS screenshot utility is convenient for simple
+            captures. CleanShot X expands that workflow with additional
+            capture modes, editing tools, scrolling screenshots, text
+            recognition, and sharing options.
+          </p>
+
+          <p>
+            You can capture a selected area, an application window, or the
+            entire display. For content that extends beyond the visible
+            screen, scrolling capture can help create one longer image.
+          </p>
+
+          <h2>Make screenshots easier to understand</h2>
+
+          <p>
+            A screenshot is most useful when the important information is
+            easy to identify. CleanShot X includes annotation tools that
+            help users add arrows, highlights, text, shapes, and numbered
+            steps. You can also blur or pixelate information that should
+            not appear in the final image.
+          </p>
+
+          <p>
+            The Background Tool provides additional presentation options,
+            including padding, alignment, aspect ratios, and backgrounds.
+            These features can help turn an ordinary capture into a
+            professional-looking visual for documentation, presentations,
+            or social media.
+          </p>
+
+          <h2>Screen recording and video editing</h2>
+
+          <p>
+            CleanShot X also supports screen recording. Users can record
+            a selected area, a window, or the full display. Recording
+            options include microphone audio, computer audio, webcam
+            overlays, cursor visibility, and click or keystroke indicators.
+          </p>
+
+          <p>
+            Its built-in video editor includes Studio Mode, which offers
+            tools such as trimming and animated zoom effects. This is
+            especially useful when creating software demonstrations,
+            product walkthroughs, and instructional videos.
+          </p>
+
+          <h2>Text recognition and quick sharing</h2>
+
+          <p>
+            The OCR feature can recognize text inside screenshots and
+            images, allowing users to copy information without manually
+            typing it again. CleanShot also supports QR code recognition.
+            According to its feature documentation, text recognition is
+            performed on-device.
+          </p>
+
+          <p>
+            For sharing, CleanShot Cloud can upload captures and generate
+            links. Cloud features vary by plan and can include video
+            transcription, comments, access controls, and password
+            protection.
+          </p>
+
+        </article>
+
+        <aside class="sidebar">
+
+          <div class="sidebar-card">
+            <h3>Explore CleanShot X</h3>
+            <p>
+              Visit the official product website to review its features,
+              download information, and current plans.
+            </p>
+            <a href="https://cleanshot.com/" target="_blank" rel="noopener">
+              Official Website ↗
+            </a>
+          </div>
+
+          <div class="sidebar-card">
+            <h3>At a Glance</h3>
+            <ul class="sidebar-list">
+              <li>Platform: macOS</li>
+              <li>Screenshot capture: Yes</li>
+              <li>Scrolling capture: Yes</li>
+              <li>Screen recording: Yes</li>
+              <li>Image annotations: Yes</li>
+              <li>Text recognition: Yes</li>
+              <li>Cloud sharing: Optional</li>
+            </ul>
+          </div>
+
+          <div class="sidebar-card">
+            <h3>Find More Apps</h3>
+            <p>
+              Discover more software, applications, and digital tools
+              through GitApp.
+            </p>
+            <a href="https://gitapp.download/" target="_blank" rel="noopener">
+              Visit GitApp →
+            </a>
+          </div>
+
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="content-section features-section" id="features">
+    <div class="container">
+
+      <div class="section-heading">
+        <div class="eyebrow">Powerful capabilities</div>
+        <h2>Key Features of CleanShot X</h2>
+        <p>
+          CleanShot X combines several practical tools to make capturing,
+          editing, and sharing screen content more convenient.
+        </p>
+      </div>
+
+      <div class="feature-grid">
+
+        <div class="feature-card">
+          <div class="feature-icon">▣</div>
+          <h3>Flexible Screenshots</h3>
+          <p>
+            Capture a selected area, a specific window, or the full screen.
+            Timed captures and scrolling screenshots provide additional
+            flexibility.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">✎</div>
+          <h3>Annotation Tools</h3>
+          <p>
+            Add arrows, shapes, text, highlights, counters, and other
+            visual elements. Blur or pixelate sensitive information
+            before sharing.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">▶</div>
+          <h3>Screen Recording</h3>
+          <p>
+            Record your screen as a video or GIF, with options for
+            microphone audio, system audio, webcam overlays, and
+            cursor effects.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">⌕</div>
+          <h3>Text Recognition</h3>
+          <p>
+            Extract text from images and screenshots using OCR. The
+            feature can also recognize QR codes and reduce manual
+            transcription work.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">◉</div>
+          <h3>Studio Mode</h3>
+          <p>
+            Improve screen recordings with trimming, smooth zoom
+            effects, cursor adjustments, motion blur, and
+            presentation backgrounds.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">↗</div>
+          <h3>CleanShot Cloud</h3>
+          <p>
+            Upload screenshots and recordings to generate shareable
+            links. Available cloud storage and collaboration features
+            depend on your plan.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">▤</div>
+          <h3>Quick Access Overlay</h3>
+          <p>
+            Access recent captures after taking a screenshot or
+            recording. Copy, save, annotate, upload, or drag files
+            into other applications.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">▧</div>
+          <h3>Floating Screenshots</h3>
+          <p>
+            Keep a screenshot visible above other windows while
+            working. Resize it and adjust its position as needed.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">◈</div>
+          <h3>Background Tool</h3>
+          <p>
+            Add backgrounds, spacing, shadows, and custom layouts
+            to screenshots to create more polished visuals.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Workflow -->
+  <section class="content-section" id="workflow">
+    <div class="container">
+
+      <div class="section-heading">
+        <div class="eyebrow">Simple workflow</div>
+        <h2>How to Get Started</h2>
+        <p>
+          Follow these general steps to begin using CleanShot X
+          for your daily screen capture tasks.
+        </p>
+      </div>
+
+      <div class="workflow-grid">
+
+        <div class="step">
+          <div class="step-number">01</div>
+          <h3>Download and Install</h3>
+          <p>
+            Visit the official CleanShot website, review the system
+            requirements, purchase or access the app through an
+            available subscription, and install it on your Mac.
+          </p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">02</div>
+          <h3>Choose a Capture Mode</h3>
+          <p>
+            Select the area, window, full screen, or scrolling
+            capture mode that fits your task. You can also use
+            the recording tools for video demonstrations.
+          </p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">03</div>
+          <h3>Edit and Share</h3>
+          <p>
+            Add annotations, crop your image, apply a background,
+            or refine a recording. Save the result locally or
+            share it using CleanShot Cloud.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Audience -->
+  <section class="content-section audience-section">
+    <div class="container">
+
+      <div class="section-heading">
+        <div class="eyebrow">Who can benefit?</div>
+        <h2>Who Should Use CleanShot X?</h2>
+        <p>
+          Its capture and editing tools can support a wide range
+          of professional and everyday workflows.
+        </p>
+      </div>
+
+      <div class="audience-grid">
+
+        <div class="audience-item">
+          <h3>Designers and Creatives</h3>
+          <p>
+            Capture design references, annotate visual feedback,
+            and prepare polished screenshots for presentations
+            and creative projects.
+          </p>
+        </div>
+
+        <div class="audience-item">
+          <h3>Developers and Technical Teams</h3>
+          <p>
+            Document bugs, highlight interface issues, capture
+            code examples, and create clear technical walkthroughs.
+          </p>
+        </div>
+
+        <div class="audience-item">
+          <h3>Educators and Trainers</h3>
+          <p>
+            Record lessons, create step-by-step guides, and
+            demonstrate software workflows through screen videos.
+          </p>
+        </div>
+
+        <div class="audience-item">
+          <h3>Content Creators</h3>
+          <p>
+            Prepare screenshots and screen recordings for tutorials,
+            product demonstrations, online content, and social posts.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="content-section" id="pricing">
+    <div class="container">
+
+      <div class="section-heading" style="text-align:center; margin-left:auto; margin-right:auto;">
+        <div class="eyebrow">Plans and availability</div>
+        <h2>CleanShot X Pricing</h2>
+        <p>
+          CleanShot offers different purchasing options for individuals
+          and teams. Check the official pricing page for the latest
+          prices and plan details.
+        </p>
+      </div>
+
+      <div class="pricing-card">
+
+        <div class="price-option">
+          <h3>CleanShot Basic</h3>
+          <div class="price">$35</div>
+          <p>One-time purchase, per Mac, at the listed US price.</p>
+          <ul>
+            <li>✓ Full Mac application</li>
+            <li>✓ One year of updates</li>
+            <li>✓ 1 GB Cloud storage</li>
+            <li>✓ Screenshot and recording tools</li>
+            <li>✓ 30-day money-back guarantee</li>
+          </ul>
+        </div>
+
+        <div class="price-option">
+          <h3>CleanShot Pro</h3>
+          <div class="price">$10</div>
+          <p>Per user/month, billed annually, at the listed US price.</p>
+          <ul>
+            <li>✓ Full Mac application</li>
+            <li>✓ Always up-to-date software</li>
+            <li>✓ Unlimited Cloud storage</li>
+            <li>✓ Custom domain and branding</li>
+            <li>✓ Team and advanced security features</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <p style="text-align:center; color:#887a73; font-size:11px; margin-top:20px;">
+        Prices are shown in USD and may change. Taxes may apply.
+        Confirm current terms with the official provider.
+      </p>
+
+      <div style="text-align:center; margin-top:25px;">
+        <a href="https://cleanshot.com/pricing" target="_blank" rel="noopener" class="primary-button">
+          View Official Pricing →
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="content-section" id="faq">
+    <div class="container">
+
+      <div class="section-heading">
+        <div class="eyebrow">Common questions</div>
+        <h2>Frequently Asked Questions</h2>
+        <p>
+          Helpful answers to common questions about CleanShot X.
+        </p>
+      </div>
+
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <h3>1. What is CleanShot X used for?</h3>
+          <p>
+            CleanShot X is a Mac application used for taking screenshots,
+            recording the screen, editing captures, adding annotations,
+            recognizing text, and sharing visual content.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>2. Is CleanShot X available for Windows?</h3>
+          <p>
+            No. CleanShot X is designed for macOS and does not currently
+            offer a Windows version.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>3. Does CleanShot X support scrolling screenshots?</h3>
+          <p>
+            Yes. Its scrolling capture feature can capture content that
+            extends beyond the visible area of a window, including
+            long pages and documents.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>4. Can I record videos with CleanShot X?</h3>
+          <p>
+            Yes. You can record selected screen areas, windows, or
+            the full display. Recording options include audio and
+            webcam overlays.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>5. Does CleanShot X include an image editor?</h3>
+          <p>
+            It includes an annotation editor with tools for cropping,
+            adding text, drawing arrows, highlighting details, and
+            hiding sensitive information.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>6. Does CleanShot X have a free trial?</h3>
+          <p>
+            The official pricing FAQ currently says there is no
+            direct free trial. Purchases include a 30-day
+            money-back guarantee. Availability through Setapp
+            may include a separate trial.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>7. What macOS version does CleanShot X require?</h3>
+          <p>
+            The current official requirement is macOS 13.0 or newer.
+            Check the official website for updated compatibility
+            information before installing.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>8. Do I need CleanShot Cloud to use the application?</h3>
+          <p>
+            No. CleanShot Cloud is used for uploading and sharing
+            captures. The official FAQ states that a Cloud account
+            is not required for the app's other features.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="final-cta">
+    <h2>Make Your Screen Communication Better</h2>
+    <p>
+      Explore more useful software and digital tools through GitApp.
+      Find applications that can help make your everyday workflow
+      more productive.
+    </p>
+
+    <a href="https://gitapp.download/" target="_blank" rel="noopener" class="primary-button">
+      Explore More on GitApp ↗
+    </a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+
+      <div class="footer-inner">
+        <div class="footer-brand">Git<span>App.</span></div>
+
+        <p>Discover software. Improve your workflow.</p>
+
+        <div class="footer-links">
+          <a href="https://gitapp.download/">Home</a>
+          <a href="https://cleanshot.com/" target="_blank" rel="noopener">CleanShot Official</a>
+          <a href="#overview">About</a>
+          <a href="#faq">FAQ</a>
+        </div>
+      </div>
+
+      <div class="disclaimer">
+        <strong>Disclaimer:</strong> This page is an independent informational
+        article and is not affiliated with, endorsed by, or sponsored by
+        CleanShot or its developers. CleanShot X is a product name and
+        trademark of its respective owner. All trademarks belong to
+        their respective owners. Product features, compatibility,
+        availability, and pricing may change. Always consult the official
+        CleanShot website for the most accurate information.
+      </div>
+
+    </div>
+  </footer>
+
+</body>
+</html>
