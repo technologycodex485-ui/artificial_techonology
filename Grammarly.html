@@ -1,0 +1,465 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Grammarly – Improve Your Writing with Smart AI Tools</title>
+<meta name="description" content="Discover Grammarly, an AI-powered writing assistant that helps improve grammar, spelling, clarity, tone, and writing productivity.">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f7fafc;
+    color: #243746;
+    line-height: 1.8;
+}
+
+/* HEADER */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 8%;
+    background: #ffffff;
+    border-bottom: 1px solid #e5eeee;
+}
+
+.logo {
+    font-size: 27px;
+    font-weight: 800;
+    color: #087c69;
+}
+
+nav a {
+    text-decoration: none;
+    color: #354c59;
+    margin-left: 25px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+nav a:hover {
+    color: #087c69;
+}
+
+/* HERO */
+.hero {
+    padding: 85px 8%;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: center;
+    gap: 45px;
+    background: linear-gradient(120deg, #e5f7f1, #eaf3ff);
+}
+
+.hero-content .tag {
+    background: #c9eee1;
+    color: #087c69;
+    padding: 8px 16px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.hero h1 {
+    font-size: 50px;
+    line-height: 1.2;
+    margin: 25px 0;
+    color: #123b35;
+}
+
+.hero h1 span {
+    color: #079c7c;
+}
+
+.hero p {
+    font-size: 17px;
+    color: #566c78;
+    margin-bottom: 25px;
+}
+
+.hero-image {
+    background: #087c69;
+    border-radius: 45% 45% 20px 20px;
+    min-height: 320px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 110px;
+    color: white;
+    box-shadow: 15px 15px 0 #b8e9da;
+}
+
+/* MAIN */
+.container {
+    max-width: 1100px;
+    margin: 60px auto;
+    padding: 0 22px;
+}
+
+.article {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 18px;
+    box-shadow: 0 8px 35px rgba(20,60,60,0.06);
+}
+
+.article h2 {
+    color: #087c69;
+    margin: 30px 0 12px;
+    font-size: 25px;
+}
+
+.article h2:first-child {
+    margin-top: 0;
+}
+
+.article p {
+    color: #586b78;
+    margin-bottom: 17px;
+}
+
+.article ul {
+    padding-left: 25px;
+    color: #586b78;
+}
+
+.article li {
+    margin-bottom: 10px;
+}
+
+/* FEATURE CARDS */
+.features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.feature {
+    padding: 25px;
+    background: #f0f8f5;
+    border-radius: 14px;
+    border-top: 4px solid #079c7c;
+}
+
+.feature .icon {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.feature h3 {
+    color: #087c69;
+    margin-bottom: 8px;
+}
+
+.feature p {
+    font-size: 14px;
+    margin: 0;
+}
+
+/* DOWNLOAD */
+.download-section {
+    margin-top: 45px;
+    padding: 55px 25px;
+    text-align: center;
+    background: linear-gradient(120deg, #075c50, #079c7c);
+    border-radius: 20px;
+    color: white;
+}
+
+.download-section h2 {
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.download-section p {
+    color: #d8f5eb;
+    margin-bottom: 25px;
+}
+
+.download-btn {
+    display: inline-block;
+    padding: 15px 35px;
+    background: #ffffff;
+    color: #087c69;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 800;
+    transition: .3s;
+}
+
+.download-btn:hover {
+    background: #d9f5e9;
+    transform: translateY(-4px);
+}
+
+/* FOOTER */
+footer {
+    margin-top: 60px;
+    background: #102f35;
+    color: #b8d0d0;
+    text-align: center;
+    padding: 30px 15px;
+    font-size: 14px;
+}
+
+/* RESPONSIVE */
+@media(max-width: 800px) {
+    .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 38px;
+    }
+
+    .hero-image {
+        min-height: 230px;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media(max-width: 550px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav a {
+        margin: 0 7px;
+    }
+
+    .article {
+        padding: 23px;
+    }
+
+    .hero {
+        padding: 60px 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">Grammarly.</div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#article">About</a>
+        <a href="#features">Features</a>
+        <a href="#download">Download</a>
+    </nav>
+</header>
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <span class="tag">SMART AI WRITING ASSISTANT</span>
+
+        <h1>
+            Write Better with
+            <span>Grammarly</span>
+        </h1>
+
+        <p>
+            Discover how Grammarly helps writers improve grammar,
+            spelling, clarity, and communication. Explore the
+            features that make writing easier and more professional.
+        </p>
+
+    </div>
+
+    <div class="hero-image">
+        ✍️
+    </div>
+
+</section>
+
+<main class="container">
+
+<article class="article" id="article">
+
+    <h2>What Is Grammarly?</h2>
+
+    <p>
+        <strong>Grammarly</strong> is a popular digital writing
+        assistant designed to help people improve their written
+        communication. It uses artificial intelligence and
+        language technology to identify writing issues and
+        suggest improvements.
+    </p>
+
+    <p>
+        Whether you are writing emails, academic assignments,
+        business documents, blog posts, or social media content,
+        Grammarly can help make your writing clearer, more
+        professional, and easier to understand.
+    </p>
+
+    <h2>How Does Grammarly Work?</h2>
+
+    <p>
+        Grammarly analyzes written text and provides suggestions
+        based on grammar, spelling, punctuation, clarity, and
+        writing style. Users can review these recommendations
+        and decide which changes are suitable for their content.
+    </p>
+
+    <p>
+        The platform can provide suggestions while you write
+        across supported applications, browsers, and websites.
+        It also offers a web-based editor for creating and
+        reviewing documents.
+    </p>
+
+    <h2>Best Features of Grammarly</h2>
+
+    <div class="features" id="features">
+
+        <div class="feature">
+            <div class="icon">✓</div>
+            <h3>Grammar Checker</h3>
+            <p>
+                Identify grammar mistakes and improve
+                sentence structure.
+            </p>
+        </div>
+
+        <div class="feature">
+            <div class="icon">✍️</div>
+            <h3>AI Writing Help</h3>
+            <p>
+                Generate ideas, rewrite paragraphs,
+                and improve written content.
+            </p>
+        </div>
+
+        <div class="feature">
+            <div class="icon">💬</div>
+            <h3>Tone Suggestions</h3>
+            <p>
+                Adjust your writing style to suit
+                different audiences and situations.
+            </p>
+        </div>
+
+    </div>
+
+    <h2>Benefits of Using Grammarly</h2>
+
+    <p>
+        Good communication is important in education,
+        business, and everyday life. Grammarly provides
+        useful writing assistance that can help users
+        develop better writing habits.
+    </p>
+
+    <ul>
+        <li>Helps identify spelling and grammar mistakes.</li>
+        <li>Improves sentence clarity and readability.</li>
+        <li>Provides suggestions for tone and word choice.</li>
+        <li>Supports professional email communication.</li>
+        <li>Helps writers review and refine their content.</li>
+        <li>Offers AI-powered writing and rewriting assistance.</li>
+    </ul>
+
+    <h2>Who Should Use Grammarly?</h2>
+
+    <p>
+        Grammarly can be useful for students, teachers,
+        bloggers, business owners, freelancers, marketers,
+        and professionals who regularly write in English.
+    </p>
+
+    <p>
+        Students can review assignments, bloggers can polish
+        articles, and professionals can improve emails and
+        business communication. The suggestions are helpful,
+        but users should always review the final text themselves.
+    </p>
+
+    <h2>Grammarly Free vs Paid Features</h2>
+
+    <p>
+        Grammarly offers a free plan with basic writing
+        assistance. Paid plans provide additional features
+        such as more advanced suggestions, tone adjustments,
+        and expanded AI writing capabilities. Available
+        features depend on the selected subscription.
+    </p>
+
+    <h2>Tips for Getting Better Results</h2>
+
+    <ul>
+        <li>Always proofread your writing before publishing.</li>
+        <li>Review suggestions instead of accepting every change.</li>
+        <li>Choose a writing tone that matches your audience.</li>
+        <li>Use simple and clear language whenever possible.</li>
+        <li>Keep your original meaning and personal writing voice.</li>
+    </ul>
+
+    <h2>Final Thoughts on Grammarly</h2>
+
+    <p>
+        Grammarly is a useful writing assistant for people
+        who want to improve their English communication.
+        Its grammar checking, clarity suggestions, tone
+        adjustments, and AI writing features can support
+        different types of writing tasks.
+    </p>
+
+    <p>
+        While writing tools can make editing easier,
+        developing your own grammar knowledge and writing
+        skills remains important. Combining human creativity
+        with helpful technology can lead to better results.
+    </p>
+
+</article>
+
+<section class="download-section" id="download">
+
+    <h2>Discover More Digital Tools!</h2>
+
+    <p>
+        Explore useful software, applications, and digital
+        resources on GitApp Download. Visit our website today!
+    </p>
+
+    <a
+       href="https://gitapp.download/"
+       class="download-btn"
+       target="_blank"
+       rel="noopener noreferrer">
+
+       Visit & Download Now →
+
+    </a>
+
+</section>
+
+</main>
+
+<footer>
+    <p>© 2026 Grammarly Article. All Rights Reserved.</p>
+    <p>Designed for better writing and smarter communication.</p>
+</footer>
+
+</body>
+</html>
