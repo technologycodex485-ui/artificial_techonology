@@ -1,0 +1,1737 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Raycast for Mac – AI Productivity Launcher & Workflow Tool</title>
+  <meta name="description" content="Discover Raycast for Mac, a powerful productivity launcher with AI, clipboard history, extensions, snippets, window management, and workflow automation.">
+  <meta name="keywords" content="Raycast, Raycast for Mac, Raycast app, Mac productivity launcher, Raycast AI, Mac extensions, clipboard history, window management">
+  <meta name="author" content="GitApp">
+  <meta name="robots" content="index, follow">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+    :root {
+      --bg: #f6f5f1;
+      --white: #ffffff;
+      --ink: #20201f;
+      --muted: #77756f;
+      --purple: #7655df;
+      --purple-dark: #5136b5;
+      --lime: #d7f36a;
+      --soft-purple: #eee9ff;
+      --line: #e8e5dd;
+      --shadow: 0 24px 65px rgba(40, 31, 65, .11);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1160px, 90%);
+      margin: auto;
+    }
+
+    /* Navigation */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(246, 245, 241, .92);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .navbar {
+      min-height: 76px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .logo {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 800;
+      font-size: 25px;
+      letter-spacing: -1.5px;
+    }
+
+    .logo span {
+      color: var(--purple);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 27px;
+      list-style: none;
+      color: #6d6a64;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .nav-links a:hover {
+      color: var(--purple);
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 21px;
+      border-radius: 7px;
+      background: var(--purple);
+      color: white;
+      font-size: 13px;
+      font-weight: 800;
+      transition: .25s ease;
+    }
+
+    .button:hover {
+      background: var(--purple-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(118, 85, 223, .2);
+    }
+
+    .button-dark {
+      background: var(--ink);
+    }
+
+    .button-dark:hover {
+      background: #393832;
+    }
+
+    .button-light {
+      background: white;
+      color: var(--ink);
+      border: 1px solid var(--line);
+    }
+
+    .button-light:hover {
+      background: var(--soft-purple);
+      color: var(--purple);
+    }
+
+    /* Hero */
+
+    .hero {
+      padding: 95px 0 90px;
+      overflow: hidden;
+      position: relative;
+      background:
+        radial-gradient(circle at 80% 15%, rgba(215, 243, 106, .28), transparent 25%),
+        radial-gradient(circle at 15% 85%, rgba(118, 85, 223, .10), transparent 30%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.05fr;
+      align-items: center;
+      gap: 65px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--purple);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 10px;
+      font-weight: 800;
+      margin-bottom: 22px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 24px;
+      height: 2px;
+      background: var(--purple);
+    }
+
+    h1, h2, h3 {
+      font-family: 'Manrope', sans-serif;
+      line-height: 1.2;
+    }
+
+    h1 {
+      font-size: clamp(43px, 5.4vw, 70px);
+      letter-spacing: -3.5px;
+      margin-bottom: 22px;
+    }
+
+    h1 span {
+      color: var(--purple);
+    }
+
+    .hero-description {
+      max-width: 480px;
+      font-size: 15px;
+      color: var(--muted);
+      margin-bottom: 29px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 13px;
+      flex-wrap: wrap;
+    }
+
+    .hero-note {
+      font-size: 11px;
+      color: #918d84;
+      margin-top: 22px;
+    }
+
+    /* Command interface */
+
+    .command-stage {
+      position: relative;
+      padding: 28px;
+      background: #e9e5f1;
+      border-radius: 20px;
+      min-height: 390px;
+    }
+
+    .stage-label {
+      display: flex;
+      justify-content: space-between;
+      color: #85808f;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      margin-bottom: 22px;
+    }
+
+    .command-window {
+      background: #fff;
+      border-radius: 13px;
+      overflow: hidden;
+      box-shadow: 0 25px 65px rgba(45, 31, 76, .18);
+      transform: rotate(-1deg);
+    }
+
+    .command-search {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 20px;
+      border-bottom: 1px solid #eeeaf2;
+    }
+
+    .search-symbol {
+      width: 31px;
+      height: 31px;
+      display: grid;
+      place-items: center;
+      border-radius: 9px;
+      background: var(--soft-purple);
+      color: var(--purple);
+      font-size: 19px;
+    }
+
+    .search-text {
+      flex: 1;
+      color: #27232f;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .search-shortcut {
+      font-size: 10px;
+      color: #9b96a2;
+      background: #f4f2f6;
+      padding: 5px 8px;
+      border-radius: 5px;
+    }
+
+    .command-label {
+      padding: 13px 19px 8px;
+      color: #a09aa8;
+      text-transform: uppercase;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 1.3px;
+    }
+
+    .command-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 19px;
+      font-size: 11px;
+      color: #504b57;
+    }
+
+    .command-item.active {
+      background: #f1edff;
+      color: var(--purple);
+      font-weight: 800;
+    }
+
+    .command-icon {
+      width: 27px;
+      height: 27px;
+      display: grid;
+      place-items: center;
+      background: #f1eff4;
+      border-radius: 7px;
+      font-size: 13px;
+    }
+
+    .command-item.active .command-icon {
+      background: #e1d9ff;
+    }
+
+    .command-footer {
+      background: #faf9fb;
+      border-top: 1px solid #eeeaf2;
+      padding: 12px 18px;
+      color: #96909d;
+      font-size: 9px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .floating-badge {
+      position: absolute;
+      background: var(--lime);
+      padding: 11px 16px;
+      border-radius: 7px;
+      color: #343c1b;
+      font-size: 10px;
+      font-weight: 800;
+      box-shadow: 0 10px 25px rgba(40, 40, 20, .1);
+    }
+
+    .badge-top {
+      top: 55px;
+      right: -10px;
+      transform: rotate(4deg);
+    }
+
+    .badge-bottom {
+      bottom: 45px;
+      left: -12px;
+      background: white;
+      color: var(--purple);
+      transform: rotate(-4deg);
+    }
+
+    /* Highlights */
+
+    .highlights {
+      padding: 25px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: #fffefa;
+    }
+
+    .highlight-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      text-align: center;
+    }
+
+    .highlight strong {
+      display: block;
+      color: var(--purple);
+      font-family: 'Manrope', sans-serif;
+      font-size: 17px;
+    }
+
+    .highlight span {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    /* Sections */
+
+    .section {
+      padding: 90px 0;
+    }
+
+    .section-heading {
+      max-width: 710px;
+      margin-bottom: 43px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(31px, 4vw, 46px);
+      letter-spacing: -1.7px;
+      margin-bottom: 15px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .article-layout {
+      display: grid;
+      grid-template-columns: 1.4fr .6fr;
+      gap: 55px;
+      align-items: start;
+    }
+
+    .article h2 {
+      font-size: 27px;
+      letter-spacing: -.7px;
+      margin: 35px 0 14px;
+    }
+
+    .article h2:first-child {
+      margin-top: 0;
+    }
+
+    .article p {
+      color: #706d67;
+      font-size: 14px;
+      margin-bottom: 17px;
+    }
+
+    .article ul {
+      padding-left: 22px;
+      margin: 15px 0 23px;
+      color: #706d67;
+      font-size: 13px;
+    }
+
+    .article li {
+      margin: 8px 0;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 105px;
+    }
+
+    .side-card {
+      background: white;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      margin-bottom: 17px;
+    }
+
+    .side-card h3 {
+      font-size: 19px;
+      margin-bottom: 12px;
+    }
+
+    .side-card p {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .side-card a {
+      font-size: 12px;
+      color: var(--purple);
+      font-weight: 800;
+    }
+
+    .side-list {
+      list-style: none;
+    }
+
+    .side-list li {
+      padding: 9px 0;
+      border-bottom: 1px solid var(--line);
+      color: #716d67;
+      font-size: 12px;
+    }
+
+    .side-list li:last-child {
+      border: 0;
+    }
+
+    /* Feature section */
+
+    .features-section {
+      background: #eeebf6;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .feature-card {
+      background: white;
+      padding: 27px;
+      border: 1px solid #e4dfed;
+      border-radius: 11px;
+      transition: .25s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(62, 45, 104, .09);
+    }
+
+    .feature-icon {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      border-radius: 11px;
+      background: var(--soft-purple);
+      color: var(--purple);
+      font-size: 21px;
+      margin-bottom: 18px;
+    }
+
+    .feature-card h3 {
+      font-size: 17px;
+      margin-bottom: 10px;
+    }
+
+    .feature-card p {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* Workflow */
+
+    .workflow-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .step {
+      padding-top: 22px;
+      border-top: 2px solid var(--purple);
+    }
+
+    .step-number {
+      font-family: 'Manrope', sans-serif;
+      font-size: 38px;
+      font-weight: 800;
+      color: var(--purple);
+      margin-bottom: 12px;
+    }
+
+    .step h3 {
+      font-size: 17px;
+      margin-bottom: 10px;
+    }
+
+    .step p {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* Extension showcase */
+
+    .extension-section {
+      background: #25212e;
+      color: white;
+    }
+
+    .extension-section .section-heading p {
+      color: #b9b4c3;
+    }
+
+    .extension-section .eyebrow {
+      color: var(--lime);
+    }
+
+    .extension-section .eyebrow::before {
+      background: var(--lime);
+    }
+
+    .extension-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .extension-card {
+      background: #34303f;
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 10px;
+      padding: 20px;
+    }
+
+    .extension-card span {
+      display: block;
+      font-size: 23px;
+      margin-bottom: 12px;
+    }
+
+    .extension-card h3 {
+      font-size: 14px;
+      margin-bottom: 7px;
+    }
+
+    .extension-card p {
+      font-size: 11px;
+      color: #c1bdca;
+    }
+
+    /* Use cases */
+
+    .usecase-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 17px;
+    }
+
+    .usecase-card {
+      padding: 25px;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+    }
+
+    .usecase-card h3 {
+      font-size: 17px;
+      margin-bottom: 9px;
+    }
+
+    .usecase-card p {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* Pricing */
+
+    .pricing-grid {
+      max-width: 850px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .pricing-card {
+      background: white;
+      border: 1px solid var(--line);
+      padding: 32px;
+      border-radius: 12px;
+    }
+
+    .pricing-card.pro {
+      background: #282332;
+      color: white;
+      border-color: #282332;
+    }
+
+    .pricing-card h3 {
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    .price {
+      font-family: 'Manrope', sans-serif;
+      font-size: 37px;
+      font-weight: 800;
+      color: var(--purple);
+      margin-bottom: 5px;
+    }
+
+    .pricing-card.pro .price {
+      color: var(--lime);
+    }
+
+    .pricing-card p {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 19px;
+    }
+
+    .pricing-card.pro p {
+      color: #c0bacb;
+    }
+
+    .pricing-card ul {
+      list-style: none;
+      font-size: 12px;
+      color: #6f6a65;
+    }
+
+    .pricing-card.pro ul {
+      color: #d4cfdd;
+    }
+
+    .pricing-card li {
+      padding: 7px 0;
+    }
+
+    /* FAQ */
+
+    .faq-list {
+      max-width: 850px;
+    }
+
+    .faq-item {
+      padding: 22px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .faq-item h3 {
+      font-size: 16px;
+      margin-bottom: 9px;
+    }
+
+    .faq-item p {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* CTA */
+
+    .cta {
+      background: var(--purple);
+      color: white;
+      text-align: center;
+      padding: 85px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta::before,
+    .cta::after {
+      content: "";
+      position: absolute;
+      width: 270px;
+      height: 270px;
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 50%;
+    }
+
+    .cta::before {
+      top: -130px;
+      left: -90px;
+    }
+
+    .cta::after {
+      right: -100px;
+      bottom: -150px;
+    }
+
+    .cta h2 {
+      font-size: clamp(32px, 4vw, 47px);
+      margin-bottom: 15px;
+      position: relative;
+    }
+
+    .cta p {
+      max-width: 610px;
+      color: #e7e0ff;
+      font-size: 14px;
+      margin: 0 auto 27px;
+      position: relative;
+    }
+
+    .cta .button {
+      background: var(--lime);
+      color: #282b1c;
+      position: relative;
+    }
+
+    .cta .button:hover {
+      background: white;
+    }
+
+    /* Footer */
+
+    footer {
+      background: #211e28;
+      color: white;
+      padding: 35px 0;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-logo {
+      font-family: 'Manrope', sans-serif;
+      font-size: 21px;
+      font-weight: 800;
+    }
+
+    .footer-logo span {
+      color: var(--lime);
+    }
+
+    .footer-top p {
+      color: #b8b2c2;
+      font-size: 11px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 19px;
+      color: #d3cedb;
+      font-size: 11px;
+    }
+
+    .disclaimer {
+      border-top: 1px solid rgba(255,255,255,.12);
+      margin-top: 24px;
+      padding-top: 19px;
+      color: #aaa4b5;
+      font-size: 10px;
+      line-height: 1.8;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+      }
+
+      .command-stage {
+        max-width: 650px;
+        width: 100%;
+        margin: auto;
+      }
+
+      .article-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: static;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+      }
+
+      .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .extension-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 620px) {
+      .navbar {
+        min-height: 68px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .navbar .button {
+        padding: 10px 13px;
+        font-size: 11px;
+      }
+
+      .hero {
+        padding: 65px 0;
+      }
+
+      .highlight-grid {
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 20px;
+      }
+
+      .section {
+        padding: 65px 0;
+      }
+
+      .feature-grid,
+      .workflow-grid,
+      .extension-grid,
+      .usecase-grid,
+      .pricing-grid,
+      .sidebar {
+        grid-template-columns: 1fr;
+      }
+
+      .command-stage {
+        padding: 17px;
+        min-height: 355px;
+      }
+
+      .floating-badge {
+        font-size: 9px;
+        padding: 8px 11px;
+      }
+
+      .badge-top {
+        right: -4px;
+      }
+
+      .badge-bottom {
+        left: -4px;
+      }
+
+      .footer-top {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <div class="container navbar">
+
+      <a href="#" class="logo">Git<span>App.</span></a>
+
+      <ul class="nav-links">
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#extensions">Extensions</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+
+      <a href="https://gitapp.download/" target="_blank" rel="noopener" class="button">
+        Explore GitApp ↗
+      </a>
+
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-grid">
+
+      <div>
+        <div class="eyebrow">Your productivity command center</div>
+
+        <h1>
+          Less searching.
+          <span>More doing.</span>
+        </h1>
+
+        <p class="hero-description">
+          Raycast is a powerful productivity launcher that brings
+          applications, files, commands, extensions, clipboard history,
+          and AI tools into one convenient keyboard-first interface.
+          Get things done without constantly switching between apps.
+        </p>
+
+        <div class="hero-actions">
+          <a href="https://gitapp.download/" target="_blank" rel="noopener" class="button">
+            Visit GitApp →
+          </a>
+
+          <a href="#features" class="button button-light">
+            Explore Features
+          </a>
+        </div>
+
+        <p class="hero-note">
+          Productivity launcher · Extensions · Workflow automation · AI
+        </p>
+      </div>
+
+      <!-- Decorative command palette -->
+      <div class="command-stage">
+
+        <div class="stage-label">
+          <span>COMMAND CENTER</span>
+          <span>01 / PRODUCTIVITY</span>
+        </div>
+
+        <div class="command-window">
+
+          <div class="command-search">
+            <div class="search-symbol">⌕</div>
+            <div class="search-text">Search for anything...</div>
+            <div class="search-shortcut">⌘ Space</div>
+          </div>
+
+          <div class="command-label">Suggested commands</div>
+
+          <div class="command-item active">
+            <div class="command-icon">◈</div>
+            <span>Search Applications</span>
+          </div>
+
+          <div class="command-item">
+            <div class="command-icon">📋</div>
+            <span>Clipboard History</span>
+          </div>
+
+          <div class="command-item">
+            <div class="command-icon">✦</div>
+            <span>Ask Raycast AI</span>
+          </div>
+
+          <div class="command-item">
+            <div class="command-icon">▦</div>
+            <span>Manage Windows</span>
+          </div>
+
+          <div class="command-item">
+            <div class="command-icon">⌘</div>
+            <span>Browse Extensions</span>
+          </div>
+
+          <div class="command-footer">
+            <span>Navigate ↑ ↓</span>
+            <span>Open ↵ &nbsp; Actions ⌘ K</span>
+          </div>
+
+        </div>
+
+        <div class="floating-badge badge-top">✦ One search. Many possibilities.</div>
+        <div class="floating-badge badge-bottom">⌨ Keyboard-first workflow</div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Highlights -->
+  <section class="highlights">
+    <div class="container highlight-grid">
+
+      <div class="highlight">
+        <strong>Free Plan</strong>
+        <span>Core productivity tools</span>
+      </div>
+
+      <div class="highlight">
+        <strong>Thousands</strong>
+        <span>Community extensions</span>
+      </div>
+
+      <div class="highlight">
+        <strong>Keyboard First</strong>
+        <span>Fast command access</span>
+      </div>
+
+      <div class="highlight">
+        <strong>AI Ready</strong>
+        <span>Optional paid AI features</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Overview -->
+  <section class="section" id="overview">
+    <div class="container">
+
+      <div class="section-heading">
+        <div class="eyebrow">Product overview</div>
+        <h2>What Is Raycast?</h2>
+        <p>
+          A versatile launcher designed to help you find information,
+          access tools, and complete everyday computer tasks
+          from a single interface.
+        </p>
+      </div>
+
+      <div class="article-layout">
+
+        <article class="article">
+
+          <h2>A smarter way to interact with your computer</h2>
+
+          <p>
+            <strong>Raycast</strong> is a productivity application
+            that provides a keyboard-driven command interface.
+            Rather than opening multiple menus and searching through
+            different applications, users can bring up Raycast,
+            type a command, and quickly access the action they need.
+          </p>
+
+          <p>
+            It can search for applications and files, perform
+            calculations, open websites, manage windows, retrieve
+            copied content, and run commands from installed extensions.
+            This makes it a useful tool for people who want a more
+            efficient desktop workflow.
+          </p>
+
+          <h2>Search applications, files, and commands</h2>
+
+          <p>
+            Raycast's launcher is built around fast search. Start typing
+            the name of an application, file, folder, or command to
+            find a relevant result. You can also use Quicklinks to
+            open frequently visited websites, specific URLs, and
+            other destinations with custom names or shortcuts.
+          </p>
+
+          <p>
+            The action panel provides additional options for selected
+            results. This means you can do more than simply open an
+            item: depending on the result, you can configure a hotkey,
+            copy information, or perform another available action.
+          </p>
+
+          <h2>Customize your workflow with extensions</h2>
+
+          <p>
+            One of Raycast's most useful features is its extension
+            ecosystem. Extensions add commands and integrations for
+            different applications and services. Users can discover
+            community-built tools for productivity, engineering,
+            design, writing, entertainment, and other categories.
+          </p>
+
+          <p>
+            For example, supported extensions can help you interact
+            with services such as Linear, Slack, Spotify, and other
+            connected applications. The exact actions depend on the
+            extension and the permissions or account access it requires.
+          </p>
+
+          <h2>Clipboard history and text snippets</h2>
+
+          <p>
+            Raycast's Clipboard History helps you find content you
+            copied earlier. It can store copied text, images, files,
+            links, emails, and other supported content. Instead of
+            copying the same information again, you can search
+            your history and retrieve an earlier item.
+          </p>
+
+          <p>
+            Snippets are another useful productivity feature.
+            Save frequently used phrases, email responses, code
+            fragments, or other text and insert them using a
+            configured keyword. This can save time when repeating
+            common writing tasks.
+          </p>
+
+          <h2>Raycast AI: assistance from your launcher</h2>
+
+          <p>
+            Raycast AI brings AI-powered assistance into the same
+            environment as your commands and extensions. Depending
+            on your plan and configuration, you can use Quick AI
+            for short questions or AI Chat for longer conversations.
+          </p>
+
+          <p>
+            AI capabilities can include writing assistance,
+            summarization, coding help, image generation, connected
+            tools, and context from supported files or your screen.
+            Available models, usage credits, and advanced capabilities
+            vary by subscription tier.
+          </p>
+
+          <h2>Window management and everyday utilities</h2>
+
+          <p>
+            Raycast includes built-in tools that reduce the need
+            to open separate applications for simple tasks.
+            Its window management commands can move and resize
+            windows, while the calculator can evaluate expressions
+            and perform conversions directly from the launcher.
+          </p>
+
+          <p>
+            Other useful features include Emoji Picker, Quicklinks,
+            Notes, developer tooling, and system commands. Together,
+            these features make Raycast more than a basic application
+            launcher.
+          </p>
+
+          <h2>Raycast for different platforms</h2>
+
+          <p>
+            Raycast has expanded beyond its original Mac experience.
+            Its product lineup includes Windows and iOS experiences,
+            with feature availability varying by platform and release.
+            Some newer features are platform-specific, so check the
+            official requirements before installing.
+          </p>
+
+          <h2>Is Raycast worth using?</h2>
+
+          <p>
+            If you regularly switch between applications, use keyboard
+            shortcuts, repeat text, manage copied content, or rely on
+            several online tools, Raycast can make those activities
+            more convenient. Its free plan offers many core features,
+            while paid subscriptions add AI and advanced capabilities.
+          </p>
+
+        </article>
+
+        <aside class="sidebar">
+
+          <div class="side-card">
+            <h3>Official Raycast</h3>
+            <p>
+              Visit the official website to explore the application,
+              supported platforms, extensions, and latest releases.
+            </p>
+            <a href="https://www.raycast.com/" target="_blank" rel="noopener">
+              Raycast Website ↗
+            </a>
+          </div>
+
+          <div class="side-card">
+            <h3>At a Glance</h3>
+            <ul class="side-list">
+              <li>Category: Productivity Launcher</li>
+              <li>Platforms: macOS, Windows, iOS</li>
+              <li>Core tools: Free plan</li>
+              <li>Extensions: Community ecosystem</li>
+              <li>AI: Paid plans</li>
+              <li>Clipboard history: Included</li>
+              <li>Window management: Included</li>
+            </ul>
+          </div>
+
+          <div class="side-card">
+            <h3>Discover More Software</h3>
+            <p>
+              Find useful applications and productivity tools
+              through GitApp.
+            </p>
+            <a href="https://gitapp.download/" target="_blank" rel="noopener">
+              Explore GitApp →
+            </a>
+          </div>
+
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="section features-section" id="features">
+    <div class="container">
+
+      <div class="section-heading">
+        <div class="eyebrow">Powerful productivity tools</div>
+        <h2>Key Features of Raycast</h2>
+        <p>
+          Raycast combines search, shortcuts, utilities,
+          integrations, and AI into a flexible productivity platform.
+        </p>
+      </div>
+
+      <div class="feature-grid">
+
+        <div class="feature-card">
+          <div class="feature-icon">⌕</div>
+          <h3>Quick Launcher</h3>
+          <p>
+            Find applications, files, folders, commands, and
+            other useful items through a keyboard-driven search
+            interface.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🧩</div>
+          <h3>Extensions Store</h3>
+          <p>
+            Expand your launcher with community-built extensions
+            for development, design, productivity, writing,
+            and popular online services.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📋</div>
+          <h3>Clipboard History</h3>
+          <p>
+            Search previously copied text, links, images, and
+            other supported content instead of copying the same
+            information repeatedly.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">✦</div>
+          <h3>Raycast AI</h3>
+          <p>
+            Access AI chat, quick questions, AI commands,
+            and supported integrations through eligible
+            paid subscriptions.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">⌨</div>
+          <h3>Hotkeys and Aliases</h3>
+          <p>
+            Assign keyboard shortcuts and searchable aliases
+            to frequently used applications, commands,
+            and Quicklinks.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">✎</div>
+          <h3>Text Snippets</h3>
+          <p>
+            Store reusable text such as email replies,
+            signatures, code fragments, and frequently
+            typed information.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">▦</div>
+          <h3>Window Management</h3>
+          <p>
+            Move, resize, and organize application windows
+            with commands that help create a more structured
+            desktop.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">∑</div>
+          <h3>Calculator and Utilities</h3>
+          <p>
+            Perform calculations and conversions, search
+            for emojis, and access other convenient
+            built-in tools.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">☷</div>
+          <h3>Raycast Notes</h3>
+          <p>
+            Capture ideas and quick notes without needing
+            to switch to a separate note-taking application.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Extensions -->
+  <section class="section extension-section" id="extensions">
+    <div class="container">
+
+      <div class="section-heading">
+        <div class="eyebrow">Make Raycast your own</div>
+        <h2>Explore the Extension Ecosystem</h2>
+        <p>
+          Extensions help connect Raycast with the applications
+          and services you already use. Availability and
+          permissions vary by extension.
+        </p>
+      </div>
+
+      <div class="extension-grid">
+
+        <div class="extension-card">
+          <span>◈</span>
+          <h3>Development</h3>
+          <p>
+            Access coding utilities, developer commands,
+            project shortcuts, and technical workflows.
+          </p>
+        </div>
+
+        <div class="extension-card">
+          <span>✎</span>
+          <h3>Writing</h3>
+          <p>
+            Use translation, text tools, writing shortcuts,
+            and reusable content commands.
+          </p>
+        </div>
+
+        <div class="extension-card">
+          <span>◉</span>
+          <h3>Productivity</h3>
+          <p>
+            Connect task tools, calendars, notes,
+            and other daily productivity services.
+          </p>
+        </div>
+
+        <div class="extension-card">
+          <span>◇</span>
+          <h3>Entertainment</h3>
+          <p>
+            Search supported media services and control
+            connected entertainment applications.
+          </p>
+        </div>
+
+      </div>
+
+      <div style="text-align:center; margin-top:30px;">
+        <a href="https://www.raycast.com/store" target="_blank" rel="noopener" class="button" style="background:var(--lime); color:#25212e;">
+          Browse Official Extensions ↗
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Workflow -->
+  <section class="section" id="workflow">
+    <div class="container">
+
+      <div class="section-heading">
+        <div class="eyebrow">Getting started</div>
+        <h2>How to Start Using Raycast</h2>
+        <p>
+          Follow these steps to install Raycast and build
+          a simple workflow around your most common tasks.
+        </p>
+      </div>
+
+      <div class="workflow-grid">
+
+        <div class="step">
+          <div class="step-number">01</div>
+          <h3>Download Raycast</h3>
+          <p>
+            Visit the official Raycast website, select the
+            version that matches your operating system,
+            and follow the installation instructions.
+          </p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">02</div>
+          <h3>Set Your Shortcuts</h3>
+          <p>
+            Configure a convenient launcher hotkey.
+            Add aliases and shortcuts for the applications
+            and commands you use most often.
+          </p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">03</div>
+          <h3>Install Extensions</h3>
+          <p>
+            Explore the extension store and install tools
+            that support your work. Start with a few useful
+            integrations and expand as needed.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Use Cases -->
+  <section class="section" style="background:#fffefa;">
+    <div class="container">
+
+      <div class="section-heading">
+        <div class="eyebrow">Built for everyday work</div>
+        <h2>Who Can Benefit from Raycast?</h2>
+        <p>
+          Raycast can support different workflows,
+          from software development to everyday organization.
+        </p>
+      </div>
+
+      <div class="usecase-grid">
+
+        <div class="usecase-card">
+          <h3>Developers and Engineers</h3>
+          <p>
+            Access development commands, project shortcuts,
+            terminal utilities, and integrations with
+            supported developer platforms.
+          </p>
+        </div>
+
+        <div class="usecase-card">
+          <h3>Designers and Creatives</h3>
+          <p>
+            Open creative applications, use image-related
+            extensions, manage reusable text, and simplify
+            repetitive desktop tasks.
+          </p>
+        </div>
+
+        <div class="usecase-card">
+          <h3>Writers and Content Creators</h3>
+          <p>
+            Save common phrases, translate text, use AI
+            writing tools, and access frequently visited
+            websites quickly.
+          </p>
+        </div>
+
+        <div class="usecase-card">
+          <h3>Students and Professionals</h3>
+          <p>
+            Organize notes, calculate values, manage
+            copied information, and access everyday
+            productivity commands.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="section" id="pricing">
+    <div class="container">
+
+      <div class="section-heading" style="text-align:center; margin-left:auto; margin-right:auto;">
+        <div class="eyebrow">Plans and subscriptions</div>
+        <h2>Raycast Pricing</h2>
+        <p>
+          Raycast offers a free plan for core productivity features
+          and paid subscriptions for AI, cloud synchronization,
+          and additional customization.
+        </p>
+      </div>
+
+      <div class="pricing-grid">
+
+        <div class="pricing-card">
+          <h3>Raycast Free</h3>
+          <div class="price">$0</div>
+          <p>Essential productivity tools at no cost.</p>
+          <ul>
+            <li>✓ Application and command launcher</li>
+            <li>✓ Clipboard History with limited retention</li>
+            <li>✓ Quicklinks and Snippets</li>
+            <li>✓ Calculator and Emoji Picker</li>
+            <li>✓ Window Management</li>
+            <li>✓ Community extensions</li>
+            <li>✓ Developer tooling</li>
+          </ul>
+        </div>
+
+        <div class="pricing-card pro">
+          <h3>Raycast Pro</h3>
+          <div class="price">From $8/mo</div>
+          <p>Starting price with annual billing, according to the current pricing page.</p>
+          <ul>
+            <li>✓ Everything in Free</li>
+            <li>✓ Raycast AI and monthly credits</li>
+            <li>✓ Cloud Sync</li>
+            <li>✓ Unlimited Clipboard History</li>
+            <li>✓ Unlimited Notes</li>
+            <li>✓ Dictation and Translator</li>
+            <li>✓ Custom Themes and window commands</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <p style="text-align:center; color:#8a867e; font-size:11px; margin-top:20px;">
+        Raycast also offers higher AI tiers, team subscriptions,
+        and enterprise plans. Prices and included credits vary
+        by plan and billing period. Check the official pricing page
+        for current details.
+      </p>
+
+      <div style="text-align:center; margin-top:25px;">
+        <a href="https://www.raycast.com/pricing" target="_blank" rel="noopener" class="button">
+          View Official Pricing →
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="container">
+
+      <div class="section-heading">
+        <div class="eyebrow">Frequently asked questions</div>
+        <h2>Raycast FAQ</h2>
+        <p>
+          Answers to common questions about Raycast,
+          its features, compatibility, and subscriptions.
+        </p>
+      </div>
+
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <h3>1. What is Raycast used for?</h3>
+          <p>
+            Raycast is a productivity launcher used to search
+            applications and files, run commands, manage windows,
+            retrieve clipboard history, use extensions, and
+            access other desktop tools.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>2. Is Raycast free?</h3>
+          <p>
+            Yes. Raycast Free includes many core productivity
+            features and community extensions. Paid subscriptions
+            unlock Raycast AI and additional features.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>3. Does Raycast support AI?</h3>
+          <p>
+            Yes. Raycast AI includes features such as Quick AI,
+            AI Chat, AI Commands, and supported AI integrations.
+            AI access and usage credits depend on your subscription.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>4. Can I install extensions in Raycast?</h3>
+          <p>
+            Yes. Raycast has an extension store containing
+            community-built integrations and commands.
+            You can browse and install extensions that match
+            your workflow.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>5. Does Raycast have clipboard history?</h3>
+          <p>
+            Yes. Clipboard History lets you search and reuse
+            previously copied content. The free plan has
+            a retention limit, while paid plans offer unlimited
+            clipboard history.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>6. Is Raycast available on Windows?</h3>
+          <p>
+            Yes. Raycast has expanded to Windows as well as
+            macOS and iOS. Features and availability can differ
+            between platforms and versions.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>7. What macOS version does Raycast require?</h3>
+          <p>
+            Raycast V1 currently requires macOS 13 or later.
+            The newer Raycast V2 requires macOS Tahoe and
+            Apple Silicon. Check the official download page
+            to confirm which version is appropriate for your Mac.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>8. Can I create my own Raycast extensions?</h3>
+          <p>
+            Yes. Raycast provides developer tooling and an
+            extension API. Developers can build custom commands
+            and integrations and publish eligible extensions
+            to the Raycast Store.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>9. Is Raycast a replacement for Spotlight?</h3>
+          <p>
+            Raycast can be configured as an alternative launcher
+            to Spotlight. It provides additional commands,
+            extensions, shortcuts, and customization options.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="cta">
+    <div class="container">
+
+      <div class="eyebrow" style="color:var(--lime); justify-content:center;">
+        Discover your next favorite tool
+      </div>
+
+      <h2>Make Your Workflow More Powerful</h2>
+
+      <p>
+        Explore useful applications, productivity software,
+        and digital tools through GitApp. Find new ways to
+        improve the way you work and create.
+      </p>
+
+      <a href="https://gitapp.download/" target="_blank" rel="noopener" class="button">
+        Explore More on GitApp ↗
+      </a>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+
+      <div class="footer-top">
+
+        <div class="footer-logo">Git<span>App.</span></div>
+
+        <p>Discover software. Work smarter. Stay productive.</p>
+
+        <div class="footer-links">
+          <a href="https://gitapp.download/">Home</a>
+          <a href="https://www.raycast.com/" target="_blank" rel="noopener">Raycast Official</a>
+          <a href="#overview">About</a>
+          <a href="#faq">FAQ</a>
+        </div>
+
+      </div>
+
+      <div class="disclaimer">
+        <strong>Disclaimer:</strong> This is an independent informational
+        article and is not affiliated with, endorsed by, or sponsored by
+        Raycast Inc. Raycast is a product name and trademark of its
+        respective owner. All trademarks belong to their respective owners.
+        Features, pricing, system requirements, and platform availability
+        may change. Third-party extensions may have separate permissions
+        and privacy policies. Always consult the official Raycast website
+        for the latest product information.
+      </div>
+
+    </div>
+  </footer>
+
+</body>
+</html>
