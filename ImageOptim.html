@@ -1,0 +1,1194 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>ImageOptim Review: Optimize Images & Reduce File Sizes</title>
+  <meta name="description" content="Learn how ImageOptim compresses images, removes unnecessary metadata, and helps websites load faster. Explore features, benefits, usage tips, and FAQs.">
+  <meta name="keywords" content="ImageOptim, ImageOptim Mac, image compression, image optimization software, optimize images, reduce image file size, lossless compression, website performance">
+
+  <meta property="og:title" content="ImageOptim: A Simple Way to Optimize Images">
+  <meta property="og:description" content="Discover ImageOptim's image compression tools, metadata cleanup, and practical benefits for web creators.">
+  <meta property="og:type" content="article">
+
+  <style>
+    :root {
+      --paper: #f6f5ef;
+      --white: #fffefa;
+      --ink: #1d3028;
+      --green: #315b47;
+      --green-dark: #1c3d30;
+      --sage: #dce8dc;
+      --muted: #758078;
+      --orange: #d98c56;
+      --line: #e2e5dc;
+      --radius: 20px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.75;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(1120px, 90%);
+      margin: auto;
+    }
+
+    .sans {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .header {
+      background: var(--white);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .logo {
+      font-family: Arial, sans-serif;
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -1.4px;
+      color: var(--green-dark);
+    }
+
+    .logo span { color: var(--orange); }
+
+    .nav-links {
+      display: flex;
+      gap: 27px;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      color: #657269;
+      font-weight: 700;
+    }
+
+    .nav-links a:hover { color: var(--green); }
+
+    .button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      border-radius: 7px;
+      padding: 13px 20px;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      transition: .2s ease;
+    }
+
+    .button-green {
+      background: var(--green);
+      color: white;
+    }
+
+    .button-green:hover {
+      background: var(--green-dark);
+      transform: translateY(-2px);
+    }
+
+    .button-light {
+      border: 1px solid #cbd5cc;
+      color: var(--green-dark);
+      background: transparent;
+    }
+
+    .button-light:hover {
+      background: var(--sage);
+    }
+
+    .hero {
+      padding: 85px 0 65px;
+      background:
+        radial-gradient(circle at 85% 20%, #e3eadb 0, transparent 28%),
+        var(--paper);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      align-items: center;
+      gap: 55px;
+    }
+
+    .eyebrow {
+      color: var(--green);
+      text-transform: uppercase;
+      letter-spacing: 2.4px;
+      font-family: Arial, sans-serif;
+      font-size: 10px;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(43px, 6vw, 70px);
+      line-height: 1.06;
+      letter-spacing: -3px;
+      max-width: 660px;
+      font-weight: 500;
+    }
+
+    h1 em {
+      color: var(--green);
+      font-weight: 500;
+    }
+
+    .hero-description {
+      font-family: Arial, sans-serif;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.9;
+      max-width: 530px;
+      margin: 25px 0 29px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-small {
+      color: #89938a;
+      font-family: Arial, sans-serif;
+      font-size: 10px;
+      margin-top: 24px;
+    }
+
+    /* Decorative image optimization illustration */
+
+    .visual-card {
+      padding: 25px;
+      border-radius: 24px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      box-shadow: 0 25px 65px rgba(36,62,45,.10);
+      position: relative;
+    }
+
+    .visual-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      font-family: Arial, sans-serif;
+      font-size: 10px;
+      font-weight: 800;
+      color: #7b867c;
+      letter-spacing: 1px;
+    }
+
+    .status {
+      color: var(--green);
+      background: var(--sage);
+      border-radius: 30px;
+      padding: 5px 10px;
+      font-size: 9px;
+    }
+
+    .image-demo {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .photo {
+      min-height: 195px;
+      position: relative;
+      border-radius: 13px;
+      overflow: hidden;
+      background:
+        linear-gradient(160deg, transparent 45%, rgba(14,42,28,.65)),
+        radial-gradient(ellipse at 50% 30%, #f1d4a1 0 8%, transparent 9%),
+        linear-gradient(140deg, #a9c2a3, #688c71 55%, #334d3d);
+    }
+
+    .photo::before {
+      content: "";
+      position: absolute;
+      width: 170px;
+      height: 170px;
+      left: -15px;
+      bottom: -90px;
+      background: #263e32;
+      border-radius: 50%;
+    }
+
+    .photo::after {
+      content: "";
+      position: absolute;
+      width: 105px;
+      height: 105px;
+      right: -20px;
+      top: 35px;
+      background: rgba(228,229,179,.75);
+      border-radius: 50%;
+      filter: blur(3px);
+    }
+
+    .photo.second {
+      background:
+        linear-gradient(160deg, transparent 45%, rgba(14,42,28,.55)),
+        radial-gradient(circle at 65% 30%, #f1d5a6 0 13%, transparent 14%),
+        linear-gradient(140deg, #d7c5a5, #8ba48c 55%, #405e4b);
+    }
+
+    .photo-label {
+      position: absolute;
+      z-index: 2;
+      left: 12px;
+      bottom: 12px;
+      color: white;
+      font-family: Arial, sans-serif;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .file-details {
+      padding: 14px 3px 5px;
+      font-family: Arial, sans-serif;
+    }
+
+    .file-name {
+      font-size: 11px;
+      font-weight: 800;
+      margin-bottom: 9px;
+    }
+
+    .file-size {
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      color: var(--muted);
+    }
+
+    .progress {
+      height: 6px;
+      background: #e7ebe4;
+      border-radius: 10px;
+      margin-top: 9px;
+      overflow: hidden;
+    }
+
+    .progress span {
+      width: 68%;
+      height: 100%;
+      display: block;
+      background: var(--green);
+      border-radius: 10px;
+    }
+
+    .visual-note {
+      text-align: center;
+      color: #939b92;
+      font-family: Arial, sans-serif;
+      font-size: 9px;
+      margin-top: 16px;
+    }
+
+    .intro-strip {
+      background: var(--green-dark);
+      color: white;
+      padding: 25px 0;
+    }
+
+    .strip-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 25px;
+      text-align: center;
+    }
+
+    .strip-item strong {
+      display: block;
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      color: #e8f1df;
+    }
+
+    .strip-item span {
+      font-family: Arial, sans-serif;
+      font-size: 10px;
+      color: #b7c8b9;
+    }
+
+    section { padding: 80px 0; }
+
+    .section-label {
+      font-family: Arial, sans-serif;
+      color: var(--orange);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    h2 {
+      font-size: clamp(32px, 4.5vw, 46px);
+      line-height: 1.15;
+      letter-spacing: -1.5px;
+      font-weight: 500;
+      margin-bottom: 18px;
+    }
+
+    .section-intro {
+      max-width: 680px;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.9;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 65px;
+      align-items: start;
+    }
+
+    .article {
+      font-size: 16px;
+      color: #626e65;
+    }
+
+    .article p { margin-bottom: 20px; }
+
+    .article h3 {
+      color: var(--ink);
+      font-size: 24px;
+      font-weight: 500;
+      margin: 34px 0 12px;
+    }
+
+    .article a {
+      color: var(--green);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .feature-section {
+      background: #e9eee6;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 16px;
+      margin-top: 36px;
+    }
+
+    .feature-card {
+      background: var(--white);
+      border: 1px solid #dfe5dc;
+      border-radius: 16px;
+      padding: 26px;
+      transition: .2s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 30px rgba(33,61,42,.07);
+    }
+
+    .feature-number {
+      font-family: Arial, sans-serif;
+      color: var(--orange);
+      font-size: 11px;
+      font-weight: 900;
+      margin-bottom: 22px;
+    }
+
+    .feature-card h3 {
+      font-size: 19px;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    .feature-card p {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+
+    .benefit-panel {
+      background: var(--green-dark);
+      color: white;
+      border-radius: 22px;
+      padding: 35px;
+    }
+
+    .benefit-panel h3 {
+      font-size: 25px;
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+
+    .benefit-list {
+      list-style: none;
+      display: grid;
+      gap: 14px;
+      font-family: Arial, sans-serif;
+      color: #d0ded1;
+      font-size: 13px;
+    }
+
+    .benefit-list li::before {
+      content: "✦";
+      color: #e4b17f;
+      margin-right: 11px;
+    }
+
+    .tip {
+      margin-top: 24px;
+      padding: 17px;
+      background: rgba(255,255,255,.08);
+      border-radius: 10px;
+      color: #d7e4d7;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 15px;
+      margin-top: 35px;
+    }
+
+    .step {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      padding: 23px;
+    }
+
+    .step-index {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--sage);
+      color: var(--green);
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      font-weight: 900;
+      margin-bottom: 20px;
+    }
+
+    .step h3 {
+      font-size: 17px;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .step p {
+      color: var(--muted);
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      line-height: 1.8;
+    }
+
+    .warning {
+      margin-top: 28px;
+      padding: 20px 23px;
+      border-left: 4px solid var(--orange);
+      background: #f0e9dc;
+      color: #695b4c;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      border-radius: 0 10px 10px 0;
+    }
+
+    .faq-section { background: #e9eee6; }
+
+    .faq-list {
+      max-width: 850px;
+      display: grid;
+      gap: 11px;
+      margin-top: 32px;
+    }
+
+    details {
+      background: var(--white);
+      border: 1px solid #dfe5dc;
+      border-radius: 12px;
+      padding: 19px 22px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-family: Arial, sans-serif;
+      font-weight: 800;
+      font-size: 13px;
+    }
+
+    details p {
+      color: var(--muted);
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      margin-top: 13px;
+      line-height: 1.8;
+    }
+
+    .cta {
+      background: var(--green);
+      color: white;
+      border-radius: 24px;
+      padding: 55px 30px;
+      text-align: center;
+    }
+
+    .cta .section-label { color: #f1bc8f; }
+
+    .cta h2 {
+      max-width: 670px;
+      margin: 0 auto 16px;
+    }
+
+    .cta p {
+      max-width: 570px;
+      margin: 0 auto 25px;
+      font-family: Arial, sans-serif;
+      color: #d1dfd1;
+      font-size: 13px;
+    }
+
+    .cta .button {
+      background: #f4f0e5;
+      color: var(--green-dark);
+    }
+
+    .cta .button:hover {
+      background: white;
+      transform: translateY(-2px);
+    }
+
+    footer {
+      background: var(--white);
+      padding: 36px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 18px;
+      font-family: Arial, sans-serif;
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a:hover { color: var(--green); }
+
+    .disclaimer {
+      width: 100%;
+      max-width: 800px;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 850px) {
+      .hero-grid, .content-grid {
+        grid-template-columns: 1fr;
+        gap: 38px;
+      }
+
+      .feature-grid { grid-template-columns: repeat(2,1fr); }
+      .steps { grid-template-columns: repeat(2,1fr); }
+      .visual-card { max-width: 570px; }
+    }
+
+    @media (max-width: 600px) {
+      .nav { min-height: 68px; }
+      .nav-links { display: none; }
+      .hero { padding: 60px 0 50px; }
+      h1 { letter-spacing: -2px; }
+      section { padding: 58px 0; }
+      .feature-grid, .steps { grid-template-columns: 1fr; }
+      .strip-grid { gap: 10px; }
+      .strip-item strong { font-size: 11px; }
+      .strip-item span { font-size: 9px; }
+      .photo { min-height: 155px; }
+      .benefit-panel { padding: 25px; }
+      .cta { padding: 40px 20px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="container nav">
+      <a href="#" class="logo">FORM<span>&</span>FUNCTION</a>
+
+      <nav class="nav-links">
+        <a href="#about">Overview</a>
+        <a href="#features">Features</a>
+        <a href="#workflow">How to Use</a>
+        <a href="#faq">FAQs</a>
+      </nav>
+
+      <a class="button button-green" href="https://gitapp.download/" target="_blank" rel="noopener">
+        Explore GitApp ↗
+      </a>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="container hero-grid">
+
+        <div>
+          <div class="eyebrow">A smarter approach to image files</div>
+
+          <h1>Smaller images.<br><em>Better experiences.</em></h1>
+
+          <p class="hero-description">
+            Discover ImageOptim, a straightforward image optimization tool
+            that helps reduce file sizes, clean up unnecessary metadata, and
+            prepare images for websites, apps, and digital projects.
+          </p>
+
+          <div class="hero-buttons">
+            <a class="button button-green" href="https://gitapp.download/" target="_blank" rel="noopener">
+              Visit GitApp ↗
+            </a>
+            <a class="button button-light" href="#about">
+              Read the Article ↓
+            </a>
+          </div>
+
+          <p class="hero-small">A practical guide for designers, developers, photographers, and website owners.</p>
+        </div>
+
+        <div class="visual-card">
+          <div class="visual-header">
+            <span>IMAGE WORKFLOW</span>
+            <span class="status">OPTIMIZATION CONCEPT</span>
+          </div>
+
+          <div class="image-demo">
+            <div>
+              <div class="photo">
+                <span class="photo-label">ORIGINAL</span>
+              </div>
+              <div class="file-details">
+                <div class="file-name">landscape-original.jpg</div>
+                <div class="file-size">
+                  <span>Before</span><strong>Large file</strong>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="photo second">
+                <span class="photo-label">OPTIMIZED</span>
+              </div>
+              <div class="file-details">
+                <div class="file-name">landscape-optimized.jpg</div>
+                <div class="file-size">
+                  <span>After</span><strong>Smaller file</strong>
+                </div>
+                <div class="progress"><span></span></div>
+              </div>
+            </div>
+          </div>
+
+          <p class="visual-note">Illustrative comparison only — not a live compression result.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="intro-strip">
+      <div class="container strip-grid">
+        <div class="strip-item">
+          <strong>Image Compression</strong>
+          <span>Reduce unnecessary file weight</span>
+        </div>
+        <div class="strip-item">
+          <strong>Metadata Cleanup</strong>
+          <span>Remove selected hidden information</span>
+        </div>
+        <div class="strip-item">
+          <strong>Open Source</strong>
+          <span>Free Mac application</span>
+        </div>
+      </div>
+    </div>
+
+    <section id="about">
+      <div class="container content-grid">
+
+        <div>
+          <div class="section-label">01 / Product overview</div>
+          <h2>What is ImageOptim?</h2>
+
+          <p class="section-intro">
+            ImageOptim is an image optimization application for macOS.
+            It helps users make image files smaller without unnecessarily
+            sacrificing visual quality.
+          </p>
+
+          <br>
+
+          <a class="button button-green" href="https://imageoptim.com/mac" target="_blank" rel="noopener">
+            Visit Official ImageOptim ↗
+          </a>
+        </div>
+
+        <div class="article">
+          <p>
+            Images are an essential part of modern websites, applications,
+            online stores, and digital publications. However, large image
+            files can consume storage and increase the amount of data visitors
+            need to download. Optimizing images before publishing them is one
+            practical way to improve a website's performance.
+          </p>
+
+          <p>
+            <strong>ImageOptim</strong> is designed to make this process easier.
+            Rather than asking users to work with several separate compression
+            utilities, its Mac application combines multiple optimization
+            tools and runs them through a simple drag-and-drop workflow.
+          </p>
+
+          <p>
+            Its default approach focuses on lossless optimization, which
+            reduces file size while preserving image data. Users can also
+            enable optional lossy minification when they prefer smaller
+            files and are comfortable with some quality changes.
+          </p>
+
+          <h3>Why image optimization matters</h3>
+
+          <p>
+            Smaller image files can reduce bandwidth use, save storage space,
+            and help web pages download more efficiently. This is especially
+            useful for image-heavy websites, online portfolios, product
+            catalogs, blogs, and applications.
+          </p>
+
+          <p>
+            ImageOptim also removes certain unnecessary metadata by default.
+            Depending on the image and its settings, this can help remove
+            private information such as GPS location details before images
+            are shared publicly.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="feature-section" id="features">
+      <div class="container">
+
+        <div class="section-label">02 / Main capabilities</div>
+        <h2>ImageOptim features to know</h2>
+
+        <p class="section-intro">
+          The application brings together image compression and file cleanup
+          tools in a simple workflow. Here are some of its most useful
+          capabilities.
+        </p>
+
+        <div class="feature-grid">
+
+          <article class="feature-card">
+            <div class="feature-number">FEATURE 01</div>
+            <h3>Lossless Compression</h3>
+            <p>
+              Reduce image file sizes while preserving the original visual
+              quality through lossless optimization methods.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-number">FEATURE 02</div>
+            <h3>Optional Lossy Minification</h3>
+            <p>
+              Enable more aggressive compression when you want smaller
+              output files and can accept some quality changes.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-number">FEATURE 03</div>
+            <h3>Metadata Removal</h3>
+            <p>
+              Remove unnecessary EXIF information, embedded thumbnails,
+              comments, and other metadata by default.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-number">FEATURE 04</div>
+            <h3>Drag-and-Drop Workflow</h3>
+            <p>
+              Add images by dragging files into the application window
+              instead of manually running multiple utilities.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-number">FEATURE 05</div>
+            <h3>Multiple Optimization Tools</h3>
+            <p>
+              ImageOptim combines open-source utilities such as MozJPEG,
+              pngquant, Pngcrush, SVGO, and Google Zopfli.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-number">FEATURE 06</div>
+            <h3>macOS Integration</h3>
+            <p>
+              Use convenient workflows involving the Dock, Finder Services,
+              and command-line access.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container content-grid">
+
+        <div class="article">
+          <div class="section-label">03 / Practical applications</div>
+          <h2>Who should use ImageOptim?</h2>
+
+          <p>
+            ImageOptim can be useful for anyone who regularly works with
+            digital images and wants to prepare files before sharing,
+            publishing, or including them in software projects.
+          </p>
+
+          <h3>Website owners and bloggers</h3>
+          <p>
+            Compress photographs, illustrations, and graphics before adding
+            them to website pages. Smaller assets can reduce download sizes
+            and help improve the overall browsing experience.
+          </p>
+
+          <h3>Web designers and developers</h3>
+          <p>
+            Prepare image assets for websites and applications. Optimized
+            resources can make projects lighter and reduce unnecessary
+            storage and bandwidth requirements.
+          </p>
+
+          <h3>Photographers and content creators</h3>
+          <p>
+            Clean up image metadata before publishing or sharing photographs.
+            This is particularly useful when you want to avoid exposing
+            location information embedded in image files.
+          </p>
+
+          <h3>Mac and app developers</h3>
+          <p>
+            Optimize images used in application bundles and other software
+            resources. ImageOptim also offers command-line workflows that
+            can be useful in development processes.
+          </p>
+        </div>
+
+        <aside class="benefit-panel">
+          <h3>Key benefits at a glance</h3>
+
+          <ul class="benefit-list">
+            <li>Reduce unnecessary image file size</li>
+            <li>Preserve visual quality with lossless settings</li>
+            <li>Save storage and bandwidth</li>
+            <li>Remove selected private metadata</li>
+            <li>Process images through drag-and-drop</li>
+            <li>Combine several optimization utilities</li>
+            <li>Use a free and open-source Mac application</li>
+          </ul>
+
+          <div class="tip">
+            Good practice: Keep original copies of important images before
+            optimizing them. ImageOptim saves optimized files in place.
+          </div>
+        </aside>
+
+      </div>
+    </section>
+
+    <section id="workflow" style="background:#fffefa;">
+      <div class="container">
+
+        <div class="section-label">04 / Beginner's guide</div>
+        <h2>How to use ImageOptim</h2>
+
+        <p class="section-intro">
+          The basic workflow is simple. Prepare your images, add them to
+          ImageOptim, and review the optimization results.
+        </p>
+
+        <div class="steps">
+
+          <article class="step">
+            <div class="step-index">01</div>
+            <h3>Download the App</h3>
+            <p>
+              Visit the official ImageOptim website and download the Mac
+              application that matches your system requirements.
+            </p>
+          </article>
+
+          <article class="step">
+            <div class="step-index">02</div>
+            <h3>Prepare Your Images</h3>
+            <p>
+              Make backup copies of important files, especially if you
+              need to preserve the original images and metadata.
+            </p>
+          </article>
+
+          <article class="step">
+            <div class="step-index">03</div>
+            <h3>Add Files</h3>
+            <p>
+              Open ImageOptim and drag your image files into its window.
+              You can also use the add-files control.
+            </p>
+          </article>
+
+          <article class="step">
+            <div class="step-index">04</div>
+            <h3>Review the Results</h3>
+            <p>
+              Wait for optimization to finish, then check the updated files
+              before uploading or sharing them.
+            </p>
+          </article>
+
+        </div>
+
+        <div class="warning">
+          Important: ImageOptim optimizes files in place and moves original
+          versions to the Trash as part of its workflow. Keep backups before
+          processing files that you cannot easily replace.
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+      <div class="container content-grid">
+
+        <div>
+          <div class="section-label">05 / Cost and compatibility</div>
+          <h2>Is ImageOptim free?</h2>
+          <p class="section-intro">
+            The ImageOptim Mac application is free and open source,
+            with donations welcomed by its developer.
+          </p>
+        </div>
+
+        <div class="article">
+          <p>
+            The desktop application is distributed under the GNU General
+            Public License, version 2 or later. Users can download it from
+            the official website and explore the published source code.
+          </p>
+
+          <p>
+            ImageOptim also has a separate web-service and API offering.
+            This should not be confused with the free Mac desktop application:
+            the API has its own pricing and usage plans.
+          </p>
+
+          <h3>Platform compatibility</h3>
+          <p>
+            The desktop application discussed in this article is made for
+            macOS. It is not a general-purpose Windows or Linux desktop
+            application. Check the official download page for the latest
+            supported macOS versions and installation information.
+          </p>
+
+          <p>
+            If you use another operating system, you will need to look for
+            a compatible image optimization tool.
+          </p>
+
+          <p>
+            Official resources:
+            <a href="https://imageoptim.com/mac" target="_blank" rel="noopener">Mac download</a>,
+            <a href="https://imageoptim.com/howto.html" target="_blank" rel="noopener">usage instructions</a>,
+            and
+            <a href="https://github.com/ImageOptim/ImageOptim" target="_blank" rel="noopener">source code</a>.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="faq-section" id="faq">
+      <div class="container">
+
+        <div class="section-label">06 / Helpful answers</div>
+        <h2>Frequently asked questions</h2>
+
+        <p class="section-intro">
+          Find answers to common questions about ImageOptim and its
+          image optimization workflow.
+        </p>
+
+        <div class="faq-list">
+
+          <details>
+            <summary>What is ImageOptim used for?</summary>
+            <p>
+              ImageOptim is used to reduce image file sizes, optimize image
+              data, and remove unnecessary metadata. It is especially useful
+              for preparing images for websites and applications.
+            </p>
+          </details>
+
+          <details>
+            <summary>Is ImageOptim free?</summary>
+            <p>
+              Yes. The ImageOptim Mac application is free and open source.
+              The developer also accepts donations to support the project.
+            </p>
+          </details>
+
+          <details>
+            <summary>Does ImageOptim reduce image quality?</summary>
+            <p>
+              Its default lossless optimization is designed to preserve
+              image quality. Optional lossy minification can reduce file
+              sizes further but may change image quality.
+            </p>
+          </details>
+
+          <details>
+            <summary>Can ImageOptim remove EXIF metadata?</summary>
+            <p>
+              Yes. ImageOptim removes certain metadata by default, including
+              EXIF information. Preferences provide an option to retain
+              metadata when needed.
+            </p>
+          </details>
+
+          <details>
+            <summary>Does ImageOptim work on Windows?</summary>
+            <p>
+              The desktop application covered here is for macOS.
+              Windows users should choose an image optimization tool
+              designed for their operating system.
+            </p>
+          </details>
+
+          <details>
+            <summary>Does ImageOptim support batch processing?</summary>
+            <p>
+              You can add multiple image files to the application through
+              its drag-and-drop workflow and let it process them.
+            </p>
+          </details>
+
+          <details>
+            <summary>Will ImageOptim overwrite my original images?</summary>
+            <p>
+              Yes. Its normal workflow saves optimized files in place and
+              moves original versions to the Trash. Make backups first if
+              you need to retain untouched originals.
+            </p>
+          </details>
+
+          <details>
+            <summary>Is ImageOptim useful for website performance?</summary>
+            <p>
+              It can help reduce image download sizes, which may contribute
+              to faster-loading pages. Overall website speed also depends
+              on hosting, scripts, caching, layout, and other factors.
+            </p>
+          </details>
+
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="cta">
+          <div class="section-label">DISCOVER MORE</div>
+          <h2>Make your digital workflow more efficient.</h2>
+
+          <p>
+            Explore more software, useful applications, and technology
+            resources through GitApp.
+          </p>
+
+          <a class="button" href="https://gitapp.download/" target="_blank" rel="noopener">
+            Explore GitApp Now ↗
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <a href="#" class="logo">FORM<span>&</span>FUNCTION</a>
+
+      <div class="footer-links">
+        <a href="https://gitapp.download/">GitApp</a>
+        <a href="https://imageoptim.com/mac" target="_blank" rel="noopener">Official Website</a>
+        <a href="https://github.com/ImageOptim/ImageOptim" target="_blank" rel="noopener">GitHub</a>
+      </div>
+
+      <p class="disclaimer">
+        ImageOptim is a product of its respective developer. This article
+        is independently written for informational purposes and is not
+        affiliated with or endorsed by ImageOptim. Product features and
+        compatibility may change over time.
+      </p>
+
+      <p>© 2026 FORM & FUNCTION. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
