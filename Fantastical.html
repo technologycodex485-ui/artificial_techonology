@@ -1,0 +1,1239 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Fantastical for Mac – Smart Calendar & Productivity App</title>
+  <meta name="description" content="Discover Fantastical for Mac, a powerful calendar and task management app with natural language event creation, calendar sets, scheduling tools, and beautiful calendar views.">
+  <meta name="keywords" content="Fantastical, Fantastical for Mac, Fantastical calendar, Mac calendar app, calendar software, task management, productivity app">
+
+  <style>
+    :root {
+      --bg: #f2f5f3;
+      --white: #ffffff;
+      --navy: #17243b;
+      --navy-light: #243650;
+      --mint: #bcebd9;
+      --mint-dark: #73c9a8;
+      --blue: #718be9;
+      --text: #202c3e;
+      --muted: #758092;
+      --line: #e4e9e7;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1160px, 90%);
+      margin: auto;
+    }
+
+    /* NAVIGATION */
+
+    header {
+      background: rgba(255,255,255,.94);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(14px);
+    }
+
+    .navbar {
+      min-height: 78px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 23px;
+      font-weight: 900;
+      letter-spacing: -1.3px;
+      color: var(--navy);
+    }
+
+    .logo span { color: #53ad8b; }
+
+    nav {
+      display: flex;
+      gap: 26px;
+      font-size: 14px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    nav a:hover { color: #459c7b; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 21px;
+      border-radius: 9px;
+      font-size: 14px;
+      font-weight: 800;
+      transition: .25s ease;
+    }
+
+    .btn-mint {
+      background: var(--mint);
+      color: var(--navy);
+    }
+
+    .btn-mint:hover {
+      background: #9ce1c6;
+      transform: translateY(-3px);
+      box-shadow: 0 9px 24px rgba(83,173,139,.2);
+    }
+
+    .btn-navy {
+      background: var(--navy);
+      color: white;
+    }
+
+    .btn-navy:hover {
+      background: #2b4263;
+      transform: translateY(-3px);
+    }
+
+    .btn-outline {
+      border: 1px solid #d5dedb;
+      color: var(--navy);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--mint-dark);
+      color: #459c7b;
+    }
+
+    /* HERO */
+
+    .hero {
+      padding: 100px 0 95px;
+      background:
+        radial-gradient(circle at 85% 20%, rgba(188,235,217,.65), transparent 31%),
+        linear-gradient(135deg, #f2f5f3, #edf0f8);
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      color: #429c7b;
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      color: var(--navy);
+      font-size: clamp(43px, 6vw, 69px);
+      line-height: 1.07;
+      letter-spacing: -3px;
+      margin-bottom: 23px;
+    }
+
+    h1 span { color: #56b18d; }
+
+    .hero-copy {
+      color: var(--muted);
+      font-size: 17px;
+      max-width: 540px;
+      margin-bottom: 30px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 13px;
+      flex-wrap: wrap;
+    }
+
+    .hero-note {
+      margin-top: 23px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* CALENDAR MOCKUP */
+
+    .calendar-shell {
+      background: var(--white);
+      border: 1px solid #e0e8e4;
+      padding: 23px;
+      border-radius: 19px;
+      box-shadow: 0 25px 65px rgba(31,53,69,.12);
+      transform: rotate(1deg);
+    }
+
+    .calendar-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 17px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .calendar-header strong {
+      color: var(--navy);
+      font-size: 17px;
+    }
+
+    .calendar-header span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .calendar-days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+      margin-top: 17px;
+      text-align: center;
+    }
+
+    .day-name {
+      font-size: 10px;
+      font-weight: 800;
+      color: #8993a1;
+      padding-bottom: 8px;
+    }
+
+    .day {
+      min-height: 43px;
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      color: #536073;
+      border-radius: 8px;
+      position: relative;
+    }
+
+    .day.active {
+      background: var(--navy);
+      color: white;
+      font-weight: 800;
+    }
+
+    .day.event::after {
+      content: "";
+      width: 5px;
+      height: 5px;
+      background: #67c69e;
+      border-radius: 50%;
+      position: absolute;
+      bottom: 4px;
+    }
+
+    .day.active::after { background: white; }
+
+    .calendar-event {
+      margin-top: 18px;
+      padding: 12px;
+      background: #e8f6ef;
+      border-left: 4px solid #65bf96;
+      border-radius: 7px;
+      font-size: 12px;
+    }
+
+    .calendar-event strong {
+      display: block;
+      color: var(--navy);
+    }
+
+    .calendar-event small { color: #6b8277; }
+
+    .calendar-event.blue {
+      background: #edf0ff;
+      border-color: #8297ec;
+      margin-top: 8px;
+    }
+
+    .calendar-event.blue small { color: #6c78a8; }
+
+    /* SECTIONS */
+
+    section { padding: 88px 0; }
+
+    .section-heading {
+      max-width: 720px;
+      margin: 0 auto 46px;
+      text-align: center;
+    }
+
+    .section-heading h2 {
+      color: var(--navy);
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1.18;
+      letter-spacing: -1.8px;
+      margin-bottom: 15px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    /* ARTICLE */
+
+    .article-section {
+      background: white;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .article-body {
+      max-width: 860px;
+      margin: auto;
+    }
+
+    .article-body h2 {
+      font-size: 29px;
+      color: var(--navy);
+      letter-spacing: -1px;
+      margin: 34px 0 13px;
+    }
+
+    .article-body p {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    /* FEATURES */
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 19px;
+    }
+
+    .feature-card {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 27px;
+      transition: .25s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      border-color: #a7dfc7;
+      box-shadow: 0 13px 30px rgba(31,53,69,.06);
+    }
+
+    .feature-icon {
+      width: 49px;
+      height: 49px;
+      display: grid;
+      place-items: center;
+      background: #e7f5ed;
+      border-radius: 12px;
+      font-size: 23px;
+      margin-bottom: 18px;
+    }
+
+    .feature-card h3 {
+      font-size: 18px;
+      color: var(--navy);
+      margin-bottom: 9px;
+    }
+
+    .feature-card p {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    /* DARK SECTION */
+
+    .dark-section {
+      background: var(--navy);
+      color: white;
+    }
+
+    .dark-section .section-heading h2 { color: white; }
+    .dark-section .section-heading p { color: #b5c1d0; }
+    .dark-section .eyebrow { color: var(--mint); }
+
+    .benefit-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .benefit {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 13px;
+      padding: 26px;
+    }
+
+    .benefit-number {
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--mint);
+      margin-bottom: 12px;
+    }
+
+    .benefit h3 { margin-bottom: 9px; }
+
+    .benefit p {
+      font-size: 14px;
+      color: #b8c4d2;
+    }
+
+    /* USE CASES */
+
+    .use-case-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .use-case {
+      padding: 28px;
+      border-radius: 13px;
+      background: #e1f1e9;
+    }
+
+    .use-case:nth-child(2),
+    .use-case:nth-child(3) {
+      background: #e8ebfa;
+    }
+
+    .use-case h3 {
+      color: var(--navy);
+      margin-bottom: 9px;
+      font-size: 19px;
+    }
+
+    .use-case p {
+      color: #6e7a8b;
+      font-size: 14px;
+    }
+
+    /* GETTING STARTED */
+
+    .steps-panel {
+      max-width: 850px;
+      margin: auto;
+      padding: 32px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: white;
+    }
+
+    .step {
+      display: flex;
+      gap: 18px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .step:last-child { border: 0; }
+
+    .step-number {
+      flex-shrink: 0;
+      width: 37px;
+      height: 37px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      background: #e5f5ed;
+      color: #439b79;
+      font-weight: 900;
+    }
+
+    .step h3 { color: var(--navy); }
+
+    .step p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 4px;
+    }
+
+    .compatibility-note {
+      max-width: 850px;
+      margin: 18px auto 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* FAQ */
+
+    .faq-section {
+      background: white;
+      border-top: 1px solid var(--line);
+    }
+
+    .faq-list {
+      max-width: 830px;
+      margin: auto;
+    }
+
+    details {
+      padding: 20px 4px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 800;
+      color: var(--navy);
+    }
+
+    details p {
+      color: var(--muted);
+      font-size: 14px;
+      padding-top: 12px;
+    }
+
+    details a {
+      color: #419b79;
+      text-decoration: underline;
+    }
+
+    /* CTA */
+
+    .cta {
+      text-align: center;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(188,235,217,.5), transparent 55%),
+        #e9f1ed;
+    }
+
+    .cta h2 {
+      color: var(--navy);
+      font-size: clamp(33px, 5vw, 52px);
+      letter-spacing: -2px;
+      line-height: 1.15;
+      max-width: 760px;
+      margin: 0 auto 17px;
+    }
+
+    .cta p {
+      max-width: 620px;
+      color: var(--muted);
+      margin: 0 auto 28px;
+    }
+
+    footer {
+      background: #121e31;
+      color: #b7c3d0;
+      padding: 33px 0;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    footer a { color: var(--mint); }
+    footer p + p { margin-top: 10px; }
+
+    /* RESPONSIVE */
+
+    @media(max-width: 850px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 45px; }
+      .feature-grid,
+      .benefit-grid { grid-template-columns: repeat(2, 1fr); }
+      nav { display: none; }
+      .calendar-shell { max-width: 600px; margin: auto; }
+    }
+
+    @media(max-width: 560px) {
+      .hero { padding: 70px 0; }
+      section { padding: 65px 0; }
+      .feature-grid,
+      .benefit-grid,
+      .use-case-grid { grid-template-columns: 1fr; }
+      .calendar-shell { padding: 14px; transform: none; }
+      .day { min-height: 36px; }
+      .steps-panel { padding: 20px; }
+      h1 { letter-spacing: -2px; }
+      .navbar > .btn { padding: 10px 13px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container navbar">
+
+    <a href="#" class="logo">GIT<span>APP.</span></a>
+
+    <nav>
+      <a href="#about">Overview</a>
+      <a href="#features">Features</a>
+      <a href="#benefits">Benefits</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+
+    <a href="https://gitapp.download/" class="btn btn-mint">
+      Explore GitApp ↗
+    </a>
+
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-grid">
+
+      <div>
+        <span class="eyebrow">Your Schedule, Beautifully Organized</span>
+
+        <h1>
+          Take Control of Your Time with <span>Fantastical.</span>
+        </h1>
+
+        <p class="hero-copy">
+          Fantastical is a modern calendar and task management app
+          designed to make organizing your life easier. Create events
+          using natural language, manage multiple calendars, track
+          reminders, and keep your schedule organized across devices.
+        </p>
+
+        <div class="hero-actions">
+          <a href="https://gitapp.download/" class="btn btn-navy">
+            Explore GitApp →
+          </a>
+
+          <a href="#features" class="btn btn-outline">
+            Explore Features
+          </a>
+        </div>
+
+        <p class="hero-note">
+          Calendar management · Tasks · Scheduling · macOS and mobile
+        </p>
+      </div>
+
+      <!-- Decorative calendar preview -->
+      <div class="calendar-shell">
+
+        <div class="calendar-header">
+          <strong>October 2026</strong>
+          <span>Monthly Overview</span>
+        </div>
+
+        <div class="calendar-days">
+          <div class="day-name">SUN</div>
+          <div class="day-name">MON</div>
+          <div class="day-name">TUE</div>
+          <div class="day-name">WED</div>
+          <div class="day-name">THU</div>
+          <div class="day-name">FRI</div>
+          <div class="day-name">SAT</div>
+
+          <div class="day">27</div>
+          <div class="day">28</div>
+          <div class="day">29</div>
+          <div class="day">30</div>
+          <div class="day">1</div>
+          <div class="day">2</div>
+          <div class="day">3</div>
+
+          <div class="day">4</div>
+          <div class="day">5</div>
+          <div class="day event">6</div>
+          <div class="day">7</div>
+          <div class="day">8</div>
+          <div class="day event">9</div>
+          <div class="day">10</div>
+
+          <div class="day">11</div>
+          <div class="day event">12</div>
+          <div class="day">13</div>
+          <div class="day active">14</div>
+          <div class="day">15</div>
+          <div class="day event">16</div>
+          <div class="day">17</div>
+
+          <div class="day">18</div>
+          <div class="day">19</div>
+          <div class="day event">20</div>
+          <div class="day">21</div>
+          <div class="day">22</div>
+          <div class="day">23</div>
+          <div class="day">24</div>
+
+          <div class="day">25</div>
+          <div class="day">26</div>
+          <div class="day">27</div>
+          <div class="day">28</div>
+          <div class="day">29</div>
+          <div class="day">30</div>
+          <div class="day">31</div>
+        </div>
+
+        <div class="calendar-event">
+          <strong>10:00 AM · Team Meeting</strong>
+          <small>Project planning and weekly updates</small>
+        </div>
+
+        <div class="calendar-event blue">
+          <strong>02:30 PM · Creative Review</strong>
+          <small>Design feedback and next steps</small>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="article-section" id="about">
+    <div class="container article-body">
+
+      <span class="eyebrow">Understanding Fantastical</span>
+
+      <h2>What Is Fantastical?</h2>
+
+      <p>
+        Fantastical is a calendar and task management application
+        developed by Flexibits. It is designed to help people manage
+        appointments, meetings, reminders, and daily schedules through
+        an attractive and flexible interface.
+      </p>
+
+      <p>
+        One of its most recognizable features is natural language
+        event creation. Instead of opening multiple fields and
+        manually entering every detail, you can type something like
+        "Lunch with Sarah tomorrow at 1 PM" and Fantastical can
+        interpret the information and create an event.
+      </p>
+
+      <p>
+        The app also brings multiple calendar accounts together.
+        Depending on your connected services, you can view events
+        from iCloud, Google, Exchange, Microsoft 365, and other
+        supported calendar providers in one place.
+      </p>
+
+      <h2>Why Is Fantastical Popular?</h2>
+
+      <p>
+        Managing several calendars can become confusing, especially
+        when work appointments, personal commitments, and reminders
+        are spread across different services. Fantastical helps
+        simplify that experience with calendar views, search,
+        calendar sets, and task management features.
+      </p>
+
+      <p>
+        Its interface offers different ways to review your schedule,
+        while its event creation tools make adding appointments
+        quicker. For users who frequently coordinate meetings,
+        its scheduling features can also make finding suitable
+        times more convenient.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features">
+    <div class="container">
+
+      <div class="section-heading">
+        <span class="eyebrow">Powerful Productivity Tools</span>
+        <h2>Explore the Features of Fantastical</h2>
+        <p>
+          Discover the tools that help make everyday planning
+          and calendar management more convenient.
+        </p>
+      </div>
+
+      <div class="feature-grid">
+
+        <article class="feature-card">
+          <div class="feature-icon">✍️</div>
+          <h3>Natural Language Input</h3>
+          <p>
+            Create events and tasks by typing everyday phrases.
+            Fantastical interprets dates, times, locations,
+            and other event details.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">📅</div>
+          <h3>Multiple Calendar Views</h3>
+          <p>
+            Switch between day, week, month, quarter, and year
+            views to understand your schedule from different
+            perspectives.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">☑️</div>
+          <h3>Task Management</h3>
+          <p>
+            View and organize tasks alongside calendar events.
+            Supported integrations include Apple Reminders,
+            Todoist, and Google Tasks.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">🌍</div>
+          <h3>Time Zone Support</h3>
+          <p>
+            Work with different time zones and manage appointments
+            when coordinating with colleagues or clients in
+            other regions.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">🔄</div>
+          <h3>Calendar Sets</h3>
+          <p>
+            Organize calendars into useful groups and quickly
+            switch between different sets for work, personal
+            activities, or other parts of your life.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">🤝</div>
+          <h3>Meeting Proposals</h3>
+          <p>
+            Share multiple potential meeting times through
+            Proposals and let invitees indicate which options
+            work for their schedules.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">⏰</div>
+          <h3>Smart Alerts</h3>
+          <p>
+            Configure event notifications, reminders, and
+            travel-time alerts to help you prepare for upcoming
+            appointments.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">🌤️</div>
+          <h3>Weather Information</h3>
+          <p>
+            View weather forecasts alongside your calendar
+            to help plan activities and prepare for the day.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">📱</div>
+          <h3>Widgets and Device Sync</h3>
+          <p>
+            Access useful calendar information through supported
+            widgets and keep your planning experience connected
+            across compatible devices.
+          </p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section class="dark-section" id="benefits">
+    <div class="container">
+
+      <div class="section-heading">
+        <span class="eyebrow">A More Organized Day</span>
+        <h2>How Fantastical Can Improve Your Workflow</h2>
+        <p>
+          Bring your appointments, tasks, and planning activities
+          into a more organized daily routine.
+        </p>
+      </div>
+
+      <div class="benefit-grid">
+
+        <article class="benefit">
+          <div class="benefit-number">01</div>
+          <h3>Save Time Creating Events</h3>
+          <p>
+            Natural language input reduces the need to manually
+            fill out every event detail, making scheduling faster.
+          </p>
+        </article>
+
+        <article class="benefit">
+          <div class="benefit-number">02</div>
+          <h3>Keep Calendars Organized</h3>
+          <p>
+            Connect supported calendar services and use calendar
+            sets to keep different responsibilities easier to manage.
+          </p>
+        </article>
+
+        <article class="benefit">
+          <div class="benefit-number">03</div>
+          <h3>Plan Meetings More Easily</h3>
+          <p>
+            Use availability tools and meeting proposals to
+            coordinate schedules with other people.
+          </p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO CAN USE IT -->
+  <section>
+    <div class="container">
+
+      <div class="section-heading">
+        <span class="eyebrow">Designed for Everyday Planning</span>
+        <h2>Who Can Benefit from Fantastical?</h2>
+        <p>
+          Its calendar and task tools can be useful for different
+          lifestyles and working environments.
+        </p>
+      </div>
+
+      <div class="use-case-grid">
+
+        <article class="use-case">
+          <h3>💼 Business Professionals</h3>
+          <p>
+            Manage meetings, deadlines, work calendars, and
+            appointments while coordinating with colleagues
+            across different time zones.
+          </p>
+        </article>
+
+        <article class="use-case">
+          <h3>🎓 Students</h3>
+          <p>
+            Organize classes, assignments, study sessions,
+            reminders, and personal commitments in one
+            calendar experience.
+          </p>
+        </article>
+
+        <article class="use-case">
+          <h3>🚀 Freelancers</h3>
+          <p>
+            Keep track of client meetings, project deadlines,
+            personal tasks, and availability without constantly
+            switching between separate calendars.
+          </p>
+        </article>
+
+        <article class="use-case">
+          <h3>🏡 Everyday Users</h3>
+          <p>
+            Plan appointments, birthdays, family activities,
+            errands, and important reminders with a clear
+            overview of upcoming events.
+          </p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- GETTING STARTED -->
+  <section class="article-section">
+    <div class="container">
+
+      <div class="section-heading">
+        <span class="eyebrow">Start Organizing</span>
+        <h2>How to Get Started with Fantastical</h2>
+        <p>
+          Follow these simple steps to begin organizing
+          your schedule.
+        </p>
+      </div>
+
+      <div class="steps-panel">
+
+        <div class="step">
+          <span class="step-number">1</span>
+          <div>
+            <h3>Visit the Official Website</h3>
+            <p>
+              Open the Flexibits website and review the
+              Fantastical product information and available
+              download options.
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <span class="step-number">2</span>
+          <div>
+            <h3>Download the Application</h3>
+            <p>
+              Choose the version compatible with your device
+              and follow the installation instructions.
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <span class="step-number">3</span>
+          <div>
+            <h3>Connect Your Calendar Accounts</h3>
+            <p>
+              Add supported calendar services such as iCloud,
+              Google, or Microsoft Exchange.
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <span class="step-number">4</span>
+          <div>
+            <h3>Create Your First Event</h3>
+            <p>
+              Try natural language input to create an event
+              or task using a simple sentence.
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <span class="step-number">5</span>
+          <div>
+            <h3>Customize Your Calendar</h3>
+            <p>
+              Explore calendar views, alerts, widgets,
+              calendar sets, and other settings to build
+              a planning system that suits your needs.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="compatibility-note">
+        Compatibility note: The Mac App Store listing specifies
+        macOS 12.4 or later. Requirements can vary by platform
+        and application version, so check the official website
+        before installing.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- FREE AND PREMIUM -->
+  <section>
+    <div class="container">
+
+      <div class="section-heading">
+        <span class="eyebrow">Plans and Availability</span>
+        <h2>Fantastical Free and Premium</h2>
+        <p>
+          Fantastical offers basic calendar functionality for free,
+          with additional capabilities available through
+          Flexibits Premium.
+        </p>
+      </div>
+
+      <div class="use-case-grid">
+
+        <article class="use-case">
+          <h3>Free Experience</h3>
+          <p>
+            The free experience includes basic calendar management,
+            calendar views, natural language event creation,
+            a mini window on Mac, and selected task features.
+          </p>
+        </article>
+
+        <article class="use-case">
+          <h3>Flexibits Premium</h3>
+          <p>
+            Premium adds advanced scheduling tools, calendar sets,
+            extended weather information, templates, additional
+            integrations, and access across supported platforms.
+          </p>
+        </article>
+
+      </div>
+
+      <p class="compatibility-note">
+        Premium features require a subscription. Check Flexibits'
+        official pricing page for current plans, trial availability,
+        and regional pricing.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section" id="faq">
+    <div class="container">
+
+      <div class="section-heading">
+        <span class="eyebrow">Common Questions</span>
+        <h2>Frequently Asked Questions</h2>
+        <p>
+          Find answers to some common questions about Fantastical.
+        </p>
+      </div>
+
+      <div class="faq-list">
+
+        <details>
+          <summary>What is Fantastical used for?</summary>
+          <p>
+            Fantastical is a calendar and task management application.
+            It helps users create events, manage appointments,
+            organize reminders, and coordinate schedules.
+          </p>
+        </details>
+
+        <details>
+          <summary>Is Fantastical available for Mac?</summary>
+          <p>
+            Yes. Fantastical has a Mac application, as well as
+            versions for supported Apple devices and other
+            platforms listed by the developer.
+          </p>
+        </details>
+
+        <details>
+          <summary>Can Fantastical create events from text?</summary>
+          <p>
+            Yes. Its natural language parser can interpret phrases
+            containing event details such as dates, times,
+            and locations.
+          </p>
+        </details>
+
+        <details>
+          <summary>Does Fantastical support Google Calendar?</summary>
+          <p>
+            Yes. Fantastical supports Google Calendar along with
+            other calendar services, including iCloud and
+            Microsoft Exchange.
+          </p>
+        </details>
+
+        <details>
+          <summary>Can I manage tasks in Fantastical?</summary>
+          <p>
+            Yes. Fantastical supports task management and
+            integrations with services such as Apple Reminders,
+            Todoist, and Google Tasks.
+          </p>
+        </details>
+
+        <details>
+          <summary>Is Fantastical free to use?</summary>
+          <p>
+            Fantastical offers a free version with basic features.
+            Advanced capabilities are available through the
+            Flexibits Premium subscription.
+          </p>
+        </details>
+
+        <details>
+          <summary>Does Fantastical support multiple calendars?</summary>
+          <p>
+            Yes. You can connect supported calendar accounts
+            and use calendar sets to organize different groups
+            of calendars.
+          </p>
+        </details>
+
+        <details>
+          <summary>Where can I download Fantastical?</summary>
+          <p>
+            Visit the official Flexibits website at
+            <a href="https://flexibits.com/fantastical"
+               target="_blank" rel="noopener noreferrer">
+              flexibits.com/fantastical
+            </a>
+            to explore the app and find current download options.
+          </p>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CALL TO ACTION -->
+  <section class="cta">
+    <div class="container">
+
+      <span class="eyebrow">Discover More with GitApp</span>
+
+      <h2>Find the Right Apps to Make Every Day More Productive.</h2>
+
+      <p>
+        Explore more software, useful digital tools, and productivity
+        resources. Visit GitApp and discover applications that can
+        help improve the way you work and organize your digital life.
+      </p>
+
+      <a href="https://gitapp.download/" class="btn btn-navy">
+        Visit GitApp Now ↗
+      </a>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+
+    <p>
+      © 2026 GitApp. All rights reserved.
+      | <a href="https://gitapp.download/">Visit GitApp</a>
+    </p>
+
+    <p>
+      Fantastical is a product of Flexibits Inc. This article
+      is independently written and is not affiliated with or
+      endorsed by Flexibits. Product features, availability,
+      compatibility, and pricing may change. Refer to the
+      official website for current information.
+    </p>
+
+  </div>
+</footer>
+
+</body>
+</html>
