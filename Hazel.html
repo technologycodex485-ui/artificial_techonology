@@ -1,0 +1,1024 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Hazel for Mac - Smart File Organization & Automation</title>
+  <meta name="description" content="Discover Hazel for Mac, a powerful file organization and automation tool. Learn about its features, folder rules, benefits, and how to get started.">
+  <meta name="keywords" content="Hazel for Mac, Hazel app, Mac file organizer, file automation, automatic file management, Noodlesoft Hazel">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --forest: #183d32;
+      --green: #47765b;
+      --lime: #d8e7a5;
+      --cream: #f7f5ed;
+      --paper: #fffefa;
+      --ink: #202b25;
+      --muted: #68736b;
+      --line: #e6e8df;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.7;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(1120px, 90%);
+      margin: auto;
+    }
+
+    /* Navigation */
+    header {
+      background: var(--paper);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .navbar {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      color: var(--forest);
+    }
+
+    .logo span {
+      color: var(--green);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 27px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #536158;
+    }
+
+    .nav-links a:hover {
+      color: var(--green);
+    }
+
+    .nav-button {
+      background: var(--forest);
+      color: white;
+      padding: 11px 19px;
+      border-radius: 7px;
+      font-size: 13px;
+      font-weight: 700;
+      transition: .25s;
+    }
+
+    .nav-button:hover,
+    .primary-btn:hover {
+      background: var(--green);
+      transform: translateY(-2px);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 90px 0 80px;
+      background:
+        radial-gradient(circle at 85% 15%, #dce8c8 0, transparent 30%),
+        var(--cream);
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 7px 13px;
+      border-radius: 30px;
+      background: #e7edda;
+      color: var(--forest);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 {
+      color: var(--forest);
+      font-size: clamp(42px, 5.5vw, 66px);
+      line-height: 1.08;
+      letter-spacing: -3px;
+      margin-bottom: 23px;
+    }
+
+    .hero h1 span {
+      color: var(--green);
+      font-family: Georgia, serif;
+      font-style: italic;
+      font-weight: 500;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 17px;
+      max-width: 570px;
+      margin-bottom: 30px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+    }
+
+    .primary-btn,
+    .secondary-btn {
+      display: inline-block;
+      padding: 14px 23px;
+      border-radius: 7px;
+      font-size: 14px;
+      font-weight: 700;
+      transition: .25s;
+    }
+
+    .primary-btn {
+      background: var(--forest);
+      color: white;
+    }
+
+    .secondary-btn {
+      border: 1px solid #b8c4b5;
+      color: var(--forest);
+      background: transparent;
+    }
+
+    .secondary-btn:hover {
+      background: white;
+      border-color: var(--green);
+    }
+
+    /* Decorative product illustration */
+    .visual {
+      background: #e5eadc;
+      padding: 27px;
+      border-radius: 24px;
+      transform: rotate(1.5deg);
+      box-shadow: 0 25px 65px rgba(31, 61, 45, .12);
+    }
+
+    .window {
+      background: white;
+      border-radius: 13px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,.07);
+      transform: rotate(-1.5deg);
+    }
+
+    .window-top {
+      height: 43px;
+      background: #f2f3ee;
+      display: flex;
+      align-items: center;
+      padding: 0 15px;
+      gap: 7px;
+      border-bottom: 1px solid #e8e9e3;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #c2c9bd;
+    }
+
+    .window-title {
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 11px;
+      color: #7c867d;
+    }
+
+    .mock-content {
+      padding: 23px;
+    }
+
+    .mock-heading {
+      color: var(--forest);
+      font-weight: 800;
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .mock-subtitle {
+      color: #8b948a;
+      font-size: 11px;
+      margin-bottom: 22px;
+    }
+
+    .file-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 10px;
+      border: 1px solid #edf0e9;
+      border-radius: 8px;
+      margin-bottom: 9px;
+      font-size: 12px;
+    }
+
+    .file-icon {
+      width: 34px;
+      height: 38px;
+      border-radius: 6px;
+      background: #e7efdc;
+      display: grid;
+      place-items: center;
+      font-size: 16px;
+    }
+
+    .file-name {
+      font-weight: 700;
+      color: #34453a;
+    }
+
+    .file-type {
+      display: block;
+      font-size: 10px;
+      color: #9aa198;
+    }
+
+    .file-status {
+      margin-left: auto;
+      color: #47765b;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    /* Sections */
+    section {
+      padding: 82px 0;
+    }
+
+    .section-heading {
+      max-width: 680px;
+      margin: 0 auto 45px;
+      text-align: center;
+    }
+
+    .section-label {
+      color: var(--green);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 11px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .section-heading h2 {
+      color: var(--forest);
+      font-size: clamp(30px, 4vw, 43px);
+      letter-spacing: -1.5px;
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .intro {
+      background: var(--paper);
+    }
+
+    .intro-content {
+      max-width: 850px;
+      margin: auto;
+    }
+
+    .intro-content h3 {
+      color: var(--forest);
+      font-size: 23px;
+      margin: 25px 0 10px;
+    }
+
+    .intro-content p {
+      color: #667168;
+      margin-bottom: 16px;
+    }
+
+    /* Features */
+    .features {
+      background: #edf0e7;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .feature-card {
+      background: var(--paper);
+      padding: 28px;
+      border: 1px solid #e4e9df;
+      border-radius: 12px;
+      transition: .25s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(34, 65, 44, .08);
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      background: #e8efdf;
+      border-radius: 12px;
+      font-size: 22px;
+      margin-bottom: 19px;
+    }
+
+    .feature-card h3 {
+      color: var(--forest);
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .feature-card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* How it works */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .step {
+      padding: 25px 22px;
+      border-left: 2px solid #c8d8bd;
+    }
+
+    .step-number {
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .step h3 {
+      color: var(--forest);
+      font-size: 19px;
+      margin-bottom: 9px;
+    }
+
+    .step p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Use cases */
+    .use-cases {
+      background: var(--paper);
+    }
+
+    .use-case-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .use-case {
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .check {
+      color: var(--green);
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .use-case h3 {
+      font-size: 16px;
+      color: var(--forest);
+      margin-bottom: 4px;
+    }
+
+    .use-case p {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* FAQ */
+    .faq-list {
+      max-width: 820px;
+      margin: auto;
+    }
+
+    .faq-item {
+      padding: 22px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .faq-item h3 {
+      font-size: 17px;
+      color: var(--forest);
+      margin-bottom: 8px;
+    }
+
+    .faq-item p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* CTA */
+    .cta-section {
+      padding: 75px 0;
+      background: var(--forest);
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      color: white;
+      font-size: clamp(30px, 4vw, 43px);
+      letter-spacing: -1px;
+      margin-bottom: 15px;
+    }
+
+    .cta-section p {
+      max-width: 620px;
+      margin: 0 auto 27px;
+      color: #d0ddcf;
+      font-size: 15px;
+    }
+
+    .cta-section .primary-btn {
+      background: var(--lime);
+      color: var(--forest);
+    }
+
+    .cta-section .primary-btn:hover {
+      background: white;
+    }
+
+    /* Footer */
+    footer {
+      padding: 27px 0;
+      background: #102c24;
+      color: #bdcbbf;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    footer a {
+      color: var(--lime);
+    }
+
+    /* Responsive */
+    @media (max-width: 800px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .visual {
+        max-width: 550px;
+        margin: 10px auto 0;
+      }
+
+      .feature-grid,
+      .steps {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .hero {
+        padding: 65px 0;
+      }
+
+      section {
+        padding: 62px 0;
+      }
+
+      .feature-grid,
+      .steps,
+      .use-case-list {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        letter-spacing: -2px;
+      }
+
+      .visual {
+        padding: 13px;
+      }
+
+      .navbar {
+        min-height: 66px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="container navbar">
+      <a href="#" class="logo">Hazel<span>.</span></a>
+
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <a href="https://gitapp.download/" class="nav-button">
+        Explore More
+      </a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container hero-grid">
+
+        <div>
+          <span class="eyebrow">A smarter way to manage files</span>
+
+          <h1>
+            Bring order to your Mac with <span>Hazel.</span>
+          </h1>
+
+          <p>
+            Hazel is a macOS automation utility that helps keep your digital
+            workspace organized. Create rules for your folders and let Hazel
+            handle repetitive file-management tasks automatically.
+          </p>
+
+          <div class="hero-actions">
+            <a href="https://gitapp.download/" class="primary-btn">
+              Explore Now →
+            </a>
+
+            <a href="#about" class="secondary-btn">
+              Learn About Hazel
+            </a>
+          </div>
+        </div>
+
+        <!-- Decorative interface illustration -->
+        <div class="visual">
+          <div class="window">
+
+            <div class="window-top">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="window-title">Smart File Organization</span>
+            </div>
+
+            <div class="mock-content">
+              <div class="mock-heading">Your Files, Organized</div>
+              <div class="mock-subtitle">
+                An example of a tidy digital workspace
+              </div>
+
+              <div class="file-row">
+                <div class="file-icon">📄</div>
+                <div>
+                  <span class="file-name">Monthly-Invoice.pdf</span>
+                  <span class="file-type">PDF Document</span>
+                </div>
+                <span class="file-status">Filed</span>
+              </div>
+
+              <div class="file-row">
+                <div class="file-icon">🖼️</div>
+                <div>
+                  <span class="file-name">Project-Photo.png</span>
+                  <span class="file-type">Image File</span>
+                </div>
+                <span class="file-status">Sorted</span>
+              </div>
+
+              <div class="file-row">
+                <div class="file-icon">📁</div>
+                <div>
+                  <span class="file-name">Work Documents</span>
+                  <span class="file-type">Folder</span>
+                </div>
+                <span class="file-status">Ready</span>
+              </div>
+
+              <div class="file-row">
+                <div class="file-icon">📊</div>
+                <div>
+                  <span class="file-name">Annual-Report.xlsx</span>
+                  <span class="file-type">Spreadsheet</span>
+                </div>
+                <span class="file-status">Filed</span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="intro" id="about">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="section-label">Discover Hazel</div>
+          <h2>What Is Hazel for Mac?</h2>
+          <p>
+            A flexible file-management assistant designed to reduce repetitive
+            work and help maintain an organized Mac.
+          </p>
+        </div>
+
+        <div class="intro-content">
+          <p>
+            Hazel is a file organization and automation application developed
+            by Noodlesoft for macOS. It monitors folders selected by the user
+            and checks their contents against rules. When a file matches a
+            rule, Hazel can perform the action assigned to it.
+          </p>
+
+          <p>
+            For example, you can create a rule that moves PDF invoices into a
+            dedicated folder, renames files according to a naming pattern, or
+            applies Finder tags to specific documents. Instead of manually
+            repeating these actions, you can build a workflow that handles
+            them for you.
+          </p>
+
+          <h3>Designed for Everyday File Management</h3>
+
+          <p>
+            Downloads, screenshots, documents, and other files can quickly
+            accumulate in different locations. Hazel helps you establish
+            consistent organization habits by applying the conditions and
+            actions you define. You decide which folders it watches and what
+            should happen when a file meets your criteria.
+          </p>
+
+          <h3>More Than a Basic File Organizer</h3>
+
+          <p>
+            Hazel also supports actions such as copying, archiving, opening,
+            uploading, and changing file metadata. Its additional tools
+            include Trash management and App Sweep, which can identify
+            leftover application support files when you remove an app.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features" id="features">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="section-label">Key Capabilities</div>
+          <h2>Features That Make Hazel Useful</h2>
+          <p>
+            Explore some of the ways Hazel can simplify file organization
+            and automate everyday tasks on macOS.
+          </p>
+        </div>
+
+        <div class="feature-grid">
+
+          <article class="feature-card">
+            <div class="feature-icon">📂</div>
+            <h3>Automatic Folder Monitoring</h3>
+            <p>
+              Choose folders for Hazel to monitor and let your custom rules
+              organize matching files as they appear.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">⚙️</div>
+            <h3>Custom Rules</h3>
+            <p>
+              Build conditions based on file names, dates, types, sizes,
+              and other available attributes.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">🏷️</div>
+            <h3>File Tagging and Renaming</h3>
+            <p>
+              Apply Finder tags and rename files to create a more consistent
+              and searchable file structure.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">🗃️</div>
+            <h3>Smart File Actions</h3>
+            <p>
+              Move, copy, archive, open, or upload files when they meet
+              the conditions in your rules.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">🧹</div>
+            <h3>Trash Management</h3>
+            <p>
+              Configure Hazel to manage items in the Trash based on
+              their age or the amount of space they occupy.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">🔍</div>
+            <h3>App Sweep</h3>
+            <p>
+              When you remove an application, Hazel can look for associated
+              support files and offer to remove them too.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section id="how-it-works">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="section-label">Getting Started</div>
+          <h2>How Does Hazel Work?</h2>
+          <p>
+            Start with a folder, define your conditions, and choose the
+            actions Hazel should perform.
+          </p>
+        </div>
+
+        <div class="steps">
+
+          <article class="step">
+            <div class="step-number">STEP 01</div>
+            <h3>Select a Folder</h3>
+            <p>
+              Choose a location you want Hazel to monitor, such as Downloads,
+              Documents, or another folder on your Mac.
+            </p>
+          </article>
+
+          <article class="step">
+            <div class="step-number">STEP 02</div>
+            <h3>Create a Rule</h3>
+            <p>
+              Set conditions that identify the files you want Hazel to
+              recognize, such as a file type or a particular name.
+            </p>
+          </article>
+
+          <article class="step">
+            <div class="step-number">STEP 03</div>
+            <h3>Choose an Action</h3>
+            <p>
+              Decide what happens when a file matches, such as moving it,
+              renaming it, or applying a Finder tag.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section class="use-cases">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="section-label">Everyday Workflows</div>
+          <h2>What Can You Use Hazel For?</h2>
+          <p>
+            Hazel can support many practical workflows when you configure
+            rules that match your needs.
+          </p>
+        </div>
+
+        <div class="use-case-list">
+
+          <article class="use-case">
+            <span class="check">✓</span>
+            <div>
+              <h3>Organize Downloads</h3>
+              <p>
+                Sort downloaded documents, images, and other files
+                into suitable folders.
+              </p>
+            </div>
+          </article>
+
+          <article class="use-case">
+            <span class="check">✓</span>
+            <div>
+              <h3>Manage Invoices</h3>
+              <p>
+                Create rules that identify invoice files and move them
+                into a dedicated finance folder.
+              </p>
+            </div>
+          </article>
+
+          <article class="use-case">
+            <span class="check">✓</span>
+            <div>
+              <h3>Keep Your Desktop Tidy</h3>
+              <p>
+                Move files from a busy desktop into organized locations
+                according to your chosen conditions.
+              </p>
+            </div>
+          </article>
+
+          <article class="use-case">
+            <span class="check">✓</span>
+            <div>
+              <h3>Manage Old Files</h3>
+              <p>
+                Apply rules to identify older items and archive or remove
+                them when appropriate.
+              </p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="section-label">Common Questions</div>
+          <h2>Frequently Asked Questions</h2>
+          <p>
+            Helpful answers to common questions about Hazel and its
+            file automation features.
+          </p>
+        </div>
+
+        <div class="faq-list">
+
+          <article class="faq-item">
+            <h3>1. What is Hazel software used for?</h3>
+            <p>
+              Hazel is used to automate file organization on Mac.
+              It monitors selected folders and performs actions on files
+              that match rules created by the user.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>2. Is Hazel available for Windows?</h3>
+            <p>
+              Hazel by Noodlesoft is designed for macOS. It is not a
+              Windows file-management application.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>3. Can Hazel organize files automatically?</h3>
+            <p>
+              Yes. You can configure folder rules that identify files
+              by attributes and automatically move, rename, tag, or
+              perform other supported actions.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>4. Can I create my own Hazel rules?</h3>
+            <p>
+              Yes. Hazel allows users to create rules with conditions
+              and actions for the folders they choose to monitor.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>5. Does Hazel help clean up the Trash?</h3>
+            <p>
+              Yes. Hazel includes Trash management options that can
+              automatically remove items based on their age or the
+              Trash folder's size.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>6. Who develops Hazel?</h3>
+            <p>
+              Hazel is developed by Noodlesoft. Visit the developer's
+              official website for product information, downloads,
+              and documentation.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="cta-section">
+      <div class="container">
+
+        <h2>Make File Organization Easier</h2>
+
+        <p>
+          Explore more software resources and discover tools that can
+          help improve your everyday digital workflow.
+        </p>
+
+        <a href="https://gitapp.download/" class="primary-btn">
+          Visit Our Website →
+        </a>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>
+        © 2026 All Rights Reserved.
+        |
+        <a href="https://gitapp.download/">Visit Our Website</a>
+      </p>
+
+      <p style="margin-top:8px;">
+        Hazel is a product of Noodlesoft. This page is an independent
+        informational article and is not affiliated with or endorsed
+        by Noodlesoft.
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>
