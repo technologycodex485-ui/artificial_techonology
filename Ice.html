@@ -1,0 +1,1146 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Ice for Mac – Menu Bar Manager, Features & Guide</title>
+  <meta name="description" content="Discover Ice for Mac, a free and open-source menu bar manager. Learn how to hide, organize, and customize menu bar icons on macOS.">
+  <meta name="keywords" content="Ice for Mac, Ice app, macOS menu bar manager, hide menu bar icons, organize Mac menu bar, Ice macOS software">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --background: #07111f;
+      --surface: #0d1c2e;
+      --surface-light: #12263b;
+      --cyan: #62e5f5;
+      --blue: #438cff;
+      --white: #f1f8ff;
+      --muted: #a4b6ca;
+      --border: rgba(150, 205, 235, .15);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, Arial, sans-serif;
+      background: var(--background);
+      color: var(--white);
+      line-height: 1.7;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(1160px, 90%);
+      margin: auto;
+    }
+
+    /* Navigation */
+    header {
+      background: rgba(7, 17, 31, .92);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(14px);
+    }
+
+    .navbar {
+      height: 76px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 27px;
+      font-weight: 900;
+      letter-spacing: -1.5px;
+    }
+
+    .logo span {
+      color: var(--cyan);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .nav-links a:hover {
+      color: var(--cyan);
+    }
+
+    .nav-btn {
+      background: var(--cyan);
+      color: #061523;
+      padding: 11px 19px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 800;
+      transition: .25s;
+    }
+
+    .nav-btn:hover,
+    .primary-btn:hover {
+      background: #fff;
+      transform: translateY(-3px);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 100px 0 95px;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 80% 25%, rgba(48, 143, 215, .2), transparent 38%),
+        radial-gradient(ellipse at 10% 90%, rgba(39, 209, 230, .09), transparent 35%),
+        var(--background);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      align-items: center;
+      gap: 55px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--cyan);
+      border: 1px solid rgba(98, 229, 245, .3);
+      background: rgba(98, 229, 245, .07);
+      padding: 8px 14px;
+      border-radius: 30px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 25px;
+    }
+
+    .tag-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 12px var(--cyan);
+    }
+
+    .hero h1 {
+      font-size: clamp(43px, 5.5vw, 70px);
+      line-height: 1.08;
+      letter-spacing: -3px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 span {
+      color: var(--cyan);
+    }
+
+    .hero-text {
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 570px;
+      margin-bottom: 30px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .primary-btn,
+    .outline-btn {
+      display: inline-block;
+      padding: 14px 23px;
+      border-radius: 7px;
+      font-size: 13px;
+      font-weight: 800;
+      transition: .25s;
+    }
+
+    .primary-btn {
+      background: var(--cyan);
+      color: #061523;
+    }
+
+    .outline-btn {
+      border: 1px solid rgba(180, 220, 245, .3);
+      color: var(--white);
+    }
+
+    .outline-btn:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+    }
+
+    /* Menu bar illustration */
+    .demo-wrap {
+      padding: 18px;
+      border: 1px solid rgba(98, 229, 245, .2);
+      background: rgba(16, 42, 65, .65);
+      border-radius: 17px;
+      box-shadow: 0 20px 70px rgba(0, 0, 0, .3),
+                  0 0 45px rgba(45, 171, 223, .1);
+      transform: rotate(1deg);
+    }
+
+    .demo-screen {
+      border-radius: 10px;
+      overflow: hidden;
+      background: #101d2d;
+    }
+
+    .demo-top {
+      background: #172a3e;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      padding: 0 14px;
+      gap: 7px;
+    }
+
+    .demo-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #536e85;
+    }
+
+    .demo-label {
+      margin: auto;
+      color: #9cb3c7;
+      font-size: 10px;
+    }
+
+    .mac-bar {
+      background: #0b1523;
+      padding: 17px 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      border-bottom: 1px solid #263c50;
+    }
+
+    .mac-icons {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      font-size: 17px;
+      color: #d6e7f5;
+    }
+
+    .divider {
+      height: 23px;
+      width: 2px;
+      background: var(--cyan);
+      box-shadow: 0 0 10px var(--cyan);
+    }
+
+    .hidden-icons {
+      color: #7795aa;
+      opacity: .75;
+    }
+
+    .demo-body {
+      padding: 27px 20px 30px;
+    }
+
+    .demo-body h3 {
+      font-size: 17px;
+      margin-bottom: 5px;
+    }
+
+    .demo-body p {
+      color: #92a9bc;
+      font-size: 11px;
+      margin-bottom: 20px;
+    }
+
+    .demo-card {
+      background: #182c41;
+      border: 1px solid #29445d;
+      border-radius: 8px;
+      padding: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-size: 11px;
+    }
+
+    .demo-card span:last-child {
+      color: var(--cyan);
+      font-weight: 700;
+    }
+
+    /* General sections */
+    section {
+      padding: 85px 0;
+    }
+
+    .section-heading {
+      max-width: 720px;
+      margin: 0 auto 48px;
+      text-align: center;
+    }
+
+    .section-kicker {
+      color: var(--cyan);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 13px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1.2;
+      letter-spacing: -1.5px;
+      margin-bottom: 15px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    /* About */
+    .about {
+      background: #0b1929;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .article-content {
+      max-width: 870px;
+      margin: auto;
+    }
+
+    .article-content h3 {
+      color: var(--cyan);
+      font-size: 22px;
+      margin: 29px 0 10px;
+    }
+
+    .article-content p {
+      color: var(--muted);
+      font-size: 15px;
+      margin-bottom: 17px;
+    }
+
+    /* Feature cards */
+    .features {
+      background: var(--background);
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 19px;
+    }
+
+    .feature-card {
+      padding: 27px;
+      border: 1px solid var(--border);
+      background: linear-gradient(145deg, #10243a, #0b1929);
+      border-radius: 12px;
+      transition: .3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(98, 229, 245, .55);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, .2);
+    }
+
+    .feature-icon {
+      width: 47px;
+      height: 47px;
+      display: grid;
+      place-items: center;
+      border-radius: 11px;
+      background: rgba(98, 229, 245, .1);
+      border: 1px solid rgba(98, 229, 245, .18);
+      font-size: 21px;
+      margin-bottom: 20px;
+    }
+
+    .feature-card h3 {
+      font-size: 17px;
+      margin-bottom: 10px;
+    }
+
+    .feature-card p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* Workflow */
+    .workflow {
+      background: #0b1929;
+    }
+
+    .workflow-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 23px;
+    }
+
+    .workflow-card {
+      background: #11253a;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 27px;
+    }
+
+    .number {
+      color: var(--cyan);
+      font-size: 30px;
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+
+    .workflow-card h3 {
+      font-size: 18px;
+      margin-bottom: 9px;
+    }
+
+    .workflow-card p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* Benefits */
+    .benefits {
+      background: var(--background);
+    }
+
+    .benefit-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 17px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .benefit {
+      display: flex;
+      gap: 15px;
+      align-items: flex-start;
+      padding: 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+    }
+
+    .benefit-mark {
+      color: var(--cyan);
+      font-size: 20px;
+      font-weight: 900;
+    }
+
+    .benefit h3 {
+      font-size: 15px;
+      margin-bottom: 5px;
+    }
+
+    .benefit p {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* Install */
+    .install {
+      background: #0b1929;
+    }
+
+    .install-box {
+      max-width: 850px;
+      margin: auto;
+      padding: 30px;
+      border-radius: 13px;
+      background: #10243a;
+      border: 1px solid var(--border);
+    }
+
+    .install-box h3 {
+      color: var(--cyan);
+      font-size: 21px;
+      margin-bottom: 15px;
+    }
+
+    .install-box p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    .code-line {
+      background: #06111e;
+      border: 1px solid #28435b;
+      border-radius: 7px;
+      padding: 15px;
+      color: #9debf2;
+      font-family: monospace;
+      font-size: 13px;
+      overflow-wrap: anywhere;
+      margin: 17px 0;
+    }
+
+    /* FAQ */
+    .faq-list {
+      max-width: 850px;
+      margin: auto;
+    }
+
+    .faq-item {
+      padding: 21px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .faq-item h3 {
+      font-size: 17px;
+      margin-bottom: 8px;
+      color: var(--white);
+    }
+
+    .faq-item p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* CTA */
+    .cta {
+      text-align: center;
+      padding: 82px 0;
+      background:
+        radial-gradient(ellipse at center, rgba(61, 168, 224, .2), transparent 65%),
+        #10263b;
+      border-top: 1px solid var(--border);
+    }
+
+    .cta h2 {
+      font-size: clamp(30px, 4vw, 45px);
+      letter-spacing: -1.5px;
+      margin-bottom: 15px;
+    }
+
+    .cta p {
+      max-width: 620px;
+      margin: 0 auto 28px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    footer {
+      padding: 27px 0;
+      background: #050d17;
+      text-align: center;
+      color: #8297aa;
+      font-size: 12px;
+    }
+
+    footer a {
+      color: var(--cyan);
+    }
+
+    /* Responsive */
+    @media(max-width: 850px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .demo-wrap {
+        max-width: 570px;
+        margin: 10px auto 0;
+      }
+
+      .feature-grid,
+      .workflow-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media(max-width: 560px) {
+      .hero {
+        padding: 70px 0;
+      }
+
+      section {
+        padding: 65px 0;
+      }
+
+      .feature-grid,
+      .workflow-grid,
+      .benefit-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        letter-spacing: -2px;
+      }
+
+      .mac-icons {
+        gap: 6px;
+        font-size: 13px;
+      }
+
+      .install-box {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="container navbar">
+
+      <a href="#" class="logo">ICE<span>.</span></a>
+
+      <nav class="nav-links">
+        <a href="#about">Overview</a>
+        <a href="#features">Features</a>
+        <a href="#workflow">How It Works</a>
+        <a href="#install">Installation</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <a href="https://gitapp.download/" class="nav-btn">
+        Explore More
+      </a>
+
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-grid">
+
+        <div>
+          <div class="tag">
+            <span class="tag-dot"></span>
+            macOS productivity utility
+          </div>
+
+          <h1>
+            A Cleaner Mac Starts With <span>Ice.</span>
+          </h1>
+
+          <p class="hero-text">
+            Ice is a menu bar management application for macOS that helps
+            you hide unnecessary icons, reveal them when needed, and create
+            a cleaner workspace. Take control of the top of your screen
+            with flexible organization and appearance options.
+          </p>
+
+          <div class="hero-actions">
+            <a href="https://gitapp.download/" class="primary-btn">
+              Explore Our Website →
+            </a>
+
+            <a href="#features" class="outline-btn">
+              Discover Features
+            </a>
+          </div>
+        </div>
+
+        <!-- Decorative menu bar preview -->
+        <div class="demo-wrap">
+          <div class="demo-screen">
+
+            <div class="demo-top">
+              <span class="demo-dot"></span>
+              <span class="demo-dot"></span>
+              <span class="demo-dot"></span>
+              <span class="demo-label">ICE MENU BAR PREVIEW</span>
+            </div>
+
+            <div class="mac-bar">
+              <div class="mac-icons">
+                <span>⌘</span>
+                <span>◉</span>
+                <span>◈</span>
+                <span>◍</span>
+              </div>
+
+              <div class="divider"></div>
+
+              <div class="mac-icons hidden-icons">
+                <span>☁</span>
+                <span>◌</span>
+                <span>⌁</span>
+                <span>◉</span>
+              </div>
+            </div>
+
+            <div class="demo-body">
+              <h3>Your Menu Bar, Organized</h3>
+              <p>A conceptual illustration of menu bar organization.</p>
+
+              <div class="demo-card">
+                <span>Visible menu bar items</span>
+                <span>Active</span>
+              </div>
+
+              <div class="demo-card">
+                <span>Hidden section</span>
+                <span>On demand</span>
+              </div>
+
+              <div class="demo-card">
+                <span>Appearance settings</span>
+                <span>Custom</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="about" id="about">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="section-kicker">Introduction</div>
+          <h2>What Is Ice for Mac?</h2>
+          <p>
+            A flexible utility that gives Mac users more control over
+            their menu bar.
+          </p>
+        </div>
+
+        <article class="article-content">
+
+          <p>
+            Ice is a free and open-source menu bar manager for macOS
+            developed by Jordan Baird. It is designed to help users manage
+            the growing number of icons that appear at the top of a Mac
+            screen. Instead of allowing every application icon to remain
+            visible, Ice provides ways to hide selected items and reveal
+            them whenever they are needed.
+          </p>
+
+          <p>
+            Many Mac applications place their own icons in the menu bar.
+            These icons can provide useful shortcuts and status information,
+            but too many of them can make the screen feel crowded. Ice helps
+            create a more organized arrangement by separating visible and
+            hidden items.
+          </p>
+
+          <h3>Take Control of Menu Bar Icons</h3>
+
+          <p>
+            With Ice, users can organize menu bar items using a divider
+            and separate sections. Hidden items can be revealed through
+            supported interactions such as hovering, clicking, scrolling,
+            or keyboard shortcuts. Automatic re-hiding helps return the
+            menu bar to its compact appearance after use.
+          </p>
+
+          <h3>Customize the Appearance</h3>
+
+          <p>
+            Ice is not limited to hiding icons. It also provides appearance
+            settings that let users adjust the menu bar's visual style.
+            Depending on the available version and settings, these options
+            include tint, borders, shadows, and custom shapes.
+          </p>
+
+          <h3>Open-Source and Community Driven</h3>
+
+          <p>
+            Ice is distributed under the GPL-3.0 open-source license.
+            Users can explore its source code and follow development
+            through the project's official repository. The application
+            continues to evolve, so available features may change between
+            releases.
+          </p>
+
+        </article>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features" id="features">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="section-kicker">Core Capabilities</div>
+          <h2>Explore the Main Features of Ice</h2>
+          <p>
+            Practical tools for keeping your macOS menu bar organized,
+            accessible, and visually consistent.
+          </p>
+        </div>
+
+        <div class="feature-grid">
+
+          <article class="feature-card">
+            <div class="feature-icon">◈</div>
+            <h3>Hide Menu Bar Items</h3>
+            <p>
+              Move selected icons out of the visible area to reduce
+              unnecessary menu bar clutter.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">⌁</div>
+            <h3>Quick Reveal Options</h3>
+            <p>
+              Access hidden icons using supported hover, click,
+              scroll, or keyboard shortcut controls.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">◉</div>
+            <h3>Always-Hidden Section</h3>
+            <p>
+              Keep selected menu bar items out of the regular visible
+              area until you intentionally reveal them.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">▤</div>
+            <h3>Ice Bar</h3>
+            <p>
+              Display hidden items in a separate bar, which can be
+              especially useful on MacBooks with a display notch.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">✦</div>
+            <h3>Appearance Customization</h3>
+            <p>
+              Personalize the menu bar with supported tint, border,
+              shadow, and shape options.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">⌨</div>
+            <h3>Keyboard Shortcuts</h3>
+            <p>
+              Use configurable hotkeys to control menu bar sections
+              and access supported actions more quickly.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Workflow -->
+    <section class="workflow" id="workflow">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="section-kicker">Simple Workflow</div>
+          <h2>How to Get Started With Ice</h2>
+          <p>
+            Follow these general steps to begin organizing your Mac's
+            menu bar.
+          </p>
+        </div>
+
+        <div class="workflow-grid">
+
+          <article class="workflow-card">
+            <div class="number">01</div>
+            <h3>Download the Application</h3>
+            <p>
+              Visit the official Ice project page or its GitHub releases
+              section to find the available macOS version.
+            </p>
+          </article>
+
+          <article class="workflow-card">
+            <div class="number">02</div>
+            <h3>Install and Open Ice</h3>
+            <p>
+              Follow the release's installation instructions, place
+              the application in your Applications folder, and launch it.
+            </p>
+          </article>
+
+          <article class="workflow-card">
+            <div class="number">03</div>
+            <h3>Arrange Your Menu Bar</h3>
+            <p>
+              Configure the divider, move items into your preferred
+              sections, and adjust reveal behavior and appearance.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="benefits">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="section-kicker">Why Consider Ice?</div>
+          <h2>Benefits for Everyday Mac Users</h2>
+          <p>
+            A more manageable menu bar can make everyday desktop
+            interactions feel more organized.
+          </p>
+        </div>
+
+        <div class="benefit-layout">
+
+          <article class="benefit">
+            <span class="benefit-mark">✦</span>
+            <div>
+              <h3>Less Visual Clutter</h3>
+              <p>
+                Hide icons that you do not need to see all the time.
+              </p>
+            </div>
+          </article>
+
+          <article class="benefit">
+            <span class="benefit-mark">✦</span>
+            <div>
+              <h3>Quick Access</h3>
+              <p>
+                Reveal hidden menu bar items when you need them.
+              </p>
+            </div>
+          </article>
+
+          <article class="benefit">
+            <span class="benefit-mark">✦</span>
+            <div>
+              <h3>Personalized Layout</h3>
+              <p>
+                Arrange visible and hidden icons according to your
+                preferences.
+              </p>
+            </div>
+          </article>
+
+          <article class="benefit">
+            <span class="benefit-mark">✦</span>
+            <div>
+              <h3>Open-Source Project</h3>
+              <p>
+                Explore the project's code and development activity
+                through its public repository.
+              </p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Installation -->
+    <section class="install" id="install">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="section-kicker">Installation Guide</div>
+          <h2>Installing Ice on macOS</h2>
+          <p>
+            Ice provides more than one installation approach for Mac users.
+          </p>
+        </div>
+
+        <div class="install-box">
+
+          <h3>Option 1: Manual Installation</h3>
+
+          <p>
+            Visit the official project release page, download the available
+            Ice archive, extract it, and move the application into your
+            Applications folder. Follow any macOS security prompts shown
+            during the first launch.
+          </p>
+
+          <h3>Option 2: Homebrew</h3>
+
+          <p>
+            If Homebrew is already installed on your Mac, you can use
+            the following command in Terminal:
+          </p>
+
+          <div class="code-line">
+            brew install --cask jordanbaird-ice
+          </div>
+
+          <p>
+            Check the official project documentation for the latest
+            installation instructions and system requirements before
+            installing. Ice requires macOS 14 Sonoma or later.
+          </p>
+
+          <a href="https://gitapp.download/" class="primary-btn">
+            Visit Our Website →
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="section-kicker">Help Center</div>
+          <h2>Frequently Asked Questions</h2>
+          <p>
+            Answers to common questions about Ice and its macOS features.
+          </p>
+        </div>
+
+        <div class="faq-list">
+
+          <article class="faq-item">
+            <h3>1. What is Ice software?</h3>
+            <p>
+              Ice is a free and open-source menu bar management utility
+              for macOS. It helps users hide, reveal, and organize
+              menu bar icons.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>2. Is Ice free to use?</h3>
+            <p>
+              Yes. Ice is distributed as a free and open-source project
+              under the GPL-3.0 license.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>3. Does Ice work on Windows?</h3>
+            <p>
+              No. Ice by Jordan Baird is designed for macOS and is not
+              a Windows menu bar application.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>4. Which macOS version does Ice require?</h3>
+            <p>
+              Ice requires macOS 14 Sonoma or later. Check the current
+              release information for any updated requirements.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>5. Can Ice hide menu bar icons?</h3>
+            <p>
+              Yes. Hiding and revealing menu bar items is one of its
+              primary functions. You can organize icons into sections
+              and access hidden items when needed.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>6. What is the Ice Bar?</h3>
+            <p>
+              The Ice Bar is a separate strip where hidden menu bar
+              items can be displayed. It is particularly useful for
+              MacBooks with a display notch.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>7. Who develops Ice?</h3>
+            <p>
+              Ice is developed by Jordan Baird and maintained as an
+              open-source project. Its source code and releases are
+              available through GitHub.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+      <div class="container">
+
+        <div class="section-kicker">Explore More Technology</div>
+
+        <h2>Make Your Mac Workspace Feel Better</h2>
+
+        <p>
+          Discover useful software, productivity resources, and more
+          technology content through our website.
+        </p>
+
+        <a href="https://gitapp.download/" class="primary-btn">
+          Visit GitApp Download →
+        </a>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+
+      <p>
+        © 2026 All Rights Reserved.
+        |
+        <a href="https://gitapp.download/">GitApp Download</a>
+      </p>
+
+      <p style="margin-top:8px;">
+        Ice is an independent open-source project developed by Jordan Baird.
+        This informational page is not affiliated with or endorsed by
+        the developer.
+      </p>
+
+    </div>
+  </footer>
+
+</body>
+</html>
