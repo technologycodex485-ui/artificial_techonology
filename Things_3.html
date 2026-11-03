@@ -1,0 +1,1171 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Things 3 for Mac – A Smarter Way to Organize Your Life</title>
+  <meta name="description" content="Discover Things 3 for Mac, a beautifully designed task manager that helps you organize projects, plan your day, and stay focused on what matters.">
+  <meta name="keywords" content="Things 3, Things 3 for Mac, Mac task manager, productivity app, to-do list for Mac, task management software">
+
+  <style>
+    :root {
+      --ink: #21172e;
+      --muted: #756b81;
+      --purple: #7045d8;
+      --purple-dark: #4e2b9c;
+      --lavender: #eee8fb;
+      --paper: #faf8fd;
+      --white: #ffffff;
+      --line: #e9e2f1;
+      --lime: #d9f58b;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   Roboto, Arial, sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.7;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, 90%);
+      margin: auto;
+    }
+
+    /* Navigation */
+
+    header {
+      background: rgba(250, 248, 253, 0.94);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(14px);
+    }
+
+    .navbar {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      font-size: 23px;
+      font-weight: 850;
+      letter-spacing: -1px;
+    }
+
+    .brand span {
+      color: var(--purple);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 27px;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    .nav-links a:hover {
+      color: var(--purple);
+    }
+
+    .nav-button,
+    .button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 12px;
+      padding: 13px 22px;
+      font-size: 14px;
+      font-weight: 750;
+      transition: 0.25s ease;
+    }
+
+    .nav-button,
+    .button-primary {
+      background: var(--purple);
+      color: white;
+      box-shadow: 0 9px 22px rgba(112, 69, 216, 0.19);
+    }
+
+    .nav-button:hover,
+    .button-primary:hover {
+      background: var(--purple-dark);
+      transform: translateY(-2px);
+    }
+
+    .button-secondary {
+      color: var(--ink);
+      background: white;
+      border: 1px solid var(--line);
+    }
+
+    .button-secondary:hover {
+      border-color: var(--purple);
+      color: var(--purple);
+    }
+
+    /* Hero */
+
+    .hero {
+      padding: 90px 0 85px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 85% 20%, #e6d9ff 0, transparent 30%),
+        linear-gradient(135deg, #faf8fd, #f1ebfb);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 0.92fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 7px 13px;
+      border-radius: 30px;
+      background: #e9e0fa;
+      color: var(--purple-dark);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 6vw, 66px);
+      line-height: 1.08;
+      letter-spacing: -3px;
+      margin-bottom: 22px;
+    }
+
+    h1 span {
+      color: var(--purple);
+    }
+
+    .hero-copy {
+      color: var(--muted);
+      font-size: 17px;
+      max-width: 540px;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+      margin-bottom: 25px;
+    }
+
+    .hero-note {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* Decorative task dashboard */
+
+    .preview-wrap {
+      position: relative;
+      padding: 15px;
+    }
+
+    .glow {
+      position: absolute;
+      inset: 5%;
+      background: #bca0f4;
+      filter: blur(65px);
+      opacity: 0.45;
+    }
+
+    .app-window {
+      position: relative;
+      background: white;
+      border: 1px solid #e8e0f1;
+      border-radius: 20px;
+      padding: 22px;
+      box-shadow: 0 30px 70px rgba(48, 27, 76, 0.16);
+      transform: rotate(1deg);
+    }
+
+    .window-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 17px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 18px;
+    }
+
+    .window-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .window-dots i {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #d8cbe9;
+    }
+
+    .window-label {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .task-heading {
+      font-size: 23px;
+      font-weight: 850;
+      margin-bottom: 5px;
+    }
+
+    .task-subtitle {
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 20px;
+    }
+
+    .task {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 0;
+      border-bottom: 1px solid #f0ebf5;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .check {
+      width: 19px;
+      height: 19px;
+      flex-shrink: 0;
+      border: 1.7px solid #b9a8d7;
+      border-radius: 50%;
+    }
+
+    .check.done {
+      background: var(--purple);
+      border-color: var(--purple);
+      position: relative;
+    }
+
+    .check.done::after {
+      content: "✓";
+      color: white;
+      position: absolute;
+      left: 4px;
+      top: -3px;
+      font-size: 13px;
+    }
+
+    .task small {
+      margin-left: auto;
+      color: #a096ac;
+      font-size: 10px;
+    }
+
+    .progress {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f5f0fc;
+      border-radius: 12px;
+    }
+
+    .progress-top {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      font-weight: 750;
+      margin-bottom: 9px;
+    }
+
+    .progress-track {
+      height: 7px;
+      background: #e3d8f4;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      width: 68%;
+      height: 100%;
+      background: var(--purple);
+      border-radius: 20px;
+    }
+
+    /* Sections */
+
+    section {
+      padding: 82px 0;
+    }
+
+    .section-heading {
+      max-width: 690px;
+      margin-bottom: 38px;
+    }
+
+    .section-heading.center {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .section-kicker {
+      color: var(--purple);
+      font-size: 12px;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: clamp(30px, 4vw, 43px);
+      line-height: 1.2;
+      letter-spacing: -1.6px;
+      margin-bottom: 15px;
+    }
+
+    .section-heading p,
+    .article-copy {
+      color: var(--muted);
+    }
+
+    .article-copy {
+      max-width: 850px;
+      font-size: 16px;
+    }
+
+    .article-copy p {
+      margin-bottom: 18px;
+    }
+
+    .article-copy h3 {
+      color: var(--ink);
+      font-size: 23px;
+      letter-spacing: -0.5px;
+      margin: 30px 0 12px;
+    }
+
+    /* Feature cards */
+
+    .features-section {
+      background: white;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 19px;
+    }
+
+    .feature-card {
+      padding: 27px;
+      background: #fcfaff;
+      border: 1px solid var(--line);
+      border-radius: 17px;
+      transition: 0.25s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      border-color: #c9b4f1;
+      box-shadow: 0 15px 35px rgba(65, 40, 105, 0.07);
+    }
+
+    .feature-icon {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      background: var(--lavender);
+      color: var(--purple);
+      border-radius: 13px;
+      font-size: 22px;
+      margin-bottom: 17px;
+    }
+
+    .feature-card h3 {
+      font-size: 17px;
+      margin-bottom: 8px;
+    }
+
+    .feature-card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Workflow */
+
+    .workflow-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .step {
+      padding: 25px;
+      border-left: 3px solid var(--purple);
+      background: white;
+      border-radius: 0 15px 15px 0;
+    }
+
+    .step-number {
+      color: var(--purple);
+      font-size: 13px;
+      font-weight: 850;
+      letter-spacing: 1px;
+    }
+
+    .step h3 {
+      font-size: 19px;
+      margin: 9px 0;
+    }
+
+    .step p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Highlight */
+
+    .highlight {
+      background: #251a36;
+      color: white;
+    }
+
+    .highlight-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .highlight h2 {
+      color: white;
+    }
+
+    .highlight p {
+      color: #c9bfd5;
+      margin-bottom: 20px;
+    }
+
+    .highlight-list {
+      list-style: none;
+    }
+
+    .highlight-list li {
+      padding: 10px 0;
+      color: #eee8f6;
+      border-bottom: 1px solid #453752;
+    }
+
+    .highlight-list li::before {
+      content: "✦";
+      color: var(--lime);
+      margin-right: 12px;
+    }
+
+    .quote-card {
+      padding: 32px;
+      background: #39294e;
+      border: 1px solid #59456f;
+      border-radius: 20px;
+    }
+
+    .quote-card .quote-mark {
+      color: var(--lime);
+      font-size: 44px;
+      line-height: 1;
+    }
+
+    .quote-card h3 {
+      font-size: 24px;
+      line-height: 1.35;
+      margin: 12px 0;
+    }
+
+    .quote-card p {
+      font-size: 13px;
+      margin: 0;
+    }
+
+    /* FAQ */
+
+    .faq-list {
+      max-width: 850px;
+      margin: auto;
+    }
+
+    .faq-item {
+      padding: 23px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .faq-item h3 {
+      font-size: 17px;
+      margin-bottom: 8px;
+    }
+
+    .faq-item p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* CTA */
+
+    .cta {
+      padding: 75px 0;
+      text-align: center;
+      background: var(--lavender);
+    }
+
+    .cta h2 {
+      max-width: 650px;
+      margin: 0 auto 15px;
+    }
+
+    .cta p {
+      color: var(--muted);
+      margin-bottom: 25px;
+    }
+
+    /* Footer */
+
+    footer {
+      background: #1d1529;
+      color: #c7bdcf;
+      padding: 32px 0;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    footer strong {
+      color: white;
+    }
+
+    footer a {
+      color: #d6c3ff;
+    }
+
+    @media (max-width: 850px) {
+      .hero-grid,
+      .highlight-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .workflow-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .preview-wrap {
+        max-width: 600px;
+        margin: auto;
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        display: none;
+      }
+
+      .navbar {
+        min-height: 68px;
+      }
+
+      .hero {
+        padding: 65px 0;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+
+      section {
+        padding: 62px 0;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .app-window {
+        padding: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="container navbar">
+      <a href="#" class="brand">task<span>space.</span></a>
+
+      <nav class="nav-links">
+        <a href="#about">Overview</a>
+        <a href="#features">Features</a>
+        <a href="#workflow">How It Works</a>
+        <a href="#faq">FAQs</a>
+      </nav>
+
+      <a href="https://gitapp.download/" class="nav-button">
+        Explore More
+      </a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-grid">
+
+        <div>
+          <span class="eyebrow">Productivity · Mac · Task Management</span>
+
+          <h1>
+            Make room for what
+            <span>really matters.</span>
+          </h1>
+
+          <p class="hero-copy">
+            Things 3 is a thoughtfully designed task manager for Apple
+            users. It helps you collect ideas, organize projects, plan
+            your schedule, and turn everyday responsibilities into
+            manageable steps.
+          </p>
+
+          <div class="hero-actions">
+            <a href="https://gitapp.download/" class="button button-primary">
+              Visit GitApp
+            </a>
+
+            <a href="#features" class="button button-secondary">
+              Discover Features →
+            </a>
+          </div>
+
+          <p class="hero-note">
+            A focused productivity experience for the Apple ecosystem.
+          </p>
+        </div>
+
+        <div class="preview-wrap">
+          <div class="glow"></div>
+
+          <div class="app-window">
+            <div class="window-top">
+              <div class="window-dots">
+                <i></i><i></i><i></i>
+              </div>
+              <span class="window-label">MY DAILY PLAN</span>
+            </div>
+
+            <div class="task-heading">Today</div>
+            <div class="task-subtitle">A little progress goes a long way.</div>
+
+            <div class="task">
+              <span class="check done"></span>
+              Review project notes
+              <small>DONE</small>
+            </div>
+
+            <div class="task">
+              <span class="check"></span>
+              Prepare weekly priorities
+              <small>10:30 AM</small>
+            </div>
+
+            <div class="task">
+              <span class="check"></span>
+              Finish website content
+              <small>12:00 PM</small>
+            </div>
+
+            <div class="task">
+              <span class="check"></span>
+              Organize new ideas
+              <small>3:00 PM</small>
+            </div>
+
+            <div class="progress">
+              <div class="progress-top">
+                <span>Daily progress</span>
+                <span>68%</span>
+              </div>
+              <div class="progress-track">
+                <div class="progress-fill"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- INTRODUCTION -->
+    <section id="about">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="section-kicker">A calmer way to plan</div>
+          <h2>What is Things 3?</h2>
+          <p>
+            A personal task manager built around clarity, simplicity,
+            and a more organized approach to everyday life.
+          </p>
+        </div>
+
+        <div class="article-copy">
+          <p>
+            Things 3 is a popular productivity application developed
+            by Cultured Code. Designed for Apple's ecosystem, it gives
+            users a structured place to manage personal tasks, work
+            responsibilities, long-term goals, and larger projects.
+          </p>
+
+          <p>
+            Instead of keeping reminders scattered across notes,
+            messages, and separate lists, Things lets you collect
+            everything in one organized system. Its clean interface
+            makes it easier to see what needs attention now and what
+            can wait until later.
+          </p>
+
+          <p>
+            The app is available separately for Mac, iPhone, iPad,
+            Apple Watch, and Apple Vision Pro. Each version is designed
+            for its device, while Things Cloud can keep supported
+            devices synchronized.
+          </p>
+
+          <h3>Designed to reduce everyday clutter</h3>
+
+          <p>
+            A good task manager should help you think clearly rather
+            than create another complicated system to maintain.
+            Things 3 focuses on simple navigation, clear lists,
+            project organization, and flexible scheduling.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features-section" id="features">
+      <div class="container">
+
+        <div class="section-heading center">
+          <div class="section-kicker">Powerful yet simple</div>
+          <h2>Features that make planning easier</h2>
+          <p>
+            Organize your responsibilities with practical tools
+            that fit naturally into your daily routine.
+          </p>
+        </div>
+
+        <div class="feature-grid">
+
+          <article class="feature-card">
+            <div class="feature-icon">✦</div>
+            <h3>Inbox Capture</h3>
+            <p>
+              Quickly collect new ideas, reminders, and tasks in one
+              place before deciding when to work on them.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">▦</div>
+            <h3>Project Organization</h3>
+            <p>
+              Group related tasks into projects and use headings
+              to divide larger goals into manageable sections.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">◷</div>
+            <h3>Flexible Scheduling</h3>
+            <p>
+              Organize tasks with Today, Upcoming, Anytime, and
+              Someday lists to decide what deserves your attention.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">✓</div>
+            <h3>Checklists</h3>
+            <p>
+              Break individual tasks into smaller steps without
+              needing to create a separate project for everything.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">⌘</div>
+            <h3>Quick Entry</h3>
+            <p>
+              Capture tasks while working in other Mac applications
+              using convenient keyboard-based workflows.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">◎</div>
+            <h3>Tags and Filters</h3>
+            <p>
+              Categorize tasks with tags and quickly find items
+              that match your current priorities or context.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">↻</div>
+            <h3>Repeating Tasks</h3>
+            <p>
+              Create recurring to-dos for regular routines,
+              maintenance, habits, and other repeated responsibilities.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">▤</div>
+            <h3>Calendar Integration</h3>
+            <p>
+              Display Apple Calendar events alongside your tasks
+              in Today and Upcoming to plan your schedule.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">☁</div>
+            <h3>Things Cloud</h3>
+            <p>
+              Keep your to-dos synchronized across supported Apple
+              devices with the included Things Cloud service.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- WORKFLOW -->
+    <section id="workflow">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="section-kicker">Simple workflow</div>
+          <h2>How to get started with Things 3</h2>
+          <p>
+            Build a practical organization system with a few
+            straightforward steps.
+          </p>
+        </div>
+
+        <div class="workflow-grid">
+
+          <article class="step">
+            <span class="step-number">STEP 01</span>
+            <h3>Collect your tasks</h3>
+            <p>
+              Add your ideas, reminders, and responsibilities
+              to the Inbox so nothing important gets overlooked.
+            </p>
+          </article>
+
+          <article class="step">
+            <span class="step-number">STEP 02</span>
+            <h3>Organize your projects</h3>
+            <p>
+              Create projects, add headings, and group related
+              to-dos into a clear and manageable structure.
+            </p>
+          </article>
+
+          <article class="step">
+            <span class="step-number">STEP 03</span>
+            <h3>Plan and complete</h3>
+            <p>
+              Schedule important tasks, review your Today list,
+              and mark items complete as you make progress.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- BENEFITS -->
+    <section class="highlight">
+      <div class="container highlight-grid">
+
+        <div>
+          <div class="section-kicker" style="color:#d9f58b">
+            Built for focused work
+          </div>
+
+          <h2>One organized place for your next steps.</h2>
+
+          <p>
+            Things 3 is useful for people who want a personal
+            productivity system without unnecessary complexity.
+            Its structured lists and flexible planning tools
+            make it easier to keep track of different areas of life.
+          </p>
+
+          <ul class="highlight-list">
+            <li>Plan daily and weekly responsibilities.</li>
+            <li>Break large goals into smaller actions.</li>
+            <li>Keep personal and professional tasks organized.</li>
+            <li>Review upcoming deadlines and repeating tasks.</li>
+          </ul>
+        </div>
+
+        <div class="quote-card">
+          <div class="quote-mark">“</div>
+          <h3>
+            Spend less time managing your lists
+            and more time making meaningful progress.
+          </h3>
+          <p>
+            A simple productivity philosophy that makes
+            everyday planning feel more approachable.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- MORE INFORMATION -->
+    <section>
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="section-kicker">Good to know</div>
+          <h2>Is Things 3 worth considering?</h2>
+        </div>
+
+        <div class="article-copy">
+          <p>
+            Things 3 is particularly appealing to people who value
+            a polished interface and prefer managing their tasks
+            within Apple's ecosystem. Students can organize
+            assignments, professionals can manage projects, and
+            individuals can use it to keep personal responsibilities
+            under control.
+          </p>
+
+          <h3>Pricing and availability</h3>
+
+          <p>
+            Things 3 uses a one-time purchase model rather than
+            a recurring subscription. However, the Mac, iPhone,
+            iPad, and Vision versions are sold separately.
+            Things Cloud synchronization is included at no
+            additional charge with the app.
+          </p>
+
+          <p>
+            Mac users can also try the official 15-day free trial
+            before purchasing. Always check the official App Store
+            listing and system requirements to confirm compatibility
+            with your device.
+          </p>
+
+          <h3>Things 3 limitations to consider</h3>
+
+          <p>
+            Things 3 is designed primarily for individual task
+            management rather than team collaboration. It does
+            not provide a browser-based version or real-time
+            shared task lists. Calendar integration displays
+            events from Apple Calendar rather than connecting
+            directly to every third-party calendar service.
+          </p>
+        </div>
+
+        <div style="margin-top:28px">
+          <a href="https://gitapp.download/" class="button button-primary">
+            Explore More on GitApp →
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="features-section" id="faq">
+      <div class="container">
+
+        <div class="section-heading center">
+          <div class="section-kicker">Common questions</div>
+          <h2>Frequently Asked Questions</h2>
+          <p>
+            Helpful answers about Things 3 and its productivity features.
+          </p>
+        </div>
+
+        <div class="faq-list">
+
+          <article class="faq-item">
+            <h3>1. What is Things 3 used for?</h3>
+            <p>
+              Things 3 is a personal task management application
+              used to organize to-dos, projects, reminders, and
+              everyday responsibilities.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>2. Is Things 3 available for Mac?</h3>
+            <p>
+              Yes. Things 3 has a dedicated Mac application
+              designed for managing tasks and projects on macOS.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>3. Does Things 3 require a subscription?</h3>
+            <p>
+              No. Things 3 is sold as a one-time purchase for
+              each supported platform, rather than a subscription.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>4. Can Things 3 sync tasks between devices?</h3>
+            <p>
+              Yes. Things Cloud synchronizes your to-dos across
+              supported Apple devices when you sign in and enable
+              synchronization.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>5. Does Things 3 work on Windows or Android?</h3>
+            <p>
+              No. Things is made for Apple's platforms and does
+              not offer native Windows or Android applications.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>6. Can I try Things 3 before purchasing?</h3>
+            <p>
+              Mac users can access an official 15-day trial
+              with the full feature set before deciding whether
+              to purchase the application.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>7. Can I use Things 3 for team collaboration?</h3>
+            <p>
+              Things 3 is primarily designed for individual
+              productivity. It does not currently support
+              real-time collaboration on shared to-do lists.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="cta">
+      <div class="container">
+
+        <div class="section-kicker">Discover more</div>
+
+        <h2>
+          Ready to explore more productivity tools?
+        </h2>
+
+        <p>
+          Visit GitApp to discover more software, applications,
+          and useful digital resources.
+        </p>
+
+        <a href="https://gitapp.download/" class="button button-primary">
+          Visit GitApp Now →
+        </a>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>
+        <strong>taskspace.</strong> · Productivity and software insights
+      </p>
+
+      <p style="margin-top:8px">
+        Explore more at
+        <a href="https://gitapp.download/">GitApp</a>
+      </p>
+
+      <p style="margin-top:12px;font-size:11px">
+        Things and Things 3 are trademarks of Cultured Code.
+        This article is independently written and is not affiliated
+        with or endorsed by Cultured Code.
+        Product features and compatibility may change.
+      </p>
+
+      <p style="margin-top:15px">
+        © 2026 Taskspace. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>
