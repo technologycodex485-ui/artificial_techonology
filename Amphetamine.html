@@ -1,0 +1,1225 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Amphetamine for Mac – Keep Your Mac Awake | Features & Guide</title>
+  <meta name="description" content="Discover Amphetamine for Mac, a free keep-awake utility. Learn how to prevent sleep, create timed sessions, use Triggers, and manage your Mac's display settings.">
+  <meta name="keywords" content="Amphetamine for Mac, Amphetamine app, Mac keep awake app, prevent Mac sleep, macOS sleep utility, Amphetamine Triggers, Mac productivity">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --dark: #171918;
+      --dark-soft: #222522;
+      --orange: #ff7545;
+      --orange-light: #ffad78;
+      --cream: #f6f2e9;
+      --white: #fffefa;
+      --text: #252a26;
+      --muted: #777d75;
+      --line: #e6e2d9;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(1160px, 90%);
+      margin: auto;
+    }
+
+    /* Navigation */
+    header {
+      background: var(--dark);
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .navbar {
+      height: 76px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 27px;
+      font-weight: 900;
+      letter-spacing: -1.5px;
+    }
+
+    .logo span {
+      color: var(--orange);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      color: #c5c9c2;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .nav-links a:hover {
+      color: var(--orange);
+    }
+
+    .nav-btn {
+      background: var(--orange);
+      color: #211a16;
+      padding: 11px 19px;
+      border-radius: 5px;
+      font-size: 13px;
+      font-weight: 800;
+      transition: .25s;
+    }
+
+    .nav-btn:hover,
+    .primary-btn:hover {
+      background: white;
+      transform: translateY(-3px);
+    }
+
+    /* Hero */
+    .hero {
+      background: var(--dark);
+      color: white;
+      padding: 100px 0 95px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 520px;
+      height: 520px;
+      right: -140px;
+      top: -180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,117,69,.23), transparent 68%);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      color: var(--orange-light);
+      border: 1px solid rgba(255,117,69,.4);
+      background: rgba(255,117,69,.09);
+      padding: 8px 14px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: clamp(43px, 5.5vw, 69px);
+      line-height: 1.07;
+      letter-spacing: -3px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 span {
+      color: var(--orange);
+    }
+
+    .hero-description {
+      color: #b9beb7;
+      font-size: 16px;
+      max-width: 560px;
+      margin-bottom: 30px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+    }
+
+    .primary-btn,
+    .outline-btn {
+      display: inline-block;
+      padding: 14px 23px;
+      border-radius: 5px;
+      font-size: 13px;
+      font-weight: 800;
+      transition: .25s;
+    }
+
+    .primary-btn {
+      background: var(--orange);
+      color: #201813;
+    }
+
+    .outline-btn {
+      color: white;
+      border: 1px solid #5a605a;
+    }
+
+    .outline-btn:hover {
+      color: var(--orange);
+      border-color: var(--orange);
+    }
+
+    /* Dashboard illustration */
+    .dashboard {
+      background: #292e29;
+      padding: 18px;
+      border: 1px solid #454b43;
+      border-radius: 14px;
+      box-shadow: 0 25px 70px rgba(0,0,0,.35);
+      transform: rotate(1deg);
+    }
+
+    .dashboard-window {
+      background: #1d211e;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .window-top {
+      height: 43px;
+      display: flex;
+      align-items: center;
+      padding: 0 15px;
+      gap: 7px;
+      background: #303630;
+    }
+
+    .window-dot {
+      width: 9px;
+      height: 9px;
+      background: #687067;
+      border-radius: 50%;
+    }
+
+    .window-title {
+      margin: auto;
+      color: #c3c9bf;
+      font-size: 11px;
+    }
+
+    .dashboard-content {
+      padding: 26px 22px;
+    }
+
+    .dashboard-label {
+      color: var(--orange-light);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.6px;
+      margin-bottom: 7px;
+    }
+
+    .dashboard-content h3 {
+      font-size: 21px;
+      margin-bottom: 5px;
+      color: white;
+    }
+
+    .dashboard-subtitle {
+      color: #9fa69c;
+      font-size: 11px;
+      margin-bottom: 22px;
+    }
+
+    .session-card {
+      background: #303730;
+      border: 1px solid #414940;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 11px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .session-card strong {
+      display: block;
+      color: white;
+      font-size: 12px;
+    }
+
+    .session-card small {
+      color: #a4ada1;
+      font-size: 10px;
+    }
+
+    .status {
+      color: var(--orange-light);
+      font-size: 10px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .session-footer {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 19px;
+      color: #9da79a;
+      font-size: 10px;
+    }
+
+    .session-footer span:last-child {
+      color: var(--orange-light);
+    }
+
+    /* Common sections */
+    section {
+      padding: 85px 0;
+    }
+
+    .section-heading {
+      max-width: 720px;
+      text-align: center;
+      margin: 0 auto 48px;
+    }
+
+    .section-label {
+      color: #dc623b;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .section-heading h2 {
+      color: var(--dark);
+      font-size: clamp(30px, 4vw, 44px);
+      letter-spacing: -1.5px;
+      line-height: 1.2;
+      margin-bottom: 15px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    /* About */
+    .about {
+      background: var(--white);
+    }
+
+    .article-content {
+      max-width: 870px;
+      margin: auto;
+    }
+
+    .article-content h3 {
+      color: #242b25;
+      font-size: 23px;
+      margin: 28px 0 10px;
+    }
+
+    .article-content p {
+      color: #687168;
+      font-size: 15px;
+      margin-bottom: 17px;
+    }
+
+    /* Features */
+    .features {
+      background: var(--cream);
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .feature-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      padding: 28px;
+      border-radius: 9px;
+      transition: .25s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-6px);
+      border-color: #f4a17f;
+      box-shadow: 0 15px 35px rgba(42,42,30,.07);
+    }
+
+    .feature-icon {
+      width: 49px;
+      height: 49px;
+      display: grid;
+      place-items: center;
+      background: #fff0e8;
+      color: #dc623b;
+      border-radius: 10px;
+      font-size: 22px;
+      margin-bottom: 19px;
+    }
+
+    .feature-card h3 {
+      color: var(--dark);
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .feature-card p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* Session types */
+    .sessions {
+      background: var(--dark);
+      color: white;
+    }
+
+    .sessions .section-heading h2 {
+      color: white;
+    }
+
+    .sessions .section-heading p {
+      color: #b5bcb4;
+    }
+
+    .sessions .section-label {
+      color: var(--orange-light);
+    }
+
+    .session-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .session-type {
+      padding: 26px;
+      background: #252b26;
+      border: 1px solid #424941;
+      border-radius: 9px;
+    }
+
+    .session-type h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: var(--orange-light);
+    }
+
+    .session-type p {
+      color: #b7beb5;
+      font-size: 13px;
+    }
+
+    /* Triggers */
+    .triggers {
+      background: var(--white);
+    }
+
+    .trigger-layout {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .trigger-intro h2 {
+      font-size: 36px;
+      line-height: 1.2;
+      color: var(--dark);
+      letter-spacing: -1px;
+      margin-bottom: 17px;
+    }
+
+    .trigger-intro p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .trigger-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .trigger-item {
+      padding: 17px;
+      background: var(--cream);
+      border: 1px solid var(--line);
+      border-radius: 7px;
+    }
+
+    .trigger-item strong {
+      display: block;
+      font-size: 13px;
+      color: var(--dark);
+      margin-bottom: 4px;
+    }
+
+    .trigger-item span {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    /* Steps */
+    .steps {
+      background: var(--cream);
+    }
+
+    .step-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .step-card {
+      background: var(--white);
+      padding: 27px;
+      border-radius: 9px;
+      border-top: 3px solid var(--orange);
+    }
+
+    .step-number {
+      font-size: 32px;
+      font-weight: 900;
+      color: #e5a087;
+      margin-bottom: 13px;
+    }
+
+    .step-card h3 {
+      color: var(--dark);
+      font-size: 18px;
+      margin-bottom: 9px;
+    }
+
+    .step-card p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* FAQ */
+    .faq {
+      background: var(--white);
+    }
+
+    .faq-list {
+      max-width: 850px;
+      margin: auto;
+    }
+
+    .faq-item {
+      padding: 21px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .faq-item h3 {
+      color: var(--dark);
+      font-size: 17px;
+      margin-bottom: 8px;
+    }
+
+    .faq-item p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* CTA */
+    .cta {
+      background: #e96640;
+      padding: 80px 0;
+      text-align: center;
+      color: #241b17;
+    }
+
+    .cta h2 {
+      font-size: clamp(30px, 4vw, 45px);
+      letter-spacing: -1.5px;
+      margin-bottom: 15px;
+    }
+
+    .cta p {
+      max-width: 620px;
+      margin: 0 auto 27px;
+      font-size: 15px;
+      color: #3e2921;
+    }
+
+    .cta .primary-btn {
+      background: var(--dark);
+      color: white;
+    }
+
+    .cta .primary-btn:hover {
+      background: white;
+      color: var(--dark);
+    }
+
+    /* Footer */
+    footer {
+      background: #111411;
+      padding: 28px 0;
+      color: #a9b0a7;
+      text-align: center;
+      font-size: 12px;
+    }
+
+    footer a {
+      color: var(--orange-light);
+    }
+
+    /* Responsive */
+    @media (max-width: 850px) {
+      .hero-grid,
+      .trigger-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .dashboard {
+        max-width: 570px;
+        margin: 10px auto 0;
+      }
+
+      .feature-grid,
+      .session-grid,
+      .step-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .hero {
+        padding: 70px 0;
+      }
+
+      section {
+        padding: 65px 0;
+      }
+
+      .feature-grid,
+      .session-grid,
+      .step-grid,
+      .trigger-list {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        letter-spacing: -2px;
+      }
+
+      .dashboard {
+        padding: 10px;
+      }
+
+      .trigger-intro h2 {
+        font-size: 30px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="container navbar">
+
+      <a href="#" class="logo">AMP<span>.</span></a>
+
+      <nav class="nav-links">
+        <a href="#about">Overview</a>
+        <a href="#features">Features</a>
+        <a href="#triggers">Triggers</a>
+        <a href="#steps">Getting Started</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <a href="https://gitapp.download/" class="nav-btn">
+        Explore More
+      </a>
+
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container hero-grid">
+
+        <div>
+          <span class="eyebrow">Mac productivity utility</span>
+
+          <h1>
+            Keep Your Mac Awake. Stay <span>In Control.</span>
+          </h1>
+
+          <p class="hero-description">
+            Amphetamine is a powerful macOS utility that helps prevent
+            your Mac from going to sleep when you need it to stay active.
+            Start a session with one click, set a duration, or automate
+            your workflow with customizable Triggers.
+          </p>
+
+          <div class="hero-actions">
+            <a href="https://gitapp.download/" class="primary-btn">
+              Explore Our Website →
+            </a>
+
+            <a href="#features" class="outline-btn">
+              Discover Features
+            </a>
+          </div>
+        </div>
+
+        <!-- Decorative app dashboard -->
+        <div class="dashboard">
+          <div class="dashboard-window">
+
+            <div class="window-top">
+              <span class="window-dot"></span>
+              <span class="window-dot"></span>
+              <span class="window-dot"></span>
+              <span class="window-title">Amphetamine – Session Preview</span>
+            </div>
+
+            <div class="dashboard-content">
+
+              <div class="dashboard-label">SESSION CONTROL</div>
+              <h3>Keep Your Mac Awake</h3>
+              <p class="dashboard-subtitle">
+                A conceptual illustration of session options
+              </p>
+
+              <div class="session-card">
+                <div>
+                  <strong>Timed Session</strong>
+                  <small>Choose a specific duration</small>
+                </div>
+                <span class="status">READY</span>
+              </div>
+
+              <div class="session-card">
+                <div>
+                  <strong>Until a Specific Time</strong>
+                  <small>Set an automatic end time</small>
+                </div>
+                <span class="status">READY</span>
+              </div>
+
+              <div class="session-card">
+                <div>
+                  <strong>While an App Is Running</strong>
+                  <small>Use an app-based session</small>
+                </div>
+                <span class="status">READY</span>
+              </div>
+
+              <div class="session-footer">
+                <span>Session management</span>
+                <span>Customizable</span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="about" id="about">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="section-label">Introduction</div>
+          <h2>What Is Amphetamine for Mac?</h2>
+          <p>
+            A convenient way to manage sleep behavior and keep your Mac
+            active during important tasks.
+          </p>
+        </div>
+
+        <article class="article-content">
+
+          <p>
+            Amphetamine is a free macOS application developed by William
+            Gustafson. It is designed to prevent your Mac from entering
+            sleep mode while you are performing tasks that require the
+            computer to remain awake. The application provides a simple
+            menu bar interface for starting and managing keep-awake sessions.
+          </p>
+
+          <p>
+            macOS normally manages sleep and energy settings to conserve
+            power. This is useful for everyday use, but there are situations
+            when automatic sleep can interrupt a task. For example, you
+            might be downloading a large file, running a lengthy process,
+            presenting information, or using an application that needs
+            uninterrupted computer activity.
+          </p>
+
+          <h3>A Simple Way to Prevent Automatic Sleep</h3>
+
+          <p>
+            Amphetamine allows users to start a session manually or
+            configure one to run for a selected period. You can choose
+            an indefinite session, set a duration, specify an end time,
+            or keep the Mac awake while a selected application is running.
+          </p>
+
+          <h3>Flexible Controls for Different Tasks</h3>
+
+          <p>
+            The app offers more than a basic on-and-off switch. Depending
+            on your session settings, you can control whether the display
+            sleeps, whether the screen saver activates, and how the Mac
+            behaves during a keep-awake session.
+          </p>
+
+          <h3>Automation With Triggers</h3>
+
+          <p>
+            Amphetamine includes a feature called Triggers. These allow
+            you to define conditions under which a keep-awake session
+            starts automatically. Conditions can include connected
+            devices, running applications, power status, network details,
+            and other supported system states.
+          </p>
+
+        </article>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features" id="features">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="section-label">Main Capabilities</div>
+          <h2>Explore the Features of Amphetamine</h2>
+          <p>
+            Useful session controls and automation tools for managing
+            your Mac's sleep behavior.
+          </p>
+        </div>
+
+        <div class="feature-grid">
+
+          <article class="feature-card">
+            <div class="feature-icon">⏱</div>
+            <h3>Timed Sessions</h3>
+            <p>
+              Keep your Mac awake for a selected duration or until
+              a specific clock time.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>One-Click Activation</h3>
+            <p>
+              Start a keep-awake session directly from the menu bar
+              without navigating complicated system settings.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">🔄</div>
+            <h3>Automatic Triggers</h3>
+            <p>
+              Create conditions that automatically start sessions
+              when selected system or device requirements are met.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">🖥</div>
+            <h3>Display Controls</h3>
+            <p>
+              Configure whether your display can sleep while the Mac
+              itself remains awake during a session.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">🔋</div>
+            <h3>Battery Protection</h3>
+            <p>
+              Configure sessions to end automatically when your
+              Mac's battery reaches a specified low level.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">⌨</div>
+            <h3>Keyboard Shortcuts</h3>
+            <p>
+              Use supported hotkeys to start and end sessions and
+              control other available functions.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">💾</div>
+            <h3>Drive Alive</h3>
+            <p>
+              Use the Drive Alive feature to help keep selected
+              storage drives from entering an idle state.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">🎨</div>
+            <h3>Custom Menu Bar Icons</h3>
+            <p>
+              Personalize the menu bar appearance with supported
+              custom icon options.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">📜</div>
+            <h3>AppleScript Support</h3>
+            <p>
+              Use supported AppleScript commands to integrate
+              Amphetamine with compatible automation workflows.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Session Types -->
+    <section class="sessions">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="section-label">Session Options</div>
+          <h2>Choose How Long Your Mac Stays Awake</h2>
+          <p>
+            Amphetamine provides several ways to manage a keep-awake
+            session according to the task you are performing.
+          </p>
+        </div>
+
+        <div class="session-grid">
+
+          <article class="session-type">
+            <h3>Indefinite Session</h3>
+            <p>
+              Start a session that continues until you manually
+              end it. This is useful for tasks without a predictable
+              completion time.
+            </p>
+          </article>
+
+          <article class="session-type">
+            <h3>Timed Session</h3>
+            <p>
+              Select a duration for your session. Amphetamine can
+              automatically end it when the chosen time has passed.
+            </p>
+          </article>
+
+          <article class="session-type">
+            <h3>App-Based Session</h3>
+            <p>
+              Keep your Mac awake while a selected application or
+              process is running, according to the configured options.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Triggers -->
+    <section class="triggers" id="triggers">
+      <div class="container trigger-layout">
+
+        <div class="trigger-intro">
+          <div class="section-label">Smart Automation</div>
+
+          <h2>Automate Your Keep-Awake Sessions With Triggers</h2>
+
+          <p>
+            Triggers let you create conditions that start a session
+            automatically. Rather than activating the app manually
+            every time, configure a rule around your regular workflow.
+          </p>
+
+          <p>
+            This can be useful when connecting an external display,
+            running a specific application, or using a particular
+            network connection.
+          </p>
+
+          <a href="https://gitapp.download/" class="primary-btn">
+            Explore More →
+          </a>
+        </div>
+
+        <div class="trigger-list">
+
+          <div class="trigger-item">
+            <strong>External Display</strong>
+            <span>Start when a display is connected.</span>
+          </div>
+
+          <div class="trigger-item">
+            <strong>Running Applications</strong>
+            <span>Use an app or process as a condition.</span>
+          </div>
+
+          <div class="trigger-item">
+            <strong>USB & Bluetooth</strong>
+            <span>Respond to connected devices.</span>
+          </div>
+
+          <div class="trigger-item">
+            <strong>Power Conditions</strong>
+            <span>Use battery and adapter status.</span>
+          </div>
+
+          <div class="trigger-item">
+            <strong>Wi-Fi Network</strong>
+            <span>Use a selected network condition.</span>
+          </div>
+
+          <div class="trigger-item">
+            <strong>Mounted Drives</strong>
+            <span>Respond to selected storage volumes.</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Getting Started -->
+    <section class="steps" id="steps">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="section-label">Getting Started</div>
+          <h2>How to Install Amphetamine on Mac</h2>
+          <p>
+            Follow these simple steps to find and install the application
+            through Apple's App Store.
+          </p>
+        </div>
+
+        <div class="step-grid">
+
+          <article class="step-card">
+            <div class="step-number">01</div>
+            <h3>Open the Mac App Store</h3>
+            <p>
+              Open the App Store on your Mac and search for
+              Amphetamine by William Gustafson.
+            </p>
+          </article>
+
+          <article class="step-card">
+            <div class="step-number">02</div>
+            <h3>Install the Application</h3>
+            <p>
+              Open the correct App Store listing and use the
+              installation option to add Amphetamine to your Mac.
+            </p>
+          </article>
+
+          <article class="step-card">
+            <div class="step-number">03</div>
+            <h3>Start a Session</h3>
+            <p>
+              Launch Amphetamine from your Mac and select a session
+              type that matches your current task.
+            </p>
+          </article>
+
+        </div>
+
+        <div style="text-align:center; margin-top:35px;">
+          <a
+            href="https://apps.apple.com/us/app/amphetamine/id937984704?mt=12"
+            class="primary-btn"
+            target="_blank"
+            rel="noopener noreferrer">
+            View Mac App Store Listing →
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="section-label">Help & Information</div>
+          <h2>Frequently Asked Questions</h2>
+          <p>
+            Find answers to common questions about Amphetamine
+            and its keep-awake functionality.
+          </p>
+        </div>
+
+        <div class="faq-list">
+
+          <article class="faq-item">
+            <h3>1. What is Amphetamine software used for?</h3>
+            <p>
+              Amphetamine is a macOS utility that prevents your Mac
+              from automatically going to sleep during configured
+              keep-awake sessions.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>2. Is Amphetamine free?</h3>
+            <p>
+              Yes. The Mac App Store listing describes Amphetamine
+              as free, without advertisements or in-app purchases.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>3. Can Amphetamine keep my Mac awake for a specific time?</h3>
+            <p>
+              Yes. You can select a duration or specify a time when
+              the keep-awake session should end.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>4. Can Amphetamine work automatically?</h3>
+            <p>
+              Yes. Its Triggers feature can start keep-awake sessions
+              when configured conditions are met, such as an application
+              running or an external display being connected.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>5. Can I let the display sleep while keeping the Mac awake?</h3>
+            <p>
+              Yes. Amphetamine provides options to allow display sleep
+              while keeping the system awake, depending on the
+              selected session settings.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>6. Does Amphetamine work on Windows?</h3>
+            <p>
+              This Amphetamine application, developed by William
+              Gustafson, is designed for macOS and is not the
+              Windows version of a keep-awake utility.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>7. Can Amphetamine keep a MacBook awake with its lid closed?</h3>
+            <p>
+              Amphetamine supports closed-display operation on compatible
+              MacBook configurations. Check the developer's current
+              documentation for the requirements and behavior of your
+              particular Mac model.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>8. Who develops Amphetamine?</h3>
+            <p>
+              Amphetamine is developed by William Gustafson and is
+              available through the Mac App Store.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="cta">
+      <div class="container">
+
+        <h2>Make Your Mac Workflow More Flexible</h2>
+
+        <p>
+          Explore useful software resources, productivity tools,
+          and technology articles through our website.
+        </p>
+
+        <a href="https://gitapp.download/" class="primary-btn">
+          Visit GitApp Download →
+        </a>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+
+      <p>
+        © 2026 All Rights Reserved.
+        |
+        <a href="https://gitapp.download/">GitApp Download</a>
+      </p>
+
+      <p style="margin-top:8px;">
+        Amphetamine is developed by William Gustafson.
+        This is an independent informational article and is not
+        affiliated with or endorsed by the developer.
+      </p>
+
+    </div>
+  </footer>
+
+</body>
+</html>
