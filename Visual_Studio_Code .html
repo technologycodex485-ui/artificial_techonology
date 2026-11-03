@@ -1,0 +1,992 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Visual Studio Code – Features, Benefits & Complete Developer Guide</title>
+
+  <meta name="description" content="Explore Visual Studio Code, a powerful and free source code editor. Discover its features, extensions, debugging tools, benefits, and how to get started.">
+
+  <meta name="keywords" content="Visual Studio Code, VS Code, VS Code Editor, Code Editor, Microsoft VS Code, Programming Editor, Developer Tools">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f3f6fa;
+      color: #1c2939;
+      line-height: 1.7;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .announcement {
+      background: #101e32;
+      color: #c6d6e8;
+      text-align: center;
+      padding: 10px 15px;
+      font-size: 13px;
+    }
+
+    header {
+      background: #ffffff;
+      padding: 17px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #e5eaf1;
+      gap: 20px;
+    }
+
+    .logo {
+      color: #152c49;
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      color: #087dcc;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
+
+    nav a {
+      color: #526174;
+      font-size: 14px;
+      font-weight: 600;
+      transition: .2s;
+    }
+
+    nav a:hover {
+      color: #087dcc;
+    }
+
+    .header-button {
+      background: #087dcc;
+      color: #ffffff;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .hero {
+      background:
+        radial-gradient(circle at 85% 20%, rgba(35, 153, 239, .23), transparent 32%),
+        linear-gradient(120deg, #101d31, #142f50);
+      color: #ffffff;
+      padding: 85px 7%;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 50px;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-label {
+      display: inline-block;
+      color: #80c9ff;
+      background: rgba(34, 147, 222, .13);
+      border: 1px solid rgba(93, 182, 245, .3);
+      border-radius: 30px;
+      padding: 7px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.3px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 5vw, 58px);
+      line-height: 1.15;
+      letter-spacing: -2px;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 span {
+      color: #49b4ff;
+    }
+
+    .hero p {
+      max-width: 600px;
+      color: #c4d3e5;
+      font-size: 16px;
+      margin-bottom: 28px;
+    }
+
+    .button-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 22px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 700;
+      transition: .25s;
+    }
+
+    .btn-primary {
+      background: #1596e8;
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background: #0878c5;
+      transform: translateY(-3px);
+    }
+
+    .btn-secondary {
+      color: #ffffff;
+      border: 1px solid #65809e;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,.1);
+    }
+
+    .code-window {
+      background: #0c1727;
+      border: 1px solid #294664;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0,0,0,.3);
+    }
+
+    .window-header {
+      background: #192b40;
+      padding: 14px 17px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #b9cbe0;
+      font-size: 12px;
+    }
+
+    .window-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #40a9ef;
+    }
+
+    .window-content {
+      display: flex;
+      min-height: 270px;
+    }
+
+    .activity-bar {
+      width: 43px;
+      background: #101e30;
+      color: #7fa4c9;
+      text-align: center;
+      padding: 17px 0;
+      font-size: 17px;
+      line-height: 2.6;
+    }
+
+    .editor-content {
+      padding: 22px 17px;
+      font-family: Consolas, monospace;
+      font-size: 12px;
+      line-height: 2.1;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    .line-number {
+      color: #647e9a;
+      padding-right: 14px;
+    }
+
+    .blue { color: #67c5ff; }
+    .purple { color: #c49aff; }
+    .orange { color: #f2bd80; }
+    .green { color: #91dba4; }
+    .muted { color: #7891aa; }
+
+    .window-footer {
+      background: #087dcc;
+      color: white;
+      padding: 7px 14px;
+      font-size: 11px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .container {
+      max-width: 1160px;
+      margin: auto;
+      padding: 70px 25px;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 38px;
+    }
+
+    .section-heading small {
+      color: #087dcc;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .section-heading h2 {
+      color: #152e4b;
+      font-size: 33px;
+      letter-spacing: -1px;
+      margin: 8px 0;
+    }
+
+    .section-heading p {
+      color: #718096;
+      max-width: 670px;
+      margin: auto;
+    }
+
+    .article-layout {
+      display: grid;
+      grid-template-columns: 1fr 275px;
+      align-items: start;
+      gap: 30px;
+    }
+
+    .article {
+      background: #ffffff;
+      border: 1px solid #e5ebf2;
+      border-radius: 11px;
+      padding: 35px;
+      box-shadow: 0 8px 25px rgba(20, 49, 82, .04);
+    }
+
+    .article h2 {
+      color: #155a91;
+      font-size: 24px;
+      margin: 28px 0 12px;
+    }
+
+    .article h2:first-child {
+      margin-top: 0;
+    }
+
+    .article p {
+      color: #596a7d;
+      margin-bottom: 16px;
+    }
+
+    .article ul {
+      padding-left: 23px;
+      color: #596a7d;
+      margin: 12px 0 20px;
+    }
+
+    .article li {
+      margin-bottom: 9px;
+    }
+
+    .sidebar {
+      background: #e8f2fb;
+      border: 1px solid #d5e5f4;
+      border-radius: 11px;
+      padding: 24px;
+      position: sticky;
+      top: 20px;
+    }
+
+    .sidebar h3 {
+      color: #174b77;
+      font-size: 18px;
+      margin-bottom: 13px;
+    }
+
+    .sidebar a:not(.btn) {
+      display: block;
+      padding: 9px 0;
+      border-bottom: 1px solid #d1e1ef;
+      color: #536d85;
+      font-size: 14px;
+    }
+
+    .sidebar a:hover {
+      color: #087dcc;
+    }
+
+    .sidebar .btn {
+      display: block;
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .feature-card {
+      background: #ffffff;
+      border: 1px solid #e4eaf1;
+      border-radius: 10px;
+      padding: 27px;
+      transition: .25s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      border-color: #83c8f5;
+      box-shadow: 0 12px 30px rgba(12, 93, 155, .09);
+    }
+
+    .feature-icon {
+      width: 47px;
+      height: 47px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      background: #e4f3ff;
+      color: #087dcc;
+      font-size: 23px;
+      margin-bottom: 16px;
+    }
+
+    .feature-card h3 {
+      color: #1d466e;
+      font-size: 18px;
+      margin-bottom: 9px;
+    }
+
+    .feature-card p {
+      color: #728195;
+      font-size: 14px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .step-card {
+      background: #142e4c;
+      color: white;
+      padding: 28px;
+      border-radius: 11px;
+      border-bottom: 4px solid #1596e8;
+    }
+
+    .step-number {
+      color: #4db9ff;
+      font-size: 31px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .step-card h3 {
+      margin-bottom: 10px;
+    }
+
+    .step-card p {
+      color: #c2d1e1;
+      font-size: 14px;
+    }
+
+    .info-box {
+      background: #e8f4fd;
+      border-left: 4px solid #168bd3;
+      padding: 20px;
+      border-radius: 6px;
+      margin: 24px 0;
+      color: #405e79;
+    }
+
+    .faq-list {
+      max-width: 850px;
+      margin: auto;
+    }
+
+    .faq-item {
+      background: white;
+      padding: 22px;
+      border: 1px solid #e4eaf1;
+      border-radius: 9px;
+      margin-bottom: 13px;
+    }
+
+    .faq-item h3 {
+      color: #194c78;
+      font-size: 17px;
+      margin-bottom: 8px;
+    }
+
+    .faq-item p {
+      color: #6c7b8e;
+      font-size: 14px;
+    }
+
+    .cta-section {
+      background:
+        radial-gradient(circle at 80% 20%, rgba(54, 165, 239, .2), transparent 30%),
+        linear-gradient(120deg, #10243c, #164b77);
+      padding: 70px 25px;
+      text-align: center;
+      color: white;
+    }
+
+    .cta-section h2 {
+      font-size: 34px;
+      margin-bottom: 12px;
+    }
+
+    .cta-section p {
+      color: #c6d9ea;
+      margin-bottom: 25px;
+    }
+
+    footer {
+      background: #0b192a;
+      color: #aebed0;
+      text-align: center;
+      padding: 28px 7%;
+      font-size: 13px;
+    }
+
+    footer a {
+      color: #55baff;
+    }
+
+    @media (max-width: 850px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 60px 7%;
+      }
+
+      .article-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: static;
+      }
+
+      .feature-grid,
+      .steps {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      nav {
+        display: none;
+      }
+    }
+
+    @media (max-width: 550px) {
+      .feature-grid,
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .article {
+        padding: 23px;
+      }
+
+      .section-heading h2 {
+        font-size: 27px;
+      }
+
+      .cta-section h2 {
+        font-size: 27px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="announcement">
+    Your destination for software guides, programming tools, and technology resources.
+  </div>
+
+  <header>
+    <a href="https://gitapp.download/" class="logo">
+      Code<span>Sphere.</span>
+    </a>
+
+    <nav>
+      <a href="#overview">Overview</a>
+      <a href="#features">Features</a>
+      <a href="#installation">Getting Started</a>
+      <a href="#faq">FAQs</a>
+    </nav>
+
+    <a href="https://gitapp.download/" class="header-button">
+      Explore Software
+    </a>
+  </header>
+
+  <section class="hero">
+
+    <div>
+      <span class="hero-label">MODERN DEVELOPMENT ENVIRONMENT</span>
+
+      <h1>Build Better Projects with <span>Visual Studio Code</span></h1>
+
+      <p>
+        Discover Visual Studio Code, a powerful and flexible source code editor
+        for developers. Learn about its features, extensions, debugging tools,
+        customization options, and how it supports modern software development.
+      </p>
+
+      <div class="button-group">
+        <a href="https://gitapp.download/" class="btn btn-primary">
+          Explore More Tools →
+        </a>
+
+        <a href="#overview" class="btn btn-secondary">
+          Read Full Article
+        </a>
+      </div>
+    </div>
+
+    <div class="code-window">
+      <div class="window-header">
+        <span class="window-dot"></span>
+        <span class="window-dot"></span>
+        <span class="window-dot"></span>
+        <span style="margin-left:10px;">my-project / app.js</span>
+      </div>
+
+      <div class="window-content">
+        <div class="activity-bar">
+          ◫<br>⌕<br>⑂<br>▣<br>⚙
+        </div>
+
+        <div class="editor-content">
+          <div><span class="line-number">1</span><span class="purple">const</span> <span class="blue">app</span> = {</div>
+          <div><span class="line-number">2</span>&nbsp;&nbsp;name: <span class="green">"My Project"</span>,</div>
+          <div><span class="line-number">3</span>&nbsp;&nbsp;version: <span class="orange">"1.0.0"</span>,</div>
+          <div><span class="line-number">4</span>&nbsp;&nbsp;status: <span class="green">"Ready"</span></div>
+          <div><span class="line-number">5</span>};</div>
+          <br>
+          <div><span class="line-number">6</span><span class="purple">function</span> <span class="blue">startProject</span>() {</div>
+          <div><span class="line-number">7</span>&nbsp;&nbsp;console.log(<span class="green">"Let's build!"</span>);</div>
+          <div><span class="line-number">8</span>}</div>
+          <br>
+          <div><span class="line-number">9</span><span class="muted">// Happy coding!</span></div>
+        </div>
+      </div>
+
+      <div class="window-footer">
+        <span>JavaScript</span>
+        <span>Ln 9, Col 1 &nbsp; | &nbsp; UTF-8</span>
+      </div>
+    </div>
+
+  </section>
+
+  <main>
+
+    <section class="container" id="overview">
+
+      <div class="section-heading">
+        <small>Complete Developer Guide</small>
+        <h2>What Is Visual Studio Code?</h2>
+        <p>
+          Understand one of the most widely used source code editors
+          and discover why developers choose it for their projects.
+        </p>
+      </div>
+
+      <div class="article-layout">
+
+        <article class="article">
+
+          <h2>Introduction to Visual Studio Code</h2>
+
+          <p>
+            <strong>Visual Studio Code (VS Code)</strong> is a free,
+            lightweight source code editor developed by Microsoft. It is
+            designed to help programmers write, edit, debug, and manage code
+            across a wide range of programming languages and development projects.
+          </p>
+
+          <p>
+            VS Code offers a clean interface, useful built-in development tools,
+            and a large extension marketplace. Developers can customize the
+            editor according to their workflow by adding language support,
+            themes, formatting tools, and other extensions.
+          </p>
+
+          <h2>Why Is Visual Studio Code So Popular?</h2>
+
+          <p>
+            One of the main reasons behind VS Code's popularity is its flexibility.
+            It can be used for web development, application programming,
+            scripting, data-related work, and many other coding tasks.
+          </p>
+
+          <p>
+            Beginners can start with a simple editing environment, while
+            experienced developers can configure advanced workflows using
+            extensions, integrated terminals, debugging features, and source
+            control tools.
+          </p>
+
+          <h2>Programming Languages Supported by VS Code</h2>
+
+          <p>
+            Visual Studio Code provides built-in support for several common
+            programming languages. Additional languages and development
+            capabilities can be added through extensions.
+          </p>
+
+          <ul>
+            <li>JavaScript and TypeScript</li>
+            <li>Python</li>
+            <li>HTML and CSS</li>
+            <li>Java and C#</li>
+            <li>C and C++ through suitable extensions</li>
+            <li>PHP, Go, and many other languages through extensions</li>
+          </ul>
+
+          <h2>How VS Code Helps Developers</h2>
+
+          <p>
+            Writing code is only one part of software development. Developers
+            also need to organize project files, find errors, test applications,
+            and manage changes. VS Code brings several of these tasks into one
+            workspace.
+          </p>
+
+          <p>
+            Its integrated terminal allows users to run commands without
+            leaving the editor. The debugging interface helps developers
+            investigate problems, while source control integration makes it
+            easier to review and manage code changes.
+          </p>
+
+          <div class="info-box">
+            <strong>Developer tip:</strong> Keep your extensions updated and
+            install only those you need. Too many unnecessary extensions can
+            make your development environment harder to manage.
+          </div>
+
+          <h2>Customization and Extensions</h2>
+
+          <p>
+            The Visual Studio Code Marketplace contains extensions for
+            programming languages, code formatting, themes, productivity,
+            testing, and development workflows. This allows developers to
+            build an editor environment that matches their specific needs.
+          </p>
+
+          <p>
+            Users can also customize keyboard shortcuts, color themes,
+            editor settings, and workspace preferences to create a more
+            comfortable coding experience.
+          </p>
+
+          <h2>Is Visual Studio Code Good for Beginners?</h2>
+
+          <p>
+            Yes. VS Code is a practical choice for people learning programming.
+            Its straightforward interface and extensive learning resources
+            make it approachable for beginners. Students can use it to write
+            their first HTML page, practice Python, or build simple applications.
+          </p>
+
+          <p>
+            However, some development tasks require additional software,
+            language runtimes, compilers, or extensions. Installing the editor
+            alone does not automatically provide every programming environment.
+          </p>
+
+          <h2>Final Thoughts</h2>
+
+          <p>
+            Visual Studio Code is a versatile code editor that combines
+            essential editing tools with a customizable extension ecosystem.
+            Its support for different languages and development workflows
+            makes it useful for students, independent programmers, and
+            professional software developers.
+          </p>
+
+          <p>
+            Whether you are creating a website, writing scripts, or managing
+            a larger software project, VS Code provides a flexible environment
+            to support your development work.
+          </p>
+
+          <a href="https://gitapp.download/" class="btn btn-primary">
+            Discover More Developer Software →
+          </a>
+
+        </article>
+
+        <aside class="sidebar">
+
+          <h3>Article Contents</h3>
+
+          <a href="#overview">Introduction</a>
+          <a href="#features">Main Features</a>
+          <a href="#installation">Getting Started</a>
+          <a href="#faq">Frequently Asked Questions</a>
+
+          <br>
+
+          <h3>Explore Technology</h3>
+
+          <p style="font-size:13px; color:#61778c;">
+            Find more software guides, applications, and useful developer tools.
+          </p>
+
+          <a href="https://gitapp.download/" class="btn btn-primary">
+            Visit GitApp
+          </a>
+
+        </aside>
+
+      </div>
+    </section>
+
+    <section class="container" id="features">
+
+      <div class="section-heading">
+        <small>Editor Capabilities</small>
+        <h2>Main Features of Visual Studio Code</h2>
+        <p>
+          Explore the tools that make VS Code a flexible environment
+          for everyday programming.
+        </p>
+      </div>
+
+      <div class="feature-grid">
+
+        <div class="feature-card">
+          <div class="feature-icon">⌨</div>
+          <h3>Smart Code Editing</h3>
+          <p>
+            Use features such as syntax highlighting, code completion,
+            and navigation to make editing easier.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">▧</div>
+          <h3>Extension Marketplace</h3>
+          <p>
+            Add language tools, themes, formatters, and other
+            extensions to customize your workspace.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">⚙</div>
+          <h3>Integrated Terminal</h3>
+          <p>
+            Run command-line instructions and development tools
+            directly within the editor.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">⌕</div>
+          <h3>Debugging Tools</h3>
+          <p>
+            Inspect variables, set breakpoints, and investigate
+            problems with supported debugging configurations.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">⑂</div>
+          <h3>Source Control</h3>
+          <p>
+            Work with version control tools and review changes
+            within your development workspace.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">◐</div>
+          <h3>Customizable Interface</h3>
+          <p>
+            Personalize themes, shortcuts, settings, and layouts
+            to match your coding preferences.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="container" id="installation">
+
+      <div class="section-heading">
+        <small>Quick Start Guide</small>
+        <h2>How to Get Started with VS Code</h2>
+        <p>
+          Follow these basic steps to install the editor and begin coding.
+        </p>
+      </div>
+
+      <div class="steps">
+
+        <div class="step-card">
+          <div class="step-number">01</div>
+          <h3>Visit the Official Website</h3>
+          <p>
+            Open the official Visual Studio Code website and select
+            the download option for your operating system.
+          </p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">02</div>
+          <h3>Install the Editor</h3>
+          <p>
+            Download the installer, follow the installation instructions,
+            and launch Visual Studio Code.
+          </p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">03</div>
+          <h3>Create Your First Project</h3>
+          <p>
+            Open a folder, create a code file, choose the tools you need,
+            and start building your project.
+          </p>
+        </div>
+
+      </div>
+
+      <div style="text-align:center; margin-top:32px;">
+        <a href="https://code.visualstudio.com/"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="btn btn-primary">
+          Download Visual Studio Code →
+        </a>
+      </div>
+
+    </section>
+
+    <section class="container" id="faq">
+
+      <div class="section-heading">
+        <small>Helpful Answers</small>
+        <h2>Frequently Asked Questions</h2>
+        <p>
+          Find answers to common questions about Visual Studio Code.
+        </p>
+      </div>
+
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <h3>1. What is Visual Studio Code used for?</h3>
+          <p>
+            VS Code is used to write, edit, debug, and manage source code
+            for websites, applications, scripts, and other software projects.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>2. Is Visual Studio Code free?</h3>
+          <p>
+            Yes. Visual Studio Code is available as a free code editor.
+            Refer to Microsoft's official website for licensing and product details.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>3. Can beginners use VS Code?</h3>
+          <p>
+            Yes. Beginners can use VS Code to learn programming languages,
+            create projects, and practice coding.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>4. Does VS Code support Python?</h3>
+          <p>
+            Yes. You can work with Python using the appropriate Python
+            extension and a Python installation on your computer.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>5. Can I customize Visual Studio Code?</h3>
+          <p>
+            Yes. You can customize its appearance, keyboard shortcuts,
+            editor settings, and functionality using extensions.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>6. Is VS Code the same as Visual Studio?</h3>
+          <p>
+            No. Visual Studio Code is a lightweight, cross-platform code editor.
+            Visual Studio is a separate, more comprehensive integrated
+            development environment.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="cta-section">
+
+      <h2>Find More Tools for Your Development Journey</h2>
+
+      <p>
+        Explore software resources, technology guides, and useful
+        applications on GitApp.Download.
+      </p>
+
+      <a href="https://gitapp.download/" class="btn btn-primary">
+        Explore GitApp.Download →
+      </a>
+
+    </section>
+
+  </main>
+
+  <footer>
+
+    <p>
+      © 2026 CodeSphere. All Rights Reserved.
+      | <a href="https://gitapp.download/">GitApp.Download</a>
+    </p>
+
+    <p style="margin-top:8px;">
+      Visual Studio Code is a product of Microsoft.
+      This independent informational article is not affiliated with
+      or endorsed by Microsoft.
+    </p>
+
+  </footer>
+
+</body>
+</html>
