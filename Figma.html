@@ -1,0 +1,1252 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Figma: Features, Benefits & Complete Design Guide</title>
+  <meta name="description" content="Discover Figma, the collaborative design platform for UI design, prototyping, brainstorming, and product development. Explore its features, benefits, pricing, and beginner tips.">
+  <meta name="keywords" content="Figma, Figma design, Figma app, Figma UI UX design, Figma prototyping, FigJam, Figma Dev Mode, collaborative design software">
+
+  <meta property="og:title" content="Figma: The Modern Platform for Digital Design">
+  <meta property="og:description" content="Learn about Figma's design tools, prototyping features, collaboration workflow, and benefits.">
+  <meta property="og:type" content="article">
+
+  <style>
+    :root {
+      --blue: #4355e8;
+      --blue-dark: #2836ae;
+      --purple: #8a69f4;
+      --ink: #17182a;
+      --muted: #70738a;
+      --bg: #f6f6ff;
+      --white: #ffffff;
+      --line: #e7e7f2;
+      --lavender: #eceaff;
+      --pink: #f5e6f7;
+      --radius: 20px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      line-height: 1.7;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(1160px, 90%);
+      margin: auto;
+    }
+
+    .navbar {
+      background: rgba(255,255,255,.92);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(14px);
+    }
+
+    .nav-inner {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 950;
+      letter-spacing: -1.8px;
+    }
+
+    .logo span { color: var(--blue); }
+
+    .nav-links {
+      display: flex;
+      gap: 26px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .nav-links a:hover { color: var(--blue); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 21px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 850;
+      transition: .2s ease;
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      color: white;
+      box-shadow: 0 8px 20px rgba(67,85,232,.17);
+    }
+
+    .btn-primary:hover {
+      background: var(--blue-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      border: 1px solid #d7d8ec;
+      color: var(--ink);
+      background: white;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+    }
+
+    .hero {
+      padding: 84px 0 70px;
+      background:
+        radial-gradient(circle at 82% 25%, rgba(138,105,244,.14), transparent 28%),
+        radial-gradient(circle at 5% 90%, rgba(67,85,232,.08), transparent 25%),
+        var(--bg);
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 55px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--blue);
+      background: var(--lavender);
+      padding: 8px 13px;
+      border-radius: 30px;
+      font-size: 10px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      margin-bottom: 22px;
+    }
+
+    .eyebrow i {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--blue);
+    }
+
+    h1 {
+      font-size: clamp(42px, 6vw, 70px);
+      line-height: 1.05;
+      letter-spacing: -4px;
+      font-weight: 850;
+      max-width: 620px;
+    }
+
+    h1 span {
+      color: var(--blue);
+    }
+
+    .hero-copy {
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 520px;
+      margin: 25px 0 30px;
+      line-height: 1.9;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-note {
+      color: #999bb0;
+      font-size: 10px;
+      margin-top: 23px;
+    }
+
+    /* Decorative design canvas */
+
+    .design-window {
+      background: white;
+      border: 1px solid #e6e5f1;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 30px 75px rgba(54,53,113,.13);
+      transform: rotate(1deg);
+    }
+
+    .window-bar {
+      height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 15px;
+      border-bottom: 1px solid var(--line);
+      color: #85869a;
+      font-size: 9px;
+      font-weight: 800;
+    }
+
+    .window-dots {
+      display: flex;
+      gap: 5px;
+    }
+
+    .window-dots i {
+      width: 7px;
+      height: 7px;
+      background: #d6d6e5;
+      border-radius: 50%;
+    }
+
+    .canvas {
+      min-height: 315px;
+      padding: 24px;
+      background-color: #f7f7fc;
+      background-image: radial-gradient(#d7d8eb 1px, transparent 1px);
+      background-size: 18px 18px;
+      display: grid;
+      place-items: center;
+    }
+
+    .mockup {
+      width: 88%;
+      min-height: 245px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 35px rgba(38,39,89,.1);
+      padding: 16px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 13px;
+    }
+
+    .mock-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .mock-label {
+      color: var(--blue);
+      font-size: 8px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+
+    .mock-heading {
+      font-size: 23px;
+      line-height: 1.1;
+      font-weight: 900;
+      letter-spacing: -1px;
+    }
+
+    .mock-text {
+      color: #898ba0;
+      font-size: 8px;
+      margin: 10px 0 14px;
+    }
+
+    .mock-button {
+      width: 78px;
+      height: 20px;
+      border-radius: 5px;
+      background: var(--blue);
+    }
+
+    .mock-art {
+      border-radius: 9px;
+      background:
+        radial-gradient(circle at 65% 30%, #ffd6aa 0 13%, transparent 14%),
+        radial-gradient(ellipse at 30% 80%, #5546b9 0 35%, transparent 36%),
+        linear-gradient(140deg, #a5a5f5, #e8b4dd);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mock-art::after {
+      content: "";
+      position: absolute;
+      width: 85px;
+      height: 130px;
+      background: rgba(255,255,255,.22);
+      border-radius: 50%;
+      right: -30px;
+      bottom: -35px;
+      transform: rotate(35deg);
+    }
+
+    .canvas-caption {
+      font-size: 9px;
+      color: #9293a5;
+      text-align: center;
+      padding: 12px;
+      border-top: 1px solid var(--line);
+    }
+
+    .mini-tools {
+      display: flex;
+      gap: 7px;
+      justify-content: center;
+      margin-top: 12px;
+    }
+
+    .tool {
+      width: 27px;
+      height: 27px;
+      border-radius: 7px;
+      background: #f0efff;
+      color: var(--blue);
+      display: grid;
+      place-items: center;
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .trust-strip {
+      background: white;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 24px 0;
+    }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 15px;
+      text-align: center;
+    }
+
+    .trust-item strong {
+      display: block;
+      font-size: 13px;
+      color: var(--blue);
+    }
+
+    .trust-item span {
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    section { padding: 78px 0; }
+
+    .section-label {
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 10px;
+      font-weight: 900;
+      margin-bottom: 13px;
+    }
+
+    h2 {
+      font-size: clamp(30px, 4.5vw, 45px);
+      line-height: 1.13;
+      letter-spacing: -2px;
+      margin-bottom: 16px;
+      font-weight: 850;
+    }
+
+    .section-intro {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.9;
+      max-width: 690px;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .article-copy {
+      color: #707286;
+      font-size: 14px;
+      line-height: 1.95;
+    }
+
+    .article-copy p { margin-bottom: 18px; }
+
+    .article-copy h3 {
+      color: var(--ink);
+      font-size: 22px;
+      letter-spacing: -.7px;
+      margin: 30px 0 10px;
+    }
+
+    .article-copy a {
+      color: var(--blue);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .feature-section {
+      background: #eeedff;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 16px;
+      margin-top: 36px;
+    }
+
+    .feature-card {
+      background: white;
+      padding: 25px;
+      border-radius: 16px;
+      border: 1px solid #e4e2fa;
+      transition: .2s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 30px rgba(52,53,111,.08);
+    }
+
+    .feature-icon {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: var(--lavender);
+      color: var(--blue);
+      font-size: 18px;
+      font-weight: 900;
+      margin-bottom: 18px;
+    }
+
+    .feature-card h3 {
+      font-size: 16px;
+      margin-bottom: 9px;
+    }
+
+    .feature-card p {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .benefit-panel {
+      background: #24284c;
+      color: white;
+      border-radius: 20px;
+      padding: 31px;
+    }
+
+    .benefit-panel h3 {
+      font-size: 23px;
+      margin-bottom: 20px;
+    }
+
+    .benefit-list {
+      list-style: none;
+      display: grid;
+      gap: 13px;
+      color: #d1d2e6;
+      font-size: 13px;
+    }
+
+    .benefit-list li::before {
+      content: "✦";
+      color: #aaa4ff;
+      margin-right: 10px;
+    }
+
+    .panel-note {
+      background: rgba(255,255,255,.08);
+      color: #d4d4e7;
+      padding: 16px;
+      border-radius: 10px;
+      margin-top: 23px;
+      font-size: 11px;
+    }
+
+    .workflow-section {
+      background: white;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 15px;
+      margin-top: 35px;
+    }
+
+    .step {
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      padding: 23px;
+      background: #fcfcff;
+    }
+
+    .step-number {
+      width: 36px;
+      height: 36px;
+      background: var(--lavender);
+      color: var(--blue);
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      font-weight: 900;
+      margin-bottom: 20px;
+    }
+
+    .step h3 {
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+
+    .step p {
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.8;
+    }
+
+    .callout {
+      margin-top: 25px;
+      border-left: 4px solid var(--purple);
+      background: #f3efff;
+      padding: 18px 20px;
+      color: #5f5b83;
+      font-size: 12px;
+      border-radius: 0 10px 10px 0;
+    }
+
+    .faq-section {
+      background: #eeedff;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 11px;
+      max-width: 850px;
+      margin-top: 30px;
+    }
+
+    details {
+      background: white;
+      border: 1px solid #e2e1f3;
+      border-radius: 12px;
+      padding: 18px 21px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    details p {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.85;
+      margin-top: 12px;
+    }
+
+    .cta {
+      padding: 55px 30px;
+      border-radius: 23px;
+      color: white;
+      text-align: center;
+      background:
+        radial-gradient(circle at 85% 10%, rgba(255,255,255,.17), transparent 30%),
+        linear-gradient(125deg, #3444c5, #7657dc);
+    }
+
+    .cta .section-label { color: #d8d5ff; }
+
+    .cta h2 {
+      max-width: 680px;
+      margin: 0 auto 16px;
+    }
+
+    .cta p {
+      max-width: 580px;
+      margin: 0 auto 25px;
+      color: #e3e2ff;
+      font-size: 13px;
+    }
+
+    .cta .btn {
+      background: white;
+      color: var(--blue);
+    }
+
+    .cta .btn:hover {
+      transform: translateY(-2px);
+      background: #f0efff;
+    }
+
+    footer {
+      background: white;
+      border-top: 1px solid var(--line);
+      margin-top: 75px;
+      padding: 35px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a:hover { color: var(--blue); }
+
+    .disclaimer {
+      width: 100%;
+      max-width: 850px;
+      line-height: 1.8;
+    }
+
+    @media(max-width: 850px) {
+      .hero-grid, .content-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .feature-grid { grid-template-columns: repeat(2,1fr); }
+      .steps { grid-template-columns: repeat(2,1fr); }
+      .design-window { max-width: 570px; }
+    }
+
+    @media(max-width: 600px) {
+      .nav-inner { min-height: 68px; }
+      .nav-links { display: none; }
+      .hero { padding: 58px 0 48px; }
+      h1 { letter-spacing: -2.5px; }
+      section { padding: 55px 0; }
+      .feature-grid, .steps { grid-template-columns: 1fr; }
+      .trust-grid { grid-template-columns: repeat(2,1fr); row-gap: 18px; }
+      .mockup { width: 100%; min-height: 200px; }
+      .canvas { min-height: 260px; padding: 15px; }
+      .cta { padding: 40px 20px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="#" class="logo">PIXEL<span>FLOW.</span></a>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#about">Overview</a>
+        <a href="#features">Features</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#faq">FAQs</a>
+      </nav>
+
+      <a class="btn btn-primary" href="https://gitapp.download/" target="_blank" rel="noopener">
+        Explore GitApp ↗
+      </a>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="container hero-grid">
+
+        <div>
+          <div class="eyebrow"><i></i> Design better digital experiences</div>
+
+          <h1>Ideas become <span>beautiful</span> digital products.</h1>
+
+          <p class="hero-copy">
+            Discover Figma, a collaborative design platform that brings
+            interface design, interactive prototyping, brainstorming, and
+            product development workflows together in one creative space.
+          </p>
+
+          <div class="hero-buttons">
+            <a class="btn btn-primary" href="https://gitapp.download/" target="_blank" rel="noopener">
+              Visit GitApp ↗
+            </a>
+
+            <a class="btn btn-outline" href="#about">
+              Read the Guide ↓
+            </a>
+          </div>
+
+          <p class="hero-note">
+            A practical introduction for designers, developers, teams, and beginners.
+          </p>
+        </div>
+
+        <div>
+          <div class="design-window">
+            <div class="window-bar">
+              <div class="window-dots"><i></i><i></i><i></i></div>
+              <span>CREATIVE PROJECT / DESIGN FILE</span>
+              <span>•••</span>
+            </div>
+
+            <div class="canvas">
+              <div class="mockup">
+                <div class="mock-left">
+                  <div class="mock-label">DESIGN YOUR FUTURE</div>
+                  <div class="mock-heading">Make ideas happen.</div>
+                  <div class="mock-text">
+                    Create something meaningful with a thoughtful digital experience.
+                  </div>
+                  <div class="mock-button"></div>
+                </div>
+                <div class="mock-art"></div>
+              </div>
+            </div>
+
+            <div class="mini-tools">
+              <div class="tool">↖</div>
+              <div class="tool">□</div>
+              <div class="tool">T</div>
+              <div class="tool">◯</div>
+              <div class="tool">✧</div>
+            </div>
+
+            <div class="canvas-caption">
+              Decorative design workspace — not a live Figma interface.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="trust-strip">
+      <div class="container trust-grid">
+        <div class="trust-item">
+          <strong>UI / UX</strong>
+          <span>Interface design</span>
+        </div>
+        <div class="trust-item">
+          <strong>Prototyping</strong>
+          <span>Interactive experiences</span>
+        </div>
+        <div class="trust-item">
+          <strong>Collaboration</strong>
+          <span>Work together</span>
+        </div>
+        <div class="trust-item">
+          <strong>Dev Mode</strong>
+          <span>Design handoff</span>
+        </div>
+      </div>
+    </div>
+
+    <section id="about">
+      <div class="container content-grid">
+
+        <div>
+          <div class="section-label">01 / Introduction</div>
+          <h2>What is Figma?</h2>
+
+          <p class="section-intro">
+            Figma is a collaborative platform for creating digital designs,
+            prototypes, presentations, and product experiences.
+          </p>
+
+          <br>
+
+          <a class="btn btn-primary" href="https://www.figma.com/" target="_blank" rel="noopener">
+            Visit Official Figma ↗
+          </a>
+        </div>
+
+        <div class="article-copy">
+          <p>
+            <strong>Figma</strong> is a cloud-based design platform widely used
+            by UI designers, UX professionals, product teams, developers, and
+            creative agencies. It provides a shared environment where people
+            can create interface layouts, build design systems, and explore
+            interactive product ideas.
+          </p>
+
+          <p>
+            One of Figma's defining strengths is real-time collaboration.
+            Multiple team members can work in the same design file, leave
+            comments, share feedback, and review changes without constantly
+            exchanging separate files.
+          </p>
+
+          <p>
+            Figma is useful throughout the product development process.
+            Designers can plan an interface, create reusable components,
+            connect screens into interactive prototypes, and share their
+            work with developers and stakeholders.
+          </p>
+
+          <h3>More than a design canvas</h3>
+
+          <p>
+            Figma's product ecosystem includes Figma Design for interface
+            creation, FigJam for collaborative brainstorming, Dev Mode for
+            developer handoff, and Figma Slides for presentations. Other
+            products and tools extend these workflows into additional
+            creative and publishing tasks.
+          </p>
+
+          <p>
+            Because much of the workflow is browser-based, teams can share
+            files and collaborate across different locations. Desktop
+            applications are also available for supported systems.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="feature-section" id="features">
+      <div class="container">
+
+        <div class="section-label">02 / Powerful capabilities</div>
+        <h2>Figma features that make design easier</h2>
+
+        <p class="section-intro">
+          From the first sketch to a developer-ready design, Figma offers
+          tools for different stages of digital product creation.
+        </p>
+
+        <div class="feature-grid">
+
+          <article class="feature-card">
+            <div class="feature-icon">▧</div>
+            <h3>UI Design</h3>
+            <p>
+              Create website layouts, mobile application screens,
+              interface elements, and visual product experiences.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">◇</div>
+            <h3>Interactive Prototyping</h3>
+            <p>
+              Connect screens and add interactions to demonstrate how
+              users might navigate through a digital product.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">▦</div>
+            <h3>Components & Auto Layout</h3>
+            <p>
+              Build reusable interface elements and create adaptable
+              layouts that respond to changes in content and size.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">✧</div>
+            <h3>AI-Assisted Design</h3>
+            <p>
+              Explore supported AI tools for tasks such as editing,
+              generating, organizing, and improving design content.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">⌘</div>
+            <h3>Dev Mode</h3>
+            <p>
+              Help developers inspect design properties, measurements,
+              assets, and implementation details during handoff.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">◎</div>
+            <h3>FigJam Collaboration</h3>
+            <p>
+              Brainstorm, create diagrams, organize ideas, and run
+              collaborative workshops with a shared online whiteboard.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">▤</div>
+            <h3>Figma Slides</h3>
+            <p>
+              Create presentations and bring design prototypes into
+              presentation workflows.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">◈</div>
+            <h3>Design Systems</h3>
+            <p>
+              Manage shared components, styles, and variables to help
+              teams maintain consistency across projects.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">⇄</div>
+            <h3>Team Collaboration</h3>
+            <p>
+              Share files, gather comments, review changes, and keep
+              designers and stakeholders connected.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container content-grid">
+
+        <div class="article-copy">
+          <div class="section-label">03 / Real-world applications</div>
+          <h2>What can you create with Figma?</h2>
+
+          <p>
+            Figma supports many kinds of digital design projects. Its
+            flexible canvas and collaboration tools make it useful for
+            both individual designers and larger product teams.
+          </p>
+
+          <h3>Website design</h3>
+          <p>
+            Design landing pages, business websites, dashboards, online
+            stores, and responsive website layouts. Designers can explore
+            different page structures before development begins.
+          </p>
+
+          <h3>Mobile app interfaces</h3>
+          <p>
+            Create screens for mobile applications, plan navigation,
+            organize reusable interface components, and demonstrate
+            user journeys with interactive prototypes.
+          </p>
+
+          <h3>UX research and planning</h3>
+          <p>
+            Use FigJam to map user journeys, organize research insights,
+            create flow diagrams, and brainstorm solutions with teammates.
+          </p>
+
+          <h3>Branding and visual systems</h3>
+          <p>
+            Build visual guidelines, design libraries, reusable assets,
+            and consistent interface patterns for digital products.
+          </p>
+
+          <h3>Developer collaboration</h3>
+          <p>
+            Share designs and use Dev Mode to communicate measurements,
+            assets, component details, and implementation requirements.
+          </p>
+        </div>
+
+        <aside class="benefit-panel">
+          <h3>Why teams choose Figma</h3>
+
+          <ul class="benefit-list">
+            <li>Collaborative design in shared workspaces</li>
+            <li>Browser-based access and sharing</li>
+            <li>Interactive prototypes for design reviews</li>
+            <li>Reusable components and design libraries</li>
+            <li>Tools for brainstorming and planning</li>
+            <li>Developer-focused handoff workflows</li>
+            <li>Plugins and community resources</li>
+            <li>Additional AI-assisted creative tools</li>
+          </ul>
+
+          <div class="panel-note">
+            Available tools and capabilities depend on the product,
+            subscription plan, seat type, and account permissions.
+          </div>
+        </aside>
+
+      </div>
+    </section>
+
+    <section class="workflow-section" id="workflow">
+      <div class="container">
+
+        <div class="section-label">04 / Getting started</div>
+        <h2>How to start using Figma</h2>
+
+        <p class="section-intro">
+          You can begin with a simple design project and gradually
+          explore more advanced tools as your skills develop.
+        </p>
+
+        <div class="steps">
+
+          <article class="step">
+            <div class="step-number">01</div>
+            <h3>Create an Account</h3>
+            <p>
+              Visit the official Figma website, create an account,
+              and choose the appropriate workspace.
+            </p>
+          </article>
+
+          <article class="step">
+            <div class="step-number">02</div>
+            <h3>Start a Design File</h3>
+            <p>
+              Open a new design file and explore the canvas, layers,
+              shapes, text tools, and properties panel.
+            </p>
+          </article>
+
+          <article class="step">
+            <div class="step-number">03</div>
+            <h3>Build Your Interface</h3>
+            <p>
+              Create frames, arrange elements, apply styles, and
+              use components to organize your design.
+            </p>
+          </article>
+
+          <article class="step">
+            <div class="step-number">04</div>
+            <h3>Prototype & Share</h3>
+            <p>
+              Connect screens, preview interactions, and share your
+              work with teammates for feedback.
+            </p>
+          </article>
+
+        </div>
+
+        <div class="callout">
+          Beginner tip: Start by recreating a simple login screen or
+          landing page. Practicing frames, typography, spacing, colors,
+          and components will help you understand the design workflow.
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+      <div class="container content-grid">
+
+        <div>
+          <div class="section-label">05 / Plans and subscriptions</div>
+          <h2>Is Figma free to use?</h2>
+
+          <p class="section-intro">
+            Figma offers a free Starter plan alongside paid plans
+            designed for professional teams and organizations.
+          </p>
+
+          <br>
+
+          <a class="btn btn-primary" href="https://www.figma.com/pricing/" target="_blank" rel="noopener">
+            View Official Pricing ↗
+          </a>
+        </div>
+
+        <div class="article-copy">
+          <p>
+            Figma's Starter plan is a way to explore its core design
+            and collaboration tools without an initial subscription.
+            It is suitable for people learning the platform and
+            working on smaller personal projects.
+          </p>
+
+          <p>
+            The Professional plan provides additional capabilities
+            such as unlimited files and projects for a single team,
+            shared design libraries, advanced prototyping, and
+            enhanced developer handoff features.
+          </p>
+
+          <p>
+            Organization and Enterprise plans are designed for larger
+            teams that need broader administration, security, shared
+            resources, and organization-wide design systems.
+          </p>
+
+          <p>
+            Figma uses different seat types, including Full, Dev,
+            and Collab seats, to match different workflows. Pricing
+            and included features can change, so review the official
+            pricing page before choosing a subscription.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="faq-section" id="faq">
+      <div class="container">
+
+        <div class="section-label">06 / Common questions</div>
+        <h2>Frequently asked questions</h2>
+
+        <p class="section-intro">
+          Here are answers to common questions about Figma and
+          its design tools.
+        </p>
+
+        <div class="faq-list">
+
+          <details>
+            <summary>What is Figma mainly used for?</summary>
+            <p>
+              Figma is used for user interface design, UX planning,
+              interactive prototyping, design systems, collaboration,
+              and product development workflows.
+            </p>
+          </details>
+
+          <details>
+            <summary>Is Figma suitable for beginners?</summary>
+            <p>
+              Yes. Beginners can start with simple layouts, shapes,
+              text, and frames before learning components,
+              auto layout, and advanced prototyping.
+            </p>
+          </details>
+
+          <details>
+            <summary>Can I use Figma for free?</summary>
+            <p>
+              Yes. Figma offers a Starter plan with limited access
+              to its products and features. Paid plans provide
+              additional tools and team capabilities.
+            </p>
+          </details>
+
+          <details>
+            <summary>Can multiple people work in Figma together?</summary>
+            <p>
+              Yes. Figma supports real-time collaboration, allowing
+              multiple users to work in shared files, provide feedback,
+              and review designs.
+            </p>
+          </details>
+
+          <details>
+            <summary>What is FigJam?</summary>
+            <p>
+              FigJam is Figma's collaborative online whiteboard.
+              Teams can use it for brainstorming, diagrams, workshops,
+              planning, and organizing ideas.
+            </p>
+          </details>
+
+          <details>
+            <summary>What is Figma Dev Mode?</summary>
+            <p>
+              Dev Mode is a developer-focused workspace for inspecting
+              designs, viewing properties and measurements, accessing
+              assets, and supporting design-to-code handoff.
+            </p>
+          </details>
+
+          <details>
+            <summary>Can Figma create interactive prototypes?</summary>
+            <p>
+              Yes. You can connect frames, configure interactions,
+              add transitions, and preview how a proposed interface
+              might behave.
+            </p>
+          </details>
+
+          <details>
+            <summary>Does Figma work in a web browser?</summary>
+            <p>
+              Yes. Figma supports browser-based workflows, and
+              desktop applications are also available for supported
+              operating systems.
+            </p>
+          </details>
+
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="cta">
+          <div class="section-label">KEEP DISCOVERING</div>
+
+          <h2>Find more tools to power your creative workflow.</h2>
+
+          <p>
+            Explore useful software, applications, and technology
+            resources through GitApp. Discover tools that can help
+            you work, create, and build more effectively.
+          </p>
+
+          <a class="btn" href="https://gitapp.download/" target="_blank" rel="noopener">
+            Visit GitApp Now ↗
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+
+      <a href="#" class="logo">PIXEL<span>FLOW.</span></a>
+
+      <div class="footer-links">
+        <a href="https://gitapp.download/">GitApp</a>
+        <a href="https://www.figma.com/" target="_blank" rel="noopener">Figma Official</a>
+        <a href="https://www.figma.com/pricing/" target="_blank" rel="noopener">Pricing</a>
+        <a href="https://help.figma.com/" target="_blank" rel="noopener">Help Center</a>
+      </div>
+
+      <p class="disclaimer">
+        Figma is a trademark of its respective owner. This independent
+        informational article is not affiliated with, sponsored by,
+        or endorsed by Figma. Product names and trademarks belong
+        to their respective owners.
+      </p>
+
+      <p>© 2026 PIXELFLOW. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
