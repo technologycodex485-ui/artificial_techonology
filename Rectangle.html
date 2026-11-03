@@ -1,0 +1,1600 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Rectangle for Mac – The Smart Window Management App</title>
+  <meta name="description" content="Discover Rectangle for Mac, a free and open-source window manager. Organize your desktop with keyboard shortcuts, screen snapping, and Rectangle Pro features.">
+  <meta name="keywords" content="Rectangle for Mac, Rectangle app, Mac window manager, window snapping Mac, macOS productivity, Rectangle Pro, organize Mac desktop">
+  <meta name="author" content="GitApp">
+  <meta name="robots" content="index, follow">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+    :root {
+      --bg: #080d18;
+      --surface: #101a2b;
+      --surface-light: #17243a;
+      --blue: #4389ff;
+      --cyan: #42d8e8;
+      --white: #f5f8ff;
+      --muted: #a0adc2;
+      --border: rgba(158, 185, 226, .15);
+      --shadow: 0 25px 65px rgba(0, 0, 0, .35);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1160px, 90%);
+      margin: auto;
+    }
+
+    /* Navigation */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8, 13, 24, .88);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(18px);
+    }
+
+    .navbar {
+      min-height: 78px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 25px;
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      color: var(--cyan);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 27px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .nav-links a:hover {
+      color: var(--cyan);
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 21px;
+      background: linear-gradient(120deg, var(--blue), #2867dc);
+      border: 1px solid rgba(255,255,255,.12);
+      color: white;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 800;
+      transition: .25s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 28px rgba(67, 137, 255, .3);
+    }
+
+    .button-outline {
+      background: transparent;
+      border: 1px solid rgba(126, 171, 237, .4);
+      color: var(--white);
+    }
+
+    .button-outline:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+      box-shadow: none;
+    }
+
+    /* Hero */
+
+    .hero {
+      padding: 100px 0 85px;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 80% 20%, rgba(40, 105, 220, .2), transparent 38%),
+        radial-gradient(ellipse at 10% 80%, rgba(34, 183, 204, .09), transparent 35%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: .95fr 1.05fr;
+      gap: 65px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--cyan);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 10px;
+      font-weight: 800;
+      margin-bottom: 23px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 24px;
+      height: 2px;
+      background: var(--cyan);
+    }
+
+    h1, h2, h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      line-height: 1.2;
+    }
+
+    h1 {
+      font-size: clamp(43px, 5.5vw, 70px);
+      letter-spacing: -3px;
+      margin-bottom: 23px;
+    }
+
+    h1 span {
+      background: linear-gradient(100deg, #51a0ff, #55e4e8);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-description {
+      max-width: 490px;
+      color: var(--muted);
+      font-size: 15px;
+      margin-bottom: 30px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 13px;
+      flex-wrap: wrap;
+    }
+
+    .hero-note {
+      color: #75869f;
+      font-size: 11px;
+      margin-top: 23px;
+    }
+
+    /* Desktop mockup */
+
+    .desktop-stage {
+      min-height: 390px;
+      background: linear-gradient(145deg, #142540, #0d1729);
+      border: 1px solid rgba(104, 158, 236, .25);
+      border-radius: 17px;
+      padding: 25px;
+      position: relative;
+      box-shadow: var(--shadow);
+      transform: perspective(1000px) rotateY(-4deg);
+    }
+
+    .desktop-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+      color: #8297b5;
+      font-size: 10px;
+      letter-spacing: 1px;
+    }
+
+    .desktop-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .desktop-dots i {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ef7777;
+    }
+
+    .desktop-dots i:nth-child(2) { background: #e5bb62; }
+    .desktop-dots i:nth-child(3) { background: #57c991; }
+
+    .window-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 145px 125px;
+      gap: 9px;
+    }
+
+    .mock-window {
+      border: 1px solid rgba(132, 177, 239, .25);
+      background: #172a48;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .mock-window.large {
+      grid-column: span 2;
+      background: #18375e;
+    }
+
+    .mock-bar {
+      height: 24px;
+      background: rgba(5, 15, 32, .35);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 0 9px;
+    }
+
+    .mock-bar span {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #5b9de9;
+    }
+
+    .mock-content {
+      padding: 14px;
+    }
+
+    .mock-line {
+      height: 5px;
+      background: rgba(173, 207, 248, .35);
+      width: 75%;
+      border-radius: 5px;
+      margin-bottom: 9px;
+    }
+
+    .mock-line.short { width: 42%; }
+    .mock-line.medium { width: 60%; }
+
+    .mock-chart {
+      height: 58px;
+      border-radius: 5px;
+      margin-top: 7px;
+      background:
+        linear-gradient(160deg, transparent 45%, #43d8e8 46%, transparent 48%),
+        linear-gradient(30deg, transparent 55%, #4389ff 56%, transparent 58%),
+        rgba(55, 119, 197, .15);
+    }
+
+    .snap-label {
+      position: absolute;
+      background: #1b3456;
+      border: 1px solid rgba(76, 193, 226, .4);
+      color: var(--cyan);
+      padding: 9px 14px;
+      border-radius: 7px;
+      font-size: 10px;
+      font-weight: 800;
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    }
+
+    .label-left {
+      left: -22px;
+      top: 85px;
+    }
+
+    .label-right {
+      right: -15px;
+      bottom: 52px;
+    }
+
+    /* Stats */
+
+    .stats {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: #0d1524;
+      padding: 26px 0;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      text-align: center;
+    }
+
+    .stat strong {
+      display: block;
+      color: var(--cyan);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 17px;
+    }
+
+    .stat span {
+      color: #8b9bb3;
+      font-size: 11px;
+    }
+
+    /* Sections */
+
+    .section {
+      padding: 90px 0;
+    }
+
+    .section-heading {
+      max-width: 720px;
+      margin-bottom: 42px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(31px, 4vw, 46px);
+      letter-spacing: -1.5px;
+      margin-bottom: 15px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .article-grid {
+      display: grid;
+      grid-template-columns: 1.4fr .6fr;
+      gap: 55px;
+      align-items: start;
+    }
+
+    .article h2 {
+      font-size: 27px;
+      margin: 36px 0 14px;
+    }
+
+    .article h2:first-child {
+      margin-top: 0;
+    }
+
+    .article p {
+      color: #a6b3c7;
+      font-size: 14px;
+      margin-bottom: 17px;
+    }
+
+    .article ul {
+      color: #a6b3c7;
+      padding-left: 22px;
+      margin: 15px 0 22px;
+      font-size: 13px;
+    }
+
+    .article li {
+      margin: 8px 0;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 105px;
+    }
+
+    .side-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 23px;
+      border-radius: 11px;
+      margin-bottom: 17px;
+    }
+
+    .side-card h3 {
+      font-size: 19px;
+      margin-bottom: 12px;
+    }
+
+    .side-card p {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 15px;
+    }
+
+    .side-card a {
+      font-size: 12px;
+      color: var(--cyan);
+      font-weight: 800;
+    }
+
+    .side-list {
+      list-style: none;
+    }
+
+    .side-list li {
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+      color: #a6b3c7;
+      font-size: 12px;
+    }
+
+    .side-list li:last-child {
+      border: 0;
+    }
+
+    /* Features */
+
+    .features-section {
+      background: #0c1423;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 17px;
+    }
+
+    .feature-card {
+      background: linear-gradient(145deg, #14223a, #101a2b);
+      border: 1px solid var(--border);
+      padding: 27px;
+      border-radius: 11px;
+      transition: .25s ease;
+    }
+
+    .feature-card:hover {
+      border-color: rgba(66, 216, 232, .5);
+      transform: translateY(-5px);
+    }
+
+    .feature-icon {
+      width: 45px;
+      height: 45px;
+      display: grid;
+      place-items: center;
+      background: rgba(67, 137, 255, .15);
+      border: 1px solid rgba(67, 137, 255, .2);
+      border-radius: 10px;
+      color: var(--cyan);
+      font-size: 21px;
+      margin-bottom: 19px;
+    }
+
+    .feature-card h3 {
+      font-size: 17px;
+      margin-bottom: 10px;
+    }
+
+    .feature-card p {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* Keyboard shortcut panel */
+
+    .shortcut-panel {
+      background: linear-gradient(120deg, #142b4a, #101c30);
+      border: 1px solid rgba(89, 164, 244, .25);
+      border-radius: 14px;
+      padding: 35px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 35px;
+      align-items: center;
+    }
+
+    .shortcut-panel h3 {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    .shortcut-panel p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .shortcut-list {
+      display: grid;
+      gap: 11px;
+    }
+
+    .shortcut-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 11px 13px;
+      background: rgba(4, 12, 25, .35);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      font-size: 11px;
+      color: #c5d2e5;
+    }
+
+    kbd {
+      background: #233b5b;
+      border: 1px solid #45658b;
+      border-radius: 4px;
+      padding: 3px 7px;
+      color: var(--cyan);
+      font: inherit;
+      white-space: nowrap;
+    }
+
+    /* Workflow */
+
+    .workflow-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .step {
+      border-top: 2px solid var(--blue);
+      padding-top: 21px;
+    }
+
+    .step-number {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 37px;
+      font-weight: 700;
+      color: var(--cyan);
+      margin-bottom: 13px;
+    }
+
+    .step h3 {
+      font-size: 17px;
+      margin-bottom: 10px;
+    }
+
+    .step p {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* Audience */
+
+    .audience-section {
+      background: #0c1423;
+    }
+
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 17px;
+    }
+
+    .audience-card {
+      padding: 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+
+    .audience-card h3 {
+      font-size: 17px;
+      margin-bottom: 9px;
+    }
+
+    .audience-card p {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* Pricing */
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      max-width: 800px;
+      margin: auto;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .pricing-card {
+      padding: 32px;
+      background: var(--surface);
+    }
+
+    .pricing-card.pro {
+      background: linear-gradient(145deg, #193d66, #12243c);
+    }
+
+    .pricing-card h3 {
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    .price {
+      color: var(--cyan);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 31px;
+      font-weight: 700;
+      margin-bottom: 7px;
+    }
+
+    .pricing-card p {
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 18px;
+    }
+
+    .pricing-card ul {
+      list-style: none;
+      color: #b8c5d8;
+      font-size: 12px;
+    }
+
+    .pricing-card li {
+      padding: 7px 0;
+    }
+
+    /* FAQ */
+
+    .faq-list {
+      max-width: 850px;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      padding: 22px 0;
+    }
+
+    .faq-item h3 {
+      font-size: 16px;
+      margin-bottom: 9px;
+    }
+
+    .faq-item p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* CTA */
+
+    .cta {
+      padding: 85px 20px;
+      text-align: center;
+      background:
+        radial-gradient(ellipse at center, rgba(40, 124, 229, .28), transparent 65%),
+        #101b2d;
+      border-top: 1px solid var(--border);
+    }
+
+    .cta h2 {
+      font-size: clamp(32px, 4vw, 47px);
+      margin-bottom: 16px;
+    }
+
+    .cta p {
+      max-width: 620px;
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0 auto 27px;
+    }
+
+    /* Footer */
+
+    footer {
+      background: #060a12;
+      padding: 35px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 21px;
+    }
+
+    .footer-logo span {
+      color: var(--cyan);
+    }
+
+    .footer-top p {
+      color: #8392a8;
+      font-size: 11px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      font-size: 11px;
+      color: #a6b3c7;
+    }
+
+    .disclaimer {
+      margin-top: 24px;
+      padding-top: 19px;
+      border-top: 1px solid var(--border);
+      color: #77869b;
+      font-size: 10px;
+      line-height: 1.8;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 55px;
+      }
+
+      .desktop-stage {
+        max-width: 650px;
+        width: 100%;
+        margin: auto;
+      }
+
+      .article-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: static;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+      }
+
+      .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 620px) {
+      .navbar {
+        min-height: 68px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .navbar .button {
+        padding: 10px 13px;
+        font-size: 11px;
+      }
+
+      .hero {
+        padding: 70px 0;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 22px;
+      }
+
+      .section {
+        padding: 65px 0;
+      }
+
+      .feature-grid,
+      .workflow-grid,
+      .audience-grid,
+      .pricing-grid,
+      .shortcut-panel,
+      .sidebar {
+        grid-template-columns: 1fr;
+      }
+
+      .desktop-stage {
+        padding: 15px;
+        min-height: 310px;
+      }
+
+      .window-layout {
+        grid-template-rows: 115px 100px;
+      }
+
+      .snap-label {
+        font-size: 9px;
+        padding: 7px 9px;
+      }
+
+      .label-left { left: -5px; }
+      .label-right { right: -5px; }
+
+      .footer-top {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <div class="container navbar">
+
+      <a href="#" class="logo">Git<span>App</span>.</a>
+
+      <ul class="nav-links">
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#shortcuts">Shortcuts</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+
+      <a href="https://gitapp.download/" target="_blank" rel="noopener" class="button">
+        Explore GitApp ↗
+      </a>
+
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-grid">
+
+      <div>
+        <div class="eyebrow">A better organized Mac desktop</div>
+
+        <h1>
+          Take control of your
+          <span>workspace.</span>
+        </h1>
+
+        <p class="hero-description">
+          Rectangle is a Mac window management application that makes
+          it easier to organize open windows. Use keyboard shortcuts
+          or drag windows to screen edges to create a cleaner,
+          more productive desktop.
+        </p>
+
+        <div class="hero-actions">
+          <a href="https://gitapp.download/" target="_blank" rel="noopener" class="button">
+            Visit GitApp →
+          </a>
+
+          <a href="#features" class="button button-outline">
+            Explore Features
+          </a>
+        </div>
+
+        <p class="hero-note">
+          Free and open source · macOS 14+ for the current release
+        </p>
+      </div>
+
+      <!-- CSS desktop illustration -->
+      <div class="desktop-stage">
+
+        <div class="desktop-top">
+          <div class="desktop-dots">
+            <i></i><i></i><i></i>
+          </div>
+          <span>RECTANGLE WORKSPACE PREVIEW</span>
+          <span>DESKTOP / 01</span>
+        </div>
+
+        <div class="window-layout">
+
+          <div class="mock-window large">
+            <div class="mock-bar">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="mock-content">
+              <div class="mock-line"></div>
+              <div class="mock-line medium"></div>
+              <div class="mock-line short"></div>
+              <div class="mock-chart"></div>
+            </div>
+          </div>
+
+          <div class="mock-window">
+            <div class="mock-bar">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="mock-content">
+              <div class="mock-line medium"></div>
+              <div class="mock-line short"></div>
+              <div class="mock-line"></div>
+            </div>
+          </div>
+
+          <div class="mock-window">
+            <div class="mock-bar">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="mock-content">
+              <div class="mock-line short"></div>
+              <div class="mock-line"></div>
+              <div class="mock-line medium"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="snap-label label-left">⌘ Window Snapping</div>
+        <div class="snap-label label-right">✓ Organized Layout</div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats">
+    <div class="container stats-grid">
+      <div class="stat">
+        <strong>Free</strong>
+        <span>Core application</span>
+      </div>
+      <div class="stat">
+        <strong>Open Source</strong>
+        <span>Public GitHub project</span>
+      </div>
+      <div class="stat">
+        <strong>Keyboard</strong>
+        <span>Shortcut-driven control</span>
+      </div>
+      <div class="stat">
+        <strong>Snap Areas</strong>
+        <span>Drag-to-position windows</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overview article -->
+  <section class="section" id="overview">
+    <div class="container">
+
+      <div class="section-heading">
+        <div class="eyebrow">Product overview</div>
+        <h2>What Is Rectangle for Mac?</h2>
+        <p>
+          A practical window manager that helps Mac users arrange
+          applications, manage screen space, and move between tasks
+          with less manual resizing.
+        </p>
+      </div>
+
+      <div class="article-grid">
+
+        <article class="article">
+
+          <h2>A simpler way to manage Mac windows</h2>
+
+          <p>
+            <strong>Rectangle</strong> is a window management application
+            for macOS. It allows users to move and resize application
+            windows into useful positions using keyboard shortcuts
+            or screen-edge snapping. Instead of repeatedly dragging
+            window borders, you can quickly arrange your desktop
+            into a layout that suits your work.
+          </p>
+
+          <p>
+            This can be particularly helpful when working with multiple
+            applications at the same time. You might keep a browser
+            on one side of the display, a code editor on the other,
+            and a communication app in a smaller corner.
+          </p>
+
+          <h2>Organize windows with keyboard shortcuts</h2>
+
+          <p>
+            One of Rectangle's main strengths is its keyboard-driven
+            workflow. You can assign or use shortcuts to move the
+            active window to different screen positions. Common
+            arrangements include:
+          </p>
+
+          <ul>
+            <li>Move a window to the left or right half of the display.</li>
+            <li>Place windows in the top-left or top-right corners.</li>
+            <li>Arrange windows in the bottom-left or bottom-right corners.</li>
+            <li>Maximize a window or move it to other screen positions.</li>
+            <li>Use thirds and other supported layouts for wider workflows.</li>
+          </ul>
+
+          <p>
+            Rectangle also supports repeating certain shortcuts to cycle
+            through window sizes. This helps reduce the number of
+            individual key combinations users need to remember.
+          </p>
+
+          <h2>Snap windows by dragging</h2>
+
+          <p>
+            If you prefer using a mouse or trackpad, Rectangle provides
+            snap areas. Drag a window toward a screen edge or corner
+            and the application displays a preview of the resulting
+            position. Release the window to apply the layout.
+          </p>
+
+          <p>
+            This interaction will feel familiar to people who have used
+            window snapping on other desktop operating systems.
+            Rectangle also supports portrait display layouts, making
+            it useful for users who work with vertically oriented monitors.
+          </p>
+
+          <h2>Make multitasking more comfortable</h2>
+
+          <p>
+            Managing several windows manually can interrupt concentration.
+            Rectangle helps reduce that friction by providing repeatable
+            layouts. You can compare documents side by side, reference
+            a website while writing, or keep a terminal visible while
+            working in an editor.
+          </p>
+
+          <p>
+            It does not automatically tile every application as a
+            traditional tiling window manager might. Instead, it gives
+            you direct control over where individual windows should go.
+            This makes it a straightforward option for people who want
+            predictable window placement without learning a complex
+            tiling system.
+          </p>
+
+          <h2>Rectangle and Rectangle Pro</h2>
+
+          <p>
+            The standard Rectangle application is free and open source.
+            It provides common window positions, keyboard shortcuts,
+            and drag-to-snap functionality.
+          </p>
+
+          <p>
+            Rectangle Pro is a separate paid application with additional
+            customization. Its features include custom shortcuts for
+            different window sizes and positions, quicker snapping,
+            configurable snap targets, and workspace arrangements.
+            It is worth comparing both editions before deciding which
+            one fits your workflow.
+          </p>
+
+          <h2>Who should consider Rectangle?</h2>
+
+          <p>
+            Rectangle can be useful for developers, designers, students,
+            researchers, office workers, and anyone who frequently
+            switches between several Mac applications. It is especially
+            helpful on larger displays where arranging multiple windows
+            can make better use of available screen space.
+          </p>
+
+        </article>
+
+        <aside class="sidebar">
+
+          <div class="side-card">
+            <h3>Official Rectangle</h3>
+            <p>
+              Visit the developer's website for the latest version,
+              installation instructions, and Rectangle Pro details.
+            </p>
+            <a href="https://rectangleapp.com/" target="_blank" rel="noopener">
+              Rectangle Website ↗
+            </a>
+          </div>
+
+          <div class="side-card">
+            <h3>Quick Information</h3>
+            <ul class="side-list">
+              <li>Category: Window Management</li>
+              <li>Platform: macOS</li>
+              <li>Standard edition: Free</li>
+              <li>License: Open source</li>
+              <li>Input: Keyboard and mouse</li>
+              <li>Pro edition: Paid</li>
+              <li>Current release: macOS 14+</li>
+            </ul>
+          </div>
+
+          <div class="side-card">
+            <h3>Discover More Apps</h3>
+            <p>
+              Browse more software and productivity tools on GitApp.
+            </p>
+            <a href="https://gitapp.download/" target="_blank" rel="noopener">
+              Explore GitApp →
+            </a>
+          </div>
+
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="section features-section" id="features">
+    <div class="container">
+
+      <div class="section-heading">
+        <div class="eyebrow">Powerful window controls</div>
+        <h2>Key Features of Rectangle</h2>
+        <p>
+          The application focuses on practical tools that make
+          arranging and managing desktop windows easier.
+        </p>
+      </div>
+
+      <div class="feature-grid">
+
+        <div class="feature-card">
+          <div class="feature-icon">⌨</div>
+          <h3>Keyboard Shortcuts</h3>
+          <p>
+            Move and resize the active window using configurable
+            keyboard commands instead of manually adjusting
+            its borders.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">▦</div>
+          <h3>Window Snapping</h3>
+          <p>
+            Drag windows to screen edges and corners to place
+            them in convenient positions with a visual preview.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">◫</div>
+          <h3>Half and Quarter Layouts</h3>
+          <p>
+            Arrange windows into left, right, top, bottom,
+            or corner positions to make multitasking easier.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">↔</div>
+          <h3>Multiple Window Sizes</h3>
+          <p>
+            Use supported thirds and other window positions
+            to create layouts that match your display and tasks.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">⟳</div>
+          <h3>Shortcut Cycling</h3>
+          <p>
+            Repeat certain keyboard commands to cycle through
+            different window sizes without memorizing every action.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">▤</div>
+          <h3>Multi-Display Support</h3>
+          <p>
+            Move windows between displays and organize layouts
+            across a multi-monitor workspace.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">▯</div>
+          <h3>Portrait Display Layouts</h3>
+          <p>
+            Use snap areas with portrait-oriented screens
+            and arrange windows according to screen orientation.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">⚙</div>
+          <h3>Customizable Settings</h3>
+          <p>
+            Configure available keyboard shortcuts and application
+            preferences to suit your working style.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">⌘</div>
+          <h3>Open-Source Project</h3>
+          <p>
+            Explore the standard Rectangle application's public
+            source code and project development on GitHub.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Shortcut examples -->
+  <section class="section" id="shortcuts">
+    <div class="container">
+
+      <div class="shortcut-panel">
+
+        <div>
+          <div class="eyebrow">Keyboard-first productivity</div>
+          <h3>Build a faster window workflow</h3>
+          <p>
+            Rectangle includes a range of window actions. The exact
+            keyboard combinations depend on your shortcut configuration.
+            You can review and customize them in the application.
+          </p>
+        </div>
+
+        <div class="shortcut-list">
+
+          <div class="shortcut-row">
+            <span>Left half</span>
+            <kbd>Shortcut</kbd>
+          </div>
+
+          <div class="shortcut-row">
+            <span>Right half</span>
+            <kbd>Shortcut</kbd>
+          </div>
+
+          <div class="shortcut-row">
+            <span>Maximize</span>
+            <kbd>Shortcut</kbd>
+          </div>
+
+          <div class="shortcut-row">
+            <span>Top-left quarter</span>
+            <kbd>Shortcut</kbd>
+          </div>
+
+          <div class="shortcut-row">
+            <span>Bottom-right quarter</span>
+            <kbd>Shortcut</kbd>
+          </div>
+
+          <p style="font-size:10px; color:#8295b1;">
+            Illustrative action list only. Check Rectangle Preferences
+            for the actual keyboard combinations configured on your Mac.
+          </p>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- How to use -->
+  <section class="section" id="workflow">
+    <div class="container">
+
+      <div class="section-heading">
+        <div class="eyebrow">Getting started</div>
+        <h2>How to Use Rectangle on Mac</h2>
+        <p>
+          Follow these simple steps to install the application
+          and begin organizing your desktop.
+        </p>
+      </div>
+
+      <div class="workflow-grid">
+
+        <div class="step">
+          <div class="step-number">01</div>
+          <h3>Download Rectangle</h3>
+          <p>
+            Visit the official Rectangle website or its GitHub
+            releases page. Select a version compatible with
+            your macOS installation.
+          </p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">02</div>
+          <h3>Configure Permissions</h3>
+          <p>
+            Follow the app's instructions for macOS permissions.
+            Window management generally requires Accessibility
+            access so Rectangle can control other application windows.
+          </p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">03</div>
+          <h3>Arrange Your Workspace</h3>
+          <p>
+            Open your applications, use keyboard shortcuts,
+            or drag windows toward screen edges to create
+            your preferred desktop layout.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Audience -->
+  <section class="section audience-section">
+    <div class="container">
+
+      <div class="section-heading">
+        <div class="eyebrow">Made for multitasking</div>
+        <h2>Who Can Benefit from Rectangle?</h2>
+        <p>
+          Rectangle is useful for people who regularly work
+          with several open applications.
+        </p>
+      </div>
+
+      <div class="audience-grid">
+
+        <div class="audience-card">
+          <h3>Developers</h3>
+          <p>
+            Keep your code editor, terminal, browser, and documentation
+            visible in a structured workspace.
+          </p>
+        </div>
+
+        <div class="audience-card">
+          <h3>Designers</h3>
+          <p>
+            Compare design references, creative applications,
+            and project previews side by side.
+          </p>
+        </div>
+
+        <div class="audience-card">
+          <h3>Students and Researchers</h3>
+          <p>
+            Read research material while taking notes or writing
+            assignments in another window.
+          </p>
+        </div>
+
+        <div class="audience-card">
+          <h3>Remote Professionals</h3>
+          <p>
+            Organize meetings, communication tools, documents,
+            and browsers for a more comfortable workflow.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="section" id="pricing">
+    <div class="container">
+
+      <div class="section-heading" style="text-align:center; margin-left:auto; margin-right:auto;">
+        <div class="eyebrow">Free and premium options</div>
+        <h2>Rectangle Pricing</h2>
+        <p>
+          Choose between the free standard application and
+          the separately available Rectangle Pro experience.
+        </p>
+      </div>
+
+      <div class="pricing-grid">
+
+        <div class="pricing-card">
+          <h3>Rectangle</h3>
+          <div class="price">Free</div>
+          <p>Free and open-source window management.</p>
+          <ul>
+            <li>✓ Keyboard window shortcuts</li>
+            <li>✓ Screen-edge snapping</li>
+            <li>✓ Common window positions</li>
+            <li>✓ Multi-display workflows</li>
+            <li>✓ Public source code</li>
+          </ul>
+        </div>
+
+        <div class="pricing-card pro">
+          <h3>Rectangle Pro</h3>
+          <div class="price">Paid</div>
+          <p>Additional customization for advanced workflows.</p>
+          <ul>
+            <li>✓ Custom window sizes and positions</li>
+            <li>✓ Quicker window snapping</li>
+            <li>✓ Configurable snap targets</li>
+            <li>✓ Workspace arrangements</li>
+            <li>✓ Additional window actions</li>
+            <li>✓ 10-day free trial advertised</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <p style="text-align:center; color:#8394ab; font-size:11px; margin-top:20px;">
+        Rectangle Pro is a separate paid application. Check the
+        official website for current prices, trial terms, and licensing.
+      </p>
+
+      <div style="text-align:center; margin-top:24px;">
+        <a href="https://rectangleapp.com/pro/" target="_blank" rel="noopener" class="button">
+          Explore Rectangle Pro ↗
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="container">
+
+      <div class="section-heading">
+        <div class="eyebrow">Frequently asked questions</div>
+        <h2>Rectangle FAQ</h2>
+        <p>
+          Answers to common questions about Rectangle
+          and its window management features.
+        </p>
+      </div>
+
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <h3>1. What is Rectangle for Mac?</h3>
+          <p>
+            Rectangle is a macOS window manager that lets users
+            move and resize application windows with keyboard
+            shortcuts or drag-to-snap areas.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>2. Is Rectangle free to use?</h3>
+          <p>
+            Yes. The standard Rectangle application is free
+            and open source. Rectangle Pro is a separate
+            paid application with additional features.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>3. Does Rectangle work on Windows?</h3>
+          <p>
+            No. Rectangle is designed for macOS and is not
+            a Windows window management application.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>4. Can I use Rectangle with keyboard shortcuts?</h3>
+          <p>
+            Yes. Keyboard shortcuts are a core part of Rectangle.
+            You can use and configure commands for moving and
+            resizing application windows.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>5. Does Rectangle support multiple monitors?</h3>
+          <p>
+            Yes. Rectangle includes window actions for working
+            across displays, helping users organize applications
+            in multi-monitor environments.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>6. What is the difference between Rectangle and Rectangle Pro?</h3>
+          <p>
+            Rectangle provides common window management features
+            for free. Rectangle Pro adds advanced customization,
+            including custom window positions, snap targets,
+            and workspace features.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>7. What macOS version does Rectangle require?</h3>
+          <p>
+            The current main release requires macOS 14 or newer.
+            Older releases are available for certain earlier
+            macOS versions. Check the official compatibility
+            information before downloading.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>8. Is Rectangle a tiling window manager?</h3>
+          <p>
+            Rectangle is primarily a window snapping and positioning
+            tool. It moves windows into selected positions rather
+            than automatically arranging every window as a
+            traditional tiling window manager does.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="cta">
+    <div class="container">
+      <div class="eyebrow">Discover useful software</div>
+
+      <h2>Make Your Mac Workspace Work Smarter</h2>
+
+      <p>
+        Explore more productivity applications, desktop utilities,
+        and useful software through GitApp. Find tools that help
+        you create a more organized digital workspace.
+      </p>
+
+      <a href="https://gitapp.download/" target="_blank" rel="noopener" class="button">
+        Explore More on GitApp ↗
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+
+      <div class="footer-top">
+
+        <div class="footer-logo">Git<span>App.</span></div>
+
+        <p>Discover software. Organize your digital workflow.</p>
+
+        <div class="footer-links">
+          <a href="https://gitapp.download/">Home</a>
+          <a href="https://rectangleapp.com/" target="_blank" rel="noopener">Official Website</a>
+          <a href="#overview">About</a>
+          <a href="#faq">FAQ</a>
+        </div>
+
+      </div>
+
+      <div class="disclaimer">
+        <strong>Disclaimer:</strong> This is an independent informational
+        article and is not affiliated with, endorsed by, or sponsored by
+        Rectangle or its developer. Rectangle and Rectangle Pro are
+        trademarks or product names of their respective owners.
+        All trademarks belong to their respective owners. Features,
+        system requirements, availability, and pricing may change.
+        Always check the official website for the latest information.
+      </div>
+
+    </div>
+  </footer>
+
+</body>
+</html>
