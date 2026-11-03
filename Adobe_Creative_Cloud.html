@@ -5,26 +5,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Amazon Prime Video – Movies, TV Shows, Features & Streaming Guide</title>
-  <meta name="description" content="Explore Amazon Prime Video, its movies, TV shows, original productions, streaming features, supported devices, subscription options and benefits.">
-  <meta name="keywords" content="Amazon Prime Video, Prime Video, Amazon streaming, movies online, TV shows, Amazon Originals, streaming service, Prime Video app">
-  <meta name="robots" content="index, follow">
+  <title>Adobe Creative Cloud – Creative Apps, Features & Complete Guide</title>
+  <meta name="description" content="Explore Adobe Creative Cloud, a collection of professional apps for photo editing, graphic design, video production, illustration, PDFs and creative AI.">
+  <meta name="keywords" content="Adobe Creative Cloud, Adobe CC, Photoshop, Illustrator, Premiere Pro, After Effects, Lightroom, Adobe Firefly, creative software">
   <meta name="author" content="GitApp">
+  <meta name="robots" content="index, follow">
 
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
     :root {
-      --bg: #090d17;
-      --surface: #111a2a;
-      --surface2: #172438;
-      --blue: #00a8e1;
-      --blue2: #39c6f4;
-      --gold: #f5bd50;
-      --white: #f8fbff;
-      --muted: #a4b2c7;
-      --line: rgba(255,255,255,.1);
-      --radius: 17px;
+      --ink: #20201e;
+      --paper: #f8f6f0;
+      --white: #fffefa;
+      --orange: #ed4b28;
+      --orange-dark: #c9371b;
+      --yellow: #f5cf53;
+      --muted: #77766f;
+      --line: #e8e4dc;
+      --soft: #f0ece3;
+      --shadow: 0 18px 55px rgba(44, 34, 19, .09);
     }
 
     * {
@@ -38,9 +38,9 @@
     }
 
     body {
+      background: var(--paper);
+      color: var(--ink);
       font-family: 'DM Sans', sans-serif;
-      background: var(--bg);
-      color: var(--white);
       line-height: 1.7;
     }
 
@@ -57,58 +57,55 @@
     /* Navigation */
 
     header {
+      background: rgba(248,246,240,.94);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--line);
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(9,13,23,.94);
-      backdrop-filter: blur(18px);
-      border-bottom: 1px solid var(--line);
     }
 
     .navbar {
       min-height: 76px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
       gap: 25px;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-family: 'Outfit', sans-serif;
-      font-size: 22px;
-      font-weight: 800;
-      letter-spacing: -.7px;
+      gap: 11px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 21px;
+      font-weight: 700;
+      letter-spacing: -.8px;
     }
 
-    .brand-symbol {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
+    .adobe-mark {
+      width: 34px;
+      height: 34px;
+      background: var(--orange);
+      color: white;
       display: grid;
       place-items: center;
-      background: linear-gradient(135deg, #00a8e1, #1466bb);
-      color: white;
       font-size: 20px;
-    }
-
-    .brand span:last-child {
-      color: var(--blue2);
+      font-weight: 800;
+      clip-path: polygon(50% 0, 100% 100%, 72% 100%, 50% 52%, 28% 100%, 0 100%);
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 28px;
+      gap: 26px;
       font-size: 13px;
-      font-weight: 600;
-      color: #bac7d8;
+      font-weight: 700;
+      color: #64625c;
     }
 
     .nav-links a:hover {
-      color: var(--blue2);
+      color: var(--orange);
     }
 
     .btn {
@@ -116,304 +113,296 @@
       align-items: center;
       justify-content: center;
       gap: 9px;
-      background: var(--blue);
-      color: #061522;
-      border: 1px solid var(--blue);
+      background: var(--orange);
+      color: white;
       padding: 13px 23px;
-      border-radius: 8px;
+      border: 1px solid var(--orange);
+      border-radius: 5px;
       font-size: 13px;
       font-weight: 800;
       transition: .25s ease;
-      cursor: pointer;
     }
 
     .btn:hover {
-      background: var(--blue2);
-      border-color: var(--blue2);
+      background: var(--orange-dark);
+      border-color: var(--orange-dark);
       transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(0,168,225,.2);
+      box-shadow: 0 10px 22px rgba(237,75,40,.2);
     }
 
-    .btn-outline {
-      background: transparent;
+    .btn-dark {
+      background: var(--ink);
+      border-color: var(--ink);
       color: white;
-      border-color: rgba(255,255,255,.25);
     }
 
-    .btn-outline:hover {
-      background: white;
-      color: #09111d;
-      border-color: white;
+    .btn-dark:hover {
+      background: #3a3935;
+      border-color: #3a3935;
+    }
+
+    .btn-light {
+      background: transparent;
+      border-color: #cfc9bd;
+      color: var(--ink);
+    }
+
+    .btn-light:hover {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: white;
     }
 
     /* Hero */
 
     .hero {
-      min-height: 650px;
-      display: flex;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
+      padding: 92px 0 100px;
       background:
-        radial-gradient(ellipse at 78% 45%, rgba(0,132,205,.22), transparent 35%),
-        linear-gradient(120deg, #0b1424 0%, #101b30 55%, #0a1220 100%);
-    }
-
-    .hero:before {
-      content: "";
-      position: absolute;
-      width: 650px;
-      height: 650px;
-      border: 1px solid rgba(52,180,235,.08);
-      border-radius: 50%;
-      right: -150px;
-      top: -130px;
-      box-shadow:
-        0 0 0 55px rgba(52,180,235,.025),
-        0 0 0 110px rgba(52,180,235,.018);
+        radial-gradient(circle at 82% 25%, rgba(245,207,83,.25), transparent 26%),
+        linear-gradient(125deg, #f8f6f0, #f4eee2);
+      overflow: hidden;
+      position: relative;
     }
 
     .hero-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 50px;
+      gap: 55px;
       align-items: center;
-      padding: 85px 0;
-      position: relative;
-      z-index: 2;
     }
 
-    .hero-label {
+    .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 9px;
-      color: var(--blue2);
-      background: rgba(0,168,225,.1);
-      border: 1px solid rgba(0,168,225,.24);
-      padding: 7px 13px;
-      border-radius: 30px;
-      text-transform: uppercase;
-      font-size: 10px;
+      color: var(--orange);
+      font-size: 11px;
       font-weight: 800;
-      letter-spacing: 1.5px;
-      margin-bottom: 23px;
+      letter-spacing: 1.7px;
+      text-transform: uppercase;
+      margin-bottom: 21px;
     }
 
-    .live-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--blue2);
-      box-shadow: 0 0 10px var(--blue2);
+    .eyebrow:before {
+      content: "";
+      height: 2px;
+      width: 27px;
+      background: var(--orange);
     }
 
     .hero h1 {
-      font-family: 'Outfit', sans-serif;
-      font-size: clamp(43px, 5.6vw, 69px);
-      line-height: 1.07;
-      letter-spacing: -2.6px;
-      margin-bottom: 22px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(43px, 5.5vw, 70px);
+      line-height: 1.04;
+      letter-spacing: -3.2px;
+      margin-bottom: 24px;
     }
 
     .hero h1 span {
-      color: var(--blue2);
+      color: var(--orange);
     }
 
     .hero-copy {
-      color: #aebed1;
+      color: #6c6a63;
       font-size: 16px;
-      max-width: 540px;
+      max-width: 530px;
       margin-bottom: 29px;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 13px;
+      gap: 12px;
     }
 
     .hero-note {
-      color: #788da5;
+      margin-top: 23px;
       font-size: 11px;
-      margin-top: 22px;
+      color: #929087;
     }
 
-    /* Streaming visual */
+    /* Creative dashboard illustration */
 
-    .stream-stage {
+    .creative-stage {
       position: relative;
-      padding: 15px;
+      padding: 12px;
     }
 
-    .screen {
-      min-height: 400px;
-      position: relative;
-      overflow: hidden;
-      border-radius: 19px;
-      background:
-        linear-gradient(0deg, rgba(4,9,18,.96), transparent 70%),
-        radial-gradient(ellipse at 60% 40%, #176da5, transparent 45%),
-        linear-gradient(135deg, #192b4d, #10192b 55%, #0c1322);
-      border: 1px solid rgba(255,255,255,.13);
-      box-shadow: 0 30px 90px rgba(0,0,0,.45);
-    }
-
-    .screen-glow {
-      position: absolute;
-      width: 250px;
-      height: 250px;
-      top: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      border-radius: 50%;
-      background: rgba(33,170,235,.2);
-      filter: blur(45px);
-    }
-
-    .poster-art {
-      position: absolute;
-      inset: 25px 30px 95px;
+    .workspace {
+      background: #242321;
       border-radius: 13px;
-      background:
-        radial-gradient(circle at 60% 35%, rgba(255,194,97,.6), transparent 15%),
-        linear-gradient(145deg, transparent 30%, rgba(0,0,0,.7)),
-        linear-gradient(120deg, #21476b, #14213b 45%, #0a1424);
-      overflow: hidden;
+      padding: 15px;
+      box-shadow: 0 28px 65px rgba(40,30,20,.22);
+      transform: rotate(1deg);
+      position: relative;
     }
 
-    .poster-art:before {
-      content: "";
+    .workspace-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 3px 3px 15px;
+    }
+
+    .workspace-brand {
+      color: #fff;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .workspace-brand span {
+      color: #ff7754;
+      font-size: 18px;
+    }
+
+    .window-dots {
+      display: flex;
+      gap: 5px;
+    }
+
+    .window-dots i {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #6d6b67;
+    }
+
+    .workspace-body {
+      display: grid;
+      grid-template-columns: 45px 1fr;
+      gap: 12px;
+    }
+
+    .tool-rail {
+      background: #30302d;
+      border-radius: 7px;
+      padding: 9px 5px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .tool-rail span {
+      color: #d6d3cc;
+      font-size: 15px;
+    }
+
+    .canvas {
+      min-height: 300px;
+      border-radius: 7px;
+      background: #d7b6a2;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .art-shape-one {
+      position: absolute;
+      width: 190px;
+      height: 260px;
+      background: #ec5534;
+      left: 18%;
+      top: 14%;
+      border-radius: 100px 100px 15px 15px;
+      transform: rotate(-18deg);
+    }
+
+    .art-shape-two {
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: #f5cf53;
+      right: 7%;
+      top: 14%;
+      mix-blend-mode: multiply;
+    }
+
+    .art-shape-three {
       position: absolute;
       width: 120px;
-      height: 210px;
-      bottom: -40px;
-      left: 35%;
-      background: linear-gradient(90deg, #172a40, #32465d, #101d30);
-      clip-path: polygon(30% 0, 70% 0, 100% 100%, 0 100%);
-      opacity: .8;
+      height: 170px;
+      background: #252d39;
+      right: 21%;
+      bottom: -30px;
+      transform: rotate(28deg);
+      border-radius: 70px 70px 0 0;
     }
 
-    .poster-art:after {
-      content: "";
+    .art-text {
       position: absolute;
-      width: 200px;
-      height: 200px;
-      right: -55px;
-      top: 20px;
-      border-radius: 50%;
-      border: 1px solid rgba(255,255,255,.25);
-      box-shadow: 0 0 40px rgba(42,174,230,.2);
-    }
-
-    .poster-label {
-      position: absolute;
-      bottom: 22px;
-      left: 22px;
-      right: 22px;
       z-index: 2;
-    }
-
-    .poster-label small {
-      display: block;
-      color: var(--gold);
-      text-transform: uppercase;
-      font-weight: 800;
-      font-size: 9px;
-      letter-spacing: 2px;
-      margin-bottom: 5px;
-    }
-
-    .poster-label strong {
-      font-family: 'Outfit', sans-serif;
-      font-size: 28px;
-      line-height: 1.1;
-      display: block;
-    }
-
-    .poster-label span {
-      font-size: 10px;
-      color: #c3d0df;
-    }
-
-    .screen-controls {
-      position: absolute;
-      left: 30px;
-      right: 30px;
       bottom: 25px;
+      left: 22px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.05;
+      color: #27231e;
+      letter-spacing: -1px;
+    }
+
+    .workspace-bottom {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      z-index: 3;
+      padding: 13px 4px 0;
+      color: #b6b2a9;
+      font-size: 9px;
     }
 
-    .play-circle {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      background: var(--blue);
+    .floating-app {
+      position: absolute;
+      width: 53px;
+      height: 53px;
+      border-radius: 11px;
       display: grid;
       place-items: center;
-      color: #061522;
-      font-size: 15px;
-      padding-left: 3px;
-    }
-
-    .screen-controls span {
-      color: #b9c6d5;
-      font-size: 10px;
-    }
-
-    .screen-tag {
-      position: absolute;
-      top: 25px;
-      right: 25px;
-      background: rgba(5,12,22,.75);
-      border: 1px solid rgba(255,255,255,.15);
-      padding: 6px 10px;
-      font-size: 9px;
-      border-radius: 5px;
-      color: #cdeeff;
-      z-index: 4;
-    }
-
-    .floating-label {
-      position: absolute;
-      background: #15243a;
-      border: 1px solid rgba(255,255,255,.13);
-      padding: 12px 16px;
-      border-radius: 10px;
-      color: white;
-      font-size: 11px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 20px;
       font-weight: 700;
-      box-shadow: 0 12px 35px rgba(0,0,0,.3);
+      color: white;
+      box-shadow: 0 10px 25px rgba(0,0,0,.2);
+      border: 2px solid rgba(255,255,255,.5);
     }
 
-    .floating-label.left {
-      left: -15px;
-      bottom: 15px;
+    .app-ps {
+      background: #153e70;
+      top: -8px;
+      right: -5px;
     }
 
-    .floating-label.right {
-      right: -12px;
-      top: 4px;
-      color: var(--gold);
+    .app-ai {
+      background: #6c451e;
+      bottom: 12px;
+      left: -9px;
     }
 
-    /* Section defaults */
+    .app-pr {
+      background: #44255c;
+      bottom: -13px;
+      right: 55px;
+    }
+
+    /* Sections */
 
     section {
-      padding: 88px 0;
+      padding: 86px 0;
     }
 
     .section-heading {
+      max-width: 720px;
+      margin: 0 auto 45px;
       text-align: center;
-      max-width: 700px;
-      margin: 0 auto 46px;
     }
 
-    .section-kicker {
+    .section-tag {
+      color: var(--orange);
       font-size: 10px;
-      color: var(--blue2);
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 2px;
@@ -421,11 +410,11 @@
     }
 
     .section-heading h2 {
-      font-family: 'Outfit', sans-serif;
-      font-size: clamp(30px, 4vw, 43px);
-      line-height: 1.2;
-      letter-spacing: -1.3px;
-      margin-bottom: 14px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1.15;
+      letter-spacing: -1.5px;
+      margin-bottom: 15px;
     }
 
     .section-heading p {
@@ -433,213 +422,313 @@
       font-size: 14px;
     }
 
-    /* About */
+    /* Introduction */
 
-    .about-grid {
+    .intro-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 65px;
+      gap: 60px;
       align-items: center;
     }
 
-    .about-copy h2 {
-      font-family: 'Outfit', sans-serif;
+    .intro-copy h2 {
+      font-family: 'Space Grotesk', sans-serif;
       font-size: 37px;
       line-height: 1.2;
-      margin-bottom: 20px;
+      letter-spacing: -1.3px;
+      margin-bottom: 18px;
     }
 
-    .about-copy p {
-      color: var(--muted);
+    .intro-copy p {
+      color: #706e67;
       font-size: 14px;
       margin-bottom: 15px;
     }
 
-    .about-visual {
-      background:
-        radial-gradient(circle at center, rgba(0,168,225,.17), transparent 60%),
-        #111c2e;
-      border: 1px solid var(--line);
-      border-radius: 20px;
+    .intro-art {
       min-height: 350px;
+      border-radius: 15px;
+      background: #ede4d6;
       display: flex;
-      flex-direction: column;
-      align-items: center;
       justify-content: center;
-      gap: 23px;
+      align-items: center;
       position: relative;
       overflow: hidden;
     }
 
-    .play-logo {
-      width: 112px;
-      height: 112px;
-      border-radius: 29px;
-      background: linear-gradient(145deg, #00a8e1, #1166b7);
+    .intro-art:before {
+      content: "";
+      position: absolute;
+      width: 290px;
+      height: 290px;
+      border-radius: 50%;
+      border: 1px solid rgba(30,30,30,.14);
+      box-shadow:
+        0 0 0 28px rgba(30,30,30,.025),
+        0 0 0 58px rgba(30,30,30,.02);
+    }
+
+    .creative-symbol {
+      position: relative;
+      z-index: 1;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 120px;
+      font-weight: 700;
+      color: var(--orange);
+      line-height: 1;
+    }
+
+    .intro-caption {
+      position: absolute;
+      bottom: 22px;
+      color: #777166;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 700;
+    }
+
+    /* Apps */
+
+    .apps-section {
+      background: #242320;
+      color: white;
+    }
+
+    .apps-section .section-heading p {
+      color: #b2afa6;
+    }
+
+    .apps-section .section-tag {
+      color: #ff8c69;
+    }
+
+    .app-grid {
       display: grid;
-      place-items: center;
-      font-size: 54px;
-      padding-left: 7px;
-      box-shadow: 0 15px 50px rgba(0,168,225,.25);
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
     }
 
-    .about-visual strong {
-      font-family: 'Outfit', sans-serif;
-      font-size: 23px;
-    }
-
-    .about-visual span {
-      font-size: 11px;
-      color: #8ca3bd;
-      letter-spacing: 1px;
-    }
-
-    /* Features */
-
-    .features-section {
-      background: #0e1625;
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .feature-card {
-      background: linear-gradient(145deg, #17243a, #111b2b);
+    .app-card {
+      padding: 24px 20px;
+      background: #302f2b;
       border: 1px solid rgba(255,255,255,.08);
-      padding: 27px;
-      border-radius: 15px;
+      border-radius: 10px;
       transition: .25s ease;
     }
 
-    .feature-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(0,168,225,.5);
-      box-shadow: 0 15px 35px rgba(0,0,0,.2);
+    .app-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(255,125,82,.6);
+      background: #383630;
     }
 
-    .feature-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
+    .app-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 9px;
       display: grid;
       place-items: center;
-      background: rgba(0,168,225,.13);
-      color: var(--blue2);
-      font-size: 22px;
-      margin-bottom: 19px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 21px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: white;
     }
 
-    .feature-card h3 {
-      font-family: 'Outfit', sans-serif;
+    .photoshop { background: #174a83; }
+    .illustrator { background: #8a4c13; }
+    .premiere { background: #56346f; }
+    .aftereffects { background: #352f77; }
+    .lightroom { background: #1d5a8c; }
+    .indesign { background: #8a2b48; }
+    .acrobat { background: #d63c30; }
+    .firefly { background: #6c4b25; }
+
+    .app-card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px;
+      margin-bottom: 7px;
+    }
+
+    .app-card p {
+      color: #b4b0a8;
+      font-size: 11px;
+      line-height: 1.8;
+    }
+
+    .app-card small {
+      display: block;
+      color: #ff9b7d;
+      font-size: 9px;
+      text-transform: uppercase;
+      font-weight: 800;
+      letter-spacing: 1px;
+      margin-top: 13px;
+    }
+
+    /* Creative workflows */
+
+    .workflow-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 19px;
+    }
+
+    .workflow-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      padding: 27px;
+      border-radius: 12px;
+      transition: .25s ease;
+    }
+
+    .workflow-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+
+    .workflow-number {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 32px;
+      color: var(--orange);
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .workflow-card h3 {
+      font-family: 'Space Grotesk', sans-serif;
       font-size: 17px;
       margin-bottom: 9px;
     }
 
-    .feature-card p {
+    .workflow-card p {
       color: var(--muted);
       font-size: 12px;
-      line-height: 1.85;
     }
 
-    /* Content categories */
+    /* AI */
 
-    .catalog-section {
-      background: #090d17;
+    .ai-section {
+      background: #f0e9dc;
     }
 
-    .catalog-grid {
+    .ai-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 17px;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
     }
 
-    .catalog-card {
-      min-height: 220px;
+    .ai-copy h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 39px;
+      line-height: 1.15;
+      letter-spacing: -1.5px;
+      margin-bottom: 17px;
+    }
+
+    .ai-copy p {
+      color: #6d6960;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    .ai-list {
+      margin-top: 20px;
+    }
+
+    .ai-list div {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 13px;
+      align-items: center;
+      color: #3c3932;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .ai-list span {
+      background: var(--orange);
+      color: white;
+      width: 23px;
+      height: 23px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      font-size: 11px;
+    }
+
+    .ai-visual {
+      background: #22211f;
+      min-height: 350px;
+      border-radius: 15px;
+      padding: 25px;
       position: relative;
       overflow: hidden;
-      border-radius: 13px;
-      padding: 22px;
       display: flex;
-      align-items: flex-end;
-      border: 1px solid rgba(255,255,255,.1);
-      background: linear-gradient(145deg, #244c70, #14243b);
+      flex-direction: column;
+      justify-content: space-between;
     }
 
-    .catalog-card:nth-child(2) {
-      background: linear-gradient(145deg, #673e4d, #252039);
+    .ai-visual-top {
+      color: #c4c0b7;
+      font-size: 11px;
+      display: flex;
+      justify-content: space-between;
     }
 
-    .catalog-card:nth-child(3) {
-      background: linear-gradient(145deg, #35675b, #172d38);
-    }
-
-    .catalog-card:nth-child(4) {
-      background: linear-gradient(145deg, #795c36, #2c2730);
-    }
-
-    .catalog-card:before {
-      content: "";
+    .ai-visual-art {
       position: absolute;
-      width: 160px;
-      height: 160px;
-      border: 1px solid rgba(255,255,255,.16);
+      width: 235px;
+      height: 235px;
       border-radius: 50%;
-      right: -45px;
-      top: -50px;
-      box-shadow: 0 0 0 22px rgba(255,255,255,.03);
+      background:
+        radial-gradient(circle at 35% 35%, #ffdc8a, transparent 22%),
+        radial-gradient(circle at 65% 60%, #f45a3d, transparent 42%),
+        linear-gradient(135deg, #f2b95e, #b43c32);
+      filter: saturate(1.1);
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 75px rgba(236,91,51,.22);
     }
 
-    .catalog-card:after {
+    .ai-visual-art:after {
       content: "";
       position: absolute;
-      width: 80px;
-      height: 120px;
-      right: 40px;
-      top: 35px;
-      background: rgba(255,255,255,.07);
-      transform: rotate(28deg);
+      inset: 30px;
+      border: 1px solid rgba(255,255,255,.35);
       border-radius: 50%;
     }
 
-    .catalog-content {
+    .ai-visual-bottom {
       position: relative;
       z-index: 2;
+      color: white;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px;
     }
 
-    .catalog-content span {
-      font-size: 9px;
-      color: #c7eaff;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      font-weight: 800;
-    }
-
-    .catalog-content h3 {
-      font-family: 'Outfit', sans-serif;
-      font-size: 20px;
+    .ai-visual-bottom span {
+      display: block;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10px;
+      color: #bdb8af;
       margin-top: 4px;
     }
 
     /* Benefits */
 
-    .benefits-section {
-      background: #111b2b;
-    }
-
     .benefits-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 65px;
+      gap: 60px;
       align-items: center;
     }
 
     .benefits-copy h2 {
-      font-family: 'Outfit', sans-serif;
+      font-family: 'Space Grotesk', sans-serif;
       font-size: 37px;
       line-height: 1.2;
       margin-bottom: 17px;
@@ -648,25 +737,25 @@
     .benefits-copy > p {
       color: var(--muted);
       font-size: 14px;
-      margin-bottom: 25px;
+      margin-bottom: 24px;
     }
 
     .benefit-row {
       display: flex;
-      gap: 14px;
-      margin-bottom: 20px;
+      gap: 13px;
+      margin-bottom: 19px;
     }
 
     .benefit-check {
+      width: 25px;
+      height: 25px;
       flex-shrink: 0;
-      width: 27px;
-      height: 27px;
-      border-radius: 50%;
-      background: rgba(0,168,225,.15);
-      color: var(--blue2);
       display: grid;
       place-items: center;
-      font-size: 13px;
+      border-radius: 50%;
+      background: #fae3d9;
+      color: var(--orange);
+      font-size: 12px;
       font-weight: 800;
     }
 
@@ -676,150 +765,140 @@
       margin-bottom: 3px;
     }
 
-    .benefit-row p {
+    .benefit-row span {
+      display: block;
       color: var(--muted);
       font-size: 12px;
     }
 
     .benefit-panel {
-      padding: 35px;
-      border-radius: 18px;
-      background: linear-gradient(145deg, #0c3454, #10233b);
-      border: 1px solid rgba(0,168,225,.23);
+      padding: 37px;
+      border-radius: 14px;
+      background: var(--ink);
+      color: white;
       position: relative;
       overflow: hidden;
     }
 
-    .benefit-panel .panel-icon {
-      font-size: 38px;
-      margin-bottom: 15px;
+    .benefit-panel:after {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.15);
+      right: -80px;
+      top: -75px;
+      box-shadow: 0 0 0 25px rgba(255,255,255,.03);
+    }
+
+    .panel-label {
+      color: #ff9a7b;
+      text-transform: uppercase;
+      font-size: 10px;
+      letter-spacing: 2px;
+      font-weight: 800;
     }
 
     .benefit-panel h3 {
-      font-family: 'Outfit', sans-serif;
-      font-size: 27px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 28px;
       line-height: 1.25;
-      margin-bottom: 12px;
+      margin: 15px 0;
+      position: relative;
+      z-index: 1;
     }
 
     .benefit-panel p {
-      color: #b0c6d9;
+      color: #bcb9b0;
       font-size: 13px;
+      position: relative;
+      z-index: 1;
     }
 
     .panel-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 9px;
-      margin-top: 24px;
+      margin-top: 25px;
+      position: relative;
+      z-index: 1;
     }
 
     .panel-tags span {
+      background: rgba(255,255,255,.1);
       padding: 7px 11px;
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.1);
-      border-radius: 6px;
+      border-radius: 4px;
       font-size: 10px;
-      color: #d7efff;
+      color: #e7e2d8;
     }
 
-    /* Devices */
+    /* Plans */
 
-    .devices-grid {
+    .plans-section {
+      background: #f0ece3;
+    }
+
+    .plans-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 15px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 17px;
     }
 
-    .device-card {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: 13px;
-      padding: 25px 16px;
-      text-align: center;
+    .plan-card {
+      background: var(--white);
+      padding: 27px;
+      border: 1px solid #e4dfd4;
+      border-radius: 11px;
     }
 
-    .device-card .device-icon {
-      font-size: 31px;
-      margin-bottom: 12px;
+    .plan-card.featured {
+      border: 2px solid var(--orange);
+      box-shadow: 0 13px 30px rgba(237,75,40,.08);
     }
 
-    .device-card h3 {
-      font-size: 14px;
-      margin-bottom: 5px;
-    }
-
-    .device-card p {
-      color: var(--muted);
-      font-size: 11px;
-    }
-
-    /* Subscription */
-
-    .subscription-section {
-      background: #0e1625;
-      border-top: 1px solid var(--line);
-    }
-
-    .subscription-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-
-    .subscription-card {
-      padding: 29px;
-      background: #162238;
-      border: 1px solid var(--line);
-      border-radius: 15px;
-    }
-
-    .subscription-card.highlight {
-      border-color: rgba(0,168,225,.5);
-      background: linear-gradient(145deg, #12324d, #152238);
-    }
-
-    .subscription-card .plan-label {
-      color: var(--blue2);
+    .plan-label {
+      color: var(--orange);
       text-transform: uppercase;
       font-size: 10px;
       letter-spacing: 1.5px;
       font-weight: 800;
     }
 
-    .subscription-card h3 {
-      font-family: 'Outfit', sans-serif;
-      font-size: 23px;
-      margin: 8px 0 12px;
+    .plan-card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 22px;
+      margin: 9px 0 12px;
     }
 
-    .subscription-card p {
+    .plan-card p {
       color: var(--muted);
-      font-size: 13px;
-    }
-
-    .subscription-card ul {
-      list-style: none;
-      margin-top: 19px;
-    }
-
-    .subscription-card li {
-      color: #d4dfeb;
       font-size: 12px;
-      margin-bottom: 9px;
+      min-height: 62px;
     }
 
-    .subscription-card li:before {
-      content: "✓";
-      color: var(--blue2);
-      margin-right: 9px;
-      font-weight: 800;
-    }
-
-    .subscription-note {
-      color: #8598ae;
-      font-size: 11px;
+    .plan-card ul {
+      list-style: none;
       margin-top: 18px;
+    }
+
+    .plan-card li {
+      font-size: 12px;
+      margin-bottom: 10px;
+      color: #55534d;
+    }
+
+    .plan-card li:before {
+      content: "✓";
+      color: var(--orange);
+      font-weight: 800;
+      margin-right: 9px;
+    }
+
+    .plan-note {
+      color: #817d73;
+      font-size: 11px;
+      margin-top: 20px;
     }
 
     /* Getting started */
@@ -827,27 +906,27 @@
     .steps {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
+      gap: 19px;
     }
 
     .step-card {
-      background: #121d2e;
+      padding: 25px;
+      background: var(--white);
       border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 27px;
+      border-radius: 10px;
     }
 
     .step-number {
-      font-family: 'Outfit', sans-serif;
-      color: var(--blue2);
-      font-size: 34px;
-      font-weight: 800;
-      margin-bottom: 12px;
+      font-family: 'Space Grotesk', sans-serif;
+      color: var(--orange);
+      font-size: 33px;
+      font-weight: 700;
+      margin-bottom: 11px;
     }
 
     .step-card h3 {
       font-size: 16px;
-      margin-bottom: 9px;
+      margin-bottom: 8px;
     }
 
     .step-card p {
@@ -863,15 +942,14 @@
     }
 
     .faq-item {
-      padding: 22px 0;
+      padding: 21px 0;
       border-bottom: 1px solid var(--line);
     }
 
     .faq-item h3 {
-      font-family: 'Outfit', sans-serif;
+      font-family: 'Space Grotesk', sans-serif;
       font-size: 16px;
       margin-bottom: 8px;
-      color: #e9f6ff;
     }
 
     .faq-item p {
@@ -882,56 +960,57 @@
     /* CTA */
 
     .cta-section {
-      padding: 10px 0 90px;
+      padding: 0 0 85px;
     }
 
     .cta-box {
       background:
-        radial-gradient(circle at 80% 10%, rgba(255,255,255,.17), transparent 30%),
-        linear-gradient(115deg, #006da9, #008fc7 55%, #0864a6);
-      border-radius: 19px;
+        radial-gradient(circle at 85% 15%, rgba(255,255,255,.16), transparent 25%),
+        linear-gradient(120deg, #dc3f20, #f26a3f);
+      border-radius: 14px;
       padding: 60px 30px;
+      color: white;
       text-align: center;
       position: relative;
       overflow: hidden;
     }
 
     .cta-box h2 {
-      font-family: 'Outfit', sans-serif;
+      font-family: 'Space Grotesk', sans-serif;
       font-size: clamp(30px, 4vw, 43px);
       line-height: 1.2;
-      margin-bottom: 14px;
+      margin-bottom: 13px;
       position: relative;
       z-index: 1;
     }
 
     .cta-box p {
-      color: #d6f2ff;
-      font-size: 14px;
+      color: #ffe6db;
       max-width: 590px;
       margin: 0 auto 25px;
+      font-size: 14px;
       position: relative;
       z-index: 1;
     }
 
     .cta-box .btn {
       background: white;
-      color: #07669b;
       border-color: white;
+      color: var(--orange-dark);
       position: relative;
       z-index: 1;
     }
 
     .cta-box .btn:hover {
-      background: #e5f7ff;
+      background: #fff1e9;
     }
 
     /* Footer */
 
     footer {
-      background: #070b13;
-      border-top: 1px solid var(--line);
-      padding: 48px 0 22px;
+      background: #22211e;
+      color: white;
+      padding: 47px 0 22px;
     }
 
     .footer-grid {
@@ -942,68 +1021,68 @@
     }
 
     .footer-brand p {
-      color: #8798ad;
+      color: #aaa69d;
       font-size: 12px;
-      max-width: 330px;
+      max-width: 320px;
       margin-top: 13px;
     }
 
     footer h4 {
       font-size: 13px;
-      margin-bottom: 15px;
+      margin-bottom: 14px;
     }
 
     .footer-links a {
       display: block;
-      color: #9eafc3;
+      color: #b9b5ac;
       font-size: 12px;
       margin-bottom: 9px;
     }
 
     .footer-links a:hover {
-      color: var(--blue2);
+      color: #ff8b69;
     }
 
     .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.12);
+      padding-top: 19px;
       display: flex;
       justify-content: space-between;
       gap: 20px;
       flex-wrap: wrap;
-      border-top: 1px solid var(--line);
-      padding-top: 19px;
-      color: #73869c;
+      color: #99958b;
       font-size: 10px;
     }
 
     .disclaimer {
-      max-width: 850px;
-      color: #70839a;
+      color: #99958b;
       font-size: 10px;
-      margin-top: 17px;
+      max-width: 850px;
+      margin-top: 16px;
     }
 
     /* Responsive */
 
     @media(max-width: 900px) {
       .hero-grid,
-      .about-grid,
+      .intro-grid,
+      .ai-grid,
       .benefits-grid {
         grid-template-columns: 1fr;
       }
 
-      .stream-stage {
-        max-width: 600px;
+      .creative-stage {
+        max-width: 620px;
         width: 100%;
         margin: auto;
       }
 
-      .feature-grid {
+      .app-grid {
         grid-template-columns: repeat(2, 1fr);
       }
 
-      .catalog-grid,
-      .devices-grid {
-        grid-template-columns: repeat(2, 1fr);
+      .plans-grid {
+        grid-template-columns: 1fr 1fr;
       }
     }
 
@@ -1021,12 +1100,12 @@
         font-size: 11px;
       }
 
-      .hero-grid {
-        padding: 65px 0;
+      .hero {
+        padding: 60px 0 75px;
       }
 
       .hero h1 {
-        letter-spacing: -1.5px;
+        letter-spacing: -1.7px;
       }
 
       .hero-copy {
@@ -1037,33 +1116,41 @@
         padding: 65px 0;
       }
 
-      .feature-grid,
-      .catalog-grid,
-      .devices-grid,
-      .subscription-grid,
+      .app-grid,
+      .workflow-grid,
+      .plans-grid,
       .steps {
         grid-template-columns: 1fr;
       }
 
-      .screen {
-        min-height: 340px;
-      }
-
-      .poster-art {
-        inset: 22px 20px 90px;
-      }
-
-      .poster-label strong {
-        font-size: 23px;
-      }
-
-      .floating-label {
-        display: none;
-      }
-
-      .about-copy h2,
+      .intro-copy h2,
+      .ai-copy h2,
       .benefits-copy h2 {
         font-size: 30px;
+      }
+
+      .workspace {
+        padding: 10px;
+      }
+
+      .canvas {
+        min-height: 250px;
+      }
+
+      .art-shape-one {
+        width: 145px;
+        height: 205px;
+      }
+
+      .art-shape-two {
+        width: 140px;
+        height: 140px;
+      }
+
+      .floating-app {
+        width: 43px;
+        height: 43px;
+        font-size: 16px;
       }
 
       .footer-grid {
@@ -1106,15 +1193,15 @@
     <div class="container navbar">
 
       <a href="#" class="brand">
-        <span class="brand-symbol">▶</span>
-        Prime<span>Video</span>
+        <span class="adobe-mark"></span>
+        Creative Cloud
       </a>
 
       <nav class="nav-links">
         <a href="#about">Overview</a>
-        <a href="#features">Features</a>
-        <a href="#categories">Content</a>
-        <a href="#devices">Devices</a>
+        <a href="#apps">Apps</a>
+        <a href="#workflows">Workflows</a>
+        <a href="#plans">Plans</a>
         <a href="#faq">FAQs</a>
       </nav>
 
@@ -1132,445 +1219,514 @@
       <div class="container hero-grid">
 
         <div>
-          <div class="hero-label">
-            <span class="live-dot"></span>
-            Entertainment Without Limits
-          </div>
+          <div class="eyebrow">The Creative Toolkit</div>
 
           <h1>
-            Stories That<br>
-            Move You.<br>
-            <span>Anytime.</span>
+            Make Ideas<br>
+            <span>Unforgettable.</span>
           </h1>
 
           <p class="hero-copy">
-            Explore Amazon Prime Video, a digital streaming platform featuring
-            movies, television series, documentaries, live content and
-            Amazon Original productions. Discover entertainment for different
-            moods, interests and viewing experiences.
+            Discover Adobe Creative Cloud, a collection of professional
+            creative applications and online services for photography,
+            graphic design, video editing, illustration, publishing and
+            digital content creation.
           </p>
 
           <div class="hero-actions">
-            <a href="https://gitapp.download/" class="btn" target="_blank" rel="noopener">
+            <a href="https://gitapp.download/" class="btn"
+               target="_blank" rel="noopener">
               Visit GitApp Website →
             </a>
 
-            <a href="#about" class="btn btn-outline">
-              Explore the Guide
+            <a href="#apps" class="btn btn-light">
+              Explore Creative Apps
             </a>
           </div>
 
           <p class="hero-note">
-            Movies · Series · Originals · Documentaries · Live Content
+            Design · Photography · Video · Illustration · Creative AI
           </p>
         </div>
 
-        <!-- Decorative streaming screen -->
-        <div class="stream-stage">
+        <!-- Decorative creative dashboard -->
+        <div class="creative-stage">
 
-          <div class="screen">
-            <div class="screen-glow"></div>
+          <div class="workspace">
 
-            <div class="poster-art">
-              <div class="screen-tag">FEATURED ENTERTAINMENT</div>
+            <div class="workspace-top">
+              <div class="workspace-brand">
+                <span>✦</span> Creative Workspace
+              </div>
 
-              <div class="poster-label">
-                <small>Explore something new</small>
-                <strong>Your Next<br>Favorite Story</strong>
-                <span>Movies • Series • Originals</span>
+              <div class="window-dots">
+                <i></i><i></i><i></i>
               </div>
             </div>
 
-            <div class="screen-controls">
-              <div style="display:flex;align-items:center;gap:12px;">
-                <div class="play-circle">▶</div>
-                <span>Discover your next watch</span>
+            <div class="workspace-body">
+
+              <div class="tool-rail">
+                <span>↖</span>
+                <span>✎</span>
+                <span>◯</span>
+                <span>▧</span>
+                <span>T</span>
+                <span>⌗</span>
               </div>
-              <span>STREAMING EXPERIENCE</span>
+
+              <div class="canvas">
+                <div class="art-shape-one"></div>
+                <div class="art-shape-two"></div>
+                <div class="art-shape-three"></div>
+
+                <div class="art-text">
+                  THINK<br>
+                  BEYOND<br>
+                  LIMITS.
+                </div>
+              </div>
+
             </div>
+
+            <div class="workspace-bottom">
+              <span>Creative project • Concept artwork</span>
+              <span>100%</span>
+            </div>
+
           </div>
 
-          <div class="floating-label left">✦ Entertainment for every mood</div>
-          <div class="floating-label right">● Prime Video</div>
+          <div class="floating-app app-ps">Ps</div>
+          <div class="floating-app app-ai">Ai</div>
+          <div class="floating-app app-pr">Pr</div>
 
         </div>
 
       </div>
     </section>
 
-    <!-- About -->
+    <!-- Introduction -->
     <section id="about">
-      <div class="container about-grid">
+      <div class="container intro-grid">
 
-        <div class="about-copy">
-          <div class="section-kicker">About Prime Video</div>
+        <div class="intro-copy">
+          <div class="section-tag">About Adobe Creative Cloud</div>
 
-          <h2>A world of entertainment in one streaming destination</h2>
+          <h2>A complete creative environment for modern creators</h2>
 
           <p>
-            <strong>Amazon Prime Video</strong> is a video-on-demand and
-            digital streaming service operated by Amazon. It gives viewers
-            access to a wide selection of movies, television shows,
-            documentaries and exclusive Amazon Original productions.
+            <strong>Adobe Creative Cloud</strong> is a subscription-based
+            collection of creative applications, services and resources
+            developed by Adobe. It brings together software for designing
+            graphics, editing photographs, producing videos, creating
+            illustrations and preparing professional documents.
           </p>
 
           <p>
-            Depending on the country and subscription, users can watch
-            selected titles included with their membership. Other content
-            may be available to rent or purchase, while additional streaming
-            services can be accessed through optional channel subscriptions.
+            Its well-known applications include Photoshop, Illustrator,
+            Premiere, After Effects, Lightroom and InDesign. Each app
+            supports a different part of the creative process, allowing
+            professionals and beginners to choose tools suited to their work.
           </p>
 
           <p>
-            Prime Video is designed to make entertainment accessible through
-            supported smart TVs, computers, smartphones, tablets and streaming
-            media devices. Its available catalog and features can differ
-            depending on the viewer's location.
+            Creative Cloud also connects users with services such as Adobe
+            Fonts, Creative Cloud Libraries, Behance and Adobe Firefly.
+            Depending on the plan, users may also receive cloud storage,
+            tutorials, templates and generative AI features.
           </p>
 
-          <a href="https://www.primevideo.com/" class="btn"
-             target="_blank" rel="noopener">
-            Visit Official Prime Video →
+          <a href="https://www.adobe.com/creativecloud.html"
+             class="btn" target="_blank" rel="noopener">
+            Visit Adobe Official Website →
           </a>
         </div>
 
-        <div class="about-visual">
-          <div class="play-logo">▶</div>
-          <strong>Prime Video</strong>
-          <span>YOUR ENTERTAINMENT DESTINATION</span>
+        <div class="intro-art">
+          <div class="creative-symbol">✳</div>
+          <div class="intro-caption">One creative world. Many possibilities.</div>
         </div>
 
       </div>
     </section>
 
-    <!-- Features -->
-    <section class="features-section" id="features">
+    <!-- Apps -->
+    <section class="apps-section" id="apps">
       <div class="container">
 
         <div class="section-heading">
-          <div class="section-kicker">Streaming Features</div>
-          <h2>Discover what makes Prime Video special</h2>
+          <div class="section-tag">Creative Applications</div>
+          <h2>Explore the tools behind great creative work</h2>
           <p>
-            From personalized discovery to flexible viewing options,
-            Prime Video brings several entertainment features together.
+            Adobe offers specialized applications for different creative
+            disciplines. Here are some of its popular tools.
           </p>
         </div>
 
-        <div class="feature-grid">
+        <div class="app-grid">
 
-          <div class="feature-card">
-            <div class="feature-icon">🎬</div>
-            <h3>Movies & TV Shows</h3>
+          <div class="app-card">
+            <div class="app-icon photoshop">Ps</div>
+            <h3>Adobe Photoshop</h3>
             <p>
-              Explore movies, television series, dramas, comedies,
-              action titles and other entertainment categories.
+              Edit photographs, create digital artwork, design graphics
+              and work with layers, masks and image effects.
             </p>
+            <small>Photo Editing</small>
           </div>
 
-          <div class="feature-card">
-            <div class="feature-icon">⭐</div>
-            <h3>Amazon Originals</h3>
+          <div class="app-card">
+            <div class="app-icon illustrator">Ai</div>
+            <h3>Adobe Illustrator</h3>
             <p>
-              Discover exclusive productions created or distributed
-              by Amazon, including original movies and series.
+              Create vector illustrations, logos, icons, typography
+              and scalable graphics for print and digital projects.
             </p>
+            <small>Vector Design</small>
           </div>
 
-          <div class="feature-card">
-            <div class="feature-icon">📥</div>
-            <h3>Offline Downloads</h3>
+          <div class="app-card">
+            <div class="app-icon premiere">Pr</div>
+            <h3>Adobe Premiere</h3>
             <p>
-              Download eligible titles on supported mobile devices
-              to watch when an internet connection is unavailable.
+              Edit videos, arrange clips, work with audio and produce
+              content for social media, presentations and films.
             </p>
+            <small>Video Editing</small>
           </div>
 
-          <div class="feature-card">
-            <div class="feature-icon">👥</div>
-            <h3>Personal Profiles</h3>
+          <div class="app-card">
+            <div class="app-icon aftereffects">Ae</div>
+            <h3>Adobe After Effects</h3>
             <p>
-              Create separate viewing profiles where supported to
-              help organize recommendations and individual preferences.
+              Create motion graphics, animations, visual effects
+              and cinematic compositions for video projects.
             </p>
+            <small>Motion Graphics</small>
           </div>
 
-          <div class="feature-card">
-            <div class="feature-icon">🔎</div>
-            <h3>Smart Discovery</h3>
+          <div class="app-card">
+            <div class="app-icon lightroom">Lr</div>
+            <h3>Adobe Lightroom</h3>
             <p>
-              Browse categories, explore recommendations and find
-              entertainment based on your interests and viewing activity.
+              Organize photographs and refine colors, exposure,
+              contrast and other image settings.
             </p>
+            <small>Photography</small>
           </div>
 
-          <div class="feature-card">
-            <div class="feature-icon">🌐</div>
-            <h3>Multiple Languages</h3>
+          <div class="app-card">
+            <div class="app-icon indesign">Id</div>
+            <h3>Adobe InDesign</h3>
             <p>
-              Selected titles provide subtitles, dubbing and alternative
-              audio tracks, depending on the content and region.
+              Design brochures, magazines, books, catalogs,
+              digital publications and professional layouts.
             </p>
+            <small>Page Layout</small>
           </div>
 
-          <div class="feature-card">
-            <div class="feature-icon">📺</div>
-            <h3>Live Content</h3>
+          <div class="app-card">
+            <div class="app-icon acrobat">Ac</div>
+            <h3>Adobe Acrobat Pro</h3>
             <p>
-              Watch selected live sports, events and other live programming
-              where these services are available.
+              Create, edit, organize, sign and manage PDF documents
+              using professional document tools.
             </p>
+            <small>PDF Management</small>
           </div>
 
-          <div class="feature-card">
-            <div class="feature-icon">🛍️</div>
-            <h3>Rent & Buy</h3>
+          <div class="app-card">
+            <div class="app-icon firefly">Ff</div>
+            <h3>Adobe Firefly</h3>
             <p>
-              Access additional movies and shows through individual rental
-              or purchase options where supported.
+              Explore generative AI tools for creating and transforming
+              images, video, audio and other creative content.
             </p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-icon">🔗</div>
-            <h3>Prime Video Channels</h3>
-            <p>
-              Add selected third-party streaming subscriptions through
-              Prime Video in supported markets for additional content.
-            </p>
+            <small>Creative AI</small>
           </div>
 
         </div>
+
       </div>
     </section>
 
-    <!-- Content categories -->
-    <section class="catalog-section" id="categories">
+    <!-- Workflows -->
+    <section id="workflows">
       <div class="container">
 
         <div class="section-heading">
-          <div class="section-kicker">Entertainment Categories</div>
-          <h2>Something for every kind of viewer</h2>
+          <div class="section-tag">Creative Workflows</div>
+          <h2>One ecosystem for different creative projects</h2>
           <p>
-            Browse different types of entertainment and discover
-            content that matches your interests.
+            Creative Cloud applications can complement one another
+            throughout the stages of a creative project.
           </p>
         </div>
 
-        <div class="catalog-grid">
+        <div class="workflow-grid">
 
-          <div class="catalog-card">
-            <div class="catalog-content">
-              <span>Category 01</span>
-              <h3>Movies</h3>
-            </div>
+          <div class="workflow-card">
+            <div class="workflow-number">01</div>
+            <h3>Graphic Design & Branding</h3>
+            <p>
+              Create brand identities, marketing graphics, logos and
+              illustrations using tools such as Photoshop and Illustrator.
+              Prepare polished layouts with InDesign.
+            </p>
           </div>
 
-          <div class="catalog-card">
-            <div class="catalog-content">
-              <span>Category 02</span>
-              <h3>TV Series</h3>
-            </div>
+          <div class="workflow-card">
+            <div class="workflow-number">02</div>
+            <h3>Photography & Image Editing</h3>
+            <p>
+              Organize photographs in Lightroom and use Photoshop for
+              detailed retouching, compositing, creative effects and
+              advanced image adjustments.
+            </p>
           </div>
 
-          <div class="catalog-card">
-            <div class="catalog-content">
-              <span>Category 03</span>
-              <h3>Documentaries</h3>
-            </div>
+          <div class="workflow-card">
+            <div class="workflow-number">03</div>
+            <h3>Video & Motion Production</h3>
+            <p>
+              Edit footage in Premiere, create motion graphics with
+              After Effects and refine audio using Adobe Audition.
+            </p>
           </div>
 
-          <div class="catalog-card">
-            <div class="catalog-content">
-              <span>Category 04</span>
-              <h3>Live Sports</h3>
-            </div>
+          <div class="workflow-card">
+            <div class="workflow-number">04</div>
+            <h3>Digital Publishing</h3>
+            <p>
+              Design magazines, reports, brochures and other publications
+              with InDesign, then prepare documents for distribution.
+            </p>
           </div>
 
+          <div class="workflow-card">
+            <div class="workflow-number">05</div>
+            <h3>Social Media Content</h3>
+            <p>
+              Build promotional graphics, short videos, presentations
+              and branded content using Adobe Express and other
+              compatible creative applications.
+            </p>
+          </div>
+
+          <div class="workflow-card">
+            <div class="workflow-number">06</div>
+            <h3>Creative Collaboration</h3>
+            <p>
+              Organize shared assets with Creative Cloud Libraries
+              and showcase projects through creative communities
+              and portfolio services.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Creative AI -->
+    <section class="ai-section">
+      <div class="container ai-grid">
+
+        <div class="ai-copy">
+          <div class="section-tag">Creative AI & Innovation</div>
+
+          <h2>Bring new ideas to life with Adobe Firefly</h2>
+
+          <p>
+            Adobe Firefly brings generative AI capabilities into Adobe's
+            creative ecosystem. Depending on the tool and plan, users can
+            create or transform visual content using text prompts and
+            AI-powered editing features.
+          </p>
+
+          <p>
+            These capabilities can help creators explore visual concepts,
+            experiment with different styles and speed up selected parts
+            of their creative workflows.
+          </p>
+
+          <div class="ai-list">
+            <div><span>✓</span> Generate and explore creative images</div>
+            <div><span>✓</span> Experiment with visual styles and concepts</div>
+            <div><span>✓</span> Use AI-assisted image editing features</div>
+            <div><span>✓</span> Explore video and audio AI capabilities</div>
+          </div>
+
+          <a href="https://www.adobe.com/products/firefly.html"
+             class="btn btn-dark" target="_blank" rel="noopener"
+             style="margin-top:18px;">
+            Discover Adobe Firefly →
+          </a>
+        </div>
+
+        <div class="ai-visual">
+          <div class="ai-visual-top">
+            <span>ADOBE FIREFLY</span>
+            <span>CREATIVE EXPLORATION</span>
+          </div>
+
+          <div class="ai-visual-art"></div>
+
+          <div class="ai-visual-bottom">
+            Imagine. Create. Transform.
+            <span>A decorative illustration of generative creativity</span>
+          </div>
         </div>
 
       </div>
     </section>
 
     <!-- Benefits -->
-    <section class="benefits-section">
+    <section>
       <div class="container benefits-grid">
 
         <div class="benefits-copy">
-          <div class="section-kicker">Why Viewers Choose It</div>
+          <div class="section-tag">Why Choose Creative Cloud?</div>
 
-          <h2>Entertainment that fits your lifestyle</h2>
+          <h2>Creative tools that support your ideas</h2>
 
           <p>
-            Prime Video combines on-demand entertainment with different
-            ways to discover and watch content. Its benefits depend on
-            your subscription, region and supported device.
+            Adobe Creative Cloud offers a connected collection of
+            applications and services for people who create visual,
+            digital and multimedia content.
           </p>
 
           <div class="benefit-row">
             <div class="benefit-check">✓</div>
             <div>
-              <strong>Flexible viewing</strong>
-              <p>Watch supported titles on compatible devices at a convenient time.</p>
+              <strong>A broad selection of applications</strong>
+              <span>Choose specialized tools for photography, video, design and publishing.</span>
             </div>
           </div>
 
           <div class="benefit-row">
             <div class="benefit-check">✓</div>
             <div>
-              <strong>Original productions</strong>
-              <p>Explore films and series made for the Prime Video audience.</p>
+              <strong>Connected creative services</strong>
+              <span>Use supported libraries, fonts and cloud features across your workflow.</span>
             </div>
           </div>
 
           <div class="benefit-row">
             <div class="benefit-check">✓</div>
             <div>
-              <strong>Convenient discovery</strong>
-              <p>Browse recommendations, genres and collections in one app.</p>
+              <strong>Professional creative capabilities</strong>
+              <span>Work with advanced editing, design, illustration and production tools.</span>
             </div>
           </div>
 
           <div class="benefit-row">
             <div class="benefit-check">✓</div>
             <div>
-              <strong>More ways to watch</strong>
-              <p>Choose included titles, rentals, purchases and optional channels.</p>
+              <strong>Learning and inspiration</strong>
+              <span>Explore tutorials, creative resources and community projects.</span>
             </div>
           </div>
 
         </div>
 
         <div class="benefit-panel">
-          <div class="panel-icon">✦</div>
-          <h3>Your next favorite movie is waiting to be discovered.</h3>
+          <div class="panel-label">Made for creative thinking</div>
+          <h3>From the first sketch to the final professional project.</h3>
           <p>
-            Find new stories, revisit popular favorites and explore
-            entertainment across multiple genres.
+            Explore a connected ecosystem that supports many stages
+            of modern creative production.
           </p>
 
           <div class="panel-tags">
-            <span>Movies</span>
-            <span>Originals</span>
-            <span>Series</span>
-            <span>Sports</span>
-            <span>Documentaries</span>
+            <span>Design</span>
+            <span>Photography</span>
+            <span>Video</span>
+            <span>Illustration</span>
+            <span>Publishing</span>
+            <span>AI Tools</span>
           </div>
         </div>
 
       </div>
     </section>
 
-    <!-- Devices -->
-    <section id="devices">
+    <!-- Plans -->
+    <section class="plans-section" id="plans">
       <div class="container">
 
         <div class="section-heading">
-          <div class="section-kicker">Supported Devices</div>
-          <h2>Watch on devices you already use</h2>
+          <div class="section-tag">Plans & Subscriptions</div>
+          <h2>Choose a Creative Cloud plan for your work</h2>
           <p>
-            Prime Video supports a range of devices. Compatibility and
-            available playback features depend on the device model,
-            software and location.
+            Adobe offers different subscription options depending on
+            the applications, features and services you need.
           </p>
         </div>
 
-        <div class="devices-grid">
+        <div class="plans-grid">
 
-          <div class="device-card">
-            <div class="device-icon">📱</div>
-            <h3>Smartphones</h3>
-            <p>Supported Android and iOS devices.</p>
-          </div>
-
-          <div class="device-card">
-            <div class="device-icon">💻</div>
-            <h3>Computers</h3>
-            <p>Compatible browsers and desktop applications.</p>
-          </div>
-
-          <div class="device-card">
-            <div class="device-icon">📺</div>
-            <h3>Smart TVs</h3>
-            <p>Selected television models with the Prime Video app.</p>
-          </div>
-
-          <div class="device-card">
-            <div class="device-icon">🎮</div>
-            <h3>Streaming Devices</h3>
-            <p>Compatible media players and selected game consoles.</p>
-          </div>
-
-        </div>
-
-        <div style="text-align:center;margin-top:28px;">
-          <a href="https://www.primevideo.com/help/?nodeId=GXMWDGNCPX2JLPFH"
-             class="btn btn-outline" target="_blank" rel="noopener">
-            Check Supported Devices →
-          </a>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Subscription -->
-    <section class="subscription-section">
-      <div class="container">
-
-        <div class="section-heading">
-          <div class="section-kicker">Membership & Pricing</div>
-          <h2>Understand your Prime Video options</h2>
-          <p>
-            Access to content depends on the membership or payment option
-            available in your country.
-          </p>
-        </div>
-
-        <div class="subscription-grid">
-
-          <div class="subscription-card highlight">
-            <div class="plan-label">Membership Access</div>
-            <h3>Included with Prime</h3>
+          <div class="plan-card">
+            <div class="plan-label">Individual Apps</div>
+            <h3>Single-App Plans</h3>
             <p>
-              Eligible Amazon Prime memberships include access to a selection
-              of movies and TV shows marked as included with Prime Video.
+              A suitable option if you primarily need one specific
+              Adobe application for your creative work.
             </p>
 
             <ul>
-              <li>Selected included movies and series</li>
-              <li>Access through supported devices</li>
-              <li>Eligible streaming features</li>
-              <li>Catalog varies by country</li>
+              <li>Access to a selected application</li>
+              <li>Plan-specific cloud features</li>
+              <li>Eligible tutorials and resources</li>
+              <li>Optional add-on services</li>
             </ul>
           </div>
 
-          <div class="subscription-card">
-            <div class="plan-label">Additional Content</div>
-            <h3>Rent, Buy & Add Channels</h3>
+          <div class="plan-card featured">
+            <div class="plan-label">All-in-One Toolkit</div>
+            <h3>Creative Cloud Pro</h3>
             <p>
-              Some movies, shows and premium streaming services require
-              separate payments beyond the standard membership.
+              A broader subscription for creators who need multiple
+              applications and advanced creative capabilities.
             </p>
 
             <ul>
-              <li>Individual movie rentals</li>
-              <li>Selected digital purchases</li>
-              <li>Optional channel subscriptions</li>
-              <li>Additional fees may apply</li>
+              <li>20+ creative applications</li>
+              <li>Photography, design and video tools</li>
+              <li>Adobe Firefly creative AI features</li>
+              <li>Fonts, libraries and cloud storage</li>
+            </ul>
+          </div>
+
+          <div class="plan-card">
+            <div class="plan-label">Organizations</div>
+            <h3>Business & Teams</h3>
+            <p>
+              Subscription options for organizations that need
+              creative software and centralized license management.
+            </p>
+
+            <ul>
+              <li>Creative applications for teams</li>
+              <li>License and user management</li>
+              <li>Business-focused services</li>
+              <li>Plan-dependent support options</li>
             </ul>
           </div>
 
         </div>
 
-        <p class="subscription-note">
-          Prime Video membership options, advertising, prices, free trials
-          and included benefits vary by country and may change. Check the
-          official Prime Video website for the current options in your region.
+        <p class="plan-note">
+          Adobe plan names, app access, storage, generative credits,
+          trial eligibility and pricing can change. Prices also vary
+          by country, currency, billing term and promotional offer.
+          Check Adobe's official website for current regional details.
         </p>
 
         <div style="text-align:center;margin-top:25px;">
-          <a href="https://www.primevideo.com/" class="btn"
-             target="_blank" rel="noopener">
-            Explore Prime Video →
+          <a href="https://www.adobe.com/creativecloud/plans.html"
+             class="btn" target="_blank" rel="noopener">
+            Compare Official Adobe Plans →
           </a>
         </div>
 
@@ -1582,11 +1738,11 @@
       <div class="container">
 
         <div class="section-heading">
-          <div class="section-kicker">Getting Started</div>
-          <h2>How to start watching Prime Video</h2>
+          <div class="section-tag">Getting Started</div>
+          <h2>How to start using Adobe Creative Cloud</h2>
           <p>
-            Follow these basic steps to explore the streaming platform
-            and begin watching available content.
+            Follow these simple steps to explore Adobe's creative
+            applications and set up your workspace.
           </p>
         </div>
 
@@ -1594,31 +1750,38 @@
 
           <div class="step-card">
             <div class="step-number">01</div>
-            <h3>Visit Prime Video</h3>
+            <h3>Create an Adobe Account</h3>
             <p>
-              Open the official Prime Video website or install the app
-              on a compatible device.
+              Visit Adobe's official website and sign in or create
+              an account to explore the available products and plans.
             </p>
           </div>
 
           <div class="step-card">
             <div class="step-number">02</div>
-            <h3>Sign In or Join</h3>
+            <h3>Select Your Apps</h3>
             <p>
-              Sign in with an Amazon account and select an available
-              membership or viewing option for your location.
+              Choose an individual application or a Creative Cloud
+              subscription that matches your creative requirements.
             </p>
           </div>
 
           <div class="step-card">
             <div class="step-number">03</div>
-            <h3>Choose What to Watch</h3>
+            <h3>Install & Start Creating</h3>
             <p>
-              Browse included titles, explore recommendations and check
-              whether a selected title requires an extra payment.
+              Download the Creative Cloud desktop app where required,
+              install your selected software and begin your first project.
             </p>
           </div>
 
+        </div>
+
+        <div style="text-align:center;margin-top:27px;">
+          <a href="https://creativecloud.adobe.com/apps/download/creative-cloud"
+             class="btn btn-dark" target="_blank" rel="noopener">
+            Get Creative Cloud Desktop App →
+          </a>
         </div>
 
       </div>
@@ -1629,103 +1792,105 @@
       <div class="container">
 
         <div class="section-heading">
-          <div class="section-kicker">Frequently Asked Questions</div>
-          <h2>Questions about Amazon Prime Video</h2>
+          <div class="section-tag">Frequently Asked Questions</div>
+          <h2>Common questions about Adobe Creative Cloud</h2>
           <p>
-            Learn more about subscriptions, supported devices,
-            downloads and streaming options.
+            Helpful answers about Adobe applications, subscriptions,
+            installation and creative features.
           </p>
         </div>
 
         <div class="faq-list">
 
           <div class="faq-item">
-            <h3>1. What is Amazon Prime Video?</h3>
+            <h3>1. What is Adobe Creative Cloud?</h3>
             <p>
-              Amazon Prime Video is a streaming service operated by Amazon
-              that offers movies, television shows, documentaries, original
-              productions and other digital video content.
+              Adobe Creative Cloud is a collection of creative applications,
+              online services and resources used for photography, graphic
+              design, video editing, illustration, publishing and other
+              creative tasks.
             </p>
           </div>
 
           <div class="faq-item">
-            <h3>2. Is Prime Video included with Amazon Prime?</h3>
+            <h3>2. Which applications are included?</h3>
             <p>
-              In eligible countries, an Amazon Prime membership includes
-              access to selected Prime Video titles. Membership benefits
-              and availability differ by region.
+              Depending on the subscription, Adobe offers applications
+              such as Photoshop, Illustrator, Premiere, After Effects,
+              Lightroom, InDesign, Acrobat Pro and Adobe Firefly.
             </p>
           </div>
 
           <div class="faq-item">
-            <h3>3. Can I watch Prime Video on my smartphone?</h3>
+            <h3>3. Is Adobe Creative Cloud free?</h3>
             <p>
-              Yes. The Prime Video app is available for supported Android
-              and iOS devices. Device compatibility and playback quality
-              may vary.
+              Adobe offers some free tools and limited services, but
+              many professional Creative Cloud applications require
+              a paid subscription. Trial availability varies by product
+              and eligibility.
             </p>
           </div>
 
           <div class="faq-item">
-            <h3>4. Can I download movies from Prime Video?</h3>
+            <h3>4. Can I use Photoshop and Illustrator together?</h3>
             <p>
-              Many eligible titles can be downloaded through supported
-              mobile applications. Download availability, viewing periods
-              and restrictions depend on the title and subscription.
+              Yes. Both applications can be used in the same creative
+              workflow. Photoshop is commonly used for raster image
+              editing, while Illustrator specializes in vector artwork.
             </p>
           </div>
 
           <div class="faq-item">
-            <h3>5. Does Prime Video offer original movies and series?</h3>
+            <h3>5. Does Creative Cloud include video editing software?</h3>
             <p>
-              Yes. Prime Video features Amazon Original productions,
-              including original films, television series and documentaries.
+              Yes. Eligible Creative Cloud plans include video and
+              motion-production applications such as Premiere and
+              After Effects.
             </p>
           </div>
 
           <div class="faq-item">
-            <h3>6. Do all Prime Video movies come with a membership?</h3>
+            <h3>6. What is Adobe Firefly?</h3>
             <p>
-              No. Some titles are included with a membership, while others
-              require separate rental or purchase payments. Optional
-              channel subscriptions can also cost extra.
+              Adobe Firefly is Adobe's family of generative AI tools
+              for creating and editing visual, video and audio content.
+              Access and usage limits depend on the plan and feature.
             </p>
           </div>
 
           <div class="faq-item">
-            <h3>7. Can I watch Prime Video on my television?</h3>
+            <h3>7. Can I use Creative Cloud on multiple devices?</h3>
             <p>
-              Yes. The app is supported on selected smart TVs and compatible
-              streaming devices. Check Amazon's official supported-device
-              information for your model.
+              Adobe supports app installation and account access across
+              compatible devices, subject to its activation, sign-in
+              and device limits. Check the current licensing terms.
             </p>
           </div>
 
           <div class="faq-item">
-            <h3>8. Does Prime Video have subtitles?</h3>
+            <h3>8. Does Creative Cloud work on Windows and Mac?</h3>
             <p>
-              Many titles offer subtitles, captions or alternative audio
-              tracks. Available languages and accessibility features
-              depend on the specific content.
+              Many Adobe desktop applications are available for Windows
+              and macOS. Exact operating-system and hardware requirements
+              differ by application and version.
             </p>
           </div>
 
           <div class="faq-item">
-            <h3>9. Is Prime Video available everywhere?</h3>
+            <h3>9. Is cloud storage included?</h3>
             <p>
-              Prime Video is available in many countries and territories,
-              but the content catalog, membership options and features
-              vary according to location.
+              Many Creative Cloud subscriptions include cloud storage,
+              but the amount and available services depend on the
+              specific plan and account.
             </p>
           </div>
 
           <div class="faq-item">
-            <h3>10. Does Prime Video include advertisements?</h3>
+            <h3>10. Who should use Adobe Creative Cloud?</h3>
             <p>
-              Advertising policies depend on the market and content type.
-              An eligible ad-free option may be available in some locations,
-              although certain live or ad-supported programming can still
-              include advertisements.
+              It can be useful for graphic designers, photographers,
+              video editors, illustrators, marketers, students,
+              content creators and professional creative teams.
             </p>
           </div>
 
@@ -1739,16 +1904,16 @@
       <div class="container">
 
         <div class="cta-box">
-          <h2>Explore More Digital Experiences</h2>
+          <h2>Discover More Creative & Digital Tools</h2>
 
           <p>
-            Discover useful software, technology resources and digital
-            tools on our website. Visit GitApp and explore more helpful
-            content for your everyday digital life.
+            Explore useful software, technology guides and digital
+            resources on our website. Visit GitApp to discover more
+            tools that can support your everyday work.
           </p>
 
-          <a href="https://gitapp.download/" class="btn"
-             target="_blank" rel="noopener">
+          <a href="https://gitapp.download/"
+             class="btn" target="_blank" rel="noopener">
             Visit GitApp Now →
           </a>
         </div>
@@ -1765,54 +1930,53 @@
       <div class="footer-grid">
 
         <div class="footer-brand">
-          <a href="#" class="brand">
-            <span class="brand-symbol">▶</span>
-            Prime<span>Video Guide</span>
+          <a href="#" class="brand" style="color:white;">
+            <span class="adobe-mark"></span>
+            Creative Cloud Guide
           </a>
 
           <p>
-            An independent informational guide to streaming entertainment,
-            digital services, software and modern technology.
+            An independent guide to creative software, graphic design,
+            photography, video production and digital technology.
           </p>
         </div>
 
         <div class="footer-links">
           <h4>Explore Article</h4>
-          <a href="#about">About Prime Video</a>
-          <a href="#features">Features</a>
-          <a href="#categories">Content Categories</a>
-          <a href="#devices">Supported Devices</a>
+          <a href="#about">About Creative Cloud</a>
+          <a href="#apps">Creative Apps</a>
+          <a href="#workflows">Creative Workflows</a>
+          <a href="#plans">Plans</a>
           <a href="#faq">FAQs</a>
         </div>
 
         <div class="footer-links">
-          <h4>Useful Websites</h4>
-          <a href="https://www.primevideo.com/"
-             target="_blank" rel="noopener">Prime Video Official</a>
-          <a href="https://www.primevideo.com/help"
-             target="_blank" rel="noopener">Prime Video Help</a>
-          <a href="https://www.amazon.com/"
-             target="_blank" rel="noopener">Amazon</a>
+          <h4>Useful Links</h4>
+          <a href="https://www.adobe.com/creativecloud.html"
+             target="_blank" rel="noopener">Adobe Official Website</a>
+          <a href="https://www.adobe.com/creativecloud/plans.html"
+             target="_blank" rel="noopener">Adobe Plans</a>
+          <a href="https://helpx.adobe.com/"
+             target="_blank" rel="noopener">Adobe Help Center</a>
           <a href="https://gitapp.download/"
-             target="_blank" rel="noopener">GitApp</a>
+             target="_blank" rel="noopener">GitApp Website</a>
         </div>
 
       </div>
 
       <div class="footer-bottom">
-        <span>© 2026 Prime Video Guide. All rights reserved.</span>
-        <span>Entertainment & Technology Information</span>
+        <span>© 2026 Creative Cloud Guide. All rights reserved.</span>
+        <span>Creativity • Design • Technology</span>
       </div>
 
       <p class="disclaimer">
-        Disclaimer: This page is an independent informational article.
-        It is not affiliated with, endorsed by or sponsored by Amazon.com,
-        Inc. or its affiliates. Amazon, Amazon Prime and Prime Video are
-        trademarks of Amazon.com, Inc. or its affiliates. All product names
-        and trademarks belong to their respective owners. Content availability,
-        supported devices, subscription benefits and prices may change by
-        country and over time. Please consult the official Amazon website
-        for the latest details.
+        Disclaimer: This is an independent informational article and is
+        not affiliated with, endorsed by or sponsored by Adobe Inc.
+        Adobe, Creative Cloud, Photoshop, Illustrator, Premiere and
+        other product names are trademarks of Adobe Inc. All trademarks
+        belong to their respective owners. App availability, features,
+        system requirements and subscription prices may change.
+        Please consult Adobe's official website for current information.
       </p>
 
     </div>
