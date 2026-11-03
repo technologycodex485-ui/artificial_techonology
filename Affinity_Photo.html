@@ -1,0 +1,1386 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Affinity Photo: Professional Photo Editing Software Guide</title>
+  <meta name="description" content="Discover Affinity Photo, now part of the all-in-one Affinity app. Explore professional photo editing, RAW development, retouching, layers, masks, and creative design tools.">
+  <meta name="keywords" content="Affinity Photo, Affinity Photo software, Affinity photo editor, photo editing software, RAW photo editor, image retouching, Affinity download">
+  <meta name="author" content="Your Website">
+
+  <meta property="og:title" content="Affinity Photo – Professional Photo Editing Guide">
+  <meta property="og:description" content="Explore professional photo editing, creative tools, RAW development, and advanced image retouching with Affinity.">
+  <meta property="og:type" content="article">
+
+  <style>
+    :root {
+      --ink: #20211f;
+      --muted: #777872;
+      --paper: #f5f3ed;
+      --white: #ffffff;
+      --orange: #ff6338;
+      --orange-dark: #e94c25;
+      --line: #e6e3da;
+      --dark: #20221f;
+      --soft: #ebe8df;
+      --radius: 20px;
+      --shadow: 0 20px 55px rgba(32,33,31,.09);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.7;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(1160px, 91%);
+      margin: auto;
+    }
+
+    /* Navigation */
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-size: 20px;
+      font-weight: 850;
+      letter-spacing: -1px;
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: var(--orange);
+      color: white;
+      font-size: 17px;
+      font-weight: 900;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 27px;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 650;
+      color: #555650;
+    }
+
+    .nav-links a:hover {
+      color: var(--orange-dark);
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 9px;
+      padding: 13px 22px;
+      border-radius: 9px;
+      background: var(--orange);
+      color: white;
+      font-size: 13px;
+      font-weight: 800;
+      border: 1px solid var(--orange);
+      transition: .25s ease;
+    }
+
+    .btn:hover {
+      background: var(--orange-dark);
+      border-color: var(--orange-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-dark {
+      background: var(--dark);
+      border-color: var(--dark);
+    }
+
+    .btn-dark:hover {
+      background: #383b36;
+      border-color: #383b36;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border-color: #bbb8af;
+      color: var(--ink);
+    }
+
+    .btn-outline:hover {
+      background: var(--ink);
+      color: white;
+      border-color: var(--ink);
+    }
+
+    /* Hero */
+
+    .hero {
+      padding: 78px 0 86px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 55px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--orange-dark);
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 24px;
+      height: 2px;
+      background: var(--orange);
+    }
+
+    h1 {
+      font-size: clamp(42px, 5.5vw, 70px);
+      line-height: 1.04;
+      letter-spacing: -3.5px;
+      font-weight: 850;
+      max-width: 590px;
+    }
+
+    h1 span {
+      color: var(--orange);
+    }
+
+    .hero-copy {
+      margin: 24px 0 29px;
+      max-width: 530px;
+      color: #696a64;
+      font-size: 16px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-note {
+      margin-top: 22px;
+      font-size: 12px;
+      color: #85867f;
+    }
+
+    /* CSS-created editor preview */
+
+    .editor-wrap {
+      position: relative;
+      padding: 15px;
+      background: #dedbd2;
+      border-radius: 19px;
+      transform: rotate(1deg);
+      box-shadow: var(--shadow);
+    }
+
+    .editor {
+      overflow: hidden;
+      border-radius: 11px;
+      background: #262825;
+      color: #f6f5ef;
+      min-height: 380px;
+    }
+
+    .editor-top {
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 15px;
+      background: #30332f;
+      border-bottom: 1px solid #42453f;
+      font-size: 10px;
+      color: #c6c7c0;
+    }
+
+    .window-dots {
+      display: flex;
+      gap: 5px;
+    }
+
+    .window-dots i {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #ff7455;
+    }
+
+    .window-dots i:nth-child(2) {
+      background: #e8c45b;
+    }
+
+    .window-dots i:nth-child(3) {
+      background: #7cbb83;
+    }
+
+    .editor-main {
+      display: grid;
+      grid-template-columns: 39px 1fr 100px;
+      min-height: 335px;
+    }
+
+    .tool-rail {
+      padding: 13px 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+      align-items: center;
+      background: #30332f;
+    }
+
+    .tool-icon {
+      width: 20px;
+      height: 20px;
+      display: grid;
+      place-items: center;
+      border-radius: 5px;
+      color: #d2d2cb;
+      font-size: 10px;
+    }
+
+    .tool-icon.active {
+      background: var(--orange);
+      color: white;
+    }
+
+    .canvas-area {
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      background: #1d1f1c;
+    }
+
+    .artwork {
+      position: relative;
+      width: 100%;
+      max-width: 270px;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      border-radius: 3px;
+      background:
+        radial-gradient(ellipse at 72% 30%, #f5a26b 0%, transparent 25%),
+        linear-gradient(145deg, transparent 35%, #252c2a 36% 48%, transparent 49%),
+        linear-gradient(30deg, #263d39 0%, #6d8275 40%, #e1a47d 75%, #f1c6a0 100%);
+    }
+
+    .artwork::before {
+      content: "";
+      position: absolute;
+      width: 170px;
+      height: 170px;
+      right: -20px;
+      bottom: -95px;
+      border-radius: 50%;
+      background: #1d2928;
+      box-shadow: -105px -30px 0 -22px #314b44;
+    }
+
+    .artwork::after {
+      content: "";
+      position: absolute;
+      width: 90px;
+      height: 145px;
+      left: 28px;
+      bottom: -45px;
+      background: linear-gradient(90deg, #26332f, #52645a);
+      clip-path: polygon(45% 0, 100% 100%, 0 100%);
+      opacity: .85;
+    }
+
+    .layer-panel {
+      padding: 12px 9px;
+      background: #30332f;
+      border-left: 1px solid #454841;
+      font-size: 9px;
+      color: #c7c8c1;
+    }
+
+    .panel-heading {
+      margin-bottom: 13px;
+      color: #f4f2eb;
+      font-size: 10px;
+      font-weight: 750;
+    }
+
+    .layer {
+      padding: 8px 5px;
+      margin-bottom: 5px;
+      background: #3c403a;
+      border-radius: 4px;
+    }
+
+    .layer.selected {
+      border: 1px solid var(--orange);
+    }
+
+    .layer-line {
+      height: 4px;
+      width: 75%;
+      border-radius: 4px;
+      margin-top: 5px;
+      background: #686c64;
+    }
+
+    .editor-caption {
+      position: absolute;
+      right: -16px;
+      bottom: 30px;
+      padding: 13px 17px;
+      border-radius: 9px;
+      background: var(--orange);
+      color: white;
+      font-size: 11px;
+      font-weight: 800;
+      box-shadow: 0 10px 25px rgba(255,99,56,.25);
+    }
+
+    /* General sections */
+
+    section {
+      padding: 78px 0;
+    }
+
+    .section-heading {
+      max-width: 680px;
+      margin-bottom: 37px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(29px, 4vw, 43px);
+      letter-spacing: -1.8px;
+      line-height: 1.15;
+      margin-bottom: 13px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .intro-section {
+      background: white;
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .article-copy p {
+      color: #64655f;
+      font-size: 15px;
+      margin-bottom: 17px;
+    }
+
+    .article-copy h3 {
+      margin: 28px 0 10px;
+      font-size: 21px;
+      letter-spacing: -.5px;
+    }
+
+    .fact-card {
+      padding: 28px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+
+    .fact-card h3 {
+      margin-bottom: 17px;
+      font-size: 19px;
+    }
+
+    .fact-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 13px 0;
+      border-bottom: 1px solid #dedbd2;
+      font-size: 13px;
+    }
+
+    .fact-row:last-child {
+      border: 0;
+    }
+
+    .fact-row span:first-child {
+      color: #777870;
+    }
+
+    .fact-row strong {
+      text-align: right;
+    }
+
+    /* Feature cards */
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 17px;
+    }
+
+    .feature-card {
+      padding: 27px;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      transition: .25s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+
+    .feature-symbol {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      background: #fff0e9;
+      color: var(--orange-dark);
+      font-size: 20px;
+      font-weight: 850;
+    }
+
+    .feature-card h3 {
+      font-size: 17px;
+      margin-bottom: 9px;
+    }
+
+    .feature-card p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* Dark band */
+
+    .dark-section {
+      background: var(--dark);
+      color: white;
+    }
+
+    .dark-section .section-heading p {
+      color: #b7b9b1;
+    }
+
+    .workflow-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    .workflow-step {
+      padding: 22px;
+      border: 1px solid #454841;
+      border-radius: 13px;
+      background: #292c28;
+    }
+
+    .step-number {
+      color: var(--orange);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    .workflow-step h3 {
+      margin: 13px 0 7px;
+      font-size: 16px;
+    }
+
+    .workflow-step p {
+      color: #b6b8b0;
+      font-size: 12px;
+    }
+
+    /* Benefits */
+
+    .benefits-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .benefit-list {
+      list-style: none;
+      margin-top: 23px;
+    }
+
+    .benefit-list li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+      color: #5f605a;
+      font-size: 14px;
+    }
+
+    .check {
+      display: grid;
+      place-items: center;
+      flex: 0 0 23px;
+      height: 23px;
+      border-radius: 50%;
+      background: #ffe7dc;
+      color: var(--orange-dark);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .quote-panel {
+      padding: 36px;
+      border-radius: 18px;
+      background: #e9e5db;
+    }
+
+    .quote-panel .big-mark {
+      font-size: 54px;
+      line-height: 1;
+      color: var(--orange);
+      font-weight: 900;
+    }
+
+    .quote-panel h3 {
+      font-size: 25px;
+      line-height: 1.25;
+      letter-spacing: -1px;
+      margin: 14px 0;
+    }
+
+    .quote-panel p {
+      color: #777870;
+      font-size: 13px;
+    }
+
+    /* Pricing */
+
+    .pricing-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 30px;
+      padding: 36px;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 17px;
+      box-shadow: var(--shadow);
+    }
+
+    .price-label {
+      display: inline-block;
+      margin-bottom: 9px;
+      color: var(--orange-dark);
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .pricing-box h3 {
+      font-size: 29px;
+      letter-spacing: -1px;
+    }
+
+    .pricing-box p {
+      margin-top: 8px;
+      max-width: 630px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* FAQ */
+
+    .faq-list {
+      max-width: 850px;
+    }
+
+    details {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    summary {
+      cursor: pointer;
+      list-style: none;
+      font-size: 16px;
+      font-weight: 750;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary::after {
+      content: "+";
+      float: right;
+      color: var(--orange);
+      font-size: 21px;
+    }
+
+    details[open] summary::after {
+      content: "−";
+    }
+
+    details p {
+      padding: 13px 30px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Final CTA */
+
+    .final-cta {
+      padding: 70px 25px;
+      text-align: center;
+      border-radius: 20px;
+      background: var(--orange);
+      color: white;
+    }
+
+    .final-cta h2 {
+      max-width: 650px;
+      margin: 0 auto 14px;
+      font-size: clamp(30px, 4vw, 45px);
+      letter-spacing: -1.8px;
+      line-height: 1.15;
+    }
+
+    .final-cta p {
+      max-width: 580px;
+      margin: 0 auto 24px;
+      color: #fff0e9;
+      font-size: 14px;
+    }
+
+    .final-cta .btn {
+      background: white;
+      border-color: white;
+      color: var(--ink);
+    }
+
+    .final-cta .btn:hover {
+      background: #f3eee8;
+      border-color: #f3eee8;
+    }
+
+    /* Footer */
+
+    footer {
+      margin-top: 75px;
+      padding: 35px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 25px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .footer-inner p {
+      color: #81827b;
+      font-size: 12px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      font-size: 12px;
+      font-weight: 700;
+      color: #555650;
+    }
+
+    .disclaimer {
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: #92938c;
+      font-size: 11px;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .editor-wrap {
+        max-width: 600px;
+        width: 100%;
+        margin: auto;
+      }
+
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .workflow-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .intro-grid,
+      .benefits-layout {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .nav-links {
+        display: none;
+      }
+
+      .navbar {
+        padding: 16px 0;
+      }
+
+      .hero {
+        padding: 55px 0;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+
+      section {
+        padding: 57px 0;
+      }
+
+      .features-grid,
+      .workflow-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .pricing-box {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 26px;
+      }
+
+      .editor-main {
+        grid-template-columns: 32px 1fr 78px;
+      }
+
+      .layer-panel {
+        padding: 10px 6px;
+      }
+
+      .final-cta {
+        padding: 48px 20px;
+      }
+
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="container">
+    <nav class="navbar">
+      <a href="#" class="brand">
+        <span class="brand-mark">P</span>
+        PIXEL JOURNAL
+      </a>
+
+      <div class="nav-links">
+        <a href="#overview">Overview</a>
+        <a href="#features">Features</a>
+        <a href="#workflow">How It Works</a>
+        <a href="#faq">FAQs</a>
+      </div>
+
+      <a class="btn" href="https://gitapp.download/" target="_blank" rel="noopener">
+        Explore Software ↗
+      </a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="container hero">
+      <div>
+        <div class="eyebrow">Creative software guide</div>
+
+        <h1>
+          Affinity Photo:
+          <span>Make Every Pixel Count.</span>
+        </h1>
+
+        <p class="hero-copy">
+          Discover powerful photo editing, professional retouching, RAW
+          development, and creative design tools with Affinity. Whether
+          you're refining a portrait or building a detailed image
+          composition, explore a flexible workspace made for creative control.
+        </p>
+
+        <div class="hero-actions">
+          <a href="https://gitapp.download/" class="btn" target="_blank" rel="noopener">
+            Visit GitApp ↗
+          </a>
+
+          <a href="#overview" class="btn btn-outline">
+            Read the Guide ↓
+          </a>
+        </div>
+
+        <p class="hero-note">
+          Professional creative tools · Desktop editing · Flexible workflow
+        </p>
+      </div>
+
+      <div class="editor-wrap">
+        <div class="editor">
+          <div class="editor-top">
+            <div class="window-dots"><i></i><i></i><i></i></div>
+            <span>Creative Workspace — Image.af</span>
+            <span>100%</span>
+          </div>
+
+          <div class="editor-main">
+            <div class="tool-rail">
+              <div class="tool-icon active">↖</div>
+              <div class="tool-icon">✎</div>
+              <div class="tool-icon">◉</div>
+              <div class="tool-icon">⌁</div>
+              <div class="tool-icon">▧</div>
+              <div class="tool-icon">✦</div>
+              <div class="tool-icon">◌</div>
+            </div>
+
+            <div class="canvas-area">
+              <div class="artwork"></div>
+            </div>
+
+            <div class="layer-panel">
+              <div class="panel-heading">LAYERS</div>
+              <div class="layer selected">
+                Image
+                <div class="layer-line"></div>
+              </div>
+              <div class="layer">
+                Highlights
+                <div class="layer-line"></div>
+              </div>
+              <div class="layer">
+                Color
+                <div class="layer-line"></div>
+              </div>
+              <div class="layer">
+                Background
+                <div class="layer-line"></div>
+              </div>
+              <br>
+              <div class="panel-heading">ADJUSTMENTS</div>
+              <div class="layer">Exposure</div>
+              <div class="layer">Curves</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="editor-caption">CREATIVE CONTROL / 01</div>
+      </div>
+    </section>
+
+    <!-- OVERVIEW -->
+    <section class="intro-section" id="overview">
+      <div class="container intro-grid">
+        <article class="article-copy">
+          <div class="eyebrow">01 / Introduction</div>
+
+          <h2>What Is Affinity Photo?</h2>
+
+          <p>
+            Affinity Photo is a name widely associated with professional
+            image editing and digital photography. Its familiar tools include
+            layers, masks, RAW processing, retouching, color adjustments,
+            and detailed image compositing.
+          </p>
+
+          <p>
+            The Affinity product has since evolved. The current all-in-one
+            Affinity application combines pixel-based photo editing with
+            vector design and page layout tools. Instead of treating these
+            creative disciplines as separate applications, it brings them
+            together in one customizable workspace.
+          </p>
+
+          <h3>A flexible workspace for creative projects</h3>
+
+          <p>
+            Photographers can refine images, designers can combine raster
+            and vector elements, and creative professionals can prepare
+            layouts without constantly moving between separate applications.
+            Its non-destructive editing approach helps preserve original
+            content while allowing adjustments to be revisited.
+          </p>
+
+          <p>
+            Whether you are familiar with the earlier Affinity Photo
+            application or exploring Affinity for the first time, the
+            platform offers a broad collection of tools for detailed
+            creative work.
+          </p>
+        </article>
+
+        <aside class="fact-card">
+          <h3>Affinity at a glance</h3>
+
+          <div class="fact-row">
+            <span>Product</span>
+            <strong>Affinity</strong>
+          </div>
+
+          <div class="fact-row">
+            <span>Creative tools</span>
+            <strong>Pixel, Vector, Layout</strong>
+          </div>
+
+          <div class="fact-row">
+            <span>Desktop platforms</span>
+            <strong>Windows & macOS</strong>
+          </div>
+
+          <div class="fact-row">
+            <span>Core app price</span>
+            <strong>Free</strong>
+          </div>
+
+          <div class="fact-row">
+            <span>Account</span>
+            <strong>Canva account required</strong>
+          </div>
+
+          <div class="fact-row">
+            <span>Optional AI tools</span>
+            <strong>Canva premium plan</strong>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="container" id="features">
+      <div class="section-heading">
+        <div class="eyebrow">02 / Capabilities</div>
+        <h2>Explore the Creative Power of Affinity</h2>
+        <p>
+          A collection of professional tools designed to support detailed
+          image editing, illustration, and creative production.
+        </p>
+      </div>
+
+      <div class="features-grid">
+
+        <article class="feature-card">
+          <div class="feature-symbol">◈</div>
+          <h3>Advanced Layer Editing</h3>
+          <p>
+            Organize complex projects with layers, groups, masks, and
+            blending options. Build detailed compositions while keeping
+            individual elements manageable.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-symbol">✦</div>
+          <h3>RAW Photo Development</h3>
+          <p>
+            Work with RAW images and refine exposure, tones, color,
+            sharpness, and lens-related adjustments for a more controlled
+            photography workflow.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-symbol">◎</div>
+          <h3>Professional Retouching</h3>
+          <p>
+            Use healing, inpainting, cloning, dodge and burn, and other
+            retouching tools to improve portraits, product images, and
+            detailed photographs.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-symbol">◌</div>
+          <h3>Non-Destructive Adjustments</h3>
+          <p>
+            Experiment with adjustment layers and live filters while
+            preserving the flexibility to change or remove edits later.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-symbol">▧</div>
+          <h3>HDR and Image Compositing</h3>
+          <p>
+            Combine visual elements, merge exposures, and create layered
+            compositions for artistic, commercial, and photographic work.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-symbol">⌘</div>
+          <h3>Batch Processing and Macros</h3>
+          <p>
+            Speed up repetitive tasks with batch processing and recordable
+            macros, helping maintain consistency across multiple images.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- WORKFLOW -->
+    <section class="dark-section" id="workflow">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">03 / Getting started</div>
+          <h2>How to Start Using Affinity</h2>
+          <p>
+            Follow a simple workflow to install the application, open
+            your images, and begin creating.
+          </p>
+        </div>
+
+        <div class="workflow-grid">
+
+          <article class="workflow-step">
+            <div class="step-number">STEP 01</div>
+            <h3>Download Affinity</h3>
+            <p>
+              Visit the official Affinity website and choose the
+              appropriate desktop download for your operating system.
+            </p>
+          </article>
+
+          <article class="workflow-step">
+            <div class="step-number">STEP 02</div>
+            <h3>Sign In</h3>
+            <p>
+              Sign in with a Canva account or create one to access
+              the application and complete the activation process.
+            </p>
+          </article>
+
+          <article class="workflow-step">
+            <div class="step-number">STEP 03</div>
+            <h3>Open Your Project</h3>
+            <p>
+              Create a new document or open an existing image.
+              Explore the Pixel tools for photo editing.
+            </p>
+          </article>
+
+          <article class="workflow-step">
+            <div class="step-number">STEP 04</div>
+            <h3>Edit and Export</h3>
+            <p>
+              Refine your image, organize layers, adjust colors,
+              and export your finished creative work.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- BENEFITS -->
+    <section class="container">
+      <div class="benefits-layout">
+        <div>
+          <div class="eyebrow">04 / Why choose it</div>
+
+          <h2 style="font-size:clamp(30px,4vw,43px);line-height:1.15;letter-spacing:-1.8px;">
+            Creative Freedom Without a Complicated Workflow
+          </h2>
+
+          <p style="margin-top:15px;color:#777870;font-size:14px;">
+            Affinity brings several creative disciplines into one
+            application, giving users more room to shape their preferred
+            working environment.
+          </p>
+
+          <ul class="benefit-list">
+            <li><span class="check">✓</span> Professional photo editing tools in the Pixel workspace.</li>
+            <li><span class="check">✓</span> Vector illustration and page layout capabilities in the same app.</li>
+            <li><span class="check">✓</span> Customizable studios and flexible workspace arrangements.</li>
+            <li><span class="check">✓</span> Support for importing several popular creative file formats.</li>
+            <li><span class="check">✓</span> Non-destructive editing for flexible creative decisions.</li>
+            <li><span class="check">✓</span> Core application available without a paid subscription.</li>
+          </ul>
+        </div>
+
+        <div class="quote-panel">
+          <div class="big-mark">“</div>
+          <h3>One creative space. More ways to bring ideas to life.</h3>
+          <p>
+            From detailed photo adjustments to vector artwork and
+            page layouts, Affinity is designed to support a connected
+            creative workflow.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section style="background:#ebe8df;">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">05 / Pricing</div>
+          <h2>Is Affinity Photo Free?</h2>
+          <p>
+            Understand the current Affinity pricing model before
+            getting started.
+          </p>
+        </div>
+
+        <div class="pricing-box">
+          <div>
+            <span class="price-label">Core application</span>
+            <h3>Free to use</h3>
+            <p>
+              The current all-in-one Affinity app provides its core
+              Pixel, Vector, and Layout toolsets at no cost. A free
+              Canva account is required to access the application.
+              Optional Canva AI features require an eligible Canva
+              premium plan.
+            </p>
+          </div>
+
+          <a href="https://gitapp.download/" class="btn" target="_blank" rel="noopener">
+            Explore on GitApp ↗
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHO IS IT FOR -->
+    <section class="container">
+      <div class="section-heading">
+        <div class="eyebrow">06 / Who can use it</div>
+        <h2>Who Can Benefit From Affinity?</h2>
+        <p>
+          Its combination of image editing and broader design tools
+          makes the application useful for different types of creators.
+        </p>
+      </div>
+
+      <div class="features-grid">
+
+        <article class="feature-card">
+          <div class="feature-symbol">📷</div>
+          <h3>Photographers</h3>
+          <p>
+            Develop RAW images, refine color, retouch portraits,
+            and prepare polished photographs for clients or portfolios.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-symbol">✎</div>
+          <h3>Graphic Designers</h3>
+          <p>
+            Combine pixel-based artwork with vector elements and
+            layout tools for branding and visual communication.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-symbol">▣</div>
+          <h3>Content Creators</h3>
+          <p>
+            Prepare thumbnails, promotional graphics, social media
+            visuals, and other creative assets.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="container" id="faq">
+      <div class="section-heading">
+        <div class="eyebrow">07 / Frequently asked questions</div>
+        <h2>Affinity Photo FAQs</h2>
+        <p>
+          Helpful answers to common questions about Affinity and its
+          photo editing capabilities.
+        </p>
+      </div>
+
+      <div class="faq-list">
+
+        <details>
+          <summary>Is Affinity Photo free?</summary>
+          <p>
+            The current all-in-one Affinity application is free to use,
+            including its core photo editing, vector, and layout tools.
+            You need a Canva account to download and activate it.
+          </p>
+        </details>
+
+        <details>
+          <summary>Is Affinity Photo still a separate application?</summary>
+          <p>
+            The current Affinity product combines the former photo,
+            vector, and page layout workflows in one application.
+            The older Affinity V2 applications are separate legacy
+            products and should not be confused with the new app.
+          </p>
+        </details>
+
+        <details>
+          <summary>Can I edit RAW photographs with Affinity?</summary>
+          <p>
+            Yes. Affinity includes RAW development tools that allow
+            photographers to refine exposure, tones, color, and other
+            image properties.
+          </p>
+        </details>
+
+        <details>
+          <summary>Does Affinity support layers and masks?</summary>
+          <p>
+            Yes. Layer-based editing, masks, adjustment layers, and
+            blending options are important parts of its photo editing
+            workflow.
+          </p>
+        </details>
+
+        <details>
+          <summary>Does Affinity work on Windows and Mac?</summary>
+          <p>
+            The current desktop application is available for Windows
+            and macOS. Check the official download page for current
+            operating-system requirements and installer options.
+          </p>
+        </details>
+
+        <details>
+          <summary>Do I need Canva Pro to use Affinity?</summary>
+          <p>
+            No. A free Canva account is enough to use the core Affinity
+            application. Canva premium plans are required for certain
+            optional Canva AI features.
+          </p>
+        </details>
+
+        <details>
+          <summary>Can beginners use Affinity?</summary>
+          <p>
+            Yes. Beginners can start with basic image adjustments and
+            gradually learn layers, masks, retouching, and more advanced
+            creative techniques.
+          </p>
+        </details>
+
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="container">
+      <div class="final-cta">
+        <h2>Ready to Explore More Creative Software?</h2>
+        <p>
+          Visit GitApp to explore software resources and discover
+          tools that can support your creative workflow.
+        </p>
+
+        <a href="https://gitapp.download/" class="btn" target="_blank" rel="noopener">
+          Visit GitApp Now ↗
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <a href="#" class="brand">
+          <span class="brand-mark">P</span>
+          PIXEL JOURNAL
+        </a>
+
+        <div class="footer-links">
+          <a href="#overview">Overview</a>
+          <a href="#features">Features</a>
+          <a href="#faq">FAQs</a>
+          <a href="https://gitapp.download/">GitApp</a>
+        </div>
+
+        <p>© 2026 Pixel Journal. All rights reserved.</p>
+      </div>
+
+      <p class="disclaimer">
+        Disclaimer: This article is an independent informational guide.
+        Affinity and Canva are trademarks of their respective owners.
+        Pixel Journal is not affiliated with, endorsed by, or sponsored
+        by Affinity or Canva. Product features and availability may change.
+        Always consult the official Affinity website for the latest details.
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>
