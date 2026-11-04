@@ -1,0 +1,1068 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Notability – The Smart Digital Note-Taking App</title>
+  <meta name="description" content="Explore Notability, a digital note-taking app for handwritten notes, audio recordings, PDF annotation, study materials, and productivity.">
+  <meta name="keywords" content="Notability, Notability app, digital note taking, handwritten notes, PDF annotation, study app, audio notes">
+
+  <style>
+    :root {
+      --ink: #252b40;
+      --blue: #5865a8;
+      --lavender: #e9e8fa;
+      --purple: #8178bd;
+      --paper: #fffefa;
+      --muted: #74778b;
+      --line: #dfe1ee;
+      --background: #f2f1fa;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--background);
+      color: var(--ink);
+      font-family: "Trebuchet MS", Arial, sans-serif;
+      line-height: 1.75;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .topbar {
+      background: var(--ink);
+      color: white;
+      padding: 11px 20px;
+      text-align: center;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    header {
+      max-width: 1200px;
+      margin: auto;
+      padding: 22px 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      font-size: 27px;
+      font-weight: 900;
+      letter-spacing: -1.5px;
+    }
+
+    .brand span {
+      color: var(--blue);
+    }
+
+    nav {
+      display: flex;
+      gap: 23px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    nav a:hover {
+      color: var(--purple);
+    }
+
+    .wrapper {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 25px;
+    }
+
+    /* Notebook-style hero */
+
+    .hero {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      margin: 30px 0 45px;
+      padding: 65px;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 40px;
+      align-items: center;
+      box-shadow: 0 15px 45px rgba(45, 49, 85, .06);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 30px;
+      width: 2px;
+      height: 100%;
+      background: #e6a9b5;
+      opacity: .65;
+    }
+
+    .tag {
+      display: inline-block;
+      color: var(--blue);
+      background: var(--lavender);
+      border-radius: 30px;
+      padding: 7px 15px;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: clamp(42px, 6vw, 69px);
+      line-height: 1.08;
+      letter-spacing: -3px;
+      margin: 23px 0;
+    }
+
+    h1 span {
+      color: var(--blue);
+    }
+
+    .hero-text {
+      color: var(--muted);
+      font-size: 17px;
+      max-width: 530px;
+      margin-bottom: 27px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 14px 25px;
+      border-radius: 8px;
+      background: var(--blue);
+      color: white;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .5px;
+      transition: .25s;
+    }
+
+    .button:hover {
+      background: var(--ink);
+      transform: translateY(-3px);
+    }
+
+    .button-outline {
+      background: transparent;
+      color: var(--blue);
+      border: 1px solid var(--blue);
+    }
+
+    .button-outline:hover {
+      color: white;
+    }
+
+    /* Decorative notebook illustration */
+
+    .notebook {
+      background: #f4f2ff;
+      border: 1px solid #d9d6ef;
+      border-radius: 13px;
+      padding: 30px;
+      transform: rotate(2deg);
+      box-shadow: 12px 15px 0 #dedcf1;
+    }
+
+    .notebook-top {
+      display: flex;
+      justify-content: space-between;
+      color: var(--purple);
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      margin-bottom: 25px;
+    }
+
+    .notebook h2 {
+      font-size: 30px;
+      line-height: 1.2;
+      margin-bottom: 15px;
+    }
+
+    .note-line {
+      height: 34px;
+      border-bottom: 1px solid #d7d7e9;
+      color: #777b99;
+      font-size: 12px;
+      padding-top: 8px;
+    }
+
+    .note-highlight {
+      background: #e2dffb;
+      color: var(--blue);
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+
+    /* Quick facts */
+
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-bottom: 45px;
+    }
+
+    .fact {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 22px;
+      text-align: center;
+    }
+
+    .fact strong {
+      display: block;
+      color: var(--blue);
+      font-size: 22px;
+    }
+
+    .fact span {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* Article layout */
+
+    .article-grid {
+      display: grid;
+      grid-template-columns: 245px 1fr;
+      gap: 35px;
+      align-items: start;
+      margin-bottom: 65px;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 20px;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      padding: 25px;
+    }
+
+    .sidebar h3 {
+      font-size: 17px;
+      margin-bottom: 15px;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 9px 0;
+      border-bottom: 1px solid #eeeef5;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .sidebar a:hover {
+      color: var(--blue);
+    }
+
+    article {
+      min-width: 0;
+    }
+
+    .section {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 38px;
+      margin-bottom: 25px;
+      scroll-margin-top: 25px;
+    }
+
+    .section-label {
+      color: var(--purple);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-size: 32px;
+      line-height: 1.25;
+      letter-spacing: -1px;
+      margin-bottom: 17px;
+    }
+
+    .section p {
+      color: #666b80;
+      font-size: 15px;
+      margin-bottom: 16px;
+    }
+
+    /* Feature rows */
+
+    .feature-row {
+      display: grid;
+      grid-template-columns: 55px 1fr;
+      gap: 17px;
+      padding: 23px 0;
+      border-bottom: 1px dashed #d9d9e7;
+    }
+
+    .feature-row:last-child {
+      border-bottom: none;
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--lavender);
+      color: var(--blue);
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .feature-row h3 {
+      font-size: 19px;
+      margin-bottom: 5px;
+    }
+
+    .feature-row p {
+      margin: 0;
+    }
+
+    /* Special highlight */
+
+    .study-banner {
+      background: var(--blue);
+      color: white;
+      padding: 42px;
+      border-radius: 15px;
+      margin: 25px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .study-banner::after {
+      content: "✎";
+      position: absolute;
+      right: 20px;
+      bottom: -85px;
+      font-size: 220px;
+      color: rgba(255,255,255,.09);
+    }
+
+    .study-banner h2 {
+      max-width: 550px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .study-banner p {
+      color: #e2e4ff;
+      max-width: 550px;
+      margin-bottom: 22px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .study-banner .button {
+      position: relative;
+      z-index: 1;
+      background: white;
+      color: var(--blue);
+    }
+
+    /* Workflow */
+
+    .steps {
+      counter-reset: steps;
+      margin-top: 20px;
+    }
+
+    .step {
+      counter-increment: steps;
+      padding: 17px 0 17px 55px;
+      border-bottom: 1px solid var(--line);
+      position: relative;
+    }
+
+    .step::before {
+      content: counter(steps, decimal-leading-zero);
+      position: absolute;
+      left: 0;
+      top: 15px;
+      color: var(--purple);
+      font-size: 19px;
+      font-weight: 900;
+    }
+
+    .step h3 {
+      font-size: 17px;
+      margin-bottom: 4px;
+    }
+
+    .step p {
+      margin: 0;
+    }
+
+    /* Advantages */
+
+    .pros-cons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 20px;
+    }
+
+    .pros-cons > div {
+      padding: 24px;
+      border-radius: 12px;
+      background: #f0effb;
+    }
+
+    .pros-cons h3 {
+      margin-bottom: 12px;
+      color: var(--blue);
+    }
+
+    .pros-cons ul {
+      padding-left: 19px;
+      color: #666b80;
+      font-size: 14px;
+    }
+
+    .pros-cons li {
+      margin-bottom: 9px;
+    }
+
+    /* FAQ */
+
+    .faq {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .faq h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .faq p {
+      margin: 0;
+    }
+
+    footer {
+      background: var(--ink);
+      color: white;
+      padding: 60px 25px 25px;
+      text-align: center;
+    }
+
+    footer h2 {
+      font-size: 35px;
+      margin-bottom: 12px;
+    }
+
+    footer p {
+      color: #c8cad7;
+      max-width: 580px;
+      margin: 0 auto 25px;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #464b60;
+      margin-top: 40px;
+      padding-top: 20px;
+      color: #aeb1c1;
+      font-size: 12px;
+    }
+
+    @media(max-width: 850px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 45px 35px;
+      }
+
+      .notebook {
+        max-width: 500px;
+      }
+
+      .article-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: static;
+      }
+
+      .sidebar a {
+        display: inline-block;
+        margin-right: 12px;
+      }
+    }
+
+    @media(max-width: 560px) {
+      header {
+        flex-direction: column;
+      }
+
+      nav {
+        justify-content: center;
+        gap: 12px;
+      }
+
+      .wrapper {
+        padding: 0 14px;
+      }
+
+      .hero {
+        padding: 40px 25px;
+      }
+
+      .hero::before {
+        left: 12px;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+
+      .facts {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 25px 20px;
+      }
+
+      h2 {
+        font-size: 27px;
+      }
+
+      .pros-cons {
+        grid-template-columns: 1fr;
+      }
+
+      .study-banner {
+        padding: 30px 23px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="topbar">
+    The Digital Notebook · Learning & Productivity
+  </div>
+
+  <header>
+    <a href="#" class="brand">NOTE<span>SPACE.</span></a>
+
+    <nav>
+      <a href="#about">About</a>
+      <a href="#features">Features</a>
+      <a href="#study">Study Tools</a>
+      <a href="#faq">FAQs</a>
+    </nav>
+  </header>
+
+  <main class="wrapper">
+
+    <!-- HERO -->
+    <section class="hero">
+
+      <div>
+        <span class="tag">Digital Learning Guide</span>
+
+        <h1>
+          Your ideas.<br>
+          Your notes.<br>
+          <span>One space.</span>
+        </h1>
+
+        <p class="hero-text">
+          Meet Notability, a digital note-taking application that
+          brings handwriting, typed notes, audio recordings, and
+          document annotation together in one organized workspace.
+        </p>
+
+        <a href="https://gitapp.download/"
+           class="button"
+           target="_blank"
+           rel="noopener noreferrer">
+          VISIT GITAPP →
+        </a>
+      </div>
+
+      <div class="notebook">
+        <div class="notebook-top">
+          <span>MY DIGITAL NOTEBOOK</span>
+          <span>PAGE 01</span>
+        </div>
+
+        <h2>Ideas become<br>better when<br>you <span class="note-highlight">write them.</span></h2>
+
+        <div class="note-line">Lecture notes and ideas...</div>
+        <div class="note-line">Important points to remember...</div>
+        <div class="note-line">Review, organize, and learn...</div>
+        <div class="note-line">A smarter study routine.</div>
+      </div>
+
+    </section>
+
+    <!-- QUICK FACTS -->
+    <section class="facts">
+      <div class="fact">
+        <strong>Notes</strong>
+        <span>Handwriting and typed content</span>
+      </div>
+
+      <div class="fact">
+        <strong>Audio</strong>
+        <span>Recordings and transcription tools</span>
+      </div>
+
+      <div class="fact">
+        <strong>Study</strong>
+        <span>Summaries, quizzes, and flashcards</span>
+      </div>
+    </section>
+
+    <!-- ARTICLE -->
+    <div class="article-grid">
+
+      <aside class="sidebar">
+        <h3>Notebook Index</h3>
+        <a href="#about">01. What Is Notability?</a>
+        <a href="#features">02. Main Features</a>
+        <a href="#study">03. Study Tools</a>
+        <a href="#workflow">04. How to Use It</a>
+        <a href="#devices">05. Supported Devices</a>
+        <a href="#pros">06. Advantages</a>
+        <a href="#faq">07. FAQs</a>
+      </aside>
+
+      <article>
+
+        <!-- ABOUT -->
+        <section class="section" id="about">
+          <div class="section-label">Chapter 01 / Introduction</div>
+
+          <h2>What Is Notability?</h2>
+
+          <p>
+            Notability is a digital note-taking application developed
+            by Ginger Labs. It is designed to help users capture,
+            organize, review, and understand information using a
+            combination of handwritten notes, typed text, drawings,
+            audio, images, and imported documents.
+          </p>
+
+          <p>
+            The application is particularly useful for students,
+            teachers, professionals, and anyone who prefers keeping
+            important information in a digital notebook instead of
+            managing piles of paper.
+          </p>
+
+          <p>
+            Users can create notes for different subjects, annotate
+            documents, record lectures or meetings, and use available
+            learning tools to review information. Its features make
+            it useful for both education and everyday productivity.
+          </p>
+        </section>
+
+        <!-- FEATURES -->
+        <section class="section" id="features">
+          <div class="section-label">Chapter 02 / Main Features</div>
+
+          <h2>Features That Make Note-Taking Easier</h2>
+
+          <p>
+            Notability combines several tools to make digital
+            note-taking more flexible. Here are some of its
+            important capabilities.
+          </p>
+
+          <div class="feature-row">
+            <div class="feature-icon">✎</div>
+            <div>
+              <h3>Handwriting and Drawing</h3>
+              <p>
+                Write notes by hand, sketch diagrams, highlight
+                important information, and organize ideas visually.
+                Supported stylus tools make handwriting a natural
+                part of the digital notebook experience.
+              </p>
+            </div>
+          </div>
+
+          <div class="feature-row">
+            <div class="feature-icon">Aa</div>
+            <div>
+              <h3>Typed Notes</h3>
+              <p>
+                Add typed text alongside handwritten content.
+                This combination can help users create structured
+                study guides, meeting notes, and organized documents.
+              </p>
+            </div>
+          </div>
+
+          <div class="feature-row">
+            <div class="feature-icon">♫</div>
+            <div>
+              <h3>Audio Recording</h3>
+              <p>
+                Record lectures, discussions, or meetings while
+                taking notes. Audio playback can connect with the
+                note-taking process, helping users revisit important
+                moments in a recording.
+              </p>
+            </div>
+          </div>
+
+          <div class="feature-row">
+            <div class="feature-icon">PDF</div>
+            <div>
+              <h3>PDF Annotation</h3>
+              <p>
+                Import PDFs and other supported documents to mark
+                important passages, add comments, highlight details,
+                and write directly on study materials.
+              </p>
+            </div>
+          </div>
+
+          <div class="feature-row">
+            <div class="feature-icon">AI</div>
+            <div>
+              <h3>AI-Powered Learning Tools</h3>
+              <p>
+                Depending on the subscription and platform,
+                Notability can provide note summaries, quizzes,
+                flashcards, audio transcription, and tools for
+                asking questions about your notes.
+              </p>
+            </div>
+          </div>
+
+          <div class="feature-row">
+            <div class="feature-icon">↗</div>
+            <div>
+              <h3>Sharing and Collaboration</h3>
+              <p>
+                Share notes and use supported collaboration
+                features to work with others. Available options
+                depend on your plan and device.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- STUDY -->
+        <section class="section" id="study">
+          <div class="section-label">Chapter 03 / Learning Experience</div>
+
+          <h2>A Useful Companion for Students</h2>
+
+          <p>
+            Students often need to manage lecture notes, assignments,
+            reading materials, diagrams, and revision documents.
+            Notability provides a digital space where these materials
+            can be brought together.
+          </p>
+
+          <p>
+            During a lecture, a student can write key points and
+            record audio when appropriate. Later, they can revisit
+            their notes, review the recording, and use available
+            study features to reinforce important concepts.
+          </p>
+
+          <p>
+            Teachers can also use digital notes to prepare lesson
+            materials, annotate documents, and share information
+            with learners.
+          </p>
+        </section>
+
+        <!-- PROMO -->
+        <div class="study-banner">
+          <div class="section-label" style="color:#dcdcff">
+            Discover More Digital Tools
+          </div>
+
+          <h2>Make Your Digital Workspace More Productive</h2>
+
+          <p>
+            Visit GitApp to explore its website and discover
+            additional software-related resources.
+          </p>
+
+          <a href="https://gitapp.download/"
+             class="button"
+             target="_blank"
+             rel="noopener noreferrer">
+            EXPLORE GITAPP →
+          </a>
+        </div>
+
+        <!-- WORKFLOW -->
+        <section class="section" id="workflow">
+          <div class="section-label">Chapter 04 / Getting Started</div>
+
+          <h2>How to Start Using Notability</h2>
+
+          <p>
+            Getting started with a digital notebook can be simple.
+            A basic workflow can help you keep your information
+            organized from the beginning.
+          </p>
+
+          <div class="steps">
+
+            <div class="step">
+              <h3>Install the Application</h3>
+              <p>
+                Choose a supported version for your device and
+                follow the official installation instructions.
+              </p>
+            </div>
+
+            <div class="step">
+              <h3>Create Your First Note</h3>
+              <p>
+                Start a new note and choose a suitable template
+                or page style for your work.
+              </p>
+            </div>
+
+            <div class="step">
+              <h3>Add Your Information</h3>
+              <p>
+                Combine handwriting, typed text, sketches,
+                images, or imported documents.
+              </p>
+            </div>
+
+            <div class="step">
+              <h3>Organize Your Notes</h3>
+              <p>
+                Use folders and a consistent naming system to
+                keep subjects and projects easy to find.
+              </p>
+            </div>
+
+            <div class="step">
+              <h3>Review and Share</h3>
+              <p>
+                Revisit your notes, use available learning tools,
+                and share documents when needed.
+              </p>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- DEVICES -->
+        <section class="section" id="devices">
+          <div class="section-label">Chapter 05 / Compatibility</div>
+
+          <h2>Which Devices Support Notability?</h2>
+
+          <p>
+            Notability is available on multiple platforms, including
+            iPad, iPhone, Mac, Windows, Android, and the web.
+            The exact features and requirements can differ between
+            platforms.
+          </p>
+
+          <p>
+            This gives users more flexibility when choosing where
+            to create or review notes. Before installing, check the
+            official compatibility information for your device
+            and operating system.
+          </p>
+        </section>
+
+        <!-- PROS -->
+        <section class="section" id="pros">
+          <div class="section-label">Chapter 06 / A Balanced Review</div>
+
+          <h2>Advantages and Things to Consider</h2>
+
+          <div class="pros-cons">
+            <div>
+              <h3>Advantages</h3>
+              <ul>
+                <li>Combines handwriting and typed notes</li>
+                <li>Supports audio recording tools</li>
+                <li>Useful PDF annotation features</li>
+                <li>AI-assisted study tools on eligible plans</li>
+                <li>Multiple supported platforms</li>
+                <li>Useful for study and meeting notes</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3>Considerations</h3>
+              <ul>
+                <li>Some features require a subscription</li>
+                <li>Tools can differ across devices</li>
+                <li>Some AI features have usage limits</li>
+                <li>Cloud syncing may depend on account settings</li>
+                <li>Check device requirements before installing</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="section" id="faq">
+          <div class="section-label">Chapter 07 / Common Questions</div>
+
+          <h2>Frequently Asked Questions</h2>
+
+          <div class="faq">
+            <h3>1. What is Notability mainly used for?</h3>
+            <p>
+              Notability is used for digital note-taking,
+              handwriting, drawing, audio recording, document
+              annotation, studying, and organizing information.
+            </p>
+          </div>
+
+          <div class="faq">
+            <h3>2. Is Notability free?</h3>
+            <p>
+              Notability offers a free Starter plan. Other plans
+              provide additional capabilities, such as unlimited
+              notes and expanded AI or audio features.
+            </p>
+          </div>
+
+          <div class="faq">
+            <h3>3. Can I record audio in Notability?</h3>
+            <p>
+              Yes. Audio recording and related playback features
+              are available, with access depending on the platform
+              and plan.
+            </p>
+          </div>
+
+          <div class="faq">
+            <h3>4. Can I use Notability on Android?</h3>
+            <p>
+              Yes. Notability has an Android application.
+              Check the official apps page for current device
+              and operating-system requirements.
+            </p>
+          </div>
+
+          <div class="faq">
+            <h3>5. Can Notability help with studying?</h3>
+            <p>
+              Yes. Notes, document annotation, audio tools,
+              summaries, quizzes, and flashcards can support
+              different parts of a study routine.
+            </p>
+          </div>
+
+          <div class="faq">
+            <h3>6. Where can I find official Notability information?</h3>
+            <p>
+              Visit the official Notability website for product
+              details, supported platforms, plan comparisons,
+              and installation information.
+            </p>
+          </div>
+        </section>
+
+        <!-- CONCLUSION -->
+        <section class="section">
+          <div class="section-label">Final Chapter / Conclusion</div>
+
+          <h2>Is Notability Worth Exploring?</h2>
+
+          <p>
+            Notability offers a flexible approach to digital
+            note-taking by combining handwriting, typed content,
+            audio, document annotation, and modern study tools.
+            It can be useful for students, educators, and
+            professionals who want a more organized way to
+            capture and review information.
+          </p>
+
+          <p>
+            Its value depends on your workflow, preferred device,
+            and the features included in your chosen plan.
+            Exploring its available tools can help you decide
+            whether it fits your everyday needs.
+          </p>
+
+          <a href="https://gitapp.download/"
+             class="button"
+             target="_blank"
+             rel="noopener noreferrer">
+            VISIT GITAPP →
+          </a>
+        </section>
+
+      </article>
+    </div>
+  </main>
+
+  <footer>
+    <h2>Write It. Save It. Remember It.</h2>
+
+    <p>
+      Explore digital tools and discover new ways to improve
+      your learning and productivity.
+    </p>
+
+    <a href="https://gitapp.download/"
+       class="button"
+       target="_blank"
+       rel="noopener noreferrer">
+      EXPLORE GITAPP
+    </a>
+
+    <div class="footer-bottom">
+      © 2026 NoteSpace. All rights reserved.
+      Notability is a trademark of its respective owner.
+      This article is for informational purposes.
+    </div>
+  </footer>
+
+</body>
+</html>
