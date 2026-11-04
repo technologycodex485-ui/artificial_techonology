@@ -1,0 +1,833 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>How to Install Homebrew on Mac – Complete Guide</title>
+<meta name="description" content="Learn how to install Homebrew on Mac using Terminal. Follow our complete guide for Apple Silicon and Intel Macs, including commands, setup, and troubleshooting.">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f7f5ef;
+    color: #26352d;
+    line-height: 1.8;
+}
+
+a {
+    text-decoration: none;
+}
+
+.container {
+    width: 90%;
+    max-width: 1150px;
+    margin: auto;
+}
+
+/* Navigation */
+
+header {
+    background: #173c2c;
+    padding: 19px 0;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    color: #fff;
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.logo span {
+    color: #f3a84a;
+}
+
+.nav-btn {
+    color: white;
+    border: 1px solid #799c83;
+    padding: 9px 18px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Hero section */
+
+.hero {
+    padding: 85px 20px;
+    background: #e9eddf;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-label {
+    display: inline-block;
+    background: #d5e5d3;
+    color: #285c3b;
+    padding: 7px 17px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 22px;
+}
+
+.hero h1 {
+    font-family: Georgia, serif;
+    font-size: clamp(35px, 5vw, 57px);
+    line-height: 1.2;
+    max-width: 850px;
+    margin: auto;
+    color: #173c2c;
+}
+
+.hero p {
+    max-width: 700px;
+    margin: 22px auto;
+    color: #647468;
+    font-size: 17px;
+}
+
+.btn {
+    display: inline-block;
+    background: #e78c35;
+    color: white;
+    padding: 14px 26px;
+    margin-top: 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: .3s;
+}
+
+.btn:hover {
+    background: #c76c1d;
+    transform: translateY(-3px);
+}
+
+/* Main layout */
+
+.main-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 260px;
+    gap: 30px;
+    align-items: start;
+    margin-top: 55px;
+    margin-bottom: 65px;
+}
+
+.article {
+    background: #fff;
+    padding: 42px;
+    border: 1px solid #e9e6dc;
+    border-radius: 9px;
+}
+
+.article h2 {
+    font-family: Georgia, serif;
+    font-size: 27px;
+    color: #214a34;
+    margin: 38px 0 15px;
+}
+
+.article h3 {
+    font-size: 19px;
+    color: #bd712c;
+    margin: 25px 0 10px;
+}
+
+.article p {
+    color: #68746b;
+    margin-bottom: 17px;
+}
+
+.article ul,
+.article ol {
+    padding-left: 25px;
+    margin-bottom: 20px;
+    color: #68746b;
+}
+
+.article li {
+    margin-bottom: 10px;
+}
+
+.article a {
+    color: #28764b;
+    text-decoration: underline;
+}
+
+/* Sidebar */
+
+.sidebar {
+    position: sticky;
+    top: 20px;
+}
+
+.side-card {
+    background: #173c2c;
+    color: white;
+    padding: 25px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.side-card h3 {
+    color: #f4b66e;
+    margin-bottom: 13px;
+    font-size: 19px;
+}
+
+.side-card p {
+    color: #d5e2d8;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.side-card a {
+    color: #f4b66e;
+    font-weight: bold;
+}
+
+/* Terminal */
+
+.terminal {
+    background: #18231d;
+    color: #a8e5b5;
+    padding: 23px;
+    border-radius: 7px;
+    margin: 22px 0;
+    overflow-x: auto;
+    border: 1px solid #344c3b;
+}
+
+.terminal-title {
+    color: #e9b36d;
+    font-size: 12px;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.terminal code {
+    color: #b7e7c2;
+    font-size: 13px;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+/* Highlight */
+
+.note {
+    background: #eff5e9;
+    border-left: 4px solid #659b63;
+    padding: 20px;
+    margin: 25px 0;
+    border-radius: 4px;
+    color: #526653;
+}
+
+.note strong {
+    color: #245737;
+}
+
+/* Steps */
+
+.step {
+    border-bottom: 1px solid #eeeae0;
+    padding: 12px 0 20px;
+}
+
+.step-number {
+    display: inline-block;
+    background: #e7f0e3;
+    color: #27613d;
+    font-weight: bold;
+    padding: 4px 12px;
+    border-radius: 4px;
+    margin-right: 7px;
+}
+
+/* Promo */
+
+.promo {
+    background: #eaf0e3;
+    border: 1px solid #d9e4d2;
+    padding: 40px 25px;
+    text-align: center;
+    margin-top: 45px;
+    border-radius: 9px;
+}
+
+.promo h2 {
+    margin-top: 0;
+}
+
+.promo p {
+    max-width: 600px;
+    margin: 12px auto;
+}
+
+/* FAQ */
+
+.faq-item {
+    border-bottom: 1px solid #eae8e1;
+    padding: 18px 0;
+}
+
+.faq-item h3 {
+    color: #245237;
+    margin-top: 0;
+}
+
+footer {
+    background: #173c2c;
+    color: #d1dfd4;
+    padding: 28px 15px;
+    text-align: center;
+    font-size: 14px;
+}
+
+footer a {
+    color: #f4b66e;
+}
+
+/* Mobile */
+
+@media(max-width: 850px) {
+    .main-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        position: static;
+    }
+}
+
+@media(max-width: 600px) {
+    .hero {
+        padding: 65px 15px;
+    }
+
+    .article {
+        padding: 23px 18px;
+    }
+
+    .article h2 {
+        font-size: 23px;
+    }
+
+    .nav-btn {
+        font-size: 12px;
+        padding: 8px 10px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+        <nav>
+            <a href="https://gitapp.download/" class="logo">
+                GitApp<span>.</span>
+            </a>
+            <a href="https://gitapp.download/" class="nav-btn">
+                Explore Software
+            </a>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container">
+        <span class="hero-label">MAC TERMINAL TUTORIAL</span>
+
+        <h1>How to Install Homebrew on Mac</h1>
+
+        <p>
+            A beginner-friendly guide to installing Homebrew
+            on macOS. Learn how to set up your package
+            manager, run Terminal commands, and install
+            useful developer tools.
+        </p>
+
+        <a href="#installation" class="btn">
+            Start Installation Guide →
+        </a>
+    </div>
+</section>
+
+<main class="container main-layout">
+
+<article class="article">
+
+<p>
+Homebrew is one of the most useful tools for Mac users
+who want more control over their software and
+development environment. It is a popular package
+manager that makes installing, updating, and managing
+command-line tools and applications much easier.
+</p>
+
+<p>
+If you are a developer, programmer, or everyday Mac
+user interested in learning new software tools,
+installing Homebrew can make your workflow more
+convenient. In this guide, we explain how to install
+Homebrew on Mac using simple Terminal commands.
+</p>
+
+<h2>What Is Homebrew on Mac?</h2>
+
+<p>
+Homebrew is a free and open-source package manager
+for macOS. It allows users to download and manage
+software directly from the Terminal without
+manually searching for installation files.
+</p>
+
+<p>
+For example, instead of downloading a command-line
+utility from a website, you can install supported
+packages using a simple command such as
+<strong>brew install wget</strong>.
+</p>
+
+<p>
+Homebrew also helps manage software updates and
+dependencies, making it a useful tool for people
+working with programming languages, development
+environments, and command-line applications.
+</p>
+
+<h2>Why Should You Install Homebrew?</h2>
+
+<ul>
+    <li>Install useful command-line tools quickly.</li>
+    <li>Manage software packages from Terminal.</li>
+    <li>Update installed packages with simple commands.</li>
+    <li>Install supported Mac applications using casks.</li>
+    <li>Manage development tools and dependencies.</li>
+    <li>Make repetitive software setup tasks easier.</li>
+</ul>
+
+<div class="note">
+<strong>Important:</strong>
+Homebrew is a package manager, not an app store.
+It installs software from its supported repositories
+and other configured sources.
+</div>
+
+<h2>Requirements Before Installing Homebrew</h2>
+
+<p>
+Before starting the installation, make sure your
+Mac meets the requirements for the Homebrew version
+you plan to install.
+</p>
+
+<ul>
+    <li>A compatible Intel or Apple Silicon Mac.</li>
+    <li>A supported version of macOS.</li>
+    <li>An active internet connection.</li>
+    <li>Access to the macOS Terminal.</li>
+    <li>Command Line Tools for Xcode when required.</li>
+</ul>
+
+<p>
+You can check the latest compatibility information
+on the official
+<a href="https://docs.brew.sh/Installation"
+target="_blank" rel="noopener noreferrer">
+Homebrew installation documentation
+</a>.
+</p>
+
+<h2 id="installation">How to Install Homebrew on Mac</h2>
+
+<p>
+Follow the instructions below to download and install
+Homebrew on your Mac.
+</p>
+
+<div class="step">
+<h3><span class="step-number">01</span> Open Terminal</h3>
+
+<p>
+First, open Finder and navigate to Applications.
+Select Utilities and launch Terminal. You can also
+press Command + Space, search for Terminal, and
+press Enter.
+</p>
+</div>
+
+<div class="step">
+<h3><span class="step-number">02</span> Install Command Line Tools</h3>
+
+<p>
+Homebrew may need Apple's Command Line Tools.
+If they are not already installed, enter this
+command in Terminal:
+</p>
+
+<div class="terminal">
+<div class="terminal-title">TERMINAL COMMAND</div>
+<code>xcode-select --install</code>
+</div>
+
+<p>
+Follow the installation instructions if macOS
+displays a confirmation window. If the tools
+are already installed, you can continue.
+</p>
+</div>
+
+<div class="step">
+<h3><span class="step-number">03</span> Run the Homebrew Installation Command</h3>
+
+<p>
+Visit the official Homebrew installation page or
+use the official installation command below.
+Copy the command, paste it into Terminal, and
+press Enter.
+</p>
+
+<div class="terminal">
+<div class="terminal-title">OFFICIAL HOMEBREW INSTALL COMMAND</div>
+<code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code>
+</div>
+
+<p>
+The installer explains the changes it plans to make
+and asks you to confirm before proceeding. Read the
+instructions and enter your Mac account password
+if requested.
+</p>
+</div>
+
+<div class="step">
+<h3><span class="step-number">04</span> Complete the Installation</h3>
+
+<p>
+Allow the installer to download and configure
+Homebrew. The time required depends on your
+internet connection and Mac configuration.
+</p>
+
+<p>
+When the installation finishes, carefully read
+the final Terminal instructions. You may need
+to configure your shell environment before
+the brew command becomes available.
+</p>
+</div>
+
+<h2>Configure Homebrew on Apple Silicon Mac</h2>
+
+<p>
+If you are using an Apple Silicon Mac with an M-series
+processor, Homebrew normally installs in the
+<strong>/opt/homebrew</strong> directory.
+</p>
+
+<p>
+If the installer asks you to configure your shell,
+use the following commands:
+</p>
+
+<div class="terminal">
+<div class="terminal-title">APPLE SILICON SETUP</div>
+<code>echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+
+eval "$(/opt/homebrew/bin/brew shellenv)"</code>
+</div>
+
+<h2>Configure Homebrew on Intel Mac</h2>
+
+<p>
+Intel-based Macs normally use
+<strong>/usr/local</strong> as the default Homebrew
+installation prefix.
+</p>
+
+<p>
+If the installer instructs you to configure your
+shell environment, the following commands can
+be used:
+</p>
+
+<div class="terminal">
+<div class="terminal-title">INTEL MAC SETUP</div>
+<code>echo 'eval "$(/usr/local/bin/brew shellenv)"' >> ~/.zprofile
+
+eval "$(/usr/local/bin/brew shellenv)"</code>
+</div>
+
+<div class="note">
+<strong>Remember:</strong>
+Use the configuration that matches your actual
+installation location. If the installer prints
+different shell setup instructions, follow its
+instructions instead.
+</div>
+
+<h2>How to Check If Homebrew Is Installed</h2>
+
+<p>
+After installation and shell configuration,
+verify that Homebrew is working correctly.
+Enter the following command:
+</p>
+
+<div class="terminal">
+<div class="terminal-title">CHECK HOMEBREW VERSION</div>
+<code>brew --version</code>
+</div>
+
+<p>
+If the command displays a Homebrew version,
+the installation is working.
+</p>
+
+<p>
+You can also run the following command to check
+your Homebrew environment:
+</p>
+
+<div class="terminal">
+<div class="terminal-title">DIAGNOSTIC COMMAND</div>
+<code>brew doctor</code>
+</div>
+
+<p>
+This command checks for potential configuration
+issues and provides suggestions when necessary.
+</p>
+
+<h2>How to Install Software Using Homebrew</h2>
+
+<p>
+Once Homebrew is installed, you can use it to
+install a variety of supported tools and packages.
+Here are some useful examples.
+</p>
+
+<h3>Install wget</h3>
+<div class="terminal">
+<div class="terminal-title">INSTALL PACKAGE</div>
+<code>brew install wget</code>
+</div>
+
+<h3>Install Git</h3>
+<div class="terminal">
+<div class="terminal-title">INSTALL PACKAGE</div>
+<code>brew install git</code>
+</div>
+
+<h3>Install Node.js</h3>
+<div class="terminal">
+<div class="terminal-title">INSTALL PACKAGE</div>
+<code>brew install node</code>
+</div>
+
+<h3>Update Homebrew</h3>
+<div class="terminal">
+<div class="terminal-title">UPDATE HOMEBREW</div>
+<code>brew update</code>
+</div>
+
+<h3>Upgrade Installed Packages</h3>
+<div class="terminal">
+<div class="terminal-title">UPGRADE PACKAGES</div>
+<code>brew upgrade</code>
+</div>
+
+<h2>Common Homebrew Installation Problems</h2>
+
+<h3>1. Brew Command Not Found</h3>
+
+<p>
+If Terminal displays a message saying that the
+brew command cannot be found, your shell
+environment may not be configured correctly.
+Review the post-installation instructions and
+add the correct Homebrew shellenv command.
+</p>
+
+<h3>2. Command Line Tools Are Missing</h3>
+
+<p>
+Homebrew may require Apple's Command Line Tools
+for certain operations. Run
+<strong>xcode-select --install</strong> if they
+are missing and follow the installation prompts.
+</p>
+
+<h3>3. Internet Connection Problems</h3>
+
+<p>
+A weak internet connection can interrupt downloads.
+Check your network connection and try again.
+If GitHub is unavailable, wait until connectivity
+is restored.
+</p>
+
+<h3>4. Permission Errors</h3>
+
+<p>
+Permission problems can occur when Homebrew's
+installation directory has incorrect ownership
+or permissions. Follow the official Homebrew
+troubleshooting documentation rather than
+changing permissions randomly or running every
+brew command with sudo.
+</p>
+
+<h2>Frequently Asked Questions</h2>
+
+<div class="faq-item">
+<h3>Is Homebrew free to use?</h3>
+<p>
+Yes. Homebrew is free and open-source software.
+Users can install and manage supported packages
+without purchasing a Homebrew license.
+</p>
+</div>
+
+<div class="faq-item">
+<h3>Can beginners install Homebrew on Mac?</h3>
+<p>
+Yes. Beginners can install Homebrew by following
+the official Terminal instructions. Basic
+knowledge of copying and running commands is
+helpful.
+</p>
+</div>
+
+<div class="faq-item">
+<h3>Is Homebrew available on Apple Silicon Macs?</h3>
+<p>
+Yes. Homebrew supports Apple Silicon Macs and
+normally uses the /opt/homebrew installation
+directory.
+</p>
+</div>
+
+<div class="faq-item">
+<h3>Can I install applications using Homebrew?</h3>
+<p>
+Yes. Homebrew supports command-line packages
+called formulae and many Mac applications
+through casks.
+</p>
+</div>
+
+<div class="faq-item">
+<h3>How do I update Homebrew?</h3>
+<p>
+Open Terminal and enter brew update to fetch
+the latest Homebrew package information.
+You can use brew upgrade to upgrade installed
+packages.
+</p>
+</div>
+
+<div class="faq-item">
+<h3>Does Homebrew replace the Mac App Store?</h3>
+<p>
+No. Homebrew is a separate package manager
+designed primarily for developer tools,
+command-line utilities, and supported
+applications.
+</p>
+</div>
+
+<section class="promo">
+    <h2>Discover More Mac Software with GitApp</h2>
+
+    <p>
+    Looking for useful Mac applications, software
+    guides, and technology resources? Visit GitApp
+    to explore more software-related content.
+    </p>
+
+    <a href="https://gitapp.download/"
+       class="btn"
+       target="_blank"
+       rel="noopener noreferrer">
+       Explore GitApp →
+    </a>
+</section>
+
+<h2>Final Thoughts</h2>
+
+<p>
+Installing Homebrew on Mac is a useful step for
+anyone interested in software development,
+programming, or managing command-line tools.
+Its simple Terminal commands make it easier
+to install, update, and organize supported
+software packages.
+</p>
+
+<p>
+Whether you use an Intel Mac or an Apple Silicon
+Mac, follow the appropriate installation and
+shell configuration instructions. Once everything
+is set up, you can start using Homebrew to
+improve your Mac workflow.
+</p>
+
+</article>
+
+<aside class="sidebar">
+
+    <div class="side-card">
+        <h3>Quick Guide</h3>
+        <p>1. Open Terminal</p>
+        <p>2. Install Command Line Tools if needed</p>
+        <p>3. Run the Homebrew command</p>
+        <p>4. Configure your shell</p>
+        <p>5. Verify installation</p>
+    </div>
+
+    <div class="side-card">
+        <h3>Explore GitApp</h3>
+        <p>
+        Find more software guides and useful
+        technology resources.
+        </p>
+        <a href="https://gitapp.download/"
+           target="_blank"
+           rel="noopener noreferrer">
+           Visit GitApp →
+        </a>
+    </div>
+
+</aside>
+
+</main>
+
+<footer>
+    <p>
+    © 2026 GitApp. All Rights Reserved.
+    | <a href="https://gitapp.download/">Home</a>
+    </p>
+</footer>
+
+</body>
+</html>
