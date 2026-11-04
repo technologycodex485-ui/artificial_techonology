@@ -1,0 +1,1209 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>GridTile Review – Keyboard-Driven Window Management for Mac</title>
+  <meta name="description" content="Discover GridTile for macOS, a keyboard-driven window tiling utility. Explore its grid overlay, custom shortcuts, window positioning, setup, and features.">
+  <meta name="keywords" content="GridTile, GridTile Mac, GridTile macOS, window tiling utility, Mac window manager, keyboard window management, macOS productivity">
+  <meta name="author" content="GitApp">
+
+  <style>
+    :root {
+      --bg: #171321;
+      --surface: #211b30;
+      --surface2: #2d2540;
+      --violet: #a98bff;
+      --mint: #a7f3d0;
+      --pink: #ff91bd;
+      --white: #f8f5ff;
+      --muted: #b6adc8;
+      --line: rgba(255,255,255,.12);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.7;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1160px, 90%);
+      margin: auto;
+    }
+
+    /* Navigation */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(23,19,33,.95);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      color: var(--white);
+      font-size: 25px;
+      font-weight: 900;
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      color: var(--mint);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .nav-links a:hover {
+      color: var(--mint);
+    }
+
+    .nav-links .download-link {
+      color: var(--bg);
+      background: var(--mint);
+      padding: 10px 17px;
+      border-radius: 5px;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 90px 0;
+      background:
+        radial-gradient(circle at 85% 15%, rgba(169,139,255,.17), transparent 35%),
+        radial-gradient(circle at 10% 90%, rgba(167,243,208,.08), transparent 35%);
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 55px;
+    }
+
+    .eyebrow {
+      color: var(--mint);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 21px;
+    }
+
+    .hero h1 {
+      font-size: clamp(43px, 6vw, 72px);
+      line-height: 1.04;
+      letter-spacing: -3px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 span {
+      color: var(--violet);
+    }
+
+    .hero-copy {
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 530px;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 14px 22px;
+      border-radius: 5px;
+      font-size: 13px;
+      font-weight: 900;
+      transition: .25s;
+    }
+
+    .btn-primary {
+      color: var(--bg);
+      background: var(--mint);
+      box-shadow: 0 8px 25px rgba(167,243,208,.12);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      background: #c6ffe5;
+    }
+
+    .btn-outline {
+      color: var(--white);
+      border: 1px solid var(--line);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--violet);
+      color: var(--violet);
+    }
+
+    /* Grid illustration */
+    .workspace {
+      background: var(--surface);
+      padding: 23px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      box-shadow: 0 30px 75px rgba(0,0,0,.35);
+      transform: rotate(1deg);
+    }
+
+    .workspace-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 17px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 18px;
+    }
+
+    .window-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .window-dots i {
+      width: 9px;
+      height: 9px;
+      display: block;
+      border-radius: 50%;
+      background: var(--violet);
+    }
+
+    .workspace-top span {
+      font-size: 10px;
+      color: var(--muted);
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .screen-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 95px 95px;
+      gap: 8px;
+      margin: 15px 0 20px;
+    }
+
+    .grid-cell {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--surface2);
+      border: 1px solid rgba(169,139,255,.24);
+      border-radius: 6px;
+      color: var(--violet);
+      font-size: 20px;
+      font-weight: 900;
+    }
+
+    .grid-cell.selected {
+      background: rgba(167,243,208,.15);
+      border: 2px solid var(--mint);
+      color: var(--mint);
+      box-shadow: 0 0 20px rgba(167,243,208,.08);
+    }
+
+    .grid-cell.wide {
+      grid-column: span 2;
+    }
+
+    .workspace-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      padding-top: 15px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    /* Keycaps */
+    .key-hint {
+      display: flex;
+      gap: 8px;
+      margin-top: 23px;
+      align-items: center;
+    }
+
+    .key {
+      min-width: 35px;
+      padding: 5px 10px;
+      background: var(--surface2);
+      border: 1px solid var(--line);
+      border-bottom: 3px solid var(--violet);
+      border-radius: 5px;
+      text-align: center;
+      font-weight: 900;
+      color: var(--white);
+      font-size: 12px;
+    }
+
+    .key-hint small {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    /* Stats */
+    .stats {
+      background: var(--mint);
+      color: var(--bg);
+      padding: 26px 0;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      text-align: center;
+      gap: 20px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    .stat span {
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    /* Sections */
+    .section {
+      padding: 85px 0;
+    }
+
+    .section-heading {
+      max-width: 700px;
+      margin-bottom: 40px;
+    }
+
+    .section-heading .eyebrow {
+      margin-bottom: 12px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(30px, 4vw, 44px);
+      letter-spacing: -1.7px;
+      line-height: 1.15;
+      margin-bottom: 15px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 45px;
+    }
+
+    .article-copy p {
+      color: var(--muted);
+      margin-bottom: 17px;
+    }
+
+    .note-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-top: 3px solid var(--violet);
+      padding: 27px;
+      border-radius: 8px;
+      align-self: start;
+    }
+
+    .note-card .symbol {
+      font-size: 33px;
+      color: var(--mint);
+      margin-bottom: 12px;
+    }
+
+    .note-card h3 {
+      margin-bottom: 10px;
+      font-size: 19px;
+    }
+
+    .note-card p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* Features */
+    .features-section {
+      background: #1d182a;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 17px;
+    }
+
+    .feature-card {
+      padding: 26px;
+      min-height: 200px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      transition: .25s;
+    }
+
+    .feature-card:hover {
+      border-color: var(--violet);
+      transform: translateY(-5px);
+    }
+
+    .feature-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      color: var(--mint);
+      background: rgba(167,243,208,.09);
+      border: 1px solid rgba(167,243,208,.2);
+      border-radius: 8px;
+      font-size: 18px;
+      margin-bottom: 17px;
+    }
+
+    .feature-card h3 {
+      font-size: 17px;
+      margin-bottom: 9px;
+    }
+
+    .feature-card p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* How it works */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .step {
+      padding: 23px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      border-radius: 8px;
+    }
+
+    .step-number {
+      color: var(--pink);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    .step h3 {
+      font-size: 19px;
+      margin: 13px 0 9px;
+    }
+
+    .step p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* Keyboard section */
+    .keyboard-section {
+      background: var(--surface);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .keyboard-demo {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      background: #15111f;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 35px 20px;
+      margin-top: 25px;
+    }
+
+    .keyboard-demo .key {
+      min-width: 52px;
+      min-height: 52px;
+      display: grid;
+      place-items: center;
+      font-size: 17px;
+    }
+
+    .keyboard-demo .arrow {
+      color: var(--violet);
+      font-size: 25px;
+    }
+
+    /* Comparison */
+    .comparison-section {
+      background: #1d182a;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    table {
+      width: 100%;
+      min-width: 560px;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 17px 20px;
+      border-bottom: 1px solid var(--line);
+      font-size: 13px;
+    }
+
+    th {
+      color: var(--mint);
+      background: var(--surface);
+    }
+
+    td {
+      color: var(--muted);
+    }
+
+    td:first-child {
+      color: var(--white);
+      font-weight: 800;
+    }
+
+    /* Requirements */
+    .requirements {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .requirement-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      padding: 25px;
+      border-radius: 8px;
+    }
+
+    .requirement-card h3 {
+      margin-bottom: 10px;
+      color: var(--violet);
+    }
+
+    .requirement-card p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* FAQ */
+    .faq-section {
+      background: #1d182a;
+    }
+
+    .faq-list {
+      max-width: 850px;
+    }
+
+    .faq-item {
+      padding: 22px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .faq-item h3 {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .faq-item p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* CTA */
+    .final-cta {
+      padding: 80px 0;
+      background: linear-gradient(120deg, #a98bff, #a7f3d0);
+      text-align: center;
+      color: #171321;
+    }
+
+    .final-cta h2 {
+      font-size: clamp(31px, 5vw, 48px);
+      line-height: 1.12;
+      letter-spacing: -1.5px;
+      margin-bottom: 15px;
+    }
+
+    .final-cta p {
+      max-width: 620px;
+      margin: 0 auto 25px;
+      font-size: 14px;
+      color: #38304d;
+    }
+
+    .final-cta .btn {
+      background: #171321;
+      color: white;
+    }
+
+    .final-cta .btn:hover {
+      transform: translateY(-3px);
+      background: #302442;
+    }
+
+    footer {
+      background: #100d18;
+      color: var(--muted);
+      text-align: center;
+      padding: 27px 15px;
+      font-size: 11px;
+    }
+
+    footer strong {
+      color: var(--mint);
+    }
+
+    /* Responsive */
+    @media (max-width: 850px) {
+      .hero-grid,
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .nav-links {
+        gap: 12px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .nav {
+        min-height: 66px;
+      }
+
+      .nav-links a:not(.download-link) {
+        display: none;
+      }
+
+      .hero {
+        padding: 60px 0;
+      }
+
+      .hero h1 {
+        letter-spacing: -2px;
+      }
+
+      .stats-grid,
+      .feature-grid,
+      .steps,
+      .requirements {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 60px 0;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="container nav">
+      <a href="#" class="logo">GridTile<span>.</span></a>
+
+      <nav class="nav-links">
+        <a href="#about">Overview</a>
+        <a href="#features">Features</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#faq">FAQ</a>
+        <a href="https://gitapp.download/" class="download-link">Download ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-grid">
+
+        <div>
+          <div class="eyebrow">Keyboard-driven Mac productivity</div>
+
+          <h1>Windows in place.<br>
+            Focus in <span>flow.</span>
+          </h1>
+
+          <p class="hero-copy">
+            GridTile is a native macOS window-tiling utility that lets
+            you position and resize your active application window
+            using a keyboard-controlled grid. Choose a screen region
+            without dragging windows around manually.
+          </p>
+
+          <div class="buttons">
+            <a href="https://gitapp.download/" class="btn btn-primary">
+              Download Now ↗
+            </a>
+
+            <a href="https://github.com/ujwalnk/GridTile"
+               class="btn btn-outline"
+               target="_blank" rel="noopener">
+              View Source Code
+            </a>
+          </div>
+
+          <div class="key-hint">
+            <span class="key">⌃</span>
+            <span class="key">⌥</span>
+            <span class="key">1</span>
+            <small>Example activation shortcut</small>
+          </div>
+        </div>
+
+        <!-- Decorative grid mockup -->
+        <div class="workspace">
+
+          <div class="workspace-top">
+            <div class="window-dots">
+              <i></i><i></i><i></i>
+            </div>
+            <span>GRIDTILE / LAYOUT PREVIEW</span>
+          </div>
+
+          <div class="screen-grid">
+            <div class="grid-cell">A</div>
+            <div class="grid-cell selected">S</div>
+            <div class="grid-cell">D</div>
+            <div class="grid-cell wide selected">F</div>
+            <div class="grid-cell">G</div>
+          </div>
+
+          <div class="workspace-bottom">
+            <span>Keyboard region selection</span>
+            <span>Illustrative layout</span>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+      <div class="container stats-grid">
+
+        <div class="stat">
+          <strong>macOS 14+</strong>
+          <span>Operating system requirement</span>
+        </div>
+
+        <div class="stat">
+          <strong>Open Source</strong>
+          <span>MIT-licensed native project</span>
+        </div>
+
+        <div class="stat">
+          <strong>Keyboard First</strong>
+          <span>Grid-based window positioning</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="section" id="about">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="eyebrow">01 / INTRODUCTION</div>
+          <h2>What is GridTile?</h2>
+          <p>
+            A keyboard-focused approach to organizing application
+            windows on your Mac.
+          </p>
+        </div>
+
+        <div class="about-grid">
+
+          <div class="article-copy">
+            <p>
+              GridTile is a native macOS window-tiling application
+              developed using Swift, SwiftUI, and AppKit. It provides
+              a menu-bar-based way to move and resize the currently
+              focused application window through a visual keyboard grid.
+            </p>
+
+            <p>
+              Rather than memorizing many different shortcuts for
+              left, right, top, bottom, and corner positions, users
+              activate a grid overlay and select two points to define
+              the desired rectangular window area.
+            </p>
+
+            <p>
+              GridTile is designed for people who prefer keyboard
+              navigation and want more precise control over their
+              desktop workspace. It is particularly useful when
+              working with multiple applications side by side.
+            </p>
+
+            <p>
+              The native version works as a menu bar application
+              without requiring Hammerspoon. Its source code is
+              publicly available, making it interesting for developers
+              who want to inspect or contribute to the project.
+            </p>
+          </div>
+
+          <aside class="note-card">
+            <div class="symbol">▦</div>
+            <h3>A grid becomes your workspace</h3>
+            <p>
+              Select a region on the screen using keyboard characters.
+              GridTile then adjusts the focused window to fit the
+              selected area.
+            </p>
+          </aside>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="section features-section" id="features">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="eyebrow">02 / MAIN FEATURES</div>
+          <h2>What makes GridTile useful?</h2>
+          <p>
+            Explore the core features that make keyboard-driven
+            window management more flexible.
+          </p>
+        </div>
+
+        <div class="feature-grid">
+
+          <article class="feature-card">
+            <div class="feature-icon">▦</div>
+            <h3>Grid Overlay</h3>
+            <p>
+              Display a character-addressable grid over the screen
+              to choose the region where a window should appear.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">⌨</div>
+            <h3>Keyboard Selection</h3>
+            <p>
+              Select grid cells using keyboard characters instead
+              of manually dragging application windows.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">↔</div>
+            <h3>Window Resizing</h3>
+            <p>
+              Move and resize the focused window to the rectangle
+              defined by the selected grid positions.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">⌘</div>
+            <h3>Global Shortcuts</h3>
+            <p>
+              Activate layouts through configurable keyboard
+              shortcuts from different applications.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">▤</div>
+            <h3>Custom Layouts</h3>
+            <p>
+              Configure grid layouts and shortcuts to match
+              different desktop organization preferences.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">◉</div>
+            <h3>Menu Bar Application</h3>
+            <p>
+              Access layouts and settings from the macOS menu bar
+              without keeping a regular Dock window open.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Workflow -->
+    <section class="section" id="workflow">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="eyebrow">03 / HOW IT WORKS</div>
+          <h2>Three steps to a better desktop</h2>
+          <p>
+            GridTile uses a simple activation and selection process.
+          </p>
+        </div>
+
+        <div class="steps">
+
+          <article class="step">
+            <span class="step-number">STEP 01</span>
+            <h3>Activate a layout</h3>
+            <p>
+              Press the configured global shortcut to display
+              the grid overlay on the relevant screen.
+            </p>
+          </article>
+
+          <article class="step">
+            <span class="step-number">STEP 02</span>
+            <h3>Select two cells</h3>
+            <p>
+              Press one or two characters to define the grid region
+              that should contain the focused application window.
+            </p>
+          </article>
+
+          <article class="step">
+            <span class="step-number">STEP 03</span>
+            <h3>Arrange your window</h3>
+            <p>
+              GridTile adjusts the original window to the selected
+              screen area. Press Escape to cancel the selection.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Keyboard illustration -->
+    <section class="section keyboard-section">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="eyebrow">04 / KEYBOARD WORKFLOW</div>
+          <h2>Choose a region with a few keystrokes</h2>
+          <p>
+            The grid turns the screen into selectable regions.
+            The following is an illustrative keyboard interaction,
+            not a screenshot of the actual application.
+          </p>
+        </div>
+
+        <div class="keyboard-demo">
+          <span class="key">⌃</span>
+          <span class="key">⌥</span>
+          <span class="key">1</span>
+
+          <span class="arrow">→</span>
+
+          <span class="key">A</span>
+          <span class="arrow">→</span>
+          <span class="key">F</span>
+
+          <span class="arrow">→</span>
+
+          <span class="key">✓</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Comparison -->
+    <section class="section comparison-section">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="eyebrow">05 / COMPARISON</div>
+          <h2>GridTile vs traditional window snapping</h2>
+          <p>
+            GridTile uses spatial grid selection rather than relying
+            only on predefined window positions.
+          </p>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Capability</th>
+                <th>Traditional Snapping</th>
+                <th>GridTile</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>Keyboard-based positioning</td>
+                <td>Often supported</td>
+                <td>Yes</td>
+              </tr>
+
+              <tr>
+                <td>Visual grid selection</td>
+                <td>Varies by app</td>
+                <td>Yes</td>
+              </tr>
+
+              <tr>
+                <td>Choose arbitrary grid regions</td>
+                <td>Often limited</td>
+                <td>Yes</td>
+              </tr>
+
+              <tr>
+                <td>Menu bar workflow</td>
+                <td>Varies by app</td>
+                <td>Yes</td>
+              </tr>
+
+              <tr>
+                <td>Native macOS implementation</td>
+                <td>Depends on app</td>
+                <td>Yes</td>
+              </tr>
+
+              <tr>
+                <td>Open-source project</td>
+                <td>Depends on app</td>
+                <td>MIT license</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Requirements -->
+    <section class="section">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="eyebrow">06 / SYSTEM REQUIREMENTS</div>
+          <h2>What do you need to run GridTile?</h2>
+          <p>
+            Check the main requirements before installing
+            the native application.
+          </p>
+        </div>
+
+        <div class="requirements">
+
+          <article class="requirement-card">
+            <h3>Operating System</h3>
+            <p>
+              GridTile targets macOS 14 Sonoma and macOS 15 Sequoia
+              in the published project requirements.
+            </p>
+          </article>
+
+          <article class="requirement-card">
+            <h3>Development Tools</h3>
+            <p>
+              Building the source project requires Xcode 15.2
+              or later.
+            </p>
+          </article>
+
+          <article class="requirement-card">
+            <h3>Accessibility Permission</h3>
+            <p>
+              Grant Accessibility access in macOS Privacy & Security
+              settings so GridTile can reposition application windows.
+            </p>
+          </article>
+
+          <article class="requirement-card">
+            <h3>Installation</h3>
+            <p>
+              The project provides instructions for building and
+              running GridTile through its Xcode project.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section faq-section" id="faq">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="eyebrow">07 / FAQ</div>
+          <h2>Frequently asked questions</h2>
+          <p>
+            Answers to common questions about GridTile.
+          </p>
+        </div>
+
+        <div class="faq-list">
+
+          <div class="faq-item">
+            <h3>1. What is GridTile used for?</h3>
+            <p>
+              GridTile is a keyboard-driven macOS utility for moving
+              and resizing application windows using a screen grid.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>2. Is GridTile a native Mac application?</h3>
+            <p>
+              Yes. The newer version is built with Swift, SwiftUI,
+              and AppKit as a native menu bar application.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>3. Does GridTile require Accessibility permission?</h3>
+            <p>
+              Yes. macOS Accessibility permission is needed to
+              reposition and resize windows belonging to other apps.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>4. Does GridTile require Hammerspoon?</h3>
+            <p>
+              The native GridTile application is designed to run
+              independently without requiring Hammerspoon.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>5. Can I customize keyboard shortcuts?</h3>
+            <p>
+              Yes. The native project includes configurable global
+              activation shortcuts and grid layout settings.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>6. Is GridTile free?</h3>
+            <p>
+              The native project is published under the MIT open-source
+              license. Check its repository for the latest release
+              and distribution information.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>7. Where can I download GridTile?</h3>
+            <p>
+              Visit the official project website or GitHub repository
+              to find its source code and available releases.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="final-cta">
+      <div class="container">
+        <h2>Less dragging.<br>More doing.</h2>
+
+        <p>
+          Explore keyboard-driven window management and make
+          your Mac desktop easier to organize with GridTile.
+        </p>
+
+        <a href="https://gitapp.download/" class="btn">
+          Visit GitApp Download ↗
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>
+      <strong>GridTile Guide</strong> — Independent informational article.
+      GridTile is an open-source project. All product names and
+      trademarks belong to their respective owners.
+    </p>
+    <p>© 2026 All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>
