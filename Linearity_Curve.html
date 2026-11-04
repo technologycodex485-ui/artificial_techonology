@@ -1,0 +1,672 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Linearity Curve - Professional Vector Design Software</title>
+<meta name="description" content="Discover Linearity Curve, a creative vector design application for creating logos, illustrations, icons, branding, and professional digital artwork.">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f7f7f4;
+    color: #222;
+    line-height: 1.8;
+}
+
+/* HERO */
+
+.hero {
+    background: #d8ff36;
+    padding: 85px 25px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    max-width: 1150px;
+    margin: auto;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-label {
+    display: inline-block;
+    background: #222;
+    color: #d8ff36;
+    padding: 7px 17px;
+    border-radius: 3px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+.hero h1 {
+    font-size: clamp(45px, 8vw, 82px);
+    line-height: 1.05;
+    margin: 25px 0;
+    max-width: 850px;
+    letter-spacing: -3px;
+}
+
+.hero h1 span {
+    color: #555;
+}
+
+.hero p {
+    max-width: 650px;
+    font-size: 18px;
+    color: #373b2c;
+}
+
+.hero-decoration {
+    position: absolute;
+    right: 8%;
+    top: 15%;
+    width: 220px;
+    height: 220px;
+    border: 35px solid rgba(0,0,0,.12);
+    border-radius: 50%;
+}
+
+/* NAVIGATION */
+
+nav {
+    background: #222;
+    padding: 18px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
+    margin: 0 14px;
+    transition: .3s;
+}
+
+nav a:hover {
+    color: #d8ff36;
+}
+
+/* LAYOUT */
+
+.container {
+    max-width: 1100px;
+    margin: 55px auto;
+    padding: 0 20px;
+}
+
+.article {
+    background: white;
+    padding: 45px;
+    border-radius: 4px;
+    box-shadow: 0 12px 35px rgba(0,0,0,.04);
+}
+
+section {
+    margin-bottom: 38px;
+}
+
+.article h2 {
+    font-size: 29px;
+    color: #222;
+    margin-bottom: 16px;
+    letter-spacing: -.5px;
+}
+
+.article p {
+    color: #646464;
+    margin-bottom: 16px;
+}
+
+/* INTRO */
+
+.intro {
+    background: #f1f5e4;
+    padding: 25px;
+    border-left: 5px solid #a4c900;
+    margin: 30px 0;
+    color: #414b22;
+}
+
+/* FEATURE GRID */
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+    margin-top: 25px;
+}
+
+.feature {
+    background: #f6f6f2;
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid #e8e8df;
+    transition: .3s;
+}
+
+.feature:hover {
+    background: #edffb0;
+    transform: translateY(-5px);
+}
+
+.feature .symbol {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.feature h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.feature p {
+    font-size: 14px;
+    margin: 0;
+}
+
+/* DARK SECTION */
+
+.dark-section {
+    background: #242424;
+    color: white;
+    padding: 35px;
+    border-radius: 8px;
+}
+
+.dark-section h2 {
+    color: #d8ff36;
+}
+
+.dark-section p {
+    color: #c9c9c9;
+}
+
+/* HIGHLIGHT */
+
+.highlight-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.highlight-card {
+    background: #eaff9c;
+    padding: 22px;
+    border-radius: 7px;
+    text-align: center;
+}
+
+.highlight-card h3 {
+    font-size: 19px;
+}
+
+.highlight-card p {
+    font-size: 13px;
+    margin: 0;
+}
+
+/* PROMOTION */
+
+.promo {
+    background: #d8ff36;
+    padding: 55px 25px;
+    text-align: center;
+    border-radius: 8px;
+    margin-top: 40px;
+}
+
+.promo h2 {
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.promo p {
+    max-width: 650px;
+    margin: 0 auto 25px;
+    color: #41452f;
+}
+
+.download-btn {
+    display: inline-block;
+    background: #222;
+    color: white;
+    text-decoration: none;
+    padding: 15px 35px;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: .3s;
+}
+
+.download-btn:hover {
+    background: #555;
+    transform: translateY(-4px);
+}
+
+/* FOOTER */
+
+footer {
+    background: #222;
+    color: #bbb;
+    text-align: center;
+    padding: 28px 15px;
+    margin-top: 55px;
+    font-size: 14px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 600px) {
+    .hero {
+        padding: 60px 20px;
+    }
+
+    .hero-decoration {
+        width: 110px;
+        height: 110px;
+        border-width: 18px;
+        right: -25px;
+        top: 10%;
+    }
+
+    nav a {
+        display: inline-block;
+        margin: 5px 7px;
+    }
+
+    .article {
+        padding: 23px;
+    }
+
+    .article h2 {
+        font-size: 24px;
+    }
+
+    .dark-section {
+        padding: 24px;
+    }
+
+    .promo h2 {
+        font-size: 26px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO SECTION -->
+
+<header class="hero">
+    <div class="hero-content">
+
+        <span class="hero-label">CREATIVE DESIGN SOFTWARE</span>
+
+        <h1>Design Beyond Limits With
+        <span>Linearity Curve.</span></h1>
+
+        <p>
+            Explore the world of vector graphics, digital
+            illustration, logo creation, and professional
+            visual design with Linearity Curve.
+        </p>
+
+    </div>
+
+    <div class="hero-decoration"></div>
+</header>
+
+<!-- NAVIGATION -->
+
+<nav>
+    <a href="#about">About</a>
+    <a href="#features">Features</a>
+    <a href="#tools">Design Tools</a>
+    <a href="#uses">Uses</a>
+    <a href="#conclusion">Conclusion</a>
+</nav>
+
+<!-- ARTICLE -->
+
+<div class="container">
+
+<article class="article">
+
+<section id="about">
+
+<h2>What Is Linearity Curve?</h2>
+
+<p>
+<strong>Linearity Curve</strong> is a vector graphic
+design application developed by Linearity GmbH.
+It is designed to help creative professionals,
+illustrators, graphic designers, and beginners
+create beautiful digital artwork.
+</p>
+
+<p>
+Previously known as Vectornator, Linearity Curve
+provides a modern workspace for designing logos,
+icons, illustrations, marketing graphics, and
+other visual content. It combines precision
+drawing tools with an intuitive interface.
+</p>
+
+<p>
+The application is available for Mac, iPad,
+and iPhone, allowing users to work on creative
+projects across supported Apple devices.
+</p>
+
+</section>
+
+<div class="intro">
+<strong>Why Vector Design Matters:</strong>
+Vector graphics can be resized without losing
+their sharpness, making them especially useful
+for logos, branding, icons, illustrations,
+and professional design projects.
+</div>
+
+<section id="features">
+
+<h2>Key Features of Linearity Curve</h2>
+
+<p>
+Linearity Curve offers a variety of creative
+features that make digital design more flexible
+and accessible.
+</p>
+
+<div class="features">
+
+<div class="feature">
+<div class="symbol">✒️</div>
+<h3>Pen & Node Tools</h3>
+<p>
+Create precise vector paths, curves, shapes,
+and detailed illustrations with editable
+control points.
+</p>
+</div>
+
+<div class="feature">
+<div class="symbol">🎨</div>
+<h3>Color & Gradients</h3>
+<p>
+Experiment with colors, gradients, and
+visual styling to create attractive
+and professional designs.
+</p>
+</div>
+
+<div class="feature">
+<div class="symbol">📐</div>
+<h3>Shape Builder</h3>
+<p>
+Combine, subtract, and organize shapes
+to develop complex vector compositions.
+</p>
+</div>
+
+<div class="feature">
+<div class="symbol">🖌️</div>
+<h3>Vector Brushes</h3>
+<p>
+Create expressive illustrations and
+custom artwork using flexible brush tools.
+</p>
+</div>
+
+<div class="feature">
+<div class="symbol">🔤</div>
+<h3>Typography</h3>
+<p>
+Design creative text layouts and
+experiment with text-on-path features.
+</p>
+</div>
+
+<div class="feature">
+<div class="symbol">🖼️</div>
+<h3>Auto Trace</h3>
+<p>
+Convert suitable images, sketches,
+and illustrations into editable
+vector paths.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<section class="dark-section" id="tools">
+
+<h2>Professional Vector Design Tools</h2>
+
+<p>
+One of the major advantages of Linearity Curve
+is its collection of vector editing tools.
+Users can create detailed graphics using
+Bezier paths, shape editing, layers,
+gradients, and precise alignment controls.
+</p>
+
+<p>
+The application also supports multiple artboards,
+allowing designers to organize different parts
+of a project within one document. This can be
+helpful when developing brand identities,
+social media graphics, or marketing materials.
+</p>
+
+<p>
+Its export options include formats such as
+SVG, PDF, PNG, JPG, and other supported
+formats, depending on the selected workflow.
+</p>
+
+</section>
+
+<section>
+
+<h2>AI-Powered Creative Features</h2>
+
+<p>
+Linearity has expanded its creative ecosystem
+with AI-assisted design capabilities. Depending
+on the current plan and version, users can
+explore tools for generating visual assets,
+removing backgrounds, enhancing images,
+and developing editable design concepts.
+</p>
+
+<p>
+These tools can help speed up creative workflows,
+while editable vector elements allow designers
+to refine their artwork and maintain creative
+control over the final result.
+</p>
+
+</section>
+
+<section id="uses">
+
+<h2>What Can You Create With Linearity Curve?</h2>
+
+<p>
+Linearity Curve can support many types of
+creative projects. Its vector-based workflow
+makes it suitable for both personal and
+professional design tasks.
+</p>
+
+<div class="highlight-grid">
+
+<div class="highlight-card">
+<h3>Logo Design</h3>
+<p>Create scalable brand graphics.</p>
+</div>
+
+<div class="highlight-card">
+<h3>Illustrations</h3>
+<p>Develop original vector artwork.</p>
+</div>
+
+<div class="highlight-card">
+<h3>Social Media</h3>
+<p>Design attractive digital content.</p>
+</div>
+
+<div class="highlight-card">
+<h3>Icons</h3>
+<p>Create clean interface graphics.</p>
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2>Is Linearity Curve Good for Beginners?</h2>
+
+<p>
+Yes. Linearity Curve can be a useful starting
+point for people interested in learning vector
+graphic design. Its visual interface and
+drawing tools provide opportunities to
+practice basic design concepts.
+</p>
+
+<p>
+Beginners can start by creating simple shapes,
+experimenting with colors, learning how
+layers work, and gradually moving toward
+more advanced illustrations and branding projects.
+</p>
+
+</section>
+
+<section>
+
+<h2>Who Should Use Linearity Curve?</h2>
+
+<p>
+Linearity Curve is suitable for graphic designers,
+digital artists, illustrators, students, content
+creators, and business owners who need to create
+high-quality visual graphics.
+</p>
+
+<p>
+It can also be useful for people who want to
+design logos, icons, marketing materials,
+and scalable illustrations without relying
+entirely on traditional raster editing software.
+</p>
+
+</section>
+
+<section>
+
+<h2>System Compatibility</h2>
+
+<p>
+Linearity Curve is available as a native application
+for supported Apple devices, including Mac, iPad,
+and iPhone. Features and system requirements
+can vary by device and software version.
+</p>
+
+<p>
+Users should check the official Linearity website
+or Apple App Store listing for the latest
+compatibility information, download options,
+and subscription details.
+</p>
+
+</section>
+
+<section id="conclusion">
+
+<h2>Final Thoughts on Linearity Curve</h2>
+
+<p>
+Linearity Curve is a creative vector design
+application that brings together illustration,
+graphic design, typography, and image-related
+tools in one workspace.
+</p>
+
+<p>
+Its flexible drawing features, editable vector
+paths, artboards, and AI-assisted capabilities
+make it an interesting option for people who
+want to explore modern digital design.
+</p>
+
+<p>
+Whether you are creating your first logo,
+designing professional illustrations, or
+building visual content for a business,
+Linearity Curve offers tools worth exploring.
+</p>
+
+</section>
+
+<!-- GITAPP PROMOTIONAL SECTION -->
+
+<section class="promo">
+
+<h2>Discover More Creative Software!</h2>
+
+<p>
+Want to explore more useful applications,
+creative tools, and software guides?
+Visit GitApp and discover more digital resources.
+</p>
+
+<a href="https://gitapp.download/"
+target="_blank"
+rel="noopener noreferrer"
+class="download-btn">
+
+Explore GitApp Now →
+
+</a>
+
+</section>
+
+</article>
+</div>
+
+<!-- FOOTER -->
+
+<footer>
+<p>© 2026 Linearity Curve Guide. All Rights Reserved.</p>
+<p>Creativity Starts With an Idea.</p>
+</footer>
+
+</body>
+</html>
