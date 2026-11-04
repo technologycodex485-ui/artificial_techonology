@@ -1,0 +1,1141 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Liuer Review – Smart File and Content Search for Mac</title>
+  <meta name="description" content="Discover Liuer, a powerful macOS file search tool. Learn about filename search, content search, regex, archive support, smart filters, and its key features.">
+  <meta name="keywords" content="Liuer, Liuer for Mac, Liuer app, macOS file search, file content search, Mac search tool, file finder">
+  <meta name="author" content="GitApp">
+
+  <style>
+    :root {
+      --ink: #17243b;
+      --blue: #2457e8;
+      --light-blue: #edf2ff;
+      --paper: #f7f8fb;
+      --white: #ffffff;
+      --muted: #68758b;
+      --line: #dfe4ed;
+      --orange: #ff714b;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.7;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1160px, 90%);
+      margin: auto;
+    }
+
+    /* Navigation */
+    .navbar {
+      background: rgba(255,255,255,.95);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .nav-inner {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      color: var(--ink);
+    }
+
+    .logo span {
+      color: var(--blue);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 27px;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .nav-links a:hover {
+      color: var(--blue);
+    }
+
+    .nav-button {
+      background: var(--blue);
+      color: white !important;
+      padding: 11px 19px;
+      border-radius: 5px;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 85px 0 75px;
+      background:
+        linear-gradient(90deg, rgba(36,87,232,.035) 1px, transparent 1px),
+        linear-gradient(rgba(36,87,232,.035) 1px, transparent 1px),
+        #fff;
+      background-size: 36px 36px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      align-items: center;
+      gap: 55px;
+    }
+
+    .eyebrow {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 6vw, 70px);
+      line-height: 1.04;
+      letter-spacing: -4px;
+      max-width: 650px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 span {
+      color: var(--blue);
+    }
+
+    .hero-copy {
+      color: var(--muted);
+      font-size: 17px;
+      max-width: 540px;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 14px 23px;
+      border-radius: 5px;
+      font-weight: 800;
+      font-size: 14px;
+      transition: .25s;
+    }
+
+    .btn-primary {
+      color: white;
+      background: var(--blue);
+      box-shadow: 0 8px 20px rgba(36,87,232,.19);
+    }
+
+    .btn-primary:hover {
+      background: #153fbd;
+      transform: translateY(-3px);
+    }
+
+    .btn-secondary {
+      color: var(--ink);
+      background: white;
+      border: 1px solid var(--line);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+    }
+
+    /* Search interface illustration */
+    .search-window {
+      background: white;
+      border: 1px solid #dce2ec;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 25px 65px rgba(23,36,59,.13);
+      transform: rotate(1deg);
+    }
+
+    .window-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 17px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 20px;
+    }
+
+    .dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .dots i {
+      width: 9px;
+      height: 9px;
+      display: block;
+      background: #d7deeb;
+      border-radius: 50%;
+    }
+
+    .window-label {
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .fake-search {
+      border: 1px solid #dce3f1;
+      border-radius: 6px;
+      background: #f8faff;
+      padding: 13px;
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 17px;
+    }
+
+    .fake-search strong {
+      color: var(--blue);
+    }
+
+    .result {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 8px;
+      border-bottom: 1px solid #edf0f5;
+    }
+
+    .file-icon {
+      width: 38px;
+      height: 42px;
+      border-radius: 5px;
+      background: var(--light-blue);
+      display: grid;
+      place-items: center;
+      color: var(--blue);
+      font-weight: 900;
+      font-size: 12px;
+    }
+
+    .result-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .result-info strong {
+      display: block;
+      font-size: 12px;
+    }
+
+    .result-info small {
+      display: block;
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .result-tag {
+      color: #24764f;
+      background: #e9f8ef;
+      padding: 4px 7px;
+      border-radius: 4px;
+      font-size: 9px;
+      font-weight: 800;
+    }
+
+    .window-footer {
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 10px;
+      padding-top: 16px;
+    }
+
+    /* Quick facts */
+    .facts {
+      background: var(--ink);
+      color: white;
+      padding: 25px 0;
+    }
+
+    .facts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      text-align: center;
+    }
+
+    .fact strong {
+      display: block;
+      font-size: 20px;
+      color: #91adff;
+    }
+
+    .fact span {
+      font-size: 12px;
+      color: #c1cce0;
+    }
+
+    /* General sections */
+    section.content-section {
+      padding: 85px 0;
+    }
+
+    .section-heading {
+      max-width: 690px;
+      margin-bottom: 38px;
+    }
+
+    .section-heading .eyebrow {
+      margin-bottom: 12px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(30px, 4vw, 43px);
+      letter-spacing: -1.8px;
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+    }
+
+    .intro-layout {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 45px;
+      align-items: start;
+    }
+
+    .article-copy p {
+      color: var(--muted);
+      margin-bottom: 17px;
+    }
+
+    .side-note {
+      background: var(--light-blue);
+      border-left: 4px solid var(--blue);
+      padding: 25px;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .side-note h3 {
+      margin-bottom: 9px;
+      font-size: 18px;
+    }
+
+    .side-note p {
+      color: #566684;
+      font-size: 14px;
+    }
+
+    /* Feature cards */
+    .feature-section {
+      background: white;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .feature-card {
+      border: 1px solid var(--line);
+      padding: 27px;
+      border-radius: 8px;
+      background: white;
+      transition: .25s;
+    }
+
+    .feature-card:hover {
+      border-color: var(--blue);
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(23,36,59,.06);
+    }
+
+    .feature-number {
+      color: var(--orange);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      margin-bottom: 17px;
+    }
+
+    .feature-card h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .feature-card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* How it works */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .step {
+      border-top: 2px solid var(--blue);
+      padding-top: 20px;
+    }
+
+    .step span {
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .step h3 {
+      margin: 12px 0 9px;
+      font-size: 20px;
+    }
+
+    .step p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Comparison */
+    .comparison {
+      background: #edf1fa;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 560px;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 17px 20px;
+      border-bottom: 1px solid var(--line);
+      font-size: 14px;
+    }
+
+    th {
+      background: var(--ink);
+      color: white;
+    }
+
+    td {
+      color: var(--muted);
+    }
+
+    td:first-child {
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .yes {
+      color: #168251;
+      font-weight: 900;
+    }
+
+    .no {
+      color: #9aa3b3;
+    }
+
+    /* Pricing */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      max-width: 850px;
+    }
+
+    .price-card {
+      padding: 30px;
+      border: 1px solid var(--line);
+      background: white;
+      border-radius: 8px;
+    }
+
+    .price-card.pro {
+      border: 2px solid var(--blue);
+      position: relative;
+    }
+
+    .price-card h3 {
+      font-size: 23px;
+      margin-bottom: 8px;
+    }
+
+    .price-card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .price-card ul {
+      list-style: none;
+      margin: 20px 0;
+    }
+
+    .price-card li {
+      padding: 8px 0;
+      border-bottom: 1px solid #edf0f5;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .price-card li::before {
+      content: "✓";
+      color: var(--blue);
+      font-weight: 900;
+      margin-right: 9px;
+    }
+
+    /* FAQ */
+    .faq-section {
+      background: white;
+      border-top: 1px solid var(--line);
+    }
+
+    .faq-list {
+      max-width: 850px;
+    }
+
+    .faq-item {
+      padding: 23px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .faq-item h3 {
+      font-size: 17px;
+      margin-bottom: 8px;
+    }
+
+    .faq-item p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Final CTA */
+    .final-cta {
+      padding: 75px 0;
+      background: var(--blue);
+      color: white;
+      text-align: center;
+    }
+
+    .final-cta h2 {
+      font-size: clamp(30px, 4vw, 45px);
+      line-height: 1.15;
+      margin-bottom: 15px;
+    }
+
+    .final-cta p {
+      color: #e0e8ff;
+      max-width: 610px;
+      margin: 0 auto 25px;
+    }
+
+    .final-cta .btn {
+      background: white;
+      color: var(--blue);
+    }
+
+    .final-cta .btn:hover {
+      background: #eaf0ff;
+      transform: translateY(-3px);
+    }
+
+    footer {
+      background: #111c30;
+      color: #aab6ca;
+      text-align: center;
+      padding: 27px 15px;
+      font-size: 12px;
+    }
+
+    footer strong {
+      color: white;
+    }
+
+    /* Responsive */
+    @media (max-width: 850px) {
+      .hero-grid,
+      .intro-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .search-window {
+        max-width: 600px;
+      }
+
+      .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .nav-links {
+        gap: 12px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .nav-inner {
+        min-height: 65px;
+      }
+
+      .nav-links a:not(.nav-button) {
+        display: none;
+      }
+
+      .hero {
+        padding: 60px 0;
+      }
+
+      .hero h1 {
+        letter-spacing: -2px;
+      }
+
+      .facts-grid,
+      .feature-grid,
+      .steps,
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+
+      section.content-section {
+        padding: 60px 0;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="#" class="logo">Liuer<span>.</span></a>
+
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a href="https://gitapp.download/" class="nav-button">Download</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="container hero-grid">
+
+        <div>
+          <div class="eyebrow">A smarter way to find files</div>
+
+          <h1>Find what you need. <span>Without the hunt.</span></h1>
+
+          <p class="hero-copy">
+            Liuer is a macOS search application designed to help you locate
+            files by name and, with its Pro features, discover information
+            inside supported documents and archives.
+          </p>
+
+          <div class="buttons">
+            <a href="https://gitapp.download/" class="btn btn-primary">
+              Download Now ↗
+            </a>
+
+            <a href="https://liuer.ultraknown.com/"
+               class="btn btn-secondary" target="_blank" rel="noopener">
+              Official Website
+            </a>
+          </div>
+        </div>
+
+        <div class="search-window">
+          <div class="window-top">
+            <div class="dots">
+              <i></i><i></i><i></i>
+            </div>
+            <span class="window-label">LIUER / FILE SEARCH</span>
+          </div>
+
+          <div class="fake-search">
+            Search files... <strong>project-report</strong>
+          </div>
+
+          <div class="result">
+            <div class="file-icon">PDF</div>
+            <div class="result-info">
+              <strong>project-report.pdf</strong>
+              <small>Documents / Projects / Reports</small>
+            </div>
+            <span class="result-tag">MATCH</span>
+          </div>
+
+          <div class="result">
+            <div class="file-icon">TXT</div>
+            <div class="result-info">
+              <strong>project-notes.txt</strong>
+              <small>Work / Notes / Archive</small>
+            </div>
+            <span class="result-tag">MATCH</span>
+          </div>
+
+          <div class="result">
+            <div class="file-icon">DOC</div>
+            <div class="result-info">
+              <strong>project-summary.docx</strong>
+              <small>Documents / Business</small>
+            </div>
+            <span class="result-tag">MATCH</span>
+          </div>
+
+          <div class="window-footer">
+            <span>Search preview illustration</span>
+            <span>3 sample results</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="facts">
+      <div class="container facts-grid">
+        <div class="fact">
+          <strong>macOS 13+</strong>
+          <span>Supported operating system</span>
+        </div>
+
+        <div class="fact">
+          <strong>Free + Pro</strong>
+          <span>Flexible feature options</span>
+        </div>
+
+        <div class="fact">
+          <strong>Local Search</strong>
+          <span>Indexing happens on your Mac</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="about">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="eyebrow">01 / Introduction</div>
+          <h2>What is Liuer?</h2>
+          <p>A desktop search tool for people who need more control over finding information on their Mac.</p>
+        </div>
+
+        <div class="intro-layout">
+          <div class="article-copy">
+            <p>
+              Liuer is a file and content search application for macOS.
+              It helps users locate files through filename searches,
+              advanced matching options, and filters. Its Pro edition
+              adds the ability to search inside supported file contents.
+            </p>
+
+            <p>
+              Instead of manually opening folders one by one, you can
+              enter a search term and narrow the results using options
+              such as file type, date, size, extension, and path.
+              Regular expressions and Boolean conditions can also help
+              make searches more precise.
+            </p>
+
+            <p>
+              Liuer is useful for developers, designers, researchers,
+              students, and anyone who regularly works with large
+              collections of documents or project files.
+            </p>
+          </div>
+
+          <aside class="side-note">
+            <h3>Designed for focused searching</h3>
+            <p>
+              Liuer combines filename search with optional content
+              search, giving Mac users another way to locate information
+              across their indexed files.
+            </p>
+          </aside>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="content-section feature-section" id="features">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="eyebrow">02 / Capabilities</div>
+          <h2>Features that make file discovery easier</h2>
+          <p>Explore the search tools and workflow options available in Liuer.</p>
+        </div>
+
+        <div class="feature-grid">
+
+          <article class="feature-card">
+            <div class="feature-number">FEATURE 01</div>
+            <h3>Filename Search</h3>
+            <p>
+              Search for files using names, keywords, Boolean conditions,
+              and regular expressions.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-number">FEATURE 02</div>
+            <h3>Content Search</h3>
+            <p>
+              Liuer Pro can search inside supported documents to help
+              locate specific words and phrases.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-number">FEATURE 03</div>
+            <h3>Archive Search</h3>
+            <p>
+              Search supported ZIP and compressed archive formats
+              without manually extracting them first.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-number">FEATURE 04</div>
+            <h3>Advanced Filters</h3>
+            <p>
+              Narrow your search by file type, size, date range,
+              extension, and file path.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-number">FEATURE 05</div>
+            <h3>Editor Integration</h3>
+            <p>
+              Open supported search results at the matching line
+              in a compatible code editor.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-number">FEATURE 06</div>
+            <h3>Background Indexing</h3>
+            <p>
+              Liuer maintains its search index with filesystem
+              monitoring and incremental updates.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="eyebrow">03 / Getting Started</div>
+          <h2>How to start using Liuer</h2>
+          <p>Set up your search environment and begin locating files.</p>
+        </div>
+
+        <div class="steps">
+
+          <div class="step">
+            <span>STEP 01</span>
+            <h3>Install the application</h3>
+            <p>
+              Download Liuer from its official website or the Mac App
+              Store, then install it on a supported Mac.
+            </p>
+          </div>
+
+          <div class="step">
+            <span>STEP 02</span>
+            <h3>Set up indexing</h3>
+            <p>
+              Choose an index directory if using the App Store version.
+              The standalone version requires Full Disk Access for a
+              complete search index.
+            </p>
+          </div>
+
+          <div class="step">
+            <span>STEP 03</span>
+            <h3>Search your files</h3>
+            <p>
+              Enter a filename or keyword, then refine the results
+              using search modes and available filters.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section comparison">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="eyebrow">04 / Comparison</div>
+          <h2>Liuer and macOS Spotlight</h2>
+          <p>
+            Both tools help users find information, but they offer
+            different search capabilities.
+          </p>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Capability</th>
+                <th>Liuer</th>
+                <th>Spotlight</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>Filename search</td>
+                <td class="yes">Yes</td>
+                <td class="yes">Yes</td>
+              </tr>
+
+              <tr>
+                <td>Regular expressions</td>
+                <td class="yes">Yes</td>
+                <td class="no">Not equivalent</td>
+              </tr>
+
+              <tr>
+                <td>Boolean filename queries</td>
+                <td class="yes">Yes</td>
+                <td class="no">Limited</td>
+              </tr>
+
+              <tr>
+                <td>Search inside file contents</td>
+                <td class="yes">Pro feature</td>
+                <td class="no">Different capabilities</td>
+              </tr>
+
+              <tr>
+                <td>Advanced file filters</td>
+                <td class="yes">Yes</td>
+                <td class="no">More limited</td>
+              </tr>
+
+              <tr>
+                <td>Archive content search</td>
+                <td class="yes">Pro feature</td>
+                <td class="no">Not equivalent</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="content-section" id="pricing">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="eyebrow">05 / Plans</div>
+          <h2>Liuer Free and Pro</h2>
+          <p>
+            Start with filename search and consider Pro if you need
+            full-text content search.
+          </p>
+        </div>
+
+        <div class="pricing-grid">
+
+          <div class="price-card">
+            <h3>Free</h3>
+            <p>For everyday file discovery.</p>
+
+            <ul>
+              <li>Filename search</li>
+              <li>Boolean queries</li>
+              <li>Regex matching</li>
+              <li>Advanced search filters</li>
+              <li>Background indexing</li>
+            </ul>
+
+            <a href="https://liuer.ultraknown.com/"
+               class="btn btn-secondary" target="_blank" rel="noopener">
+              Explore Liuer
+            </a>
+          </div>
+
+          <div class="price-card pro">
+            <h3>Liuer Pro</h3>
+            <p>For deeper searches across file contents.</p>
+
+            <ul>
+              <li>Everything in Free</li>
+              <li>Full-text content search</li>
+              <li>Match previews and navigation</li>
+              <li>Supported document search</li>
+              <li>Supported archive search</li>
+            </ul>
+
+            <a href="https://liuer.ultraknown.com/pricing/"
+               class="btn btn-primary" target="_blank" rel="noopener">
+              View Pro Pricing
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section faq-section" id="faq">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="eyebrow">06 / Help Center</div>
+          <h2>Frequently asked questions</h2>
+          <p>Quick answers to common questions about Liuer.</p>
+        </div>
+
+        <div class="faq-list">
+
+          <div class="faq-item">
+            <h3>1. What is Liuer used for?</h3>
+            <p>
+              Liuer is a macOS utility for finding files by name and
+              searching inside supported file contents with its Pro
+              features.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>2. Is Liuer available for Windows?</h3>
+            <p>
+              Liuer is designed for macOS. Its listed system
+              requirements are macOS 13.0 Ventura or later.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>3. Does Liuer support content search?</h3>
+            <p>
+              Yes. Full-text content search is included in Liuer Pro,
+              while the Free version focuses on filename search.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>4. Can Liuer search inside archives?</h3>
+            <p>
+              Liuer Pro supports searching supported archive formats,
+              including ZIP and several compressed formats.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>5. Does Liuer send my files to a server?</h3>
+            <p>
+              The developer describes indexing and searching as local
+              operations performed on your Mac.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>6. Where can I download Liuer?</h3>
+            <p>
+              Visit the official Liuer website for its standalone
+              download and Mac App Store options.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <div class="container">
+        <h2>Spend less time searching.<br>Find files with confidence.</h2>
+
+        <p>
+          Explore Liuer and discover a more flexible way to search
+          through files and supported document contents on your Mac.
+        </p>
+
+        <a href="https://gitapp.download/" class="btn">
+          Visit GitApp Download ↗
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>
+      <strong>Liuer Guide</strong> — An independent informational article.
+      Product names belong to their respective owners.
+    </p>
+    <p>© 2026 All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>
