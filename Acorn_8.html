@@ -1,0 +1,567 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Acorn 8 - Creative Photo Editing for Mac</title>
+<meta name="description" content="Discover Acorn 8, a powerful Mac image editor featuring photo retouching, layers, filters, vector tools, object removal and creative editing features.">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f3f6fa;
+    color: #17243a;
+    line-height: 1.8;
+}
+
+/* HEADER */
+
+.hero {
+    background: #e4efff;
+    padding: 75px 20px;
+    text-align: center;
+    border-bottom: 1px solid #d3e1f5;
+}
+
+.hero .tag {
+    display: inline-block;
+    background: #d1e3ff;
+    color: #1553a1;
+    padding: 7px 18px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: clamp(43px, 7vw, 72px);
+    line-height: 1.2;
+    color: #14396d;
+    margin-bottom: 18px;
+}
+
+.hero h1 span {
+    color: #4285df;
+}
+
+.hero p {
+    max-width: 720px;
+    margin: auto;
+    font-size: 18px;
+    color: #536982;
+}
+
+/* NAVIGATION */
+
+nav {
+    background: #ffffff;
+    padding: 17px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 3px 12px rgba(0,0,0,.05);
+}
+
+nav a {
+    text-decoration: none;
+    color: #294566;
+    font-weight: bold;
+    font-size: 14px;
+    margin: 0 13px;
+}
+
+nav a:hover {
+    color: #4285df;
+}
+
+/* MAIN ARTICLE */
+
+.container {
+    max-width: 1100px;
+    margin: 45px auto;
+    padding: 0 20px;
+}
+
+.article {
+    background: white;
+    border-radius: 12px;
+    padding: 42px;
+    box-shadow: 0 8px 30px rgba(25,65,110,.06);
+}
+
+section {
+    margin-bottom: 35px;
+}
+
+.article h2 {
+    font-size: 27px;
+    color: #183f73;
+    margin-bottom: 15px;
+}
+
+.article p {
+    color: #5b6878;
+    margin-bottom: 16px;
+}
+
+/* INTRO BOX */
+
+.intro-box {
+    background: #edf5ff;
+    padding: 25px;
+    border-radius: 10px;
+    border-left: 5px solid #4285df;
+    margin: 25px 0;
+    color: #345477;
+}
+
+/* FEATURES */
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.feature {
+    background: #f5f8fd;
+    border: 1px solid #e2eaf5;
+    border-radius: 12px;
+    padding: 25px;
+    transition: .3s;
+}
+
+.feature:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(30,85,150,.1);
+    border-color: #8bb9f2;
+}
+
+.feature .icon {
+    font-size: 30px;
+    margin-bottom: 8px;
+}
+
+.feature h3 {
+    color: #21538b;
+    margin-bottom: 8px;
+    font-size: 19px;
+}
+
+.feature p {
+    font-size: 14px;
+    margin: 0;
+}
+
+/* EDITING SECTION */
+
+.editing {
+    background: #173b69;
+    padding: 32px;
+    border-radius: 12px;
+}
+
+.editing h2 {
+    color: #ffffff;
+}
+
+.editing p {
+    color: #d4e4f7;
+}
+
+/* INFO STRIP */
+
+.info-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.info {
+    padding: 20px;
+    background: #f0f5fc;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.info h3 {
+    color: #3477c4;
+    font-size: 20px;
+}
+
+.info p {
+    font-size: 13px;
+    margin: 0;
+}
+
+/* PROMOTION */
+
+.promo {
+    background: linear-gradient(135deg, #164a85, #4285df);
+    padding: 50px 25px;
+    text-align: center;
+    border-radius: 14px;
+    color: white;
+    margin-top: 35px;
+}
+
+.promo h2 {
+    color: white;
+    font-size: 31px;
+}
+
+.promo p {
+    color: #e2efff;
+    max-width: 650px;
+    margin: 12px auto 25px;
+}
+
+.download-btn {
+    display: inline-block;
+    padding: 15px 35px;
+    background: white;
+    color: #20599b;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 7px;
+    transition: .3s;
+}
+
+.download-btn:hover {
+    background: #d9eaff;
+    transform: translateY(-4px);
+}
+
+/* FOOTER */
+
+footer {
+    background: #10243e;
+    text-align: center;
+    color: #b9cce3;
+    padding: 25px;
+    margin-top: 50px;
+    font-size: 14px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 600px) {
+    .hero {
+        padding: 55px 18px;
+    }
+
+    nav a {
+        display: inline-block;
+        margin: 5px 7px;
+    }
+
+    .article {
+        padding: 23px;
+    }
+
+    .article h2 {
+        font-size: 23px;
+    }
+
+    .editing {
+        padding: 23px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="hero">
+    <span class="tag">CREATIVE SOFTWARE GUIDE</span>
+
+    <h1>Explore <span>Acorn 8</span></h1>
+
+    <p>
+        Discover a creative image editing experience
+        designed for Mac users. Explore photo retouching,
+        graphic design, layers, filters and more.
+    </p>
+</header>
+
+<nav>
+    <a href="#about">About</a>
+    <a href="#features">Features</a>
+    <a href="#editing">Editing Tools</a>
+    <a href="#requirements">Compatibility</a>
+    <a href="#conclusion">Conclusion</a>
+</nav>
+
+<div class="container">
+
+<article class="article">
+
+<section id="about">
+    <h2>What Is Acorn 8?</h2>
+
+    <p>
+        <strong>Acorn 8</strong> is a powerful image editing
+        application developed by Flying Meat for macOS.
+        It provides a collection of creative tools that
+        help users edit photographs, create graphics,
+        design illustrations and enhance digital images.
+    </p>
+
+    <p>
+        Whether you are a photographer, graphic designer,
+        digital artist or someone who enjoys editing
+        personal photographs, Acorn offers a practical
+        workspace for bringing creative ideas to life.
+    </p>
+
+    <p>
+        The software combines traditional image editing
+        features with modern tools, making it useful
+        for both everyday editing and more detailed
+        creative projects.
+    </p>
+</section>
+
+<div class="intro-box">
+    <strong>Creative Possibilities:</strong>
+    Acorn 8 brings together photo editing, vector
+    graphics, layers, filters and image enhancement
+    tools in one Mac application.
+</div>
+
+<section id="features">
+    <h2>Key Features of Acorn 8</h2>
+
+    <p>
+        Acorn 8 includes several tools that can simplify
+        image editing and help users achieve professional-looking
+        creative results.
+    </p>
+
+    <div class="features">
+
+        <div class="feature">
+            <div class="icon">🎨</div>
+            <h3>Photo Editing</h3>
+            <p>
+                Edit photographs, adjust colors, crop
+                images and improve visual appearance
+                using creative editing tools.
+            </p>
+        </div>
+
+        <div class="feature">
+            <div class="icon">🖌️</div>
+            <h3>Brush Tools</h3>
+            <p>
+                Use customizable brushes for painting,
+                retouching, drawing and other creative
+                image adjustments.
+            </p>
+        </div>
+
+        <div class="feature">
+            <div class="icon">📚</div>
+            <h3>Layer Management</h3>
+            <p>
+                Organize designs using layers, groups
+                and layer masks for more flexible
+                editing workflows.
+            </p>
+        </div>
+
+        <div class="feature">
+            <div class="icon">✨</div>
+            <h3>Photo Filters</h3>
+            <p>
+                Experiment with blur, sharpening,
+                gradients, shadows and many other
+                visual effects.
+            </p>
+        </div>
+
+        <div class="feature">
+            <div class="icon">✂️</div>
+            <h3>Object Removal</h3>
+            <p>
+                Use the Synth Fill brush to remove
+                unwanted objects from photographs
+                and improve image composition.
+            </p>
+        </div>
+
+        <div class="feature">
+            <div class="icon">🔤</div>
+            <h3>Text & Typography</h3>
+            <p>
+                Add text to graphics and experiment
+                with text-on-path and circular
+                typography designs.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<section class="editing" id="editing">
+    <h2>Advanced Image Editing Tools</h2>
+
+    <p>
+        Acorn 8 offers more than basic photo adjustments.
+        Its selection tools, vector shapes, color controls
+        and non-destructive filters provide flexibility
+        for different creative projects.
+    </p>
+
+    <p>
+        Users can also work with subject selection,
+        background removal, healing tools and perspective
+        correction. These features can make common
+        editing tasks more convenient.
+    </p>
+
+    <p>
+        For designers, vector tools and customizable
+        typography options provide additional ways
+        to create logos, illustrations and digital artwork.
+    </p>
+</section>
+
+<section>
+    <h2>Why Use Acorn 8?</h2>
+
+    <p>
+        One of the appealing aspects of Acorn is its
+        combination of useful editing features in a
+        dedicated Mac application. Instead of relying
+        on several different tools, users can handle
+        many common image editing tasks in one place.
+    </p>
+
+    <div class="info-strip">
+
+        <div class="info">
+            <h3>Creative</h3>
+            <p>Flexible design tools</p>
+        </div>
+
+        <div class="info">
+            <h3>Powerful</h3>
+            <p>Advanced image editing</p>
+        </div>
+
+        <div class="info">
+            <h3>Flexible</h3>
+            <p>Multiple export formats</p>
+        </div>
+
+    </div>
+</section>
+
+<section id="requirements">
+    <h2>System Requirements and Compatibility</h2>
+
+    <p>
+        Acorn 8 is designed for Mac computers and requires
+        macOS 14 Sonoma or later. It supports Apple Silicon
+        Macs through a universal application build.
+    </p>
+
+    <p>
+        Before installing, check the official developer
+        website for the latest version, system requirements,
+        pricing and installation instructions.
+    </p>
+</section>
+
+<section>
+    <h2>Who Should Use Acorn 8?</h2>
+
+    <p>
+        Acorn 8 can be useful for photographers,
+        graphic designers, illustrators, students
+        and Mac users who want accessible image
+        editing software.
+    </p>
+
+    <p>
+        Beginners can explore basic editing and
+        drawing tools, while experienced users
+        can take advantage of layers, vector editing,
+        filters and automation features.
+    </p>
+</section>
+
+<section id="conclusion">
+    <h2>Final Thoughts on Acorn 8</h2>
+
+    <p>
+        Acorn 8 is a versatile image editing application
+        that combines photography tools, graphic design
+        features and creative editing options.
+    </p>
+
+    <p>
+        Its collection of brushes, layers, filters,
+        selection tools and object removal capabilities
+        makes it an interesting option for Mac users
+        looking for a flexible image editor.
+    </p>
+
+    <p>
+        If you enjoy digital creativity and want to
+        improve your image editing workflow, Acorn 8
+        is worth exploring.
+    </p>
+</section>
+
+<!-- GITAPP PROMOTION -->
+
+<section class="promo">
+
+    <h2>Discover More Useful Software!</h2>
+
+    <p>
+        Looking for more applications, software guides
+        and digital tools? Visit GitApp and explore
+        more useful resources.
+    </p>
+
+    <a href="https://gitapp.download/"
+       class="download-btn"
+       target="_blank"
+       rel="noopener noreferrer">
+
+       Explore GitApp Now →
+
+    </a>
+
+</section>
+
+</article>
+</div>
+
+<footer>
+    <p>© 2026 Creative Software Guide. All Rights Reserved.</p>
+    <p>Explore creativity. Discover new possibilities.</p>
+</footer>
+
+</body>
+</html>
