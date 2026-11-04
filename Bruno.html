@@ -1,0 +1,1152 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Bruno API Client – A Modern Tool for API Testing</title>
+  <meta name="description" content="Discover Bruno API Client, an open-source, Git-friendly API testing tool. Learn about REST, GraphQL, gRPC, WebSocket, environments, scripting, and collaboration.">
+  <meta name="keywords" content="Bruno API Client, Bruno software, API testing tool, REST API client, GraphQL testing, API development, Git-native API client">
+  <meta name="author" content="GitApp">
+
+  <style>
+    :root {
+      --paper: #f5f0e6;
+      --cream: #fffaf0;
+      --burgundy: #612d3c;
+      --dark: #29252a;
+      --mint: #a9d8bd;
+      --orange: #df815b;
+      --muted: #77716e;
+      --line: #e5dbce;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--paper);
+      color: var(--dark);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.75;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .top-strip {
+      background: var(--burgundy);
+      color: #fff4e7;
+      text-align: center;
+      padding: 8px 15px;
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    header {
+      padding: 20px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+      background: var(--cream);
+    }
+
+    .logo {
+      font-family: Arial, sans-serif;
+      font-size: 25px;
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      color: var(--burgundy);
+    }
+
+    .logo span {
+      color: var(--orange);
+    }
+
+    nav {
+      display: flex;
+      gap: 25px;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      font-weight: bold;
+      color: #716962;
+    }
+
+    nav a:hover {
+      color: var(--orange);
+    }
+
+    .header-link {
+      background: var(--burgundy);
+      color: white;
+      padding: 10px 17px;
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      font-weight: bold;
+      border-radius: 3px;
+    }
+
+    .hero {
+      padding: 85px 7%;
+      background:
+        radial-gradient(circle at 85% 10%, #a9d8bd70, transparent 30%),
+        var(--cream);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-inner {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      color: var(--burgundy);
+      background: #f2e4df;
+      padding: 7px 13px;
+      font-family: Arial, sans-serif;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      font-size: clamp(46px, 6vw, 75px);
+      line-height: 1.03;
+      letter-spacing: -3px;
+      color: var(--burgundy);
+      margin-bottom: 22px;
+    }
+
+    h1 em {
+      color: var(--orange);
+      font-weight: normal;
+    }
+
+    .hero-text {
+      color: var(--muted);
+      font-size: 16px;
+      margin-bottom: 28px;
+      max-width: 530px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 21px;
+      border-radius: 4px;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      font-weight: 900;
+      transition: .25s;
+    }
+
+    .btn-main {
+      background: var(--burgundy);
+      color: white;
+    }
+
+    .btn-main:hover {
+      background: var(--orange);
+      transform: translateY(-3px);
+    }
+
+    .btn-light {
+      border: 1px solid #d7c8ba;
+      color: var(--burgundy);
+      background: white;
+    }
+
+    .btn-light:hover {
+      border-color: var(--burgundy);
+    }
+
+    .terminal {
+      background: #29252a;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 15px 17px 0 #a9d8bd;
+      font-family: "Courier New", monospace;
+      transform: rotate(1deg);
+    }
+
+    .terminal-head {
+      padding: 14px 18px;
+      background: #3b3338;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: #eee5da;
+      font-size: 11px;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--orange);
+    }
+
+    .dot:nth-child(2) {
+      background: #e3c36e;
+    }
+
+    .dot:nth-child(3) {
+      background: var(--mint);
+    }
+
+    .terminal-title {
+      margin-left: auto;
+      color: #c5b9b0;
+    }
+
+    .terminal-body {
+      padding: 24px;
+      font-size: 12px;
+      line-height: 2;
+      color: #e9e3d8;
+      overflow-x: auto;
+    }
+
+    .terminal-body .green {
+      color: var(--mint);
+    }
+
+    .terminal-body .orange {
+      color: #e9a27f;
+    }
+
+    .terminal-body .yellow {
+      color: #e8cf88;
+    }
+
+    .response {
+      margin-top: 17px;
+      border-top: 1px solid #4a4246;
+      padding-top: 15px;
+    }
+
+    .terminal-status {
+      display: inline-block;
+      background: #345a46;
+      color: var(--mint);
+      padding: 3px 8px;
+      font-size: 10px;
+      margin-bottom: 10px;
+    }
+
+    .info-band {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .info-item {
+      background: var(--paper);
+      padding: 24px 15px;
+      text-align: center;
+    }
+
+    .info-item strong {
+      display: block;
+      font-family: Arial, sans-serif;
+      font-size: 18px;
+      color: var(--burgundy);
+    }
+
+    .info-item span {
+      color: var(--muted);
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+    }
+
+    .layout {
+      max-width: 1200px;
+      margin: 75px auto;
+      padding: 0 7%;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 260px;
+      gap: 55px;
+      align-items: start;
+    }
+
+    article h2 {
+      color: var(--burgundy);
+      font-size: 32px;
+      line-height: 1.2;
+      letter-spacing: -1px;
+      margin: 45px 0 17px;
+    }
+
+    article h2:first-child {
+      margin-top: 0;
+    }
+
+    article p {
+      color: #6f6965;
+      font-size: 15px;
+      margin-bottom: 18px;
+    }
+
+    .note {
+      background: #e4f0e7;
+      border-left: 5px solid #699e7b;
+      padding: 21px 24px;
+      margin: 25px 0;
+      color: #455b4a;
+      font-size: 14px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin: 25px 0;
+    }
+
+    .feature {
+      background: var(--cream);
+      border: 1px solid var(--line);
+      padding: 23px;
+      border-radius: 5px;
+      transition: .25s;
+    }
+
+    .feature:hover {
+      border-color: var(--orange);
+      transform: translateY(-4px);
+      box-shadow: 5px 6px 0 #a9d8bd;
+    }
+
+    .feature-icon {
+      font-size: 25px;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .feature h3 {
+      color: var(--burgundy);
+      font-size: 17px;
+      margin-bottom: 7px;
+    }
+
+    .feature p {
+      font-size: 13px;
+      margin: 0;
+    }
+
+    .protocol-list {
+      margin: 25px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .protocol {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 15px;
+      padding: 17px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .protocol strong {
+      color: var(--orange);
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+    }
+
+    .protocol span {
+      color: #69645f;
+      font-size: 14px;
+    }
+
+    .workflow {
+      margin: 25px 0;
+      counter-reset: steps;
+    }
+
+    .workflow-item {
+      background: var(--cream);
+      border: 1px solid var(--line);
+      margin-bottom: 12px;
+      padding: 20px;
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+    }
+
+    .workflow-number {
+      min-width: 39px;
+      height: 39px;
+      background: var(--burgundy);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+      border-radius: 50%;
+    }
+
+    .workflow-item h3 {
+      color: var(--burgundy);
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+
+    .workflow-item p {
+      font-size: 13px;
+      margin: 0;
+    }
+
+    .comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin: 25px 0;
+    }
+
+    .compare-card {
+      background: var(--cream);
+      padding: 22px;
+      border: 1px solid var(--line);
+    }
+
+    .compare-card h3 {
+      color: var(--burgundy);
+      font-size: 16px;
+      margin-bottom: 12px;
+    }
+
+    .compare-card ul {
+      padding-left: 18px;
+      color: #716a65;
+      font-size: 13px;
+    }
+
+    .compare-card li {
+      margin-bottom: 8px;
+    }
+
+    .faq-item {
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .faq-item h3 {
+      color: var(--burgundy);
+      font-size: 16px;
+      margin-bottom: 7px;
+    }
+
+    .faq-item p {
+      font-size: 14px;
+      margin: 0;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 20px;
+    }
+
+    .side-box {
+      background: var(--cream);
+      border: 1px solid var(--line);
+      padding: 22px;
+      margin-bottom: 18px;
+    }
+
+    .side-box h3 {
+      color: var(--burgundy);
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .side-box a {
+      display: block;
+      color: #77716b;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .side-box a:hover {
+      color: var(--orange);
+    }
+
+    .promo {
+      background: var(--burgundy);
+      color: white;
+      padding: 24px;
+    }
+
+    .promo h3 {
+      font-size: 23px;
+      line-height: 1.2;
+    }
+
+    .promo p {
+      color: #ead9d4;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      margin: 13px 0 19px;
+    }
+
+    .promo .btn {
+      display: block;
+      text-align: center;
+      background: var(--mint);
+      color: #253d2d;
+    }
+
+    .cta {
+      margin: 65px 7%;
+      padding: 60px 25px;
+      background: var(--mint);
+      text-align: center;
+      border-radius: 8px;
+    }
+
+    .cta h2 {
+      color: #284432;
+      font-size: clamp(29px, 4vw, 43px);
+      line-height: 1.15;
+      margin-bottom: 13px;
+    }
+
+    .cta p {
+      max-width: 580px;
+      margin: 0 auto 23px;
+      color: #526d59;
+      font-size: 14px;
+    }
+
+    .cta .btn {
+      background: var(--burgundy);
+      color: white;
+    }
+
+    footer {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 35px 7%;
+      font-family: Arial, sans-serif;
+    }
+
+    footer p {
+      color: #c4bcb6;
+      font-size: 11px;
+      margin-top: 9px;
+    }
+
+    @media(max-width: 900px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .terminal {
+        max-width: 600px;
+        transform: none;
+      }
+
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: static;
+      }
+    }
+
+    @media(max-width: 600px) {
+      header {
+        padding: 16px 5%;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .hero {
+        padding: 55px 6%;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+
+      .info-band {
+        grid-template-columns: 1fr;
+      }
+
+      .layout {
+        margin: 50px auto;
+        padding: 0 6%;
+      }
+
+      .feature-grid,
+      .comparison {
+        grid-template-columns: 1fr;
+      }
+
+      .protocol {
+        grid-template-columns: 75px 1fr;
+      }
+
+      .cta {
+        margin: 45px 5%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="top-strip">
+    A developer's workspace for exploring and testing APIs
+  </div>
+
+  <header>
+    <a href="#" class="logo">Git<span>App.</span></a>
+
+    <nav>
+      <a href="#about">About Bruno</a>
+      <a href="#features">Features</a>
+      <a href="#protocols">Protocols</a>
+      <a href="#faq">FAQs</a>
+    </nav>
+
+    <a href="https://gitapp.download/" class="header-link">
+      Explore Apps ↗
+    </a>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+
+      <div>
+        <span class="eyebrow">DEVELOPER TOOL / API CLIENT</span>
+
+        <h1>Meet Bruno.<br><em>Test APIs Your Way.</em></h1>
+
+        <p class="hero-text">
+          Bruno is an open-source, Git-friendly API client built for
+          developers. It helps you create requests, test endpoints,
+          manage environments, and organize API collections directly
+          on your local machine.
+        </p>
+
+        <div class="buttons">
+          <a href="https://gitapp.download/" class="btn btn-main">
+            EXPLORE ON GITAPP ↗
+          </a>
+          <a href="#about" class="btn btn-light">
+            READ THE ARTICLE ↓
+          </a>
+        </div>
+      </div>
+
+      <div class="terminal">
+        <div class="terminal-head">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="terminal-title">bruno-api-workspace</span>
+        </div>
+
+        <div class="terminal-body">
+          <div class="green">// Example API request preview</div>
+          <br>
+          <span class="orange">GET</span>
+          https://api.example.com/users
+          <br><br>
+          <span class="yellow">Headers</span>
+          <br>
+          Accept: application/json
+          <br>
+          Authorization: Bearer {{token}}
+          <br><br>
+          <span class="green">// Send request</span>
+          <br>
+          <span class="orange">bru.sendRequest()</span>
+          <div class="response">
+            <span class="terminal-status">200 OK · EXAMPLE</span>
+            <br>
+            {<br>
+            &nbsp;&nbsp;"status": "success",<br>
+            &nbsp;&nbsp;"message": "API response received",<br>
+            &nbsp;&nbsp;"users": []<br>
+            }
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="info-band">
+    <div class="info-item">
+      <strong>Open Source</strong>
+      <span>Developer-friendly software</span>
+    </div>
+    <div class="info-item">
+      <strong>Local First</strong>
+      <span>Collections on your machine</span>
+    </div>
+    <div class="info-item">
+      <strong>Git Native</strong>
+      <span>Version-control collaboration</span>
+    </div>
+  </div>
+
+  <main class="layout">
+
+    <article>
+
+      <section id="about">
+        <h2>What Is Bruno API Client?</h2>
+
+        <p>
+          Bruno is a modern API client designed to help developers
+          explore, build, and test APIs. It supports common development
+          workflows and provides a desktop interface for creating
+          requests, examining responses, managing variables, and
+          organizing collections.
+        </p>
+
+        <p>
+          One of Bruno's defining ideas is its local-first approach.
+          API collections are stored as files on your computer instead
+          of depending on a cloud workspace. This makes it easier to
+          keep API definitions alongside application code and manage
+          changes with Git or another version-control system.
+        </p>
+
+        <div class="note">
+          <strong>What makes Bruno different?</strong><br>
+          Bruno combines API testing with a Git-friendly, file-based
+          workflow. Developers can manage collections, review changes,
+          and collaborate using familiar development tools.
+        </div>
+      </section>
+
+      <section id="features">
+        <h2>Main Features of Bruno</h2>
+
+        <p>
+          Bruno includes a range of features for API development,
+          testing, automation, and collaboration.
+        </p>
+
+        <div class="feature-grid">
+
+          <div class="feature">
+            <span class="feature-icon">🔌</span>
+            <h3>API Request Management</h3>
+            <p>
+              Create, organize, and send requests while inspecting
+              response status, headers, and body content.
+            </p>
+          </div>
+
+          <div class="feature">
+            <span class="feature-icon">🌿</span>
+            <h3>Git Integration</h3>
+            <p>
+              Store API collections as files and use familiar Git
+              workflows for branching, reviewing, and merging changes.
+            </p>
+          </div>
+
+          <div class="feature">
+            <span class="feature-icon">🧪</span>
+            <h3>API Testing</h3>
+            <p>
+              Use assertions and JavaScript scripting to validate
+              responses and build repeatable API tests.
+            </p>
+          </div>
+
+          <div class="feature">
+            <span class="feature-icon">🔐</span>
+            <h3>Environment Variables</h3>
+            <p>
+              Manage different environments and reuse variables
+              across requests, including configuration values and secrets.
+            </p>
+          </div>
+
+          <div class="feature">
+            <span class="feature-icon">⚙️</span>
+            <h3>Automation and CLI</h3>
+            <p>
+              Run collections from the command line and integrate
+              API tests into continuous integration workflows.
+            </p>
+          </div>
+
+          <div class="feature">
+            <span class="feature-icon">📁</span>
+            <h3>File-Based Collections</h3>
+            <p>
+              Keep collections in readable files that can live
+              alongside your application source code.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      <section id="protocols">
+        <h2>API Protocols Supported by Bruno</h2>
+
+        <p>
+          Bruno supports several API communication styles, making it
+          useful for developers working with different backend systems
+          and application architectures.
+        </p>
+
+        <div class="protocol-list">
+
+          <div class="protocol">
+            <strong>REST</strong>
+            <span>
+              Send HTTP requests using methods such as GET, POST, PUT,
+              PATCH, and DELETE.
+            </span>
+          </div>
+
+          <div class="protocol">
+            <strong>GraphQL</strong>
+            <span>
+              Create and test GraphQL queries and mutations.
+            </span>
+          </div>
+
+          <div class="protocol">
+            <strong>gRPC</strong>
+            <span>
+              Work with gRPC services, messages, and supported
+              streaming workflows.
+            </span>
+          </div>
+
+          <div class="protocol">
+            <strong>WebSocket</strong>
+            <span>
+              Test real-time, bidirectional communication between
+              clients and servers.
+            </span>
+          </div>
+
+        </div>
+      </section>
+
+      <section>
+        <h2>How to Get Started with Bruno</h2>
+
+        <p>
+          New users can begin with a simple collection and gradually
+          explore environments, testing scripts, and Git integration.
+        </p>
+
+        <div class="workflow">
+
+          <div class="workflow-item">
+            <div class="workflow-number">1</div>
+            <div>
+              <h3>Download and Install</h3>
+              <p>
+                Get the appropriate Bruno desktop version for your
+                operating system and complete the installation.
+              </p>
+            </div>
+          </div>
+
+          <div class="workflow-item">
+            <div class="workflow-number">2</div>
+            <div>
+              <h3>Create an API Collection</h3>
+              <p>
+                Start a collection to organize requests related
+                to a project or service.
+              </p>
+            </div>
+          </div>
+
+          <div class="workflow-item">
+            <div class="workflow-number">3</div>
+            <div>
+              <h3>Send Your First Request</h3>
+              <p>
+                Enter an endpoint, select the request method,
+                configure headers, and inspect the response.
+              </p>
+            </div>
+          </div>
+
+          <div class="workflow-item">
+            <div class="workflow-number">4</div>
+            <div>
+              <h3>Add Tests and Environments</h3>
+              <p>
+                Organize variables, create test assertions, and
+                configure settings for development and production.
+              </p>
+            </div>
+          </div>
+
+          <div class="workflow-item">
+            <div class="workflow-number">5</div>
+            <div>
+              <h3>Manage Changes with Git</h3>
+              <p>
+                Keep collections in your repository and use
+                version control to review and share updates.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <section>
+        <h2>Why Developers Choose Bruno</h2>
+
+        <p>
+          Bruno appeals to developers who prefer tools that fit naturally
+          into their existing coding workflows. Its file-based collections
+          can be version-controlled, reviewed, and stored with project
+          source files. Its local-first design also gives teams greater
+          control over where their API collection data is kept.
+        </p>
+
+        <p>
+          Instead of treating API collections as isolated cloud documents,
+          Bruno makes them part of the development project. This can be
+          particularly helpful when API definitions need to evolve
+          alongside application code.
+        </p>
+      </section>
+
+      <section>
+        <h2>Advantages and Things to Consider</h2>
+
+        <div class="comparison">
+
+          <div class="compare-card">
+            <h3>✓ Advantages</h3>
+            <ul>
+              <li>Open-source API client</li>
+              <li>Local-first collection storage</li>
+              <li>Git-friendly collaboration</li>
+              <li>Multiple API protocols</li>
+              <li>Testing and scripting tools</li>
+              <li>CLI and automation support</li>
+            </ul>
+          </div>
+
+          <div class="compare-card">
+            <h3>! Considerations</h3>
+            <ul>
+              <li>New users may need time to learn the workflow</li>
+              <li>Some advanced features may be edition-dependent</li>
+              <li>Git knowledge helps with collaboration</li>
+              <li>Environment variables need careful management</li>
+              <li>Teams should review licensing options</li>
+              <li>Complex tests may require scripting knowledge</li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <section>
+        <h2>Is Bruno Free to Use?</h2>
+
+        <p>
+          Bruno is an open-source API client with a free core offering.
+          Its ecosystem also includes commercial editions and additional
+          capabilities for teams and organizations.
+        </p>
+
+        <p>
+          The exact availability of advanced features can depend on
+          the edition and licensing plan. Check the official Bruno
+          website for the latest details before choosing a plan.
+        </p>
+      </section>
+
+      <section>
+        <h2>Who Should Use Bruno?</h2>
+
+        <p>
+          Bruno is suitable for backend developers, frontend engineers,
+          API testers, software teams, and students learning how APIs
+          work. It can also be useful for organizations that want
+          API collections to remain close to their source code.
+        </p>
+
+        <p>
+          If your workflow involves REST endpoints, GraphQL services,
+          gRPC, WebSocket connections, or automated API testing,
+          Bruno is worth considering.
+        </p>
+      </section>
+
+      <section id="faq">
+        <h2>Frequently Asked Questions</h2>
+
+        <div class="faq-item">
+          <h3>1. What is Bruno used for?</h3>
+          <p>
+            Bruno is an API client used to create requests, test APIs,
+            inspect responses, manage environments, and organize
+            API collections.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>2. Is Bruno open source?</h3>
+          <p>
+            Yes. Bruno has an open-source core, with additional
+            commercial offerings available.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>3. Does Bruno support REST APIs?</h3>
+          <p>
+            Yes. Bruno supports REST API requests and several
+            other communication protocols.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>4. Can Bruno work with Git?</h3>
+          <p>
+            Yes. Its file-based collections are designed to work
+            with Git and other version-control systems.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>5. Does Bruno require a cloud account?</h3>
+          <p>
+            The core local-first workflow does not require an account
+            or cloud sync to manage API collections.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>6. Which operating systems support Bruno?</h3>
+          <p>
+            Bruno provides desktop downloads for macOS, Windows,
+            and Linux.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>7. Can Bruno automate API tests?</h3>
+          <p>
+            Yes. Its CLI and testing features can be used to run
+            collections and integrate tests into CI/CD pipelines.
+          </p>
+        </div>
+
+      </section>
+
+      <section>
+        <h2>Final Thoughts</h2>
+
+        <p>
+          Bruno is a useful API client for developers who value
+          open-source software, local data storage, and Git-based
+          collaboration. Its support for different API protocols,
+          testing tools, scripting, and command-line automation
+          makes it a flexible addition to a development toolkit.
+        </p>
+
+        <p>
+          Whether you are building a small application or working
+          on a larger software project, Bruno can help make API
+          development and testing more organized.
+        </p>
+      </section>
+
+    </article>
+
+    <aside class="sidebar">
+
+      <div class="side-box">
+        <h3>Explore Article</h3>
+        <a href="#about">What Is Bruno?</a>
+        <a href="#features">Main Features</a>
+        <a href="#protocols">Supported Protocols</a>
+        <a href="#how-it-works">Getting Started</a>
+        <a href="#faq">FAQs</a>
+      </div>
+
+      <div class="promo">
+        <h3>Discover More Digital Tools.</h3>
+        <p>
+          Visit GitApp to explore software, applications,
+          and useful resources for your workflow.
+        </p>
+        <a href="https://gitapp.download/" class="btn">
+          VISIT GITAPP ↗
+        </a>
+      </div>
+
+    </aside>
+
+  </main>
+
+  <section class="cta">
+    <h2>Build. Test. Improve.</h2>
+    <p>
+      Find useful software and explore digital tools that can
+      support your development journey.
+    </p>
+    <a href="https://gitapp.download/" class="btn">
+      EXPLORE GITAPP NOW ↗
+    </a>
+  </section>
+
+  <footer>
+    <a href="#" class="logo" style="color:white;">Git<span>App.</span></a>
+    <p>
+      © 2026 GitApp. All rights reserved.
+      This article is for informational purposes only.
+    </p>
+  </footer>
+
+</body>
+</html>
