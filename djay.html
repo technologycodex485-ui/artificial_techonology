@@ -1,0 +1,549 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>djay - Discover the World of Digital DJ Mixing</title>
+
+<meta name="description" content="Explore djay, a digital DJ mixing application. Learn about its features, music mixing tools, creative possibilities and how DJs can improve their performances.">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f1e9;
+    color: #171717;
+    line-height: 1.8;
+}
+
+/* HERO SECTION */
+
+.hero {
+    background: #171717;
+    color: white;
+    padding: 85px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: #ff6b35;
+    filter: blur(130px);
+    opacity: .45;
+    top: -100px;
+    left: 10%;
+}
+
+.hero-content {
+    position: relative;
+    max-width: 850px;
+    margin: auto;
+}
+
+.hero-label {
+    display: inline-block;
+    background: #ff6b35;
+    color: #fff;
+    padding: 7px 17px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: clamp(45px, 8vw, 75px);
+    line-height: 1.15;
+    margin-bottom: 20px;
+}
+
+.hero h1 span {
+    color: #ff784b;
+}
+
+.hero p {
+    color: #c9c9c9;
+    font-size: 18px;
+    max-width: 680px;
+    margin: auto;
+}
+
+/* NAVIGATION */
+
+nav {
+    background: #fff;
+    padding: 17px 15px;
+    text-align: center;
+    border-bottom: 1px solid #e6ded2;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+nav a {
+    color: #222;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0 14px;
+    font-size: 14px;
+}
+
+nav a:hover {
+    color: #f05a28;
+}
+
+/* MAIN CONTENT */
+
+.container {
+    max-width: 1050px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+.article {
+    background: #fff;
+    border-radius: 20px;
+    padding: 42px;
+    box-shadow: 0 12px 35px rgba(0,0,0,.06);
+}
+
+section {
+    margin-bottom: 35px;
+}
+
+.article h2 {
+    font-size: 27px;
+    color: #202020;
+    margin-bottom: 15px;
+    padding-left: 14px;
+    border-left: 5px solid #ff6b35;
+}
+
+.article p {
+    color: #575757;
+    margin-bottom: 15px;
+}
+
+/* FEATURE HIGHLIGHT */
+
+.highlight {
+    background: #fff0e9;
+    border-radius: 13px;
+    padding: 24px;
+    border-left: 5px solid #ff6b35;
+    margin: 30px 0;
+    color: #57301f;
+}
+
+/* FEATURE CARDS */
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.feature-card {
+    background: #f8f5ef;
+    padding: 25px;
+    border-radius: 14px;
+    border: 1px solid #eae3d8;
+    transition: .3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-7px);
+    border-color: #ff784b;
+    box-shadow: 0 10px 20px rgba(0,0,0,.07);
+}
+
+.feature-card .number {
+    color: #ff6b35;
+    font-size: 27px;
+    font-weight: bold;
+}
+
+.feature-card h3 {
+    margin: 8px 0;
+    color: #222;
+}
+
+.feature-card p {
+    font-size: 14px;
+    margin: 0;
+}
+
+/* DJAY BENEFITS */
+
+.benefits {
+    background: #202020;
+    padding: 30px;
+    color: white;
+    border-radius: 16px;
+    margin: 30px 0;
+}
+
+.benefits h2 {
+    color: #ff895f;
+    border-color: #ff6b35;
+}
+
+.benefits p {
+    color: #d0d0d0;
+}
+
+/* PROMOTION */
+
+.promo {
+    background: linear-gradient(120deg, #ff6b35, #f04a23);
+    padding: 55px 25px;
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+    margin-top: 40px;
+}
+
+.promo h2 {
+    color: white;
+    border: none;
+    padding: 0;
+    font-size: 32px;
+}
+
+.promo p {
+    color: #fff0e8;
+    margin: 15px auto 25px;
+    max-width: 650px;
+}
+
+.download-btn {
+    display: inline-block;
+    background: #171717;
+    color: white;
+    text-decoration: none;
+    padding: 15px 35px;
+    border-radius: 40px;
+    font-weight: bold;
+    transition: .3s;
+}
+
+.download-btn:hover {
+    background: white;
+    color: #171717;
+    transform: scale(1.06);
+}
+
+/* FOOTER */
+
+footer {
+    background: #171717;
+    color: #aaa;
+    text-align: center;
+    padding: 27px 15px;
+    margin-top: 55px;
+    font-size: 14px;
+}
+
+/* MOBILE RESPONSIVE */
+
+@media(max-width: 600px) {
+    .hero {
+        padding: 65px 20px;
+    }
+
+    nav a {
+        display: inline-block;
+        margin: 5px 7px;
+    }
+
+    .article {
+        padding: 23px;
+    }
+
+    .article h2 {
+        font-size: 23px;
+    }
+
+    .promo h2 {
+        font-size: 25px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+
+<header class="hero">
+    <div class="hero-content">
+
+        <span class="hero-label">DIGITAL MUSIC EXPERIENCE</span>
+
+        <h1>Discover the World of <span>djay</span></h1>
+
+        <p>
+            Explore digital DJ mixing, creative music
+            experiences, and powerful tools that help
+            transform ordinary tracks into exciting mixes.
+        </p>
+
+    </div>
+</header>
+
+<!-- NAVIGATION -->
+
+<nav>
+    <a href="#about">About</a>
+    <a href="#features">Features</a>
+    <a href="#benefits">Benefits</a>
+    <a href="#conclusion">Conclusion</a>
+</nav>
+
+<!-- ARTICLE -->
+
+<div class="container">
+
+<article class="article">
+
+<section id="about">
+
+<h2>What Is djay?</h2>
+
+<p>
+djay is a digital DJ application developed by Algoriddim.
+It provides music mixing tools that allow users to
+experiment with tracks, create transitions, and explore
+the creative world of DJ performance.
+</p>
+
+<p>
+Whether you are a beginner interested in learning how
+DJ mixing works or an experienced music enthusiast,
+djay offers an accessible environment for exploring
+music and developing mixing skills.
+</p>
+
+<p>
+The application brings traditional DJ concepts into
+a digital environment, making it possible to work
+with music using compatible computers, tablets,
+and mobile devices.
+</p>
+
+</section>
+
+<div class="highlight">
+
+<strong>Music Meets Creativity:</strong>
+DJ mixing is not just about playing songs.
+It is about combining rhythm, timing, transitions,
+and creativity to create a memorable listening experience.
+
+</div>
+
+<section id="features">
+
+<h2>Important Features of djay</h2>
+
+<p>
+djay includes a range of tools designed to make digital
+music mixing more creative and convenient. Features
+may vary depending on the device, version, and subscription.
+</p>
+
+<div class="features">
+
+<div class="feature-card">
+    <div class="number">01</div>
+    <h3>Music Mixing</h3>
+    <p>
+    Combine different music tracks and experiment
+    with creative DJ-style performances.
+    </p>
+</div>
+
+<div class="feature-card">
+    <div class="number">02</div>
+    <h3>Audio Effects</h3>
+    <p>
+    Explore sound effects and add creative elements
+    to your music mixes.
+    </p>
+</div>
+
+<div class="feature-card">
+    <div class="number">03</div>
+    <h3>Beat Matching</h3>
+    <p>
+    Work with rhythm and tempo to create smoother
+    transitions between tracks.
+    </p>
+</div>
+
+<div class="feature-card">
+    <div class="number">04</div>
+    <h3>Creative Controls</h3>
+    <p>
+    Experiment with DJ controls and develop
+    your own mixing style.
+    </p>
+</div>
+
+<div class="feature-card">
+    <div class="number">05</div>
+    <h3>DJ Performance</h3>
+    <p>
+    Explore digital performance workflows for
+    practice and music entertainment.
+    </p>
+</div>
+
+<div class="feature-card">
+    <div class="number">06</div>
+    <h3>User-Friendly Experience</h3>
+    <p>
+    Discover an interactive interface designed
+    to make music mixing more accessible.
+    </p>
+</div>
+
+</div>
+</section>
+
+<section class="benefits" id="benefits">
+
+<h2>Why Choose djay for Music Mixing?</h2>
+
+<p>
+Digital DJ applications provide a convenient way to
+explore music production and mixing without requiring
+a traditional professional DJ setup.
+</p>
+
+<p>
+With djay, users can practice music transitions,
+understand beat synchronization, experiment with
+different audio effects, and develop their creative
+confidence.
+</p>
+
+<p>
+Its digital workflow can also help beginners become
+familiar with important DJ concepts before moving
+toward more advanced equipment and techniques.
+</p>
+
+</section>
+
+<section>
+
+<h2>Is djay Suitable for Beginners?</h2>
+
+<p>
+Yes, djay can be a useful starting point for people
+who want to understand digital DJ mixing. Beginners
+can explore the interface, learn about tempo,
+experiment with transitions, and gradually develop
+their musical skills.
+</p>
+
+<p>
+Starting with simple tracks and practicing regularly
+can help new users become more comfortable with
+mixing techniques.
+</p>
+
+</section>
+
+<section>
+
+<h2>Tips for Getting Better at DJ Mixing</h2>
+
+<p>
+Start by understanding basic music timing and rhythm.
+Practice combining tracks with compatible tempos,
+listen carefully to transitions, and experiment
+with audio effects in moderation.
+</p>
+
+<p>
+Consistency is important. Regular practice and
+creative experimentation can help you develop a
+personal DJ style over time.
+</p>
+
+</section>
+
+<section id="conclusion">
+
+<h2>Final Thoughts</h2>
+
+<p>
+djay provides an interesting way to explore the world
+of digital DJ mixing. With its collection of music
+tools and creative controls, it gives music lovers
+an opportunity to experiment with tracks and
+discover new ways to enjoy music.
+</p>
+
+<p>
+Whether you are learning the basics or exploring
+creative mixing techniques, digital DJ software
+can make your music journey more exciting.
+</p>
+
+</section>
+
+<!-- WEBSITE PROMOTION -->
+
+<section class="promo">
+
+<h2>Explore More Software & Apps</h2>
+
+<p>
+Discover more software, useful applications,
+and digital tools by visiting our website.
+Explore GitApp and find something interesting today!
+</p>
+
+<a href="https://gitapp.download/"
+target="_blank"
+rel="noopener noreferrer"
+class="download-btn">
+
+Visit GitApp Website →
+
+</a>
+
+</section>
+
+</article>
+</div>
+
+<!-- FOOTER -->
+
+<footer>
+    <p>© 2026 djay Music Guide. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
