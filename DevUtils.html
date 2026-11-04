@@ -1,0 +1,1173 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>DevUtils – The Ultimate Developer Toolbox</title>
+  <meta name="description" content="Discover DevUtils, an all-in-one developer toolbox for JSON formatting, Base64 encoding, debugging, data conversion, and everyday programming tasks.">
+  <meta name="keywords" content="DevUtils, DevUtils app, developer tools, JSON formatter, Base64 encoder, coding utilities, macOS developer tools">
+
+  <style>
+    :root {
+      --bg: #101511;
+      --panel: #19221c;
+      --panel-light: #202b23;
+      --green: #b7f36b;
+      --green-dark: #82bb43;
+      --amber: #ffc66d;
+      --text: #e9f0e9;
+      --muted: #a0afa2;
+      --border: #344238;
+      --code: #101a14;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Courier New", monospace;
+      line-height: 1.75;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .announcement {
+      background: var(--green);
+      color: #142010;
+      padding: 9px 15px;
+      text-align: center;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    header {
+      max-width: 1200px;
+      margin: auto;
+      padding: 22px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-size: 23px;
+      font-weight: bold;
+      color: var(--green);
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      color: white;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px;
+    }
+
+    nav a {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    nav a:hover {
+      color: var(--green);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 25px;
+    }
+
+    /* Terminal hero */
+
+    .hero {
+      padding: 90px 0 75px;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      color: var(--green);
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: clamp(43px, 7vw, 76px);
+      line-height: 1.08;
+      letter-spacing: -4px;
+      margin: 22px 0;
+    }
+
+    h1 span {
+      color: var(--green);
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 570px;
+      margin-bottom: 28px;
+    }
+
+    .terminal {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 20px 55px rgba(0,0,0,.25);
+    }
+
+    .terminal-head {
+      background: #253128;
+      padding: 13px 17px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #ff7770;
+    }
+
+    .dot:nth-child(2) {
+      background: var(--amber);
+    }
+
+    .dot:nth-child(3) {
+      background: var(--green);
+    }
+
+    .terminal-title {
+      margin-left: auto;
+    }
+
+    .terminal-body {
+      padding: 28px 24px;
+      font-size: 13px;
+      overflow-wrap: anywhere;
+    }
+
+    .terminal-body p {
+      margin: 9px 0;
+      color: var(--muted);
+    }
+
+    .prompt {
+      color: var(--green);
+    }
+
+    .output {
+      color: var(--amber);
+    }
+
+    .success {
+      color: var(--green);
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--green);
+      color: #172313;
+      padding: 14px 23px;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      border: 1px solid var(--green);
+      transition: .25s;
+    }
+
+    .btn:hover {
+      background: transparent;
+      color: var(--green);
+      transform: translateY(-3px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--green);
+    }
+
+    .btn-secondary:hover {
+      background: var(--green);
+      color: #172313;
+    }
+
+    /* Stats strip */
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--border);
+      margin-bottom: 65px;
+    }
+
+    .stat {
+      padding: 23px 15px;
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+
+    .stat:last-child {
+      border-right: none;
+    }
+
+    .stat strong {
+      display: block;
+      color: var(--green);
+      font-size: 22px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Main content */
+
+    .content-layout {
+      display: grid;
+      grid-template-columns: 230px 1fr;
+      gap: 45px;
+      align-items: start;
+      padding-bottom: 75px;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 20px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      padding: 23px;
+    }
+
+    .sidebar h3 {
+      color: var(--green);
+      font-size: 15px;
+      margin-bottom: 16px;
+    }
+
+    .sidebar a {
+      display: block;
+      color: var(--muted);
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 11px;
+    }
+
+    .sidebar a:hover {
+      color: var(--green);
+    }
+
+    article {
+      min-width: 0;
+    }
+
+    .section {
+      margin-bottom: 48px;
+      scroll-margin-top: 25px;
+    }
+
+    .section-number {
+      color: var(--amber);
+      font-size: 11px;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-size: 33px;
+      line-height: 1.25;
+      margin-bottom: 18px;
+      letter-spacing: -1px;
+    }
+
+    .section p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+
+    /* Tool cards */
+
+    .tool-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 13px;
+      margin-top: 27px;
+    }
+
+    .tool-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      padding: 22px;
+      transition: .2s;
+    }
+
+    .tool-card:hover {
+      border-color: var(--green);
+      transform: translateY(-3px);
+    }
+
+    .tool-icon {
+      color: var(--green);
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    .tool-card h3 {
+      font-size: 16px;
+      margin-bottom: 9px;
+    }
+
+    .tool-card p {
+      font-size: 12px;
+      margin: 0;
+    }
+
+    /* Code sample */
+
+    .code-window {
+      background: var(--code);
+      border: 1px solid var(--border);
+      padding: 25px;
+      margin: 25px 0;
+      overflow-x: auto;
+    }
+
+    .code-window .line {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      white-space: pre;
+    }
+
+    .code-window .key {
+      color: var(--green);
+    }
+
+    .code-window .value {
+      color: var(--amber);
+    }
+
+    .code-window .brace {
+      color: #b4c3b8;
+    }
+
+    /* Feature list */
+
+    .feature-list {
+      border-top: 1px solid var(--border);
+      margin-top: 25px;
+    }
+
+    .feature-item {
+      display: grid;
+      grid-template-columns: 40px 1fr;
+      gap: 16px;
+      padding: 21px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .feature-item .number {
+      color: var(--green);
+      font-size: 19px;
+    }
+
+    .feature-item h3 {
+      font-size: 17px;
+      margin-bottom: 5px;
+    }
+
+    .feature-item p {
+      margin: 0;
+      font-size: 13px;
+    }
+
+    /* CTA */
+
+    .cta {
+      background: var(--green);
+      color: #142010;
+      padding: 43px;
+      margin: 45px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta::after {
+      content: "{ }";
+      position: absolute;
+      right: 20px;
+      bottom: -65px;
+      font-size: 150px;
+      font-weight: bold;
+      color: rgba(0,0,0,.08);
+    }
+
+    .cta h2 {
+      max-width: 600px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta p {
+      color: #33442a;
+      max-width: 580px;
+      font-size: 14px;
+      margin-bottom: 22px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta .btn {
+      background: var(--bg);
+      color: var(--green);
+      border-color: var(--bg);
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta .btn:hover {
+      background: transparent;
+      color: var(--bg);
+    }
+
+    /* Advantages */
+
+    .pros-cons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin-top: 25px;
+    }
+
+    .pros-cons > div {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      padding: 23px;
+    }
+
+    .pros-cons h3 {
+      color: var(--green);
+      font-size: 16px;
+      margin-bottom: 13px;
+    }
+
+    .pros-cons ul {
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .pros-cons li {
+      margin-bottom: 10px;
+    }
+
+    /* FAQ */
+
+    .faq {
+      border-bottom: 1px solid var(--border);
+      padding: 20px 0;
+    }
+
+    .faq h3 {
+      color: var(--amber);
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+
+    .faq p {
+      margin: 0;
+      font-size: 13px;
+    }
+
+    footer {
+      background: #0b100c;
+      border-top: 1px solid var(--border);
+      padding: 55px 25px 22px;
+      text-align: center;
+    }
+
+    footer h2 {
+      color: var(--green);
+      font-size: 31px;
+    }
+
+    footer p {
+      color: var(--muted);
+      max-width: 580px;
+      margin: 12px auto 25px;
+      font-size: 13px;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      margin-top: 38px;
+      padding-top: 20px;
+      color: #738075;
+      font-size: 11px;
+    }
+
+    @media(max-width: 850px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 65px 0;
+      }
+
+      .terminal {
+        max-width: 600px;
+      }
+
+      .content-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: static;
+      }
+
+      .sidebar a {
+        display: inline-block;
+        margin-right: 13px;
+      }
+    }
+
+    @media(max-width: 580px) {
+      header {
+        flex-direction: column;
+      }
+
+      nav {
+        justify-content: center;
+        gap: 13px;
+      }
+
+      .container {
+        padding: 0 17px;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stat:nth-child(2) {
+        border-right: none;
+      }
+
+      .stat:nth-child(-n+2) {
+        border-bottom: 1px solid var(--border);
+      }
+
+      .tool-grid,
+      .pros-cons {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+
+      h2 {
+        font-size: 27px;
+      }
+
+      .cta {
+        padding: 30px 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="announcement">
+    Developer Journal // Tools that make coding easier
+  </div>
+
+  <header>
+    <a href="#" class="logo">DEV<span>_UTILS</span></a>
+
+    <nav>
+      <a href="#about">Overview</a>
+      <a href="#tools">Tools</a>
+      <a href="#workflow">Workflow</a>
+      <a href="#benefits">Benefits</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <!-- HERO -->
+    <section class="hero">
+
+      <div>
+        <div class="eyebrow">[ Developer Productivity / 001 ]</div>
+
+        <h1>
+          Less busywork.<br>
+          More <span>building.</span>
+        </h1>
+
+        <p>
+          Meet DevUtils, a developer-focused toolbox that brings
+          everyday programming utilities into one convenient
+          application. Format data, inspect strings, convert
+          formats, and simplify repetitive development tasks.
+        </p>
+
+        <a href="https://gitapp.download/"
+           class="btn"
+           target="_blank"
+           rel="noopener noreferrer">
+          VISIT GITAPP →
+        </a>
+      </div>
+
+      <div class="terminal">
+        <div class="terminal-head">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="terminal-title">developer@workspace ~</span>
+        </div>
+
+        <div class="terminal-body">
+          <p><span class="prompt">$</span> launch devutils</p>
+          <p class="success">✓ Developer toolbox ready</p>
+          <p><span class="prompt">$</span> select json-formatter</p>
+          <p class="output">Formatting JSON data...</p>
+          <p class="success">✓ Valid JSON output generated</p>
+          <p><span class="prompt">$</span> inspect clipboard</p>
+          <p class="success">✓ Suggested tool detected</p>
+          <br>
+          <p class="success">[ SYSTEM STATUS: PRODUCTIVE ]</p>
+          <p><span class="prompt">$</span> <span class="success">_</span></p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- STATS -->
+    <section class="stats">
+      <div class="stat">
+        <strong>47+</strong>
+        <span>Developer Utilities</span>
+      </div>
+
+      <div class="stat">
+        <strong>Offline</strong>
+        <span>Local Processing</span>
+      </div>
+
+      <div class="stat">
+        <strong>macOS</strong>
+        <span>Native Application</span>
+      </div>
+
+      <div class="stat">
+        <strong>Smart</strong>
+        <span>Tool Detection</span>
+      </div>
+    </section>
+
+    <div class="content-layout">
+
+      <aside class="sidebar">
+        <h3>// CONTENTS</h3>
+        <a href="#about">01. What Is DevUtils?</a>
+        <a href="#tools">02. Main Developer Tools</a>
+        <a href="#workflow">03. How It Works</a>
+        <a href="#privacy">04. Privacy & Offline Use</a>
+        <a href="#users">05. Who Can Use It?</a>
+        <a href="#benefits">06. Pros & Considerations</a>
+        <a href="#faq">07. FAQs</a>
+      </aside>
+
+      <article>
+
+        <!-- ABOUT -->
+        <section class="section" id="about">
+          <div class="section-number">01 // INTRODUCTION</div>
+
+          <h2>What Is DevUtils?</h2>
+
+          <p>
+            DevUtils.app is an all-in-one developer toolbox designed
+            to make small but repetitive programming tasks easier.
+            Developed as a native macOS application, it brings
+            multiple utilities together so developers do not need
+            to constantly search for separate tools online.
+          </p>
+
+          <p>
+            Software developers frequently need to format JSON,
+            decode Base64 strings, convert timestamps, compare text,
+            inspect URLs, generate identifiers, and test regular
+            expressions. These tasks may be simple, but switching
+            between websites and applications can interrupt a
+            productive workflow.
+          </p>
+
+          <p>
+            DevUtils aims to solve this problem by providing a
+            collection of practical tools in one desktop workspace.
+            It is designed for quick access, straightforward
+            interactions, and everyday development activities.
+          </p>
+        </section>
+
+        <!-- TOOLS -->
+        <section class="section" id="tools">
+          <div class="section-number">02 // TOOL COLLECTION</div>
+
+          <h2>Explore the Main DevUtils Tools</h2>
+
+          <p>
+            DevUtils includes utilities for formatting, converting,
+            inspecting, generating, encoding, and decoding data.
+            Here are some examples of the tasks it can help with.
+          </p>
+
+          <div class="tool-grid">
+
+            <div class="tool-card">
+              <div class="tool-icon">{ }</div>
+              <h3>JSON Formatter</h3>
+              <p>
+                Format and validate JSON data, making complex
+                structures easier to read and inspect.
+              </p>
+            </div>
+
+            <div class="tool-card">
+              <div class="tool-icon">01</div>
+              <h3>Base64 Encoder & Decoder</h3>
+              <p>
+                Encode and decode Base64 strings and supported
+                image data for development tasks.
+              </p>
+            </div>
+
+            <div class="tool-card">
+              <div class="tool-icon">↔</div>
+              <h3>Data Converters</h3>
+              <p>
+                Convert between formats such as YAML, JSON,
+                CSV, and other supported data types.
+              </p>
+            </div>
+
+            <div class="tool-card">
+              <div class="tool-icon">JWT</div>
+              <h3>JWT Debugger</h3>
+              <p>
+                Inspect JSON Web Token headers and payload
+                information during development and debugging.
+              </p>
+            </div>
+
+            <div class="tool-card">
+              <div class="tool-icon">⌘</div>
+              <h3>Text Diff Checker</h3>
+              <p>
+                Compare two text inputs to identify changes,
+                additions, and differences.
+              </p>
+            </div>
+
+            <div class="tool-card">
+              <div class="tool-icon">#</div>
+              <h3>Hash Generator</h3>
+              <p>
+                Generate supported hash values for testing,
+                development, and data-processing workflows.
+              </p>
+            </div>
+
+            <div class="tool-card">
+              <div class="tool-icon">URL</div>
+              <h3>URL Tools</h3>
+              <p>
+                Parse URLs and encode or decode URL strings
+                when working with web applications.
+              </p>
+            </div>
+
+            <div class="tool-card">
+              <div class="tool-icon">ID</div>
+              <h3>UUID Generator</h3>
+              <p>
+                Generate and decode supported unique identifiers
+                for applications and testing environments.
+              </p>
+            </div>
+
+          </div>
+
+          <div class="code-window">
+            <span class="line"><span class="brace">{</span></span>
+            <span class="line">  <span class="key">"developer"</span>: <span class="value">"productive"</span>,</span>
+            <span class="line">  <span class="key">"toolbox"</span>: <span class="value">"DevUtils"</span>,</span>
+            <span class="line">  <span class="key">"workflow"</span>: <span class="value">"simplified"</span>,</span>
+            <span class="line">  <span class="key">"tasks"</span>: <span class="value">"organized"</span></span>
+            <span class="line"><span class="brace">}</span></span>
+          </div>
+        </section>
+
+        <!-- WORKFLOW -->
+        <section class="section" id="workflow">
+          <div class="section-number">03 // WORKFLOW</div>
+
+          <h2>How Does DevUtils Work?</h2>
+
+          <p>
+            DevUtils is designed to reduce the steps involved in
+            everyday development tasks. Its smart detection
+            functionality can recognize certain clipboard content
+            and suggest an appropriate utility.
+          </p>
+
+          <div class="feature-list">
+
+            <div class="feature-item">
+              <div class="number">01</div>
+              <div>
+                <h3>Copy Your Data</h3>
+                <p>
+                  Copy a JSON object, timestamp, encoded string,
+                  or other supported content.
+                </p>
+              </div>
+            </div>
+
+            <div class="feature-item">
+              <div class="number">02</div>
+              <div>
+                <h3>Open DevUtils</h3>
+                <p>
+                  Access the application through its interface,
+                  status bar, or configured shortcut.
+                </p>
+              </div>
+            </div>
+
+            <div class="feature-item">
+              <div class="number">03</div>
+              <div>
+                <h3>Choose the Suggested Tool</h3>
+                <p>
+                  Use smart detection or select the relevant
+                  utility from the available tool collection.
+                </p>
+              </div>
+            </div>
+
+            <div class="feature-item">
+              <div class="number">04</div>
+              <div>
+                <h3>Review the Result</h3>
+                <p>
+                  Inspect the formatted, converted, decoded,
+                  or generated output.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- CTA -->
+        <div class="cta">
+          <div class="section-number" style="color:#24351b">
+            [ DISCOVER MORE SOFTWARE ]
+          </div>
+
+          <h2>Find More Tools for Your Digital Workflow.</h2>
+
+          <p>
+            Visit GitApp to explore its website and discover
+            additional software-related resources.
+          </p>
+
+          <a href="https://gitapp.download/"
+             class="btn"
+             target="_blank"
+             rel="noopener noreferrer">
+            EXPLORE GITAPP →
+          </a>
+        </div>
+
+        <!-- PRIVACY -->
+        <section class="section" id="privacy">
+          <div class="section-number">04 // PRIVACY & PERFORMANCE</div>
+
+          <h2>Offline Functionality and Data Privacy</h2>
+
+          <p>
+            One of the key features highlighted by DevUtils.app
+            is its offline-first approach. The application is
+            designed to perform its utility operations locally
+            rather than requiring users to submit their working
+            data to random online conversion websites.
+          </p>
+
+          <p>
+            This can be especially useful when working with
+            development snippets, configuration files, test
+            data, and other information that should not be
+            casually uploaded to third-party services.
+          </p>
+
+          <p>
+            Local processing can also reduce dependence on
+            internet connectivity for supported tasks. However,
+            users should still review application permissions,
+            updates, and their own data-handling policies when
+            working with confidential information.
+          </p>
+        </section>
+
+        <!-- USERS -->
+        <section class="section" id="users">
+          <div class="section-number">05 // WHO IS IT FOR?</div>
+
+          <h2>Who Can Benefit from DevUtils?</h2>
+
+          <div class="feature-list">
+
+            <div class="feature-item">
+              <div class="number">A</div>
+              <div>
+                <h3>Software Developers</h3>
+                <p>
+                  Quickly handle common formatting, conversion,
+                  encoding, and inspection tasks.
+                </p>
+              </div>
+            </div>
+
+            <div class="feature-item">
+              <div class="number">B</div>
+              <div>
+                <h3>Web Developers</h3>
+                <p>
+                  Work with HTML, CSS, JavaScript, URLs,
+                  JSON, and other web-related formats.
+                </p>
+              </div>
+            </div>
+
+            <div class="feature-item">
+              <div class="number">C</div>
+              <div>
+                <h3>Students and Learners</h3>
+                <p>
+                  Explore practical programming utilities while
+                  learning about data formats and development tools.
+                </p>
+              </div>
+            </div>
+
+            <div class="feature-item">
+              <div class="number">D</div>
+              <div>
+                <h3>Technical Professionals</h3>
+                <p>
+                  Inspect strings, compare text, parse data,
+                  and handle small technical tasks.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- BENEFITS -->
+        <section class="section" id="benefits">
+          <div class="section-number">06 // THE VERDICT</div>
+
+          <h2>Advantages and Things to Consider</h2>
+
+          <p>
+            DevUtils can be a convenient addition to a developer's
+            toolkit, especially for people who frequently perform
+            small data-processing tasks.
+          </p>
+
+          <div class="pros-cons">
+            <div>
+              <h3>Advantages</h3>
+              <ul>
+                <li>Multiple developer utilities in one app</li>
+                <li>Offline functionality</li>
+                <li>Smart clipboard detection</li>
+                <li>Formatting and conversion tools</li>
+                <li>Native macOS application</li>
+                <li>Integration options for developer workflows</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3>Considerations</h3>
+              <ul>
+                <li>The original app targets macOS</li>
+                <li>Some tools may require a paid license</li>
+                <li>Free edition has a limited tool selection</li>
+                <li>Not a replacement for a full IDE</li>
+                <li>Tool availability can change by version</li>
+                <li>Check compatibility before installing</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="section" id="faq">
+          <div class="section-number">07 // FREQUENTLY ASKED QUESTIONS</div>
+
+          <h2>DevUtils FAQs</h2>
+
+          <div class="faq">
+            <h3>1. What is DevUtils used for?</h3>
+            <p>
+              DevUtils.app is used for everyday development tasks
+              such as JSON formatting, Base64 encoding and decoding,
+              timestamp conversion, text comparison, and data
+              inspection.
+            </p>
+          </div>
+
+          <div class="faq">
+            <h3>2. Is DevUtils available for Windows?</h3>
+            <p>
+              The original DevUtils.app described in this article
+              is a macOS application. Check the official website
+              for the latest platform information.
+            </p>
+          </div>
+
+          <div class="faq">
+            <h3>3. Can DevUtils work offline?</h3>
+            <p>
+              Yes. DevUtils.app is designed to perform its
+              supported utility operations offline.
+            </p>
+          </div>
+
+          <div class="faq">
+            <h3>4. Does DevUtils support JSON formatting?</h3>
+            <p>
+              Yes. JSON formatting and validation are among
+              its core developer utilities.
+            </p>
+          </div>
+
+          <div class="faq">
+            <h3>5. Is DevUtils free?</h3>
+            <p>
+              It offers a free version with a limited selection
+              of tools, while additional capabilities require
+              a purchase or eligible paid access.
+            </p>
+          </div>
+
+          <div class="faq">
+            <h3>6. Where can I download DevUtils?</h3>
+            <p>
+              Visit the official DevUtils website to find the
+              current macOS download and installation options.
+            </p>
+          </div>
+        </section>
+
+        <!-- CONCLUSION -->
+        <section class="section">
+          <div class="section-number">08 // FINAL THOUGHTS</div>
+
+          <h2>A Handy Toolbox for Everyday Development</h2>
+
+          <p>
+            DevUtils brings a wide range of small but useful
+            programming utilities into one desktop application.
+            Its collection of formatters, converters, encoders,
+            debuggers, and generators can help developers spend
+            less time switching between separate tools.
+          </p>
+
+          <p>
+            Its offline functionality and smart detection
+            capabilities make it an interesting option for
+            developers who value convenience and a focused
+            workflow. If you use macOS and regularly perform
+            these tasks, DevUtils may be worth exploring.
+          </p>
+
+          <a href="https://gitapp.download/"
+             class="btn"
+             target="_blank"
+             rel="noopener noreferrer">
+            VISIT GITAPP →
+          </a>
+        </section>
+
+      </article>
+    </div>
+  </main>
+
+  <footer>
+    <h2>BUILD. TEST. IMPROVE.</h2>
+
+    <p>
+      Discover software and explore digital resources
+      to support your development journey.
+    </p>
+
+    <a href="https://gitapp.download/"
+       class="btn"
+       target="_blank"
+       rel="noopener noreferrer">
+      EXPLORE GITAPP
+    </a>
+
+    <div class="footer-bottom">
+      © 2026 Dev Journal. All rights reserved.
+      DevUtils is a product of its respective developer.
+      This article is for informational purposes.
+    </div>
+  </footer>
+
+</body>
+</html>
