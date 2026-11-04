@@ -1,0 +1,985 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Goodnotes - Smart Digital Note-Taking, Study & Productivity Guide</title>
+  <meta name="description" content="Discover Goodnotes, a digital note-taking app for handwritten notes, PDF annotation, study tools, planners, and AI-powered productivity.">
+  <meta name="keywords" content="Goodnotes, Goodnotes app, digital note taking, handwritten notes, PDF annotation, study planner, Goodnotes AI">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink: #28243d;
+      --muted: #77728d;
+      --purple: #7561d8;
+      --purple-dark: #5744b3;
+      --lavender: #eeeaff;
+      --paper: #fffefa;
+      --pink: #f9dce9;
+      --mint: #dff4e9;
+      --yellow: #fff0c9;
+      --line: #e8e3f4;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #f5f2fc;
+      color: var(--ink);
+      font-family: "DM Sans", sans-serif;
+      line-height: 1.7;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, 90%);
+      margin: auto;
+    }
+
+    /* Navigation */
+    header {
+      padding: 20px 0;
+      background: rgba(255,255,255,.8);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .brand {
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      color: var(--ink);
+    }
+
+    .brand span {
+      color: var(--purple);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .nav-links a:hover {
+      color: var(--purple);
+    }
+
+    .nav-button {
+      background: var(--purple);
+      color: white !important;
+      padding: 11px 19px;
+      border-radius: 30px;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 85px 0 75px;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      background: var(--pink);
+      color: #965273;
+      padding: 7px 15px;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    h1, h2, h3 {
+      line-height: 1.2;
+    }
+
+    h1 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(42px, 5.5vw, 67px);
+      letter-spacing: -2px;
+      margin-bottom: 22px;
+    }
+
+    h1 span {
+      color: var(--purple);
+      font-style: italic;
+    }
+
+    .hero-text {
+      color: var(--muted);
+      max-width: 520px;
+      font-size: 17px;
+      margin-bottom: 28px;
+    }
+
+    .button-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 23px;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 14px;
+      transition: .25s;
+    }
+
+    .btn-primary {
+      background: var(--purple);
+      color: white;
+      box-shadow: 0 9px 22px rgba(117,97,216,.22);
+    }
+
+    .btn-primary:hover {
+      background: var(--purple-dark);
+      transform: translateY(-3px);
+    }
+
+    .btn-secondary {
+      color: var(--ink);
+      background: white;
+      border: 1px solid var(--line);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--purple);
+      color: var(--purple);
+    }
+
+    /* Notebook illustration */
+    .hero-art {
+      min-height: 420px;
+      background: #e5defb;
+      border-radius: 35px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 35px;
+    }
+
+    .notebook {
+      width: 290px;
+      min-height: 340px;
+      background: var(--paper);
+      border-radius: 15px;
+      padding: 28px;
+      box-shadow: 15px 20px 35px rgba(55,40,110,.18);
+      transform: rotate(-5deg);
+      position: relative;
+    }
+
+    .notebook::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 18px;
+      height: 100%;
+      width: 2px;
+      background: #f1d8e8;
+    }
+
+    .paper-label {
+      color: var(--purple);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      margin-left: 15px;
+    }
+
+    .notebook h2 {
+      font-family: "Playfair Display", serif;
+      font-size: 29px;
+      margin: 15px 0;
+      margin-left: 15px;
+    }
+
+    .note-line {
+      height: 9px;
+      border-radius: 20px;
+      background: #e8e3f5;
+      margin: 15px 0 15px 15px;
+    }
+
+    .note-line:nth-child(3) { width: 90%; }
+    .note-line:nth-child(4) { width: 75%; }
+    .note-line:nth-child(5) { width: 85%; }
+
+    .highlight {
+      background: #fff0a8;
+      width: 75%;
+      height: 15px;
+      margin: 20px 0 15px 15px;
+      border-radius: 4px;
+    }
+
+    .floating-note {
+      position: absolute;
+      background: white;
+      padding: 13px 17px;
+      border-radius: 13px;
+      box-shadow: 0 10px 25px rgba(50,40,100,.1);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .float-one {
+      top: 45px;
+      right: 5px;
+      transform: rotate(5deg);
+    }
+
+    .float-two {
+      bottom: 45px;
+      left: 0;
+      transform: rotate(-7deg);
+    }
+
+    /* Main content */
+    section {
+      padding: 75px 0;
+    }
+
+    .section-heading {
+      max-width: 680px;
+      margin-bottom: 35px;
+    }
+
+    .section-heading small {
+      color: var(--purple);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .section-heading h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(32px, 4vw, 43px);
+      margin: 10px 0 13px;
+    }
+
+    .section-heading p,
+    .article-copy {
+      color: var(--muted);
+    }
+
+    .paper-section {
+      background: var(--paper);
+      border-radius: 30px;
+      padding: 48px;
+      box-shadow: 0 12px 40px rgba(54,39,100,.04);
+    }
+
+    .article-copy p {
+      margin-bottom: 18px;
+    }
+
+    /* Feature cards */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .feature-card {
+      padding: 28px;
+      border-radius: 20px;
+      background: white;
+      border: 1px solid var(--line);
+      transition: .25s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 15px 35px rgba(55,40,110,.08);
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 15px;
+      font-size: 23px;
+      margin-bottom: 19px;
+    }
+
+    .icon-purple { background: var(--lavender); }
+    .icon-pink { background: var(--pink); }
+    .icon-mint { background: var(--mint); }
+    .icon-yellow { background: var(--yellow); }
+
+    .feature-card h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .feature-card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Workflow */
+    .workflow {
+      background: #29243e;
+      color: white;
+      border-radius: 30px;
+      padding: 48px;
+    }
+
+    .workflow .section-heading p {
+      color: #c3bdd6;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .step {
+      border-top: 2px solid #665a91;
+      padding-top: 22px;
+    }
+
+    .step-number {
+      color: #c5b8ff;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .step h3 {
+      margin: 12px 0;
+      font-size: 20px;
+    }
+
+    .step p {
+      color: #c3bdd6;
+      font-size: 14px;
+    }
+
+    /* Use cases */
+    .use-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .use-card {
+      border-radius: 22px;
+      padding: 30px;
+      min-height: 185px;
+    }
+
+    .use-card h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 25px;
+      margin-bottom: 12px;
+    }
+
+    .use-card p {
+      color: #625d75;
+    }
+
+    .use-lavender { background: var(--lavender); }
+    .use-pink { background: var(--pink); }
+    .use-mint { background: var(--mint); }
+    .use-yellow { background: var(--yellow); }
+
+    /* Considerations */
+    .pros-cons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .list-card {
+      background: white;
+      padding: 28px;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+    }
+
+    .list-card h3 {
+      margin-bottom: 17px;
+    }
+
+    .list-card ul {
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    .list-card li {
+      margin-bottom: 11px;
+    }
+
+    /* FAQ */
+    .faq-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    details {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      padding: 19px 22px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 800;
+    }
+
+    details p {
+      color: var(--muted);
+      margin-top: 13px;
+      font-size: 14px;
+    }
+
+    /* Final CTA */
+    .final-cta {
+      text-align: center;
+      padding: 65px 30px;
+      background: #e7e0fc;
+      border-radius: 30px;
+    }
+
+    .final-cta h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(32px, 4vw, 45px);
+      margin-bottom: 15px;
+    }
+
+    .final-cta p {
+      color: var(--muted);
+      max-width: 620px;
+      margin: 0 auto 25px;
+    }
+
+    footer {
+      padding: 30px 0;
+      margin-top: 65px;
+      background: #29243e;
+      color: #d0cadd;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    footer strong {
+      color: white;
+    }
+
+    @media (max-width: 850px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-art {
+        min-height: 390px;
+      }
+
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .nav-links {
+        gap: 12px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .nav-links a:not(.nav-button) {
+        display: none;
+      }
+
+      .hero {
+        padding: 55px 0;
+      }
+
+      .hero-art {
+        min-height: 340px;
+        padding: 20px;
+      }
+
+      .notebook {
+        width: 245px;
+        min-height: 300px;
+      }
+
+      .features-grid,
+      .steps,
+      .use-grid,
+      .pros-cons {
+        grid-template-columns: 1fr;
+      }
+
+      .paper-section,
+      .workflow {
+        padding: 27px 22px;
+      }
+
+      section {
+        padding: 52px 0;
+      }
+
+      .float-one {
+        right: -5px;
+      }
+
+      .float-two {
+        left: -5px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="container navbar">
+      <a href="#" class="brand">good<span>notes.</span></a>
+
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#features">Features</a>
+        <a href="#uses">Uses</a>
+        <a href="#faq">FAQ</a>
+        <a href="https://gitapp.download/" class="nav-button">Explore Download</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="container hero-grid">
+
+        <div>
+          <span class="eyebrow">Your ideas, beautifully organized</span>
+
+          <h1>Turn every thought into a <span>great note.</span></h1>
+
+          <p class="hero-text">
+            Goodnotes brings handwriting, digital documents, planning,
+            and intelligent productivity tools together in one flexible
+            workspace. It helps students, professionals, and creative
+            thinkers keep their ideas organized.
+          </p>
+
+          <div class="button-group">
+            <a href="https://gitapp.download/" class="btn btn-primary">
+              Explore Download
+            </a>
+
+            <a href="#features" class="btn btn-secondary">
+              Discover Features
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-art">
+          <div class="notebook">
+            <div class="paper-label">MY DIGITAL JOURNAL</div>
+            <h2>Ideas & Plans</h2>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="highlight"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <p style="margin:22px 0 0 15px;color:#7561d8;font-weight:800;">
+              ✦ Make room for ideas.
+            </p>
+          </div>
+
+          <div class="floating-note float-one">✍️ Digital handwriting</div>
+          <div class="floating-note float-two">📚 Study smarter</div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="paper-section">
+          <div class="section-heading">
+            <small>Get to know Goodnotes</small>
+            <h2>What Is Goodnotes?</h2>
+          </div>
+
+          <div class="article-copy">
+            <p>
+              Goodnotes is a digital note-taking and document organization
+              application designed to make writing, learning, and planning
+              more convenient. It gives users a workspace where they can
+              create handwritten notebooks, type structured documents,
+              annotate PDFs, and organize important information.
+            </p>
+
+            <p>
+              Instead of carrying multiple physical notebooks and folders,
+              users can keep many types of documents together digitally.
+              Its writing tools make it useful for people who enjoy taking
+              notes by hand, while text documents and whiteboards support
+              more flexible ways of working.
+            </p>
+
+            <p>
+              Goodnotes also offers AI-powered tools on supported plans.
+              Depending on the subscription and device, these can help
+              users understand their notes, work with documents, and
+              improve their study or productivity routines.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features">
+      <div class="container">
+        <div class="section-heading">
+          <small>Inside the workspace</small>
+          <h2>Features That Make Note-Taking Easier</h2>
+          <p>
+            Goodnotes combines familiar writing experiences with digital
+            tools for organizing and working with information.
+          </p>
+        </div>
+
+        <div class="features-grid">
+
+          <article class="feature-card">
+            <div class="feature-icon icon-purple">✍️</div>
+            <h3>Handwritten Notes</h3>
+            <p>
+              Write and sketch using digital pens, highlighters,
+              and other available writing tools.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon icon-pink">📄</div>
+            <h3>PDF Annotation</h3>
+            <p>
+              Import documents and mark important information with
+              highlights, handwriting, and comments.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon icon-mint">🔎</div>
+            <h3>Search Your Notes</h3>
+            <p>
+              Find information more easily with search features
+              for supported handwritten and typed content.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon icon-yellow">🧠</div>
+            <h3>Goodnotes AI</h3>
+            <p>
+              Use eligible AI tools to ask questions, summarize
+              information, and work with your documents.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon icon-purple">📁</div>
+            <h3>Document Organization</h3>
+            <p>
+              Keep notebooks, folders, whiteboards, and text
+              documents organized in a digital library.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon icon-pink">☁️</div>
+            <h3>Cloud Sync</h3>
+            <p>
+              Access and sync supported content across devices
+              when your account and plan include the feature.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container workflow">
+
+        <div class="section-heading">
+          <small style="color:#c5b8ff;">A simple workflow</small>
+          <h2>How to Get Started With Goodnotes</h2>
+          <p>
+            Start with a document, build your own workspace,
+            and keep your information easy to find.
+          </p>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <span class="step-number">STEP 01</span>
+            <h3>Create a Notebook</h3>
+            <p>
+              Start a notebook, text document, or whiteboard
+              according to the kind of work you want to do.
+            </p>
+          </div>
+
+          <div class="step">
+            <span class="step-number">STEP 02</span>
+            <h3>Add Your Content</h3>
+            <p>
+              Write notes, type ideas, import PDFs, or add
+              visual information to your documents.
+            </p>
+          </div>
+
+          <div class="step">
+            <span class="step-number">STEP 03</span>
+            <h3>Organize and Review</h3>
+            <p>
+              Arrange your documents into folders and use
+              supported search and study tools when needed.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="uses">
+      <div class="container">
+
+        <div class="section-heading">
+          <small>One app, many possibilities</small>
+          <h2>Who Can Benefit From Goodnotes?</h2>
+          <p>
+            Different people can use the workspace in different ways,
+            depending on their projects and daily routines.
+          </p>
+        </div>
+
+        <div class="use-grid">
+
+          <article class="use-card use-lavender">
+            <h3>🎓 Students</h3>
+            <p>
+              Organize lecture notes, annotate textbooks, prepare
+              revision materials, and keep study documents together.
+            </p>
+          </article>
+
+          <article class="use-card use-pink">
+            <h3>💼 Professionals</h3>
+            <p>
+              Write meeting notes, review documents, plan projects,
+              and keep important information in one place.
+            </p>
+          </article>
+
+          <article class="use-card use-mint">
+            <h3>🎨 Creative Thinkers</h3>
+            <p>
+              Sketch concepts, build visual plans, collect inspiration,
+              and explore ideas using flexible digital pages.
+            </p>
+          </article>
+
+          <article class="use-card use-yellow">
+            <h3>📅 Everyday Planners</h3>
+            <p>
+              Create personal journals, organize schedules,
+              and keep track of goals and daily priorities.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+
+        <div class="section-heading">
+          <small>Before you choose</small>
+          <h2>Benefits and Things to Consider</h2>
+        </div>
+
+        <div class="pros-cons">
+
+          <div class="list-card">
+            <h3>✓ Potential Benefits</h3>
+            <ul>
+              <li>Combines handwriting and typed documents.</li>
+              <li>Supports PDF reading and annotation.</li>
+              <li>Offers tools for study and organization.</li>
+              <li>Provides AI features on eligible plans.</li>
+              <li>Available across several device platforms.</li>
+            </ul>
+          </div>
+
+          <div class="list-card">
+            <h3>! Things to Consider</h3>
+            <ul>
+              <li>Some features require a paid subscription.</li>
+              <li>Feature availability can differ by platform.</li>
+              <li>Cross-platform syncing has plan requirements.</li>
+              <li>AI tools may have usage limits or credits.</li>
+              <li>Check device compatibility before installing.</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="container">
+
+        <div class="section-heading">
+          <small>Common questions</small>
+          <h2>Frequently Asked Questions</h2>
+        </div>
+
+        <div class="faq-list">
+
+          <details>
+            <summary>What is Goodnotes mainly used for?</summary>
+            <p>
+              Goodnotes is used for digital handwriting, typed notes,
+              PDF annotation, document organization, planning, and
+              supported study and AI features.
+            </p>
+          </details>
+
+          <details>
+            <summary>Is Goodnotes free to use?</summary>
+            <p>
+              Goodnotes offers a free plan with limits on documents,
+              storage, and selected features. Paid plans provide
+              additional capabilities. Check the official pricing
+              information for current details in your region.
+            </p>
+          </details>
+
+          <details>
+            <summary>Can I use Goodnotes on Windows and Android?</summary>
+            <p>
+              Yes. Goodnotes is available on Apple devices, Android,
+              Windows, and the web. Specific features and syncing
+              options depend on your device and plan.
+            </p>
+          </details>
+
+          <details>
+            <summary>Can Goodnotes open and annotate PDFs?</summary>
+            <p>
+              Yes. You can import supported PDF documents and use
+              available annotation tools to highlight, write, and
+              mark up their contents.
+            </p>
+          </details>
+
+          <details>
+            <summary>Does Goodnotes include AI features?</summary>
+            <p>
+              Yes. Goodnotes offers AI tools for eligible plans.
+              Available capabilities and usage limits vary by
+              subscription and platform.
+            </p>
+          </details>
+
+          <details>
+            <summary>Can I use Goodnotes without an internet connection?</summary>
+            <p>
+              Offline access is supported for many note-taking
+              activities. Cloud synchronization and online services
+              require an internet connection.
+            </p>
+          </details>
+
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="final-cta">
+          <h2>Give Your Ideas a Better Workspace</h2>
+
+          <p>
+            Explore digital note-taking, document organization,
+            handwriting tools, and productivity features with Goodnotes.
+            Visit the relevant official store to check availability
+            and installation requirements for your device.
+          </p>
+
+          <a href="https://gitapp.download/" class="btn btn-primary">
+            Visit GitApp Download
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>
+        <strong>Goodnotes Guide</strong> — A digital note-taking overview.
+      </p>
+      <p>© 2026. All rights reserved.</p>
+      <p style="margin-top:8px;">
+        Goodnotes is a trademark of its respective owner.
+        This article is for informational purposes and is not
+        an official Goodnotes website.
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>
