@@ -1,0 +1,890 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>How to Download Visual Studio Code for Mac – Complete Installation Guide</title>
+
+  <meta name="description" content="Learn how to download and install Visual Studio Code on Mac. Follow this simple step-by-step guide for Apple silicon and Intel Macs.">
+  <meta name="keywords" content="How to download Visual Studio Code for Mac, VS Code Mac download, install VS Code on Mac, Visual Studio Code macOS">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+    :root {
+      --paper: #f5f3ed;
+      --white: #ffffff;
+      --ink: #17213b;
+      --blue: #2455e6;
+      --blue-dark: #1539aa;
+      --muted: #68718a;
+      --line: #dedfdc;
+      --yellow: #f5d65e;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      line-height: 1.7;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .topbar {
+      padding: 18px 7%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .brand {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 21px;
+      letter-spacing: -1px;
+    }
+
+    .brand span {
+      color: var(--blue);
+    }
+
+    .top-link {
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 700;
+      border-bottom: 2px solid var(--blue);
+    }
+
+    .hero {
+      max-width: 1250px;
+      margin: auto;
+      padding: 85px 7% 75px;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      align-items: center;
+      gap: 55px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      line-height: 1.12;
+    }
+
+    h1 {
+      font-size: clamp(43px, 6vw, 75px);
+      letter-spacing: -4px;
+      margin-bottom: 25px;
+    }
+
+    h1 span {
+      color: var(--blue);
+    }
+
+    .hero-copy {
+      max-width: 540px;
+      color: var(--muted);
+      font-size: 17px;
+      margin-bottom: 30px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 23px;
+      border-radius: 5px;
+      background: var(--blue);
+      color: white;
+      font-size: 13px;
+      font-weight: 800;
+      transition: .25s;
+    }
+
+    .btn:hover {
+      background: var(--blue-dark);
+      transform: translateY(-3px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--ink);
+      color: var(--ink);
+    }
+
+    .btn-outline:hover {
+      background: var(--ink);
+      color: white;
+    }
+
+    /* Decorative editor illustration */
+
+    .visual {
+      background: #e4e9fa;
+      padding: 32px;
+      border-radius: 10px;
+      position: relative;
+      transform: rotate(1.5deg);
+    }
+
+    .editor {
+      background: #17213b;
+      border-radius: 9px;
+      overflow: hidden;
+      box-shadow: 0 25px 55px #1c2c5733;
+    }
+
+    .editor-top {
+      background: #263452;
+      padding: 13px 16px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #ff7777;
+    }
+
+    .dot:nth-child(2) { background: #f3cb61; }
+    .dot:nth-child(3) { background: #6bcf9b; }
+
+    .editor-name {
+      color: #c6d2ed;
+      font-size: 10px;
+      margin-left: 12px;
+    }
+
+    .editor-content {
+      padding: 27px 23px 35px;
+      font-family: monospace;
+      font-size: 13px;
+      color: #dce6ff;
+      line-height: 2.2;
+    }
+
+    .editor-content .blue { color: #75a7ff; }
+    .editor-content .green { color: #9edc9e; }
+    .editor-content .orange { color: #ffc58a; }
+    .editor-content .purple { color: #d4a7ff; }
+
+    .line-no {
+      display: inline-block;
+      width: 27px;
+      color: #73809d;
+    }
+
+    .visual-label {
+      background: var(--yellow);
+      color: var(--ink);
+      position: absolute;
+      bottom: -17px;
+      right: 17px;
+      padding: 9px 16px;
+      font-size: 11px;
+      font-weight: 800;
+      transform: rotate(-3deg);
+    }
+
+    .quick-facts {
+      background: var(--blue);
+      color: white;
+      padding: 25px 7%;
+    }
+
+    .facts-inner {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+      text-align: center;
+    }
+
+    .fact strong {
+      display: block;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 19px;
+    }
+
+    .fact span {
+      font-size: 11px;
+      opacity: .8;
+    }
+
+    .section {
+      max-width: 1100px;
+      padding: 85px 7%;
+      margin: auto;
+    }
+
+    .section-heading {
+      max-width: 680px;
+      margin-bottom: 38px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(32px, 4vw, 45px);
+      letter-spacing: -2px;
+      margin-bottom: 15px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 35px;
+    }
+
+    .intro-text p {
+      color: var(--muted);
+      margin-bottom: 17px;
+    }
+
+    .note-card {
+      background: var(--white);
+      padding: 28px;
+      border-left: 4px solid var(--blue);
+      border-radius: 5px;
+    }
+
+    .note-card h3 {
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    .note-card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .requirements {
+      background: #e9ecf5;
+    }
+
+    .requirements-inner {
+      max-width: 1100px;
+      padding: 75px 7%;
+      margin: auto;
+    }
+
+    .requirements-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-top: 35px;
+    }
+
+    .requirement {
+      background: white;
+      padding: 25px;
+      border-radius: 7px;
+    }
+
+    .requirement .number {
+      color: var(--blue);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    .requirement h3 {
+      font-size: 18px;
+      margin: 8px 0;
+    }
+
+    .requirement p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .steps {
+      border-left: 2px solid #cbd5fa;
+      margin: 35px 0 0 13px;
+    }
+
+    .step {
+      position: relative;
+      padding: 0 0 35px 35px;
+    }
+
+    .step::before {
+      content: "";
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: var(--blue);
+      position: absolute;
+      left: -8px;
+      top: 5px;
+      box-shadow: 0 0 0 5px var(--paper);
+    }
+
+    .step h3 {
+      font-size: 21px;
+      margin-bottom: 8px;
+    }
+
+    .step p {
+      color: var(--muted);
+      max-width: 720px;
+    }
+
+    .step-tag {
+      display: inline-block;
+      background: #e6ebff;
+      color: var(--blue);
+      padding: 4px 9px;
+      font-size: 10px;
+      font-weight: 800;
+      border-radius: 3px;
+      margin-bottom: 9px;
+    }
+
+    .tip-panel {
+      background: var(--ink);
+      color: white;
+      padding: 45px;
+      border-radius: 9px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .tip-panel h2 {
+      font-size: 30px;
+      margin-bottom: 12px;
+    }
+
+    .tip-panel p {
+      color: #c2cbe0;
+      font-size: 14px;
+    }
+
+    .terminal {
+      background: #0c1428;
+      padding: 20px;
+      border-radius: 6px;
+      color: #a8e3b2;
+      font-family: monospace;
+      font-size: 13px;
+      overflow-wrap: anywhere;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 13px;
+    }
+
+    .faq {
+      background: white;
+      border: 1px solid var(--line);
+      padding: 22px 25px;
+      border-radius: 6px;
+    }
+
+    .faq h3 {
+      font-size: 17px;
+      margin-bottom: 8px;
+    }
+
+    .faq p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .final-cta {
+      background: #dce5ff;
+      text-align: center;
+      padding: 75px 7%;
+    }
+
+    .final-cta h2 {
+      max-width: 700px;
+      margin: 0 auto 18px;
+      font-size: clamp(32px, 4vw, 47px);
+      letter-spacing: -2px;
+    }
+
+    .final-cta p {
+      max-width: 620px;
+      margin: 0 auto 25px;
+      color: #5c6680;
+    }
+
+    footer {
+      background: var(--ink);
+      color: white;
+      text-align: center;
+      padding: 30px 7%;
+      font-size: 12px;
+    }
+
+    footer p {
+      color: #b9c3d8;
+      margin-top: 7px;
+    }
+
+    @media (max-width: 800px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 60px;
+      }
+
+      .visual {
+        max-width: 550px;
+        width: 100%;
+        margin: auto;
+      }
+
+      .intro-grid,
+      .tip-panel {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      h1 {
+        letter-spacing: -2px;
+      }
+
+      .facts-inner,
+      .requirements-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .quick-facts {
+        padding: 30px 7%;
+      }
+
+      .fact {
+        padding: 8px;
+      }
+
+      .tip-panel {
+        padding: 28px;
+      }
+
+      .section {
+        padding-top: 60px;
+        padding-bottom: 60px;
+      }
+
+      .topbar {
+        padding: 15px 5%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="topbar">
+    <div class="brand">GIT<span>APP.</span></div>
+    <a class="top-link" href="https://gitapp.download/">EXPLORE APPS ↗</a>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div>
+        <span class="eyebrow">Mac Installation Guide / 2026</span>
+
+        <h1>How to Download <span>Visual Studio Code</span> for Mac</h1>
+
+        <p class="hero-copy">
+          Ready to start coding on your Mac? Discover how to download,
+          install, and configure Visual Studio Code with this beginner-friendly
+          step-by-step guide.
+        </p>
+
+        <div class="actions">
+          <a class="btn" href="https://gitapp.download/" target="_blank" rel="noopener">
+            Explore on GitApp ↗
+          </a>
+
+          <a class="btn btn-outline"
+             href="https://code.visualstudio.com/Download"
+             target="_blank" rel="noopener">
+            Official VS Code Download
+          </a>
+        </div>
+      </div>
+
+      <div class="visual">
+        <div class="editor">
+          <div class="editor-top">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="editor-name">welcome.js — Visual Studio Code</span>
+          </div>
+
+          <div class="editor-content">
+            <div><span class="line-no">01</span><span class="purple">const</span> editor = {</div>
+            <div><span class="line-no">02</span>&nbsp; name: <span class="green">'VS Code'</span>,</div>
+            <div><span class="line-no">03</span>&nbsp; platform: <span class="green">'macOS'</span>,</div>
+            <div><span class="line-no">04</span>&nbsp; purpose: <span class="green">'Build ideas'</span>,</div>
+            <div><span class="line-no">05</span>&nbsp; ready: <span class="orange">true</span></div>
+            <div><span class="line-no">06</span>};</div>
+            <br>
+            <div><span class="line-no">07</span><span class="blue">console</span>.log(</div>
+            <div><span class="line-no">08</span>&nbsp; <span class="green">'Start creating!'</span></div>
+            <div><span class="line-no">09</span>);</div>
+          </div>
+        </div>
+        <div class="visual-label">YOUR MAC. YOUR WORKSPACE.</div>
+      </div>
+    </section>
+
+    <section class="quick-facts">
+      <div class="facts-inner">
+        <div class="fact">
+          <strong>Free Editor</strong>
+          <span>Download the core editor at no cost</span>
+        </div>
+        <div class="fact">
+          <strong>macOS 12+</strong>
+          <span>Current download page requirement</span>
+        </div>
+        <div class="fact">
+          <strong>Intel & Apple Silicon</strong>
+          <span>Multiple Mac builds available</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <span class="eyebrow">01 / Introduction</span>
+        <h2>A flexible code editor for your Mac</h2>
+      </div>
+
+      <div class="intro-grid">
+        <div class="intro-text">
+          <p>
+            <strong>Visual Studio Code</strong>, commonly known as VS Code,
+            is a popular source-code editor developed by Microsoft. It provides
+            a practical workspace for writing, editing, and managing code
+            across many programming languages.
+          </p>
+
+          <p>
+            Its features include syntax highlighting, code completion,
+            debugging support, an integrated terminal, source control
+            integration, and a large extension marketplace.
+          </p>
+
+          <p>
+            Whether you are learning web development, working on Python
+            projects, or maintaining an existing codebase, VS Code can be
+            configured to support your workflow.
+          </p>
+        </div>
+
+        <aside class="note-card">
+          <h3>Why choose VS Code?</h3>
+          <p>
+            Start with a clean editor and add the extensions, themes,
+            and tools you need. AI-powered features are available as
+            optional additions; the core editor does not require an
+            account to get started.
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="requirements">
+      <div class="requirements-inner">
+        <div class="section-heading">
+          <span class="eyebrow">02 / Before You Install</span>
+          <h2>Check your Mac first</h2>
+          <p>
+            Make sure your device meets the current macOS requirements
+            before downloading the installer.
+          </p>
+        </div>
+
+        <div class="requirements-grid">
+          <article class="requirement">
+            <div class="number">01</div>
+            <h3>macOS Version</h3>
+            <p>
+              The official download page currently lists macOS 12.0
+              or later for its Mac Universal build.
+            </p>
+          </article>
+
+          <article class="requirement">
+            <div class="number">02</div>
+            <h3>Processor</h3>
+            <p>
+              VS Code offers builds for both Apple silicon and
+              Intel-based Mac computers.
+            </p>
+          </article>
+
+          <article class="requirement">
+            <div class="number">03</div>
+            <h3>Storage</h3>
+            <p>
+              Keep enough free disk space for the application,
+              extensions, project files, and development tools.
+            </p>
+          </article>
+
+          <article class="requirement">
+            <div class="number">04</div>
+            <h3>Internet Connection</h3>
+            <p>
+              An internet connection is needed to download the installer
+              and any additional extensions or tools.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <span class="eyebrow">03 / Installation</span>
+        <h2>How to download and install VS Code on Mac</h2>
+        <p>
+          Follow these simple steps to get the editor running on
+          your Mac computer.
+        </p>
+      </div>
+
+      <div class="steps">
+
+        <article class="step">
+          <span class="step-tag">STEP 01</span>
+          <h3>Visit the official download page</h3>
+          <p>
+            Open the official Visual Studio Code download website.
+            Find the macOS section and review the available Mac versions.
+          </p>
+          <br>
+          <a class="btn" href="https://code.visualstudio.com/Download"
+             target="_blank" rel="noopener">
+            Visit Official Download Page ↗
+          </a>
+        </article>
+
+        <article class="step">
+          <span class="step-tag">STEP 02</span>
+          <h3>Choose the correct Mac build</h3>
+          <p>
+            Select the Apple silicon version if your Mac uses an M-series
+            processor. Choose the Intel version for an Intel-based Mac.
+            The Universal build supports both processor families.
+          </p>
+        </article>
+
+        <article class="step">
+          <span class="step-tag">STEP 03</span>
+          <h3>Download the DMG file</h3>
+          <p>
+            Click the appropriate download option and wait for the
+            Visual Studio Code disk image (.dmg) file to finish downloading.
+          </p>
+        </article>
+
+        <article class="step">
+          <span class="step-tag">STEP 04</span>
+          <h3>Open the downloaded installer</h3>
+          <p>
+            Open your Downloads folder and double-click the downloaded
+            DMG file. A new installation window will appear.
+          </p>
+        </article>
+
+        <article class="step">
+          <span class="step-tag">STEP 05</span>
+          <h3>Move VS Code into Applications</h3>
+          <p>
+            Drag the Visual Studio Code application icon into your
+            Mac's Applications folder. Wait for the copy process to finish.
+          </p>
+        </article>
+
+        <article class="step">
+          <span class="step-tag">STEP 06</span>
+          <h3>Launch Visual Studio Code</h3>
+          <p>
+            Open Applications, find Visual Studio Code, and double-click
+            it. You can also locate the app using Spotlight search.
+          </p>
+        </article>
+
+        <article class="step">
+          <span class="step-tag">STEP 07</span>
+          <h3>Start your first project</h3>
+          <p>
+            Select Open Folder to work with an existing project, or
+            create a new folder for your first coding project.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="tip-panel">
+        <div>
+          <span class="eyebrow" style="color:#9db7ff;">04 / Developer Tip</span>
+          <h2>Open projects from Terminal</h2>
+          <p>
+            You can configure the VS Code command-line tool to launch
+            the editor directly from your Mac terminal. This is useful
+            when switching between project folders.
+          </p>
+        </div>
+
+        <div class="terminal">
+          <div style="color:#8a9abb; margin-bottom:12px;"># Open VS Code</div>
+          <div>code .</div>
+          <br>
+          <div style="color:#8a9abb;"># Open a project folder</div>
+          <div>cd my-project</div>
+          <div>code .</div>
+        </div>
+      </div>
+      <p style="color:#68718a; font-size:13px; margin-top:15px;">
+        First, open VS Code, press Cmd + Shift + P, and run
+        "Shell Command: Install 'code' command in PATH".
+      </p>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <span class="eyebrow">05 / Frequently Asked Questions</span>
+        <h2>Common questions about VS Code for Mac</h2>
+      </div>
+
+      <div class="faq-list">
+
+        <article class="faq">
+          <h3>1. Is Visual Studio Code free for Mac?</h3>
+          <p>
+            Yes. The core Visual Studio Code editor is free to download
+            and use. Optional services and extensions may have their
+            own terms or pricing.
+          </p>
+        </article>
+
+        <article class="faq">
+          <h3>2. Does VS Code work on Apple silicon?</h3>
+          <p>
+            Yes. Visual Studio Code supports Apple silicon Macs.
+            You can choose an Apple silicon-specific installer or
+            the Universal build.
+          </p>
+        </article>
+
+        <article class="faq">
+          <h3>3. Can I install VS Code on an Intel Mac?</h3>
+          <p>
+            Yes. An Intel-specific Mac download is available from
+            the official download page. Check the current macOS
+            requirements before installing.
+          </p>
+        </article>
+
+        <article class="faq">
+          <h3>4. How do I update Visual Studio Code?</h3>
+          <p>
+            VS Code supports automatic updates. When an update is
+            available, follow the application's update prompt.
+          </p>
+        </article>
+
+        <article class="faq">
+          <h3>5. Can beginners use Visual Studio Code?</h3>
+          <p>
+            Absolutely. Beginners can start with basic editing and
+            gradually explore extensions, debugging, terminal tools,
+            and other development features.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <span class="eyebrow">Your Development Journey Starts Here</span>
+
+      <h2>Get your Mac ready for your next big idea.</h2>
+
+      <p>
+        Explore software resources and discover more applications
+        through GitApp. For the official Visual Studio Code installer,
+        always use the Microsoft download page.
+      </p>
+
+      <div class="actions" style="justify-content:center;">
+        <a class="btn" href="https://gitapp.download/"
+           target="_blank" rel="noopener">
+          Explore GitApp ↗
+        </a>
+
+        <a class="btn btn-outline"
+           href="https://code.visualstudio.com/Download"
+           target="_blank" rel="noopener">
+          Download VS Code Officially
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="brand">GIT<span>APP.</span></div>
+    <p>
+      © 2026 GitApp. All rights reserved.
+      This article is an independent installation guide.
+    </p>
+    <p>
+      Visual Studio Code is a product of Microsoft.
+      GitApp is not affiliated with or endorsed by Microsoft.
+    </p>
+  </footer>
+
+</body>
+</html>
