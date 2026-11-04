@@ -1,0 +1,1212 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Kaleidoscope – Powerful File, Image & Code Comparison Tool</title>
+  <meta name="description" content="Discover Kaleidoscope, a powerful Mac comparison app for text, code, images, folders, Git changes, and merge conflicts.">
+  <meta name="keywords" content="Kaleidoscope, Kaleidoscope app, file comparison, code comparison, image comparison, folder comparison, Git merge tool">
+
+  <style>
+    :root {
+      --paper: #f8f7f2;
+      --ink: #252a32;
+      --muted: #737b83;
+      --coral: #f16b58;
+      --teal: #168c83;
+      --yellow: #f5cf65;
+      --line: #deded7;
+      --white: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Trebuchet MS", Arial, sans-serif;
+      line-height: 1.75;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .topbar {
+      background: var(--ink);
+      color: white;
+      text-align: center;
+      padding: 10px;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    header {
+      max-width: 1200px;
+      margin: auto;
+      padding: 24px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 27px;
+      font-weight: 900;
+      letter-spacing: -1.5px;
+    }
+
+    .logo span {
+      color: var(--coral);
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px;
+    }
+
+    nav a {
+      font-size: 13px;
+      font-weight: bold;
+      color: var(--ink);
+    }
+
+    nav a:hover {
+      color: var(--teal);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 25px;
+    }
+
+    /* Hero */
+
+    .hero {
+      min-height: 480px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 50px;
+      padding: 65px 0 85px;
+    }
+
+    .eyebrow {
+      color: var(--teal);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: clamp(48px, 7vw, 79px);
+      line-height: 1.02;
+      letter-spacing: -4px;
+      margin: 22px 0;
+    }
+
+    h1 span {
+      color: var(--coral);
+    }
+
+    .hero p {
+      max-width: 550px;
+      color: var(--muted);
+      font-size: 16px;
+      margin-bottom: 28px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 24px;
+      background: var(--coral);
+      color: white;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      border: 2px solid var(--coral);
+      transition: .25s;
+    }
+
+    .btn:hover {
+      background: transparent;
+      color: var(--coral);
+      transform: translateY(-3px);
+    }
+
+    .btn-teal {
+      background: var(--teal);
+      border-color: var(--teal);
+    }
+
+    .btn-teal:hover {
+      color: var(--teal);
+    }
+
+    /* Comparison illustration */
+
+    .comparison-art {
+      position: relative;
+      min-height: 350px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .compare-card {
+      position: absolute;
+      width: 75%;
+      min-height: 260px;
+      padding: 24px;
+      border-radius: 5px;
+      box-shadow: 0 15px 35px rgba(0,0,0,.12);
+    }
+
+    .compare-a {
+      background: var(--teal);
+      color: white;
+      left: 0;
+      top: 25px;
+      transform: rotate(-7deg);
+    }
+
+    .compare-b {
+      background: var(--coral);
+      color: white;
+      right: 0;
+      bottom: 15px;
+      transform: rotate(6deg);
+    }
+
+    .compare-card small {
+      font-size: 10px;
+      letter-spacing: 2px;
+      font-weight: bold;
+    }
+
+    .compare-card h2 {
+      font-size: 31px;
+      line-height: 1.1;
+      margin: 20px 0;
+    }
+
+    .compare-lines {
+      font-family: monospace;
+      font-size: 12px;
+      line-height: 2.2;
+    }
+
+    .highlight-added {
+      background: rgba(255,255,255,.25);
+      padding: 2px 5px;
+    }
+
+    .highlight-removed {
+      text-decoration: line-through;
+      opacity: .7;
+    }
+
+    /* Intro strip */
+
+    .intro-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      background: var(--white);
+      border: 1px solid var(--line);
+      margin: 20px 0 75px;
+    }
+
+    .intro-item {
+      padding: 27px 20px;
+      text-align: center;
+      border-right: 1px solid var(--line);
+    }
+
+    .intro-item:last-child {
+      border-right: none;
+    }
+
+    .intro-item strong {
+      display: block;
+      font-size: 24px;
+      color: var(--teal);
+    }
+
+    .intro-item span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* Main article */
+
+    .article-layout {
+      display: grid;
+      grid-template-columns: 230px 1fr;
+      gap: 55px;
+      align-items: start;
+      padding-bottom: 80px;
+    }
+
+    aside {
+      position: sticky;
+      top: 20px;
+      border-top: 5px solid var(--coral);
+      background: white;
+      padding: 23px;
+    }
+
+    aside h3 {
+      font-size: 17px;
+      margin-bottom: 15px;
+    }
+
+    aside a {
+      display: block;
+      padding: 9px 0;
+      color: var(--muted);
+      font-size: 12px;
+      border-bottom: 1px solid #eeeeea;
+    }
+
+    aside a:hover {
+      color: var(--coral);
+    }
+
+    article {
+      min-width: 0;
+    }
+
+    .section {
+      margin-bottom: 60px;
+      scroll-margin-top: 25px;
+    }
+
+    .section-label {
+      color: var(--coral);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-size: 36px;
+      line-height: 1.2;
+      letter-spacing: -1px;
+      margin-bottom: 20px;
+    }
+
+    .section p {
+      color: #626c73;
+      font-size: 15px;
+      margin-bottom: 17px;
+    }
+
+    /* Feature list */
+
+    .features {
+      margin-top: 30px;
+    }
+
+    .feature {
+      display: grid;
+      grid-template-columns: 65px 1fr;
+      gap: 20px;
+      padding: 24px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .feature-icon {
+      width: 53px;
+      height: 53px;
+      display: grid;
+      place-items: center;
+      font-size: 22px;
+      font-weight: bold;
+      color: white;
+      background: var(--teal);
+      border-radius: 50%;
+    }
+
+    .feature:nth-child(even) .feature-icon {
+      background: var(--coral);
+    }
+
+    .feature h3 {
+      font-size: 20px;
+      margin-bottom: 6px;
+    }
+
+    .feature p {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    /* Before/after panel */
+
+    .diff-demo {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      margin: 30px 0;
+      border: 1px solid var(--line);
+      overflow: hidden;
+    }
+
+    .diff-side {
+      padding: 24px;
+      background: white;
+      min-width: 0;
+    }
+
+    .diff-side + .diff-side {
+      border-left: 1px solid var(--line);
+    }
+
+    .diff-side h3 {
+      font-size: 12px;
+      letter-spacing: 2px;
+      margin-bottom: 18px;
+    }
+
+    .diff-side code {
+      display: block;
+      font-size: 11px;
+      line-height: 2.2;
+      overflow-wrap: anywhere;
+      color: #525b60;
+    }
+
+    .old {
+      background: #ffe6df;
+      color: #9a4034;
+      padding: 2px 4px;
+    }
+
+    .new {
+      background: #d8f2e8;
+      color: #14745f;
+      padding: 2px 4px;
+    }
+
+    /* CTA */
+
+    .promo {
+      background: var(--yellow);
+      padding: 48px;
+      margin: 45px 0 65px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .promo::after {
+      content: "≠";
+      position: absolute;
+      right: 20px;
+      bottom: -105px;
+      font-size: 250px;
+      font-weight: bold;
+      color: rgba(0,0,0,.08);
+    }
+
+    .promo h2 {
+      max-width: 650px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .promo p {
+      max-width: 580px;
+      color: #5d5438;
+      font-size: 14px;
+      margin-bottom: 25px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .promo .btn {
+      background: var(--ink);
+      border-color: var(--ink);
+      position: relative;
+      z-index: 1;
+    }
+
+    .promo .btn:hover {
+      color: var(--ink);
+      background: transparent;
+    }
+
+    /* Workflow */
+
+    .steps {
+      counter-reset: step;
+      margin-top: 25px;
+    }
+
+    .step {
+      counter-increment: step;
+      position: relative;
+      padding: 18px 0 18px 60px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .step::before {
+      content: "0" counter(step);
+      position: absolute;
+      left: 0;
+      top: 15px;
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--teal);
+    }
+
+    .step h3 {
+      font-size: 17px;
+      margin-bottom: 5px;
+    }
+
+    .step p {
+      margin: 0;
+      font-size: 13px;
+    }
+
+    /* Pros and cons */
+
+    .pros-cons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 25px;
+    }
+
+    .pros-cons > div {
+      padding: 25px;
+      background: white;
+      border: 1px solid var(--line);
+    }
+
+    .pros-cons h3 {
+      color: var(--teal);
+      font-size: 17px;
+      margin-bottom: 14px;
+    }
+
+    .pros-cons ul {
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .pros-cons li {
+      margin-bottom: 10px;
+    }
+
+    /* FAQ */
+
+    .faq {
+      padding: 21px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .faq h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .faq p {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    footer {
+      background: var(--ink);
+      color: white;
+      padding: 60px 25px 25px;
+      text-align: center;
+    }
+
+    footer h2 {
+      font-size: 35px;
+      color: white;
+    }
+
+    footer p {
+      max-width: 600px;
+      margin: 12px auto 25px;
+      color: #c6cbd0;
+      font-size: 14px;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #454b52;
+      margin-top: 40px;
+      padding-top: 20px;
+      color: #9da5ab;
+      font-size: 11px;
+    }
+
+    @media(max-width: 850px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .comparison-art {
+        max-width: 550px;
+        width: 100%;
+        margin: auto;
+      }
+
+      .article-layout {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      aside {
+        position: static;
+      }
+
+      aside a {
+        display: inline-block;
+        margin-right: 12px;
+      }
+    }
+
+    @media(max-width: 560px) {
+      header {
+        flex-direction: column;
+      }
+
+      nav {
+        justify-content: center;
+        gap: 13px;
+      }
+
+      .container {
+        padding: 0 16px;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+
+      .intro-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .intro-item {
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .intro-item:last-child {
+        border-bottom: none;
+      }
+
+      .diff-demo,
+      .pros-cons {
+        grid-template-columns: 1fr;
+      }
+
+      .diff-side + .diff-side {
+        border-left: none;
+        border-top: 1px solid var(--line);
+      }
+
+      .promo {
+        padding: 30px 22px;
+      }
+
+      h2 {
+        font-size: 29px;
+      }
+
+      .comparison-art {
+        min-height: 310px;
+      }
+
+      .compare-card {
+        width: 80%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="topbar">
+    Design / Development / Precision / Comparison
+  </div>
+
+  <header>
+    <a href="#" class="logo">PIXEL<span>DIFF.</span></a>
+
+    <nav>
+      <a href="#about">Overview</a>
+      <a href="#features">Features</a>
+      <a href="#workflow">Workflow</a>
+      <a href="#benefits">Benefits</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <!-- HERO -->
+    <section class="hero">
+
+      <div>
+        <div class="eyebrow">A Better Way to Compare</div>
+
+        <h1>
+          See what<br>
+          <span>changed.</span><br>
+          Clearly.
+        </h1>
+
+        <p>
+          Discover Kaleidoscope, a powerful file comparison
+          and merge application that helps developers and
+          designers spot differences in text, code, images,
+          and folders with clarity.
+        </p>
+
+        <a href="https://gitapp.download/"
+           class="btn"
+           target="_blank"
+           rel="noopener noreferrer">
+          VISIT GITAPP →
+        </a>
+      </div>
+
+      <div class="comparison-art">
+
+        <div class="compare-card compare-a">
+          <small>VERSION A / ORIGINAL</small>
+          <h2>Before<br>the change.</h2>
+          <div class="compare-lines">
+            <div>const theme = "blue";</div>
+            <div>const layout = "classic";</div>
+            <div class="highlight-removed">oldStyle: true</div>
+          </div>
+        </div>
+
+        <div class="compare-card compare-b">
+          <small>VERSION B / UPDATED</small>
+          <h2>After<br>the change.</h2>
+          <div class="compare-lines">
+            <div>const theme = "coral";</div>
+            <div>const layout = "modern";</div>
+            <div class="highlight-added">newStyle: true</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- INTRO STRIP -->
+    <section class="intro-strip">
+
+      <div class="intro-item">
+        <strong>Text</strong>
+        <span>Compare code and documents</span>
+      </div>
+
+      <div class="intro-item">
+        <strong>Images</strong>
+        <span>Inspect visual differences</span>
+      </div>
+
+      <div class="intro-item">
+        <strong>Folders</strong>
+        <span>Review entire directory structures</span>
+      </div>
+
+    </section>
+
+    <div class="article-layout">
+
+      <aside>
+        <h3>ARTICLE INDEX</h3>
+        <a href="#about">01. What Is Kaleidoscope?</a>
+        <a href="#features">02. Main Features</a>
+        <a href="#text">03. Text Comparison</a>
+        <a href="#images">04. Image Comparison</a>
+        <a href="#folders">05. Folder Comparison</a>
+        <a href="#git">06. Git Integration</a>
+        <a href="#workflow">07. Getting Started</a>
+        <a href="#benefits">08. Pros & Considerations</a>
+        <a href="#faq">09. FAQs</a>
+      </aside>
+
+      <article>
+
+        <!-- ABOUT -->
+        <section class="section" id="about">
+          <div class="section-label">01 / Introduction</div>
+
+          <h2>What Is Kaleidoscope?</h2>
+
+          <p>
+            Kaleidoscope is a professional file comparison and
+            merge application for macOS, developed by Letter Opener
+            GmbH. It is designed to help users identify differences
+            between versions of files, images, and entire folders.
+          </p>
+
+          <p>
+            Developers often work with changing code, multiple
+            project versions, and Git branches. Designers may need
+            to compare updated graphics, layouts, and image assets.
+            Writers and other professionals can also benefit from
+            reviewing document changes.
+          </p>
+
+          <p>
+            Kaleidoscope brings these comparison tasks into one
+            application, presenting differences in a visual format
+            that is easier to inspect and understand.
+          </p>
+        </section>
+
+        <!-- FEATURES -->
+        <section class="section" id="features">
+          <div class="section-label">02 / Main Features</div>
+
+          <h2>Explore the Core Features</h2>
+
+          <p>
+            Kaleidoscope provides specialized comparison tools
+            for different kinds of content. Each feature is
+            designed to make changes easier to identify.
+          </p>
+
+          <div class="features">
+
+            <div class="feature">
+              <div class="feature-icon">T</div>
+              <div>
+                <h3>Text and Code Comparison</h3>
+                <p>
+                  Compare two or more text files and source code
+                  documents. Added, removed, and modified content
+                  is highlighted to make reviewing changes easier.
+                </p>
+              </div>
+            </div>
+
+            <div class="feature">
+              <div class="feature-icon">▧</div>
+              <div>
+                <h3>Image Comparison</h3>
+                <p>
+                  Compare images using split, blink, drag, and
+                  difference views. Pixel comparison tools can
+                  help inspect visual changes in greater detail.
+                </p>
+              </div>
+            </div>
+
+            <div class="feature">
+              <div class="feature-icon">▤</div>
+              <div>
+                <h3>Folder Comparison</h3>
+                <p>
+                  Compare directory structures and identify
+                  files that are added, removed, modified,
+                  or unchanged between two folders.
+                </p>
+              </div>
+            </div>
+
+            <div class="feature">
+              <div class="feature-icon">⇄</div>
+              <div>
+                <h3>Merge Conflict Resolution</h3>
+                <p>
+                  Review conflicting changes and work with
+                  merge tools to combine the appropriate
+                  content from different versions.
+                </p>
+              </div>
+            </div>
+
+            <div class="feature">
+              <div class="feature-icon">G</div>
+              <div>
+                <h3>Git Integration</h3>
+                <p>
+                  Connect comparison workflows with Git
+                  repositories, review changesets, inspect
+                  file history, and work with merge conflicts.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- TEXT -->
+        <section class="section" id="text">
+          <div class="section-label">03 / Text Scope</div>
+
+          <h2>Compare Text and Code with Precision</h2>
+
+          <p>
+            Text comparison is one of the most important parts
+            of Kaleidoscope. It helps users understand how one
+            version of a document or source file differs from
+            another.
+          </p>
+
+          <p>
+            Instead of manually reading two files line by line,
+            users can review highlighted changes. Character-level
+            comparisons help identify smaller edits that may
+            otherwise be difficult to notice.
+          </p>
+
+          <div class="diff-demo">
+
+            <div class="diff-side">
+              <h3>VERSION A</h3>
+              <code>function welcome() {</code>
+              <code>  <span class="old">return "Hello";</span></code>
+              <code>  const status = "old";</code>
+              <code>}</code>
+            </div>
+
+            <div class="diff-side">
+              <h3>VERSION B</h3>
+              <code>function welcome() {</code>
+              <code>  <span class="new">return "Welcome";</span></code>
+              <code>  const status = "updated";</code>
+              <code>}</code>
+            </div>
+
+          </div>
+
+          <p>
+            This type of visual review is useful for code reviews,
+            debugging, document revisions, and checking changes
+            before publishing updates.
+          </p>
+        </section>
+
+        <!-- IMAGES -->
+        <section class="section" id="images">
+          <div class="section-label">04 / Image Scope</div>
+
+          <h2>Find Visual Differences in Images</h2>
+
+          <p>
+            Designers and developers frequently update image
+            assets, interface screenshots, icons, and visual
+            designs. Comparing two images manually can be
+            difficult when the differences are subtle.
+          </p>
+
+          <p>
+            Kaleidoscope offers image comparison views that
+            help users inspect two versions of an image.
+            Options such as split, blink, drag, and difference
+            views make it easier to identify visual changes.
+          </p>
+
+          <p>
+            Its pixel comparison tools can also display
+            information about sampled pixels and color values,
+            which may be useful when checking design details.
+          </p>
+        </section>
+
+        <!-- FOLDERS -->
+        <section class="section" id="folders">
+          <div class="section-label">05 / Folder Scope</div>
+
+          <h2>Compare Entire Folders</h2>
+
+          <p>
+            Sometimes the changes between two project versions
+            are spread across many files. Checking every file
+            individually can take considerable time.
+          </p>
+
+          <p>
+            Folder comparison provides an overview of two
+            directory structures. Kaleidoscope can highlight
+            different, equal, and unmatched items so users
+            can focus on the files that need attention.
+          </p>
+
+          <p>
+            Users can explore nested folders, filter results,
+            and copy items between compared locations using
+            the available folder management tools.
+          </p>
+        </section>
+
+        <!-- GIT -->
+        <section class="section" id="git">
+          <div class="section-label">06 / Developer Workflow</div>
+
+          <h2>Git Integration for Development Teams</h2>
+
+          <p>
+            Git is an essential part of many software development
+            workflows. Developers use branches, commits, and
+            merges to manage changes across projects.
+          </p>
+
+          <p>
+            Kaleidoscope integrates with Git to provide visual
+            ways to review changesets, inspect file history,
+            compare commits, and resolve merge conflicts.
+          </p>
+
+          <p>
+            This can make it easier to understand how a project
+            has changed over time and identify the source of
+            modifications before merging updates.
+          </p>
+        </section>
+
+        <!-- CTA -->
+        <div class="promo">
+          <div class="section-label">DISCOVER MORE DIGITAL TOOLS</div>
+
+          <h2>Find Software That Makes Your Work Easier.</h2>
+
+          <p>
+            Explore GitApp and discover additional software-related
+            resources for your digital workflow.
+          </p>
+
+          <a href="https://gitapp.download/"
+             class="btn"
+             target="_blank"
+             rel="noopener noreferrer">
+            EXPLORE GITAPP →
+          </a>
+        </div>
+
+        <!-- WORKFLOW -->
+        <section class="section" id="workflow">
+          <div class="section-label">07 / Getting Started</div>
+
+          <h2>How to Start Using Kaleidoscope</h2>
+
+          <p>
+            You can begin comparing files through the application
+            interface, Finder integrations, or supported developer
+            workflows.
+          </p>
+
+          <div class="steps">
+
+            <div class="step">
+              <h3>Download and Install</h3>
+              <p>
+                Visit the official Kaleidoscope website and
+                download the macOS application.
+              </p>
+            </div>
+
+            <div class="step">
+              <h3>Select Your Files</h3>
+              <p>
+                Choose two or more files, folders, or text
+                snippets that you want to compare.
+              </p>
+            </div>
+
+            <div class="step">
+              <h3>Review the Differences</h3>
+              <p>
+                Open the comparison view and inspect the
+                highlighted changes.
+              </p>
+            </div>
+
+            <div class="step">
+              <h3>Resolve or Merge Changes</h3>
+              <p>
+                Use the available merge and editing tools
+                to review and combine the relevant content.
+              </p>
+            </div>
+
+            <div class="step">
+              <h3>Connect Your Workflow</h3>
+              <p>
+                Configure supported Git and application
+                integrations for easier access.
+              </p>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- BENEFITS -->
+        <section class="section" id="benefits">
+          <div class="section-label">08 / Balanced Review</div>
+
+          <h2>Advantages and Things to Consider</h2>
+
+          <div class="pros-cons">
+            <div>
+              <h3>Advantages</h3>
+              <ul>
+                <li>Clear text and code comparisons</li>
+                <li>Detailed image comparison views</li>
+                <li>Folder and directory comparison</li>
+                <li>Git integration and file history</li>
+                <li>Merge conflict resolution tools</li>
+                <li>Useful for developers and designers</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3>Considerations</h3>
+              <ul>
+                <li>Designed primarily for macOS</li>
+                <li>Requires a paid subscription after trial</li>
+                <li>Some advanced features need setup</li>
+                <li>Large folder comparisons may take time</li>
+                <li>Not a replacement for a full code editor</li>
+                <li>Check current system requirements</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="section" id="faq">
+          <div class="section-label">09 / Frequently Asked Questions</div>
+
+          <h2>Kaleidoscope FAQs</h2>
+
+          <div class="faq">
+            <h3>1. What is Kaleidoscope used for?</h3>
+            <p>
+              Kaleidoscope is used to compare text files,
+              source code, images, folders, and Git changes.
+              It also provides tools for merging content.
+            </p>
+          </div>
+
+          <div class="faq">
+            <h3>2. Is Kaleidoscope available for Windows?</h3>
+            <p>
+              The Kaleidoscope application discussed here
+              is designed for macOS. Check the official
+              website for current compatibility details.
+            </p>
+          </div>
+
+          <div class="faq">
+            <h3>3. Can Kaleidoscope compare images?</h3>
+            <p>
+              Yes. It offers multiple image comparison modes
+              to help identify visual and pixel-level differences.
+            </p>
+          </div>
+
+          <div class="faq">
+            <h3>4. Does Kaleidoscope support Git?</h3>
+            <p>
+              Yes. It integrates with Git workflows for
+              comparing changesets, inspecting file history,
+              and resolving merge conflicts.
+            </p>
+          </div>
+
+          <div class="faq">
+            <h3>5. Is Kaleidoscope free?</h3>
+            <p>
+              Kaleidoscope offers a free trial. Continued
+              use requires a subscription under its current
+              pricing model.
+            </p>
+          </div>
+
+          <div class="faq">
+            <h3>6. Where can I download Kaleidoscope?</h3>
+            <p>
+              Visit the official Kaleidoscope website to
+              access the current macOS trial and installation
+              information.
+            </p>
+          </div>
+        </section>
+
+        <!-- CONCLUSION -->
+        <section class="section">
+          <div class="section-label">10 / Final Thoughts</div>
+
+          <h2>A Clearer Way to Review Changes</h2>
+
+          <p>
+            Kaleidoscope is a specialized comparison tool that
+            helps developers, designers, and other professionals
+            understand changes across files and projects.
+            Its text, image, folder, and Git comparison features
+            bring several useful workflows together.
+          </p>
+
+          <p>
+            If you regularly review code, compare design assets,
+            or manage multiple versions of project files,
+            Kaleidoscope may be a valuable addition to your
+            macOS toolkit.
+          </p>
+
+          <a href="https://gitapp.download/"
+             class="btn btn-teal"
+             target="_blank"
+             rel="noopener noreferrer">
+            VISIT GITAPP →
+          </a>
+        </section>
+
+      </article>
+    </div>
+  </main>
+
+  <footer>
+    <h2>Compare Better. Create Better.</h2>
+
+    <p>
+      Discover useful software and digital resources
+      for your development and creative projects.
+    </p>
+
+    <a href="https://gitapp.download/"
+       class="btn"
+       target="_blank"
+       rel="noopener noreferrer">
+      EXPLORE GITAPP
+    </a>
+
+    <div class="footer-bottom">
+      © 2026 PixelDiff Journal. All rights reserved.
+      Kaleidoscope is a trademark of its respective owner.
+      This article is for informational purposes.
+    </div>
+  </footer>
+
+</body>
+</html>
