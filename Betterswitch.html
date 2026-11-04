@@ -1,0 +1,1306 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Betterswitch Review: A Smarter Window Switcher for Mac</title>
+  <meta name="description" content="Discover Betterswitch for macOS. Learn about its keyboard-first window switching, live previews, workspaces, features, pricing, compatibility and download options.">
+  <meta name="keywords" content="Betterswitch, Betterswitch Mac, macOS window switcher, Mac productivity app, window management, Mac workspace manager">
+
+  <style>
+    :root {
+      --blue: #244be8;
+      --blue-dark: #1735b4;
+      --ink: #171b25;
+      --cream: #f5f2e9;
+      --white: #fffefa;
+      --muted: #727785;
+      --line: #deded7;
+      --yellow: #f6d84c;
+      --lavender: #e8e8ff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.7;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .announcement {
+      background: var(--blue);
+      color: white;
+      padding: 10px 6%;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .header {
+      max-width: 1250px;
+      margin: auto;
+      padding: 22px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: -1.5px;
+    }
+
+    .logo span { color: var(--blue); }
+
+    .navigation {
+      display: flex;
+      gap: 25px;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .navigation a:hover { color: var(--blue); }
+
+    .nav-button {
+      background: var(--ink);
+      color: white;
+      padding: 10px 17px;
+      border-radius: 3px;
+    }
+
+    .hero {
+      max-width: 1250px;
+      margin: 25px auto 80px;
+      padding: 35px 30px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      color: var(--blue);
+      border: 1px solid #aebafa;
+      padding: 7px 12px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-size: clamp(48px, 6vw, 82px);
+      line-height: .98;
+      letter-spacing: -5px;
+      margin-bottom: 25px;
+    }
+
+    h1 span { color: var(--blue); }
+
+    .hero-description {
+      max-width: 520px;
+      color: var(--muted);
+      font-size: 17px;
+      margin-bottom: 28px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 14px 21px;
+      font-size: 13px;
+      font-weight: 800;
+      border-radius: 3px;
+      transition: .2s;
+    }
+
+    .button:hover { transform: translateY(-3px); }
+
+    .button-blue {
+      background: var(--blue);
+      color: white;
+    }
+
+    .button-blue:hover { background: var(--blue-dark); }
+
+    .button-outline {
+      border: 1px solid #aeb1bd;
+      color: var(--ink);
+    }
+
+    .hero-small {
+      color: var(--muted);
+      font-size: 11px;
+      margin-top: 18px;
+    }
+
+    /* Desktop window-switcher visual */
+
+    .desktop-art {
+      background: var(--blue);
+      padding: 26px;
+      min-height: 430px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 5px;
+      box-shadow: 15px 15px 0 var(--yellow);
+    }
+
+    .desktop-art::before {
+      content: "";
+      position: absolute;
+      width: 290px;
+      height: 290px;
+      border: 1px solid #ffffff30;
+      border-radius: 50%;
+      top: -140px;
+      right: -80px;
+      box-shadow: 0 0 0 35px #ffffff10, 0 0 0 70px #ffffff08;
+    }
+
+    .art-label {
+      color: #dce3ff;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 1;
+    }
+
+    .switcher {
+      position: relative;
+      z-index: 2;
+      margin: 50px auto 0;
+      max-width: 420px;
+      padding: 17px;
+      background: #17223c;
+      border: 1px solid #ffffff4d;
+      border-radius: 9px;
+      box-shadow: 0 20px 50px #101d5b55;
+      transform: rotate(-2deg);
+    }
+
+    .switcher-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      font-size: 10px;
+      margin-bottom: 15px;
+    }
+
+    .switcher-top span:last-child {
+      color: #aab9ef;
+    }
+
+    .search-box {
+      background: #ffffff12;
+      border: 1px solid #ffffff30;
+      color: #cbd4f5;
+      border-radius: 4px;
+      padding: 10px 12px;
+      font-size: 11px;
+      margin-bottom: 14px;
+    }
+
+    .window-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .window-card {
+      background: #273654;
+      border: 1px solid #536487;
+      border-radius: 5px;
+      padding: 8px;
+      color: white;
+      font-size: 9px;
+    }
+
+    .window-card.selected {
+      border: 2px solid var(--yellow);
+      background: #354777;
+    }
+
+    .window-preview {
+      height: 75px;
+      background: #e7e9f1;
+      border-radius: 3px;
+      margin-bottom: 8px;
+      padding: 8px;
+      overflow: hidden;
+    }
+
+    .window-preview .bar {
+      height: 5px;
+      width: 40%;
+      background: #8b99c2;
+      border-radius: 3px;
+      margin-bottom: 7px;
+    }
+
+    .window-preview .block {
+      height: 8px;
+      background: #c3cbe1;
+      margin: 5px 0;
+      border-radius: 2px;
+    }
+
+    .window-preview .block.short { width: 55%; }
+
+    .window-card small {
+      color: #b7c4e7;
+      display: block;
+      margin-top: 4px;
+    }
+
+    .art-shortcut {
+      position: absolute;
+      z-index: 3;
+      right: 15px;
+      bottom: 20px;
+      background: var(--yellow);
+      color: var(--ink);
+      padding: 13px 18px;
+      border-radius: 4px;
+      font-weight: 900;
+      font-size: 13px;
+      transform: rotate(3deg);
+    }
+
+    .section {
+      padding: 85px 7%;
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: auto;
+    }
+
+    .section-index {
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      margin-bottom: 13px;
+      text-transform: uppercase;
+    }
+
+    .section h2 {
+      font-size: clamp(32px, 4vw, 48px);
+      letter-spacing: -2px;
+      line-height: 1.12;
+      margin-bottom: 20px;
+      max-width: 750px;
+    }
+
+    .section-lead {
+      color: var(--muted);
+      max-width: 730px;
+      margin-bottom: 38px;
+    }
+
+    .intro {
+      background: var(--white);
+    }
+
+    .intro-layout {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .intro-copy p {
+      color: var(--muted);
+      margin-bottom: 17px;
+    }
+
+    .fact-card {
+      background: var(--lavender);
+      padding: 30px;
+      border-radius: 5px;
+      border-top: 5px solid var(--blue);
+    }
+
+    .fact-card strong {
+      display: block;
+      font-size: 23px;
+      line-height: 1.25;
+      margin-bottom: 13px;
+    }
+
+    .fact-card p {
+      color: #646a83;
+      font-size: 14px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .feature {
+      background: var(--white);
+      padding: 25px;
+      border: 1px solid var(--line);
+      min-height: 215px;
+      border-radius: 4px;
+      transition: .2s;
+    }
+
+    .feature:hover {
+      border-color: var(--blue);
+      transform: translateY(-4px);
+    }
+
+    .feature .number {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .feature h3 {
+      font-size: 18px;
+      margin: 17px 0 9px;
+    }
+
+    .feature p {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .workflow {
+      background: var(--ink);
+      color: white;
+    }
+
+    .workflow .section-index { color: var(--yellow); }
+    .workflow .section-lead { color: #b9beca; }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .step {
+      border-top: 2px solid #ffffff4a;
+      padding-top: 22px;
+    }
+
+    .step-number {
+      color: var(--yellow);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+
+    .step h3 {
+      font-size: 20px;
+      margin: 15px 0 9px;
+    }
+
+    .step p {
+      color: #b9beca;
+      font-size: 14px;
+    }
+
+    .workspace-section {
+      background: var(--lavender);
+    }
+
+    .workspace-layout {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 45px;
+      align-items: center;
+    }
+
+    .workspace-copy p {
+      color: #646a83;
+      margin-bottom: 16px;
+    }
+
+    .workspace-visual {
+      background: var(--white);
+      padding: 22px;
+      border-radius: 6px;
+      box-shadow: 8px 8px 0 #c6c9ef;
+    }
+
+    .workspace-title {
+      font-size: 12px;
+      font-weight: 900;
+      margin-bottom: 15px;
+    }
+
+    .workspace-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 13px;
+      background: #f0f0fb;
+      border: 1px solid #dedff3;
+      margin: 8px 0;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+
+    .workspace-item.active {
+      background: var(--blue);
+      color: white;
+      border-color: var(--blue);
+    }
+
+    .workspace-item span:last-child {
+      font-size: 10px;
+      opacity: .7;
+    }
+
+    .permission-section {
+      background: var(--white);
+    }
+
+    .permission-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .permission-card {
+      border: 1px solid var(--line);
+      padding: 25px;
+      border-radius: 4px;
+    }
+
+    .permission-card h3 {
+      margin-bottom: 9px;
+    }
+
+    .permission-card p {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .required {
+      color: var(--blue);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .optional {
+      color: #8c7011;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .requirements {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--white);
+      border: 1px solid var(--line);
+      margin-top: 25px;
+    }
+
+    .requirements th,
+    .requirements td {
+      padding: 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--line);
+      font-size: 14px;
+    }
+
+    .requirements th {
+      background: var(--blue);
+      color: white;
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 1px;
+    }
+
+    .note {
+      padding: 17px;
+      margin-top: 20px;
+      background: #fff7d6;
+      border-left: 4px solid #e5c532;
+      color: #63572a;
+      font-size: 13px;
+    }
+
+    .pricing {
+      background: var(--blue);
+      color: white;
+    }
+
+    .pricing .section-index { color: var(--yellow); }
+    .pricing .section-lead { color: #d9e0ff; }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .price-card {
+      background: var(--white);
+      color: var(--ink);
+      padding: 30px;
+      border-radius: 5px;
+    }
+
+    .price-card h3 {
+      font-size: 21px;
+      margin-bottom: 12px;
+    }
+
+    .price-card p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    .price-card ul {
+      padding-left: 19px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .price-card li { margin: 7px 0; }
+
+    .price-label {
+      display: inline-block;
+      padding: 6px 10px;
+      background: var(--lavender);
+      color: var(--blue);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      margin-bottom: 15px;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .faq {
+      background: var(--white);
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+    }
+
+    .faq h3 {
+      font-size: 17px;
+      margin-bottom: 8px;
+    }
+
+    .faq p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .final-cta {
+      background: var(--yellow);
+      padding: 75px 7%;
+      text-align: center;
+    }
+
+    .final-cta h2 {
+      max-width: 760px;
+      margin: 0 auto 15px;
+      font-size: clamp(34px, 5vw, 55px);
+      letter-spacing: -2px;
+      line-height: 1.08;
+    }
+
+    .final-cta p {
+      color: #615a3e;
+      max-width: 650px;
+      margin: 0 auto 25px;
+    }
+
+    .final-cta .button-blue {
+      background: var(--ink);
+    }
+
+    .final-cta .button-outline {
+      border-color: #8b814d;
+    }
+
+    .disclaimer {
+      max-width: 760px;
+      margin: 20px auto 0;
+      font-size: 11px;
+      color: #665e3e;
+    }
+
+    footer {
+      background: var(--ink);
+      color: #aeb4c2;
+      text-align: center;
+      padding: 30px 7%;
+      font-size: 12px;
+    }
+
+    footer strong { color: white; }
+    footer a { color: var(--yellow); }
+
+    @media(max-width: 900px) {
+      .hero,
+      .intro-layout,
+      .workspace-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media(max-width: 650px) {
+      .header { padding: 18px 20px; }
+      .navigation { display: none; }
+
+      .hero {
+        padding: 20px;
+        margin-bottom: 45px;
+      }
+
+      h1 { letter-spacing: -2.5px; }
+
+      .desktop-art {
+        min-height: 390px;
+        padding: 18px;
+      }
+
+      .switcher { margin-top: 45px; }
+
+      .section { padding: 60px 22px; }
+
+      .feature-grid,
+      .steps,
+      .permission-grid,
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .requirements th,
+      .requirements td {
+        padding: 11px 8px;
+        font-size: 11px;
+      }
+
+      .announcement {
+        font-size: 9px;
+        letter-spacing: 1px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="announcement">
+    A more organized Mac desktop starts with one shortcut
+  </div>
+
+  <header class="header">
+    <a href="#" class="logo">better<span>switch</span></a>
+
+    <nav class="navigation">
+      <a href="#overview">Overview</a>
+      <a href="#features">Features</a>
+      <a href="#workspaces">Workspaces</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#download" class="nav-button">Explore App ↗</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div>
+        <span class="hero-tag">A native macOS productivity tool</span>
+
+        <h1>Find your window. <span>Find your flow.</span></h1>
+
+        <p class="hero-description">
+          Betterswitch is a keyboard-first window switcher for Mac.
+          It helps you see, search and jump between open windows,
+          applications and workspaces without wasting time hunting
+          through your desktop.
+        </p>
+
+        <div class="buttons">
+          <a href="https://gitapp.download/"
+             target="_blank" rel="noopener"
+             class="button button-blue">
+            Visit GitApp Download ↗
+          </a>
+
+          <a href="https://www.betterswitch.app/"
+             target="_blank" rel="noopener"
+             class="button button-outline">
+            Official Website
+          </a>
+        </div>
+
+        <p class="hero-small">
+          Requires macOS 26.2 or later · Apple silicon
+        </p>
+      </div>
+
+      <div class="desktop-art">
+        <div class="art-label">Your desktop / all windows in reach</div>
+
+        <div class="switcher">
+          <div class="switcher-top">
+            <strong>BETTERSWITCH</strong>
+            <span>WINDOW SELECTOR</span>
+          </div>
+
+          <div class="search-box">⌕ &nbsp; Search windows and apps...</div>
+
+          <div class="window-grid">
+            <div class="window-card selected">
+              <div class="window-preview">
+                <div class="bar"></div>
+                <div class="block"></div>
+                <div class="block short"></div>
+                <div class="block"></div>
+              </div>
+              Safari
+              <small>Project research</small>
+            </div>
+
+            <div class="window-card">
+              <div class="window-preview">
+                <div class="bar"></div>
+                <div class="block short"></div>
+                <div class="block"></div>
+                <div class="block short"></div>
+              </div>
+              Notes
+              <small>Meeting notes</small>
+            </div>
+
+            <div class="window-card">
+              <div class="window-preview">
+                <div class="bar"></div>
+                <div class="block"></div>
+                <div class="block short"></div>
+                <div class="block"></div>
+              </div>
+              Messages
+              <small>Team discussion</small>
+            </div>
+
+            <div class="window-card">
+              <div class="window-preview">
+                <div class="bar"></div>
+                <div class="block short"></div>
+                <div class="block"></div>
+                <div class="block short"></div>
+              </div>
+              Editor
+              <small>Website project</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="art-shortcut">⌘ + ~ &nbsp; SWITCH</div>
+      </div>
+    </section>
+
+    <section class="section intro" id="overview">
+      <div class="container intro-layout">
+        <div class="intro-copy">
+          <div class="section-index">01 / Product overview</div>
+          <h2>What is Betterswitch?</h2>
+
+          <p>
+            Betterswitch is a macOS utility designed to make window
+            navigation faster and more convenient. Instead of switching
+            only between applications, it allows you to find individual
+            windows and select the exact one you want.
+          </p>
+
+          <p>
+            The application combines keyboard-first navigation with
+            visual previews and integrated search. This makes it easier
+            to locate a browser window, document, editor or other
+            open application without repeatedly clicking through
+            your desktop.
+          </p>
+
+          <p>
+            Betterswitch also includes a workspace feature that lets
+            you organize groups of applications around different
+            activities, such as work, study or creative projects.
+          </p>
+        </div>
+
+        <aside class="fact-card">
+          <strong>Switch between windows, not just applications.</strong>
+          <p>
+            The goal is simple: make it easier to locate the right
+            window and return to the task you were working on.
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="container">
+        <div class="section-index">02 / Main features</div>
+        <h2>Tools that make window navigation easier</h2>
+
+        <p class="section-lead">
+          Betterswitch brings together several productivity features
+          in a native Mac interface. Here are some of the key
+          capabilities highlighted by the developer.
+        </p>
+
+        <div class="feature-grid">
+          <article class="feature">
+            <span class="number">01 / SWITCH</span>
+            <h3>Instant Window Switching</h3>
+            <p>
+              View open windows together and move directly to the
+              specific window you need.
+            </p>
+          </article>
+
+          <article class="feature">
+            <span class="number">02 / PREVIEW</span>
+            <h3>Preview Thumbnails</h3>
+            <p>
+              Recognize windows visually before selecting them,
+              reducing the need to guess from application names.
+            </p>
+          </article>
+
+          <article class="feature">
+            <span class="number">03 / SEARCH</span>
+            <h3>Keyboard-First Search</h3>
+            <p>
+              Search applications, window titles and macOS
+              workspaces with keyboard navigation.
+            </p>
+          </article>
+
+          <article class="feature">
+            <span class="number">04 / STYLE</span>
+            <h3>Customizable Switcher</h3>
+            <p>
+              Choose between different switching styles and
+              personalize the appearance of the interface.
+            </p>
+          </article>
+
+          <article class="feature">
+            <span class="number">05 / WORKSPACE</span>
+            <h3>Workspace Awareness</h3>
+            <p>
+              Organize applications into workspaces and jump
+              between different task environments.
+            </p>
+          </article>
+
+          <article class="feature">
+            <span class="number">06 / NATIVE</span>
+            <h3>Native macOS Experience</h3>
+            <p>
+              Designed around familiar Mac shortcuts, visual
+              language and system-level window navigation.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section workflow">
+      <div class="container">
+        <div class="section-index">03 / How it works</div>
+        <h2>Three steps to the right window</h2>
+
+        <p class="section-lead">
+          The basic switching process is designed to be quick,
+          keyboard-driven and easy to understand.
+        </p>
+
+        <div class="steps">
+          <article class="step">
+            <div class="step-number">STEP 01</div>
+            <h3>Open Betterswitch</h3>
+            <p>
+              Use the configured keyboard shortcut to bring up
+              the window switcher from your current application.
+            </p>
+          </article>
+
+          <article class="step">
+            <div class="step-number">STEP 02</div>
+            <h3>Search or Browse</h3>
+            <p>
+              Type a search term or navigate through the available
+              window previews to find your destination.
+            </p>
+          </article>
+
+          <article class="step">
+            <div class="step-number">STEP 03</div>
+            <h3>Switch Instantly</h3>
+            <p>
+              Select the window and press Return to move directly
+              into the application or window you need.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section workspace-section" id="workspaces">
+      <div class="container workspace-layout">
+        <div class="workspace-copy">
+          <div class="section-index">04 / Workspace organization</div>
+          <h2>Keep different tasks in their own spaces</h2>
+
+          <p>
+            Switching windows is only one part of managing a busy
+            desktop. Betterswitch also offers workspaces, allowing
+            you to group applications around different activities.
+          </p>
+
+          <p>
+            For example, you could create one workspace for office
+            work, another for studying and a third for creative
+            projects. When you switch workspaces, Betterswitch can
+            bring forward or launch assigned applications and hide
+            apps from your previous workspace.
+          </p>
+
+          <p>
+            This can make it easier to return to a familiar
+            application setup without manually rebuilding your
+            desktop every time.
+          </p>
+        </div>
+
+        <div class="workspace-visual">
+          <div class="workspace-title">YOUR WORKSPACES</div>
+
+          <div class="workspace-item active">
+            <span>◈ &nbsp; Design Studio</span>
+            <span>ACTIVE</span>
+          </div>
+
+          <div class="workspace-item">
+            <span>▤ &nbsp; Office Work</span>
+            <span>3 APPS</span>
+          </div>
+
+          <div class="workspace-item">
+            <span>⌘ &nbsp; Development</span>
+            <span>4 APPS</span>
+          </div>
+
+          <div class="workspace-item">
+            <span>✎ &nbsp; Research & Study</span>
+            <span>2 APPS</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section permission-section">
+      <div class="container">
+        <div class="section-index">05 / Permissions and privacy</div>
+        <h2>What permissions does Betterswitch need?</h2>
+
+        <p class="section-lead">
+          macOS permissions help Betterswitch identify windows
+          and provide visual previews. The official FAQ explains
+          why these permissions are requested.
+        </p>
+
+        <div class="permission-grid">
+          <article class="permission-card">
+            <span class="required">REQUIRED PERMISSION</span>
+            <h3>Accessibility</h3>
+            <p>
+              Required to detect open windows, switch focus between
+              them and manage application windows and workspaces.
+            </p>
+          </article>
+
+          <article class="permission-card">
+            <span class="optional">OPTIONAL PERMISSION</span>
+            <h3>Screen Recording</h3>
+            <p>
+              Used for preview thumbnails. Without this permission,
+              the application displays app icons instead of
+              window previews.
+            </p>
+          </article>
+        </div>
+
+        <div class="note">
+          <strong>Privacy note:</strong> The developer says
+          Betterswitch works locally on your Mac and can operate
+          offline. Review the official privacy policy for the
+          latest details before installation.
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-index">06 / System compatibility</div>
+        <h2>Check your Mac before installing</h2>
+
+        <p class="section-lead">
+          Betterswitch is built for recent Apple hardware.
+          Make sure your operating system and processor meet
+          the published requirements.
+        </p>
+
+        <table class="requirements">
+          <thead>
+            <tr>
+              <th>Requirement</th>
+              <th>Support</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Operating System</td>
+              <td>macOS 26.2 or later</td>
+            </tr>
+            <tr>
+              <td>Processor</td>
+              <td>Apple silicon</td>
+            </tr>
+            <tr>
+              <td>Window Navigation</td>
+              <td>Keyboard-first controls</td>
+            </tr>
+            <tr>
+              <td>Internet Connection</td>
+              <td>Not required for normal use</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="note">
+          Betterswitch is not listed as a Windows or Linux application.
+          Check the official website for updated compatibility
+          information and installation instructions.
+        </div>
+      </div>
+    </section>
+
+    <section class="section pricing" id="pricing">
+      <div class="container">
+        <div class="section-index">07 / Plans and licensing</div>
+        <h2>Choose a licensing option</h2>
+
+        <p class="section-lead">
+          The official website advertises subscription and
+          lifetime-license options. Exact prices are displayed
+          through its checkout flow.
+        </p>
+
+        <div class="pricing-grid">
+          <article class="price-card">
+            <span class="price-label">MONTHLY OPTION</span>
+            <h3>7-Day Free Trial</h3>
+            <p>
+              The monthly plan includes a seven-day trial.
+              After the trial, the subscription renews
+              automatically until canceled.
+            </p>
+            <ul>
+              <li>Two window-switching styles</li>
+              <li>Workspace-aware switching</li>
+              <li>Keyboard search and navigation</li>
+              <li>Activation on two Macs</li>
+              <li>Cancel anytime</li>
+            </ul>
+          </article>
+
+          <article class="price-card">
+            <span class="price-label">LIFETIME OPTION</span>
+            <h3>One-Time License</h3>
+            <p>
+              A lifetime license is offered for users who prefer
+              a one-time purchase instead of a recurring
+              subscription.
+            </p>
+            <ul>
+              <li>Two window-switching styles</li>
+              <li>Workspace-aware switching</li>
+              <li>Keyboard search and navigation</li>
+              <li>Activation on two Macs</li>
+              <li>No recurring renewal charges</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-index">08 / Frequently asked questions</div>
+        <h2>Everything else worth knowing</h2>
+
+        <div class="faq-list">
+          <article class="faq">
+            <h3>1. What is Betterswitch?</h3>
+            <p>
+              Betterswitch is a native macOS window switcher that
+              helps users find, preview and switch between open
+              windows, apps and workspaces.
+            </p>
+          </article>
+
+          <article class="faq">
+            <h3>2. Does Betterswitch support Apple silicon?</h3>
+            <p>
+              Yes. The official website lists Apple silicon as
+              a requirement.
+            </p>
+          </article>
+
+          <article class="faq">
+            <h3>3. Which macOS version is required?</h3>
+            <p>
+              The official website currently lists macOS 26.2
+              or later.
+            </p>
+          </article>
+
+          <article class="faq">
+            <h3>4. Can I search for a particular window?</h3>
+            <p>
+              Yes. Betterswitch supports searching apps, window
+              titles and macOS workspaces.
+            </p>
+          </article>
+
+          <article class="faq">
+            <h3>5. Is Screen Recording permission compulsory?</h3>
+            <p>
+              No. It is optional and is used for preview thumbnails.
+              Without it, Betterswitch can show application icons
+              instead.
+            </p>
+          </article>
+
+          <article class="faq">
+            <h3>6. Can Betterswitch work offline?</h3>
+            <p>
+              Yes. The official FAQ says normal window switching
+              works locally on your Mac without an internet
+              connection.
+            </p>
+          </article>
+
+          <article class="faq">
+            <h3>7. Where can I download Betterswitch?</h3>
+            <p>
+              Visit the official Betterswitch website to access
+              its macOS download and current licensing information.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta" id="download">
+      <h2>Your next window is only a shortcut away.</h2>
+
+      <p>
+        Explore Betterswitch and discover a more organized way
+        to navigate your Mac desktop, search open windows and
+        manage different workspaces.
+      </p>
+
+      <div class="buttons" style="justify-content:center">
+        <a href="https://gitapp.download/"
+           target="_blank" rel="noopener"
+           class="button button-blue">
+          Visit GitApp Download ↗
+        </a>
+
+        <a href="https://www.betterswitch.app/"
+           target="_blank" rel="noopener"
+           class="button button-outline">
+          Official Betterswitch Website ↗
+        </a>
+      </div>
+
+      <p class="disclaimer">
+        The GitApp button is a promotional link to GitApp and is
+        not a verified direct Betterswitch installer. For the
+        developer's official download, use the official
+        Betterswitch website.
+      </p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>
+      <strong>Betterswitch Guide</strong> · Independent product
+      information and review.
+    </p>
+    <p style="margin-top:8px">
+      Betterswitch is a product of its respective developer.
+      Product details, compatibility and licensing may change.
+      Visit <a href="https://www.betterswitch.app/"
+      target="_blank" rel="noopener">the official website</a>
+      for current information.
+    </p>
+  </footer>
+
+</body>
+</html>
