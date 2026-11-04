@@ -1,0 +1,1163 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>VolEq Review: Automatic Voice Volume Leveling for Mac</title>
+  <meta name="description" content="Discover VolEq, an open-source macOS audio tool that automatically balances quiet and loud voices in online meetings. Explore features, privacy, compatibility and more.">
+  <meta name="keywords" content="VolEq, VolEq Mac, Volume Equilibrium, voice volume leveling, audio balancing software, macOS audio tool">
+
+  <style>
+    :root {
+      --ink: #142d32;
+      --deep: #0c2429;
+      --teal: #1c5356;
+      --orange: #f26b43;
+      --cream: #f6f3eb;
+      --paper: #fffefa;
+      --muted: #687b78;
+      --line: #dce3dc;
+      --lime: #d9ed9a;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.7;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .topbar {
+      background: var(--deep);
+      color: #fff;
+      padding: 13px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      font-size: 13px;
+    }
+
+    .topbar span {
+      color: var(--lime);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .navbar {
+      max-width: 1250px;
+      margin: auto;
+      padding: 22px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .brand {
+      font-size: 25px;
+      font-weight: 900;
+      letter-spacing: -1.5px;
+    }
+
+    .brand em {
+      color: var(--orange);
+      font-style: normal;
+    }
+
+    .navlinks {
+      display: flex;
+      gap: 27px;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: #506563;
+    }
+
+    .navlinks a:hover {
+      color: var(--orange);
+    }
+
+    .nav-cta {
+      background: var(--ink);
+      color: white;
+      padding: 11px 18px;
+      border-radius: 4px;
+    }
+
+    .hero {
+      max-width: 1250px;
+      margin: 10px auto 75px;
+      padding: 30px;
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--teal);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 22px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 3px;
+      background: var(--orange);
+    }
+
+    h1 {
+      font-size: clamp(46px, 6vw, 76px);
+      line-height: .99;
+      letter-spacing: -4px;
+      max-width: 650px;
+      margin-bottom: 25px;
+    }
+
+    h1 span {
+      color: var(--orange);
+    }
+
+    .hero-copy {
+      max-width: 560px;
+      color: var(--muted);
+      font-size: 17px;
+      margin-bottom: 30px;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 15px 23px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 800;
+      transition: .2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .btn-primary {
+      background: var(--orange);
+      color: white;
+      box-shadow: 0 8px 18px #f26b4330;
+    }
+
+    .btn-secondary {
+      border: 1px solid #aebdb6;
+      color: var(--ink);
+      background: transparent;
+    }
+
+    .hero-note {
+      margin-top: 20px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* Audio signal illustration */
+
+    .signal-panel {
+      background: var(--deep);
+      color: white;
+      min-height: 425px;
+      padding: 27px;
+      border-radius: 8px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 18px 18px 0 #dce4d8;
+    }
+
+    .signal-panel::after {
+      content: "";
+      position: absolute;
+      width: 270px;
+      height: 270px;
+      border: 1px solid #ffffff13;
+      border-radius: 50%;
+      right: -95px;
+      top: -90px;
+      box-shadow: 0 0 0 25px #ffffff08, 0 0 0 50px #ffffff05;
+    }
+
+    .signal-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      color: #a7c3bb;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 1;
+    }
+
+    .live-dot {
+      color: var(--lime);
+    }
+
+    .wave-area {
+      height: 190px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      margin: 27px 0;
+      border-top: 1px solid #ffffff17;
+      border-bottom: 1px solid #ffffff17;
+      position: relative;
+      z-index: 1;
+    }
+
+    .wave-area::before,
+    .wave-area::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      border-top: 1px dashed #ffffff20;
+    }
+
+    .wave-area::before { top: 33%; }
+    .wave-area::after { top: 66%; }
+
+    .wave {
+      width: 5px;
+      border-radius: 5px;
+      background: var(--orange);
+      height: var(--h);
+      opacity: .95;
+    }
+
+    .wave:nth-child(3n) { background: var(--lime); }
+    .wave:nth-child(4n) { opacity: .55; }
+
+    .signal-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .signal-stat {
+      background: #ffffff0c;
+      padding: 13px 10px;
+      border: 1px solid #ffffff13;
+      border-radius: 4px;
+    }
+
+    .signal-stat strong {
+      display: block;
+      color: var(--lime);
+      font-size: 18px;
+    }
+
+    .signal-stat small {
+      color: #a9c1bb;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .section {
+      padding: 85px 7%;
+    }
+
+    .section-inner {
+      max-width: 1120px;
+      margin: auto;
+    }
+
+    .section-label {
+      color: var(--orange);
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 13px;
+    }
+
+    .section h2 {
+      font-size: clamp(30px, 4vw, 45px);
+      line-height: 1.15;
+      letter-spacing: -1.7px;
+      max-width: 700px;
+      margin-bottom: 20px;
+    }
+
+    .section-intro {
+      color: var(--muted);
+      max-width: 720px;
+      margin-bottom: 38px;
+    }
+
+    .intro-section {
+      background: var(--paper);
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 55px;
+      align-items: start;
+    }
+
+    .intro-copy p {
+      color: var(--muted);
+      margin-bottom: 17px;
+    }
+
+    .quote-card {
+      background: #eaf0e7;
+      padding: 30px;
+      border-left: 5px solid var(--orange);
+      border-radius: 4px;
+    }
+
+    .quote-card strong {
+      font-size: 22px;
+      line-height: 1.3;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .quote-card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 17px;
+    }
+
+    .feature {
+      padding: 26px;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      border-radius: 5px;
+      transition: .2s;
+    }
+
+    .feature:hover {
+      transform: translateY(-5px);
+      border-color: var(--orange);
+    }
+
+    .feature-number {
+      color: var(--orange);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    .feature h3 {
+      font-size: 19px;
+      margin: 16px 0 10px;
+    }
+
+    .feature p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .workflow {
+      background: var(--deep);
+      color: white;
+    }
+
+    .workflow .section-label {
+      color: var(--lime);
+    }
+
+    .workflow .section-intro {
+      color: #b4c6c0;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      counter-reset: step;
+    }
+
+    .step {
+      border-top: 1px solid #ffffff35;
+      padding-top: 22px;
+      counter-increment: step;
+    }
+
+    .step::before {
+      content: "0" counter(step);
+      color: var(--lime);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+
+    .step h3 {
+      margin: 17px 0 10px;
+      font-size: 20px;
+    }
+
+    .step p {
+      color: #b4c6c0;
+      font-size: 14px;
+    }
+
+    .use-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .use-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 5px;
+      padding: 26px;
+    }
+
+    .use-card h3 {
+      margin-bottom: 9px;
+      font-size: 19px;
+    }
+
+    .use-card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .privacy {
+      background: #e9eee6;
+    }
+
+    .privacy-box {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .privacy-mark {
+      min-height: 230px;
+      background: var(--teal);
+      color: var(--lime);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 65px;
+      border-radius: 6px;
+    }
+
+    .privacy-copy p {
+      color: var(--muted);
+      margin-bottom: 15px;
+    }
+
+    .privacy-copy ul {
+      padding-left: 20px;
+      color: var(--ink);
+      font-size: 14px;
+    }
+
+    .privacy-copy li {
+      margin: 8px 0;
+    }
+
+    .compat-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--paper);
+      margin-top: 28px;
+      border: 1px solid var(--line);
+    }
+
+    .compat-table th,
+    .compat-table td {
+      text-align: left;
+      padding: 17px;
+      border-bottom: 1px solid var(--line);
+      font-size: 14px;
+    }
+
+    .compat-table th {
+      background: var(--deep);
+      color: white;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .status {
+      color: #27724e;
+      font-weight: 800;
+    }
+
+    .planned {
+      color: #9b6b32;
+      font-weight: 800;
+    }
+
+    .notice {
+      margin-top: 20px;
+      padding: 18px;
+      background: #fff2e9;
+      border-left: 4px solid var(--orange);
+      color: #715345;
+      font-size: 13px;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .faq-item {
+      background: var(--paper);
+      padding: 23px;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+    }
+
+    .faq-item h3 {
+      font-size: 17px;
+      margin-bottom: 8px;
+    }
+
+    .faq-item p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .download-section {
+      background: var(--orange);
+      color: white;
+      text-align: center;
+      padding: 75px 7%;
+    }
+
+    .download-section h2 {
+      font-size: clamp(32px, 4vw, 48px);
+      line-height: 1.15;
+      margin-bottom: 15px;
+      letter-spacing: -1.5px;
+    }
+
+    .download-section p {
+      max-width: 650px;
+      margin: 0 auto 25px;
+      color: #fff1e9;
+    }
+
+    .download-section .btn-primary {
+      background: var(--deep);
+      box-shadow: none;
+    }
+
+    .download-section .btn-secondary {
+      border-color: #ffffffa8;
+      color: white;
+    }
+
+    .disclaimer {
+      max-width: 760px;
+      margin: 20px auto 0;
+      font-size: 11px;
+      color: #fff0e8;
+    }
+
+    footer {
+      background: var(--deep);
+      color: #a9bfba;
+      padding: 30px 7%;
+      text-align: center;
+      font-size: 12px;
+    }
+
+    footer strong {
+      color: white;
+    }
+
+    footer a {
+      color: var(--lime);
+    }
+
+    @media (max-width: 850px) {
+      .hero,
+      .intro-grid,
+      .privacy-box {
+        grid-template-columns: 1fr;
+      }
+
+      .features {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .signal-panel {
+        min-height: 380px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .navbar {
+        padding: 18px 20px;
+      }
+
+      .navlinks {
+        display: none;
+      }
+
+      .hero {
+        padding: 15px 22px;
+        margin-bottom: 45px;
+      }
+
+      h1 {
+        letter-spacing: -2.5px;
+      }
+
+      .signal-panel {
+        padding: 19px;
+      }
+
+      .features,
+      .use-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 60px 22px;
+      }
+
+      .compat-table th,
+      .compat-table td {
+        padding: 12px 9px;
+        font-size: 12px;
+      }
+
+      .topbar {
+        padding: 12px 20px;
+      }
+
+      .topbar span {
+        letter-spacing: 1px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="topbar">
+    <span>Audio tools / Product guide</span>
+    <div>Clearer conversations start with balanced sound.</div>
+  </div>
+
+  <nav class="navbar">
+    <a href="#" class="brand">Vol<em>Eq</em>.</a>
+
+    <div class="navlinks">
+      <a href="#overview">Overview</a>
+      <a href="#features">Features</a>
+      <a href="#privacy">Privacy</a>
+      <a href="#faq">FAQs</a>
+      <a href="#download" class="nav-cta">Explore VolEq</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div>
+      <div class="eyebrow">Volume equilibrium for Mac</div>
+
+      <h1>Make every voice sound <span>more even.</span></h1>
+
+      <p class="hero-copy">
+        VolEq is an open-source macOS audio utility designed to automatically
+        level quiet and loud voices during online meetings. It helps make
+        conversations easier to follow without constantly adjusting volume.
+      </p>
+
+      <div class="button-row">
+        <a class="btn btn-primary"
+           href="https://gitapp.download/"
+           target="_blank" rel="noopener">
+          Explore Download Options ↗
+        </a>
+
+        <a class="btn btn-secondary"
+           href="https://github.com/DPatrikI/voleq-community"
+           target="_blank" rel="noopener">
+          Official Project
+        </a>
+      </div>
+
+      <p class="hero-note">
+        Open-source Community edition · macOS · Apple Silicon
+      </p>
+    </div>
+
+    <div class="signal-panel">
+      <div class="signal-header">
+        <span>Audio signal / VolEq</span>
+        <span class="live-dot">● PROCESSING CONCEPT</span>
+      </div>
+
+      <div class="wave-area" aria-label="Decorative audio waveform">
+        <i class="wave" style="--h:24%"></i>
+        <i class="wave" style="--h:39%"></i>
+        <i class="wave" style="--h:65%"></i>
+        <i class="wave" style="--h:42%"></i>
+        <i class="wave" style="--h:78%"></i>
+        <i class="wave" style="--h:52%"></i>
+        <i class="wave" style="--h:32%"></i>
+        <i class="wave" style="--h:88%"></i>
+        <i class="wave" style="--h:60%"></i>
+        <i class="wave" style="--h:35%"></i>
+        <i class="wave" style="--h:72%"></i>
+        <i class="wave" style="--h:95%"></i>
+        <i class="wave" style="--h:55%"></i>
+        <i class="wave" style="--h:30%"></i>
+        <i class="wave" style="--h:68%"></i>
+        <i class="wave" style="--h:43%"></i>
+        <i class="wave" style="--h:82%"></i>
+        <i class="wave" style="--h:50%"></i>
+        <i class="wave" style="--h:28%"></i>
+        <i class="wave" style="--h:62%"></i>
+        <i class="wave" style="--h:90%"></i>
+        <i class="wave" style="--h:47%"></i>
+        <i class="wave" style="--h:35%"></i>
+        <i class="wave" style="--h:70%"></i>
+        <i class="wave" style="--h:45%"></i>
+        <i class="wave" style="--h:25%"></i>
+      </div>
+
+      <div class="signal-stats">
+        <div class="signal-stat">
+          <strong>Local</strong>
+          <small>Audio processing</small>
+        </div>
+        <div class="signal-stat">
+          <strong>Auto</strong>
+          <small>Voice leveling</small>
+        </div>
+        <div class="signal-stat">
+          <strong>Mac</strong>
+          <small>Native platform</small>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="section intro-section" id="overview">
+      <div class="section-inner intro-grid">
+        <div class="intro-copy">
+          <div class="section-label">01 / Introduction</div>
+          <h2>What is VolEq?</h2>
+
+          <p>
+            VolEq stands for Volume Equilibrium. It is a lightweight audio
+            application for Mac that focuses on automatic voice-volume
+            leveling, especially in online meetings and voice conversations.
+          </p>
+
+          <p>
+            The software aims to make quieter speech easier to hear while
+            keeping louder speech under control. Its speech-aware processing
+            can also apply mild noise suppression when speech and background
+            noise are detected together.
+          </p>
+
+          <p>
+            The Community edition is open source and designed for Apple
+            Silicon Macs. It offers a native application experience through
+            a regular window or menu-bar interface.
+          </p>
+        </div>
+
+        <aside class="quote-card">
+          <strong>Less volume adjusting. More attention on the conversation.</strong>
+          <p>
+            VolEq works on the combined captured audio mix. It does not
+            independently change the volume of each person in a meeting.
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="section-inner">
+        <div class="section-label">02 / Core capabilities</div>
+        <h2>Features designed for balanced listening</h2>
+        <p class="section-intro">
+          VolEq focuses on voice clarity, local processing and a more
+          consistent listening experience. Here are some of its key
+          capabilities.
+        </p>
+
+        <div class="features">
+          <article class="feature">
+            <span class="feature-number">FEATURE 01</span>
+            <h3>Automatic Voice Leveling</h3>
+            <p>
+              Raises quieter speech and controls louder speech to help
+              maintain a steadier listening level.
+            </p>
+          </article>
+
+          <article class="feature">
+            <span class="feature-number">FEATURE 02</span>
+            <h3>Speech-Aware Processing</h3>
+            <p>
+              The processing is designed to distinguish speech from
+              background noise before applying quiet-speech gain.
+            </p>
+          </article>
+
+          <article class="feature">
+            <span class="feature-number">FEATURE 03</span>
+            <h3>Peak Protection</h3>
+            <p>
+              Linked-stereo leveling and lookahead peak protection help
+              keep sudden loud peaks under control.
+            </p>
+          </article>
+
+          <article class="feature">
+            <span class="feature-number">FEATURE 04</span>
+            <h3>Flexible Audio Capture</h3>
+            <p>
+              Capture one active audio-producing application or the
+              complete device-wide output mix.
+            </p>
+          </article>
+
+          <article class="feature">
+            <span class="feature-number">FEATURE 05</span>
+            <h3>Native Mac Interface</h3>
+            <p>
+              Access the application through a focused window or a
+              convenient menu-bar presentation.
+            </p>
+          </article>
+
+          <article class="feature">
+            <span class="feature-number">FEATURE 06</span>
+            <h3>Local Audio Processing</h3>
+            <p>
+              Captured audio is processed in memory on the Mac, without
+              an online speech-processing service.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section workflow">
+      <div class="section-inner">
+        <div class="section-label">03 / Getting started</div>
+        <h2>A simple workflow for clearer audio</h2>
+        <p class="section-intro">
+          The basic setup involves installing the application, choosing
+          an audio capture mode and allowing macOS to provide the
+          required recording permission.
+        </p>
+
+        <div class="steps">
+          <article class="step">
+            <h3>Install VolEq</h3>
+            <p>
+              Download the macOS release from the project's official
+              GitHub release page and move the application into
+              Applications.
+            </p>
+          </article>
+
+          <article class="step">
+            <h3>Allow Audio Access</h3>
+            <p>
+              Launch VolEq and follow the macOS System Audio Recording
+              permission prompt to enable audio capture.
+            </p>
+          </article>
+
+          <article class="step">
+            <h3>Choose Your Capture Mode</h3>
+            <p>
+              Select an active application or device-wide output capture,
+              then use the application to manage voice leveling.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-inner">
+        <div class="section-label">04 / Who can use it?</div>
+        <h2>Useful for everyday voice-focused work</h2>
+        <p class="section-intro">
+          VolEq may be useful in situations where changes in speaker
+          loudness make it difficult to follow a conversation.
+        </p>
+
+        <div class="use-grid">
+          <article class="use-card">
+            <h3>Online Meetings</h3>
+            <p>
+              Make conversations easier to follow when different
+              speakers have noticeably different voice levels.
+            </p>
+          </article>
+
+          <article class="use-card">
+            <h3>Remote Work</h3>
+            <p>
+              Support a more consistent listening experience during
+              calls, discussions and collaborative sessions.
+            </p>
+          </article>
+
+          <article class="use-card">
+            <h3>Recorded Voice Playback</h3>
+            <p>
+              Help even out changes in voice loudness in supported
+              audio capture situations.
+            </p>
+          </article>
+
+          <article class="use-card">
+            <h3>Focused Listening</h3>
+            <p>
+              Reduce the need to repeatedly adjust volume when quiet
+              and loud speech occur in the same audio mix.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section privacy" id="privacy">
+      <div class="section-inner privacy-box">
+        <div class="privacy-mark" aria-hidden="true">◉</div>
+
+        <div class="privacy-copy">
+          <div class="section-label">05 / Privacy approach</div>
+          <h2>Audio stays on your Mac</h2>
+
+          <p>
+            The VolEq Community project describes a local-first privacy
+            approach. Captured audio is processed in memory rather than
+            sent to an online speech service.
+          </p>
+
+          <ul>
+            <li>No account is required.</li>
+            <li>No audio recording is part of its stated design.</li>
+            <li>No usage telemetry is described by the project.</li>
+            <li>Optional update checks require user consent.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-inner">
+        <div class="section-label">06 / Compatibility</div>
+        <h2>System requirements and platform support</h2>
+        <p class="section-intro">
+          Before installing VolEq, check whether your Mac meets the
+          requirements listed by the project.
+        </p>
+
+        <table class="compat-table">
+          <thead>
+            <tr>
+              <th>Platform</th>
+              <th>Availability</th>
+              <th>Requirements</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>macOS</td>
+              <td class="status">Supported</td>
+              <td>Apple Silicon, macOS 14.2 or newer</td>
+            </tr>
+            <tr>
+              <td>Windows</td>
+              <td class="planned">Planned</td>
+              <td>Not currently available</td>
+            </tr>
+            <tr>
+              <td>Linux</td>
+              <td class="planned">Planned</td>
+              <td>Not currently available</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="notice">
+          <strong>Important:</strong> VolEq levels the combined captured
+          audio mix; it cannot independently control every meeting
+          participant. Compatibility also depends on supported audio
+          formats and routes.
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="section-inner">
+        <div class="section-label">07 / Questions and answers</div>
+        <h2>Frequently asked questions</h2>
+
+        <div class="faq-list">
+          <article class="faq-item">
+            <h3>1. What does VolEq do?</h3>
+            <p>
+              VolEq automatically levels voice volume on a Mac, helping
+              make quieter speech easier to hear and louder speech more
+              controlled.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>2. Is VolEq open source?</h3>
+            <p>
+              Yes. The VolEq Community repository and its source and
+              documentation are published under the Mozilla Public
+              License 2.0, subject to the project's stated exceptions.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>3. Does VolEq work on Windows?</h3>
+            <p>
+              The Community project's current platform information lists
+              macOS as supported, while Windows and Linux are planned
+              rather than currently available.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>4. Does VolEq upload my audio?</h3>
+            <p>
+              The Community project says captured audio is processed
+              locally in memory and is not sent to an online speech
+              service.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>5. Is VolEq the same as the Android app?</h3>
+            <p>
+              No. There is also an Android app named VolEq - Volume
+              Balancer, which uses presets such as Podcast, Noisy,
+              Balanced and Custom. This article focuses on the
+              separate macOS Community project.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>6. Where can I find the macOS release?</h3>
+            <p>
+              Visit the official GitHub releases page to review the
+              available release, installation instructions and
+              compatibility information.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="download-section" id="download">
+      <h2>Explore a more balanced audio experience.</h2>
+
+      <p>
+        Learn more about VolEq, review its features and check the
+        available download information before installing it on
+        your compatible Mac.
+      </p>
+
+      <div class="button-row" style="justify-content:center">
+        <a class="btn btn-primary"
+           href="https://gitapp.download/"
+           target="_blank" rel="noopener">
+          Visit GitApp Download ↗
+        </a>
+
+        <a class="btn btn-secondary"
+           href="https://github.com/DPatrikI/voleq-community/releases/latest"
+           target="_blank" rel="noopener">
+          Official VolEq Release ↗
+        </a>
+      </div>
+
+      <div class="disclaimer">
+        The GitApp button is a promotional link and is not a verified
+        direct VolEq installer. Use the official GitHub release page
+        to check the developer's published macOS download.
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>
+      <strong>VolEq Guide</strong> · Independent informational article.
+      VolEq and related names are the property of their respective owners.
+    </p>
+    <p style="margin-top:8px">
+      Product details may change. Always check the
+      <a href="https://github.com/DPatrikI/voleq-community"
+         target="_blank" rel="noopener">official project</a>
+      for current information.
+    </p>
+  </footer>
+
+</body>
+</html>
