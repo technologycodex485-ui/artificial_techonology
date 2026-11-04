@@ -1,0 +1,1224 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>How to Download Android Studio on Mac: Complete Installation Guide</title>
+  <meta name="description" content="Learn how to download Android Studio on Mac, choose the Apple silicon or Intel installer, install the Android SDK, configure your emulator and start building Android apps.">
+  <meta name="keywords" content="how to download Android Studio on Mac, Android Studio Mac installation, install Android Studio macOS, Android development Mac, Android SDK setup">
+
+  <style>
+    :root {
+      --bg: #101512;
+      --panel: #19221c;
+      --panel-light: #222d25;
+      --green: #b6f36b;
+      --green-dark: #83c83e;
+      --white: #f4f7f0;
+      --muted: #a1afa3;
+      --line: #344238;
+      --orange: #f2a65a;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      line-height: 1.7;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .topline {
+      background: var(--green);
+      color: #142014;
+      text-align: center;
+      padding: 9px 15px;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+    }
+
+    .navbar {
+      max-width: 1200px;
+      margin: auto;
+      padding: 22px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -1px;
+    }
+
+    .logo span { color: var(--green); }
+
+    .navlinks {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .navlinks a:hover { color: var(--green); }
+
+    .nav-button {
+      color: #142014;
+      background: var(--green);
+      padding: 10px 16px;
+      border-radius: 4px;
+    }
+
+    .hero {
+      max-width: 1200px;
+      margin: 25px auto 80px;
+      padding: 25px 28px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .tag {
+      display: inline-block;
+      color: var(--green);
+      border: 1px solid #557044;
+      padding: 7px 11px;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-weight: 900;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      font-size: clamp(43px, 5.7vw, 72px);
+      letter-spacing: -3.5px;
+      line-height: 1.03;
+      margin-bottom: 24px;
+    }
+
+    h1 span { color: var(--green); }
+
+    .hero-copy {
+      color: var(--muted);
+      max-width: 540px;
+      font-size: 16px;
+      margin-bottom: 28px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 19px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 900;
+      transition: .2s ease;
+    }
+
+    .btn:hover { transform: translateY(-3px); }
+
+    .btn-green {
+      background: var(--green);
+      color: #142014;
+    }
+
+    .btn-outline {
+      border: 1px solid #607064;
+      color: var(--white);
+    }
+
+    .hero-note {
+      color: #819187;
+      font-size: 11px;
+      margin-top: 17px;
+    }
+
+    /* Custom code editor illustration */
+
+    .editor {
+      background: #151e18;
+      border: 1px solid #3a4b3e;
+      border-radius: 9px;
+      overflow: hidden;
+      box-shadow: 0 25px 65px #0008;
+      transform: rotate(1deg);
+    }
+
+    .editor-top {
+      background: #202b23;
+      border-bottom: 1px solid #39473d;
+      padding: 13px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .dots i {
+      width: 9px;
+      height: 9px;
+      display: block;
+      border-radius: 50%;
+      background: #71816f;
+    }
+
+    .dots i:first-child { background: #f08a76; }
+    .dots i:nth-child(2) { background: #e9c66d; }
+    .dots i:nth-child(3) { background: #9bce78; }
+
+    .editor-title {
+      color: #a9b9ab;
+      font-size: 10px;
+      letter-spacing: 1px;
+    }
+
+    .editor-body {
+      padding: 24px;
+    }
+
+    .editor-label {
+      color: var(--green);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      margin-bottom: 17px;
+    }
+
+    .code-line {
+      display: flex;
+      gap: 15px;
+      font-family: Consolas, Monaco, monospace;
+      font-size: 12px;
+      line-height: 2.2;
+      white-space: nowrap;
+    }
+
+    .line-number {
+      color: #65766a;
+      width: 16px;
+      text-align: right;
+      user-select: none;
+    }
+
+    .code-comment { color: #81977f; }
+    .code-green { color: var(--green); }
+    .code-orange { color: var(--orange); }
+    .code-white { color: #e5eae3; }
+
+    .progress-card {
+      background: #243328;
+      padding: 16px;
+      border: 1px solid #405545;
+      border-radius: 5px;
+      margin-top: 22px;
+    }
+
+    .progress-head {
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      color: #dce7dc;
+      margin-bottom: 10px;
+    }
+
+    .progress-track {
+      height: 6px;
+      background: #435448;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 76%;
+      background: var(--green);
+      border-radius: 10px;
+    }
+
+    .editor-footer {
+      color: #8da08f;
+      font-size: 10px;
+      margin-top: 11px;
+    }
+
+    .section {
+      padding: 82px 7%;
+    }
+
+    .container {
+      max-width: 1080px;
+      margin: auto;
+    }
+
+    .section-label {
+      color: var(--green);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 13px;
+    }
+
+    .section h2 {
+      font-size: clamp(30px, 4vw, 45px);
+      line-height: 1.15;
+      letter-spacing: -1.5px;
+      margin-bottom: 18px;
+      max-width: 750px;
+    }
+
+    .section-intro {
+      color: var(--muted);
+      max-width: 740px;
+      margin-bottom: 35px;
+    }
+
+    .overview {
+      background: var(--panel);
+    }
+
+    .overview-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 45px;
+      align-items: center;
+    }
+
+    .overview-copy p {
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .fact-box {
+      background: #26352a;
+      padding: 28px;
+      border-left: 4px solid var(--green);
+      border-radius: 4px;
+    }
+
+    .fact-box strong {
+      display: block;
+      font-size: 22px;
+      line-height: 1.3;
+      margin-bottom: 12px;
+    }
+
+    .fact-box p {
+      color: #aab8aa;
+      font-size: 13px;
+    }
+
+    .requirements-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .requirement {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      padding: 23px;
+      border-radius: 5px;
+    }
+
+    .requirement .symbol {
+      color: var(--green);
+      font-size: 22px;
+      margin-bottom: 13px;
+    }
+
+    .requirement h3 {
+      font-size: 17px;
+      margin-bottom: 8px;
+    }
+
+    .requirement p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .install {
+      background: #18221b;
+    }
+
+    .timeline {
+      position: relative;
+      display: grid;
+      gap: 17px;
+    }
+
+    .install-step {
+      display: grid;
+      grid-template-columns: 65px 1fr;
+      gap: 22px;
+      padding: 25px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 5px;
+    }
+
+    .step-number {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--green);
+      color: #152017;
+      font-size: 15px;
+      font-weight: 900;
+      border-radius: 4px;
+    }
+
+    .install-step h3 {
+      font-size: 19px;
+      margin-bottom: 8px;
+    }
+
+    .install-step p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .install-step ul {
+      color: #c0cbbf;
+      padding-left: 19px;
+      margin-top: 10px;
+      font-size: 13px;
+    }
+
+    .install-step li { margin: 5px 0; }
+
+    .inline-link {
+      color: var(--green);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .architecture {
+      background: var(--panel);
+    }
+
+    .architecture-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .architecture-card {
+      padding: 27px;
+      background: #202c23;
+      border: 1px solid var(--line);
+      border-radius: 5px;
+    }
+
+    .architecture-card h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .architecture-card p {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 17px;
+    }
+
+    .chip {
+      display: inline-block;
+      background: #344738;
+      color: var(--green);
+      padding: 6px 10px;
+      border-radius: 3px;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    .sdk {
+      background: var(--green);
+      color: #152017;
+    }
+
+    .sdk .section-label { color: #34572a; }
+
+    .sdk .section-intro { color: #40533d; }
+
+    .sdk-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .sdk-card {
+      background: #f1ffd9;
+      padding: 23px;
+      border-radius: 5px;
+    }
+
+    .sdk-card h3 {
+      font-size: 17px;
+      margin-bottom: 8px;
+    }
+
+    .sdk-card p {
+      font-size: 13px;
+      color: #50634b;
+    }
+
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    .tip {
+      padding: 22px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 5px;
+    }
+
+    .tip h3 {
+      font-size: 17px;
+      margin-bottom: 7px;
+    }
+
+    .tip p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .faq {
+      background: var(--panel);
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .faq-item {
+      padding: 21px;
+      background: #222e25;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+    }
+
+    .faq-item h3 {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .faq-item p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .cta {
+      padding: 75px 7%;
+      text-align: center;
+      background: #27372b;
+      border-top: 1px solid #49604c;
+    }
+
+    .cta h2 {
+      font-size: clamp(31px, 4.5vw, 48px);
+      line-height: 1.15;
+      max-width: 750px;
+      margin: 0 auto 17px;
+    }
+
+    .cta p {
+      color: #b5c4b6;
+      max-width: 650px;
+      margin: 0 auto 25px;
+    }
+
+    .cta .btn-outline { border-color: #748675; }
+
+    .disclaimer {
+      font-size: 11px;
+      color: #9eae9f;
+      max-width: 740px;
+      margin: 20px auto 0;
+    }
+
+    footer {
+      padding: 27px 7%;
+      background: #0a100c;
+      color: #8e9d90;
+      text-align: center;
+      font-size: 11px;
+    }
+
+    footer strong { color: white; }
+    footer a { color: var(--green); }
+
+    @media (max-width: 850px) {
+      .hero,
+      .overview-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .requirements-grid,
+      .sdk-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .navbar { padding: 18px 20px; }
+      .navlinks { display: none; }
+
+      .hero {
+        padding: 15px 21px;
+        margin-bottom: 45px;
+      }
+
+      h1 { letter-spacing: -2px; }
+
+      .editor { transform: none; }
+
+      .editor-body { padding: 17px; }
+
+      .code-line { font-size: 10px; }
+
+      .section { padding: 60px 22px; }
+
+      .requirements-grid,
+      .architecture-grid,
+      .sdk-grid,
+      .tips-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .install-step {
+        grid-template-columns: 43px 1fr;
+        gap: 13px;
+        padding: 18px;
+      }
+
+      .step-number {
+        width: 38px;
+        height: 38px;
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="topline">
+    Developer guide / macOS installation / Android Studio
+  </div>
+
+  <header class="navbar">
+    <a href="#" class="logo">MAC<span>DEV</span> / GUIDE</a>
+
+    <nav class="navlinks">
+      <a href="#overview">Overview</a>
+      <a href="#requirements">Requirements</a>
+      <a href="#install">Installation</a>
+      <a href="#faq">FAQs</a>
+      <a href="#download" class="nav-button">Download Guide</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div>
+        <span class="tag">Android development on macOS</span>
+
+        <h1>Build Android apps. <span>Start on Mac.</span></h1>
+
+        <p class="hero-copy">
+          Want to develop Android applications on your Mac?
+          Android Studio provides the tools you need to write code,
+          design interfaces, manage SDK packages and test your
+          projects. Follow this practical guide to download and
+          install it correctly.
+        </p>
+
+        <div class="actions">
+          <a href="https://developer.android.com/studio"
+             target="_blank" rel="noopener"
+             class="btn btn-green">
+            Official Android Studio Download ↗
+          </a>
+
+          <a href="#install" class="btn btn-outline">
+            View Installation Steps ↓
+          </a>
+        </div>
+
+        <p class="hero-note">
+          Official Google developer tool · macOS · Apple silicon and Intel options
+        </p>
+      </div>
+
+      <div class="editor">
+        <div class="editor-top">
+          <div class="dots">
+            <i></i><i></i><i></i>
+          </div>
+          <div class="editor-title">ANDROID_STUDIO_SETUP</div>
+        </div>
+
+        <div class="editor-body">
+          <div class="editor-label">INSTALLATION / CONFIGURATION</div>
+
+          <div class="code-line">
+            <span class="line-number">01</span>
+            <span class="code-comment">// Prepare your Mac</span>
+          </div>
+
+          <div class="code-line">
+            <span class="line-number">02</span>
+            <span class="code-green">download</span>
+            <span class="code-white">("Android Studio")</span>
+          </div>
+
+          <div class="code-line">
+            <span class="line-number">03</span>
+            <span class="code-orange">install</span>
+            <span class="code-white">("/Applications")</span>
+          </div>
+
+          <div class="code-line">
+            <span class="line-number">04</span>
+            <span class="code-green">configure</span>
+            <span class="code-white">("Android SDK")</span>
+          </div>
+
+          <div class="code-line">
+            <span class="line-number">05</span>
+            <span class="code-comment">// Ready to build</span>
+          </div>
+
+          <div class="progress-card">
+            <div class="progress-head">
+              <span>DEVELOPMENT ENVIRONMENT</span>
+              <span>READY TO CONFIGURE</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill"></div>
+            </div>
+            <div class="editor-footer">
+              macOS setup / SDK / Emulator / Projects
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section overview" id="overview">
+      <div class="container overview-grid">
+        <div class="overview-copy">
+          <div class="section-label">01 / Introduction</div>
+          <h2>What is Android Studio?</h2>
+
+          <p>
+            Android Studio is Google's official integrated development
+            environment (IDE) for Android application development.
+            It provides a complete workspace where developers can
+            create projects, edit source code, build applications
+            and test them on virtual or physical Android devices.
+          </p>
+
+          <p>
+            The software includes a code editor, Gradle build tools,
+            Android SDK management, debugging features, layout tools
+            and Android Emulator integration.
+          </p>
+
+          <p>
+            Installing Android Studio on macOS is straightforward:
+            download the correct DMG installer, move the application
+            into Applications and complete the first-run setup wizard.
+          </p>
+        </div>
+
+        <aside class="fact-box">
+          <strong>One IDE for your Android development workflow.</strong>
+          <p>
+            Android Studio brings project editing, SDK configuration,
+            building, debugging and app testing together in one
+            development environment.
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="requirements">
+      <div class="container">
+        <div class="section-label">02 / Before downloading</div>
+        <h2>Check your Mac's system requirements</h2>
+
+        <p class="section-intro">
+          Before downloading Android Studio, make sure your Mac
+          has a supported processor, enough memory and sufficient
+          free disk space.
+        </p>
+
+        <div class="requirements-grid">
+          <article class="requirement">
+            <div class="symbol">⌘</div>
+            <h3>macOS Version</h3>
+            <p>
+              Minimum macOS 12. Check the official requirements
+              page for current compatibility information.
+            </p>
+          </article>
+
+          <article class="requirement">
+            <div class="symbol">▤</div>
+            <h3>RAM</h3>
+            <p>
+              At least 8 GB for Android Studio alone.
+              16 GB minimum when using the Android Emulator.
+            </p>
+          </article>
+
+          <article class="requirement">
+            <div class="symbol">◈</div>
+            <h3>Processor</h3>
+            <p>
+              Apple M1 or newer, or a supported Intel processor.
+              Intel Mac support is being phased out.
+            </p>
+          </article>
+
+          <article class="requirement">
+            <div class="symbol">▣</div>
+            <h3>Storage</h3>
+            <p>
+              At least 8 GB of free space for Studio,
+              or 16 GB when using the Emulator.
+            </p>
+          </article>
+
+          <article class="requirement">
+            <div class="symbol">▱</div>
+            <h3>Display</h3>
+            <p>
+              Minimum screen resolution of 1280 × 800.
+              A larger display is more comfortable.
+            </p>
+          </article>
+
+          <article class="requirement">
+            <div class="symbol">⚙</div>
+            <h3>Recommended Setup</h3>
+            <p>
+              32 GB RAM, modern Apple silicon and an SSD
+              with 32 GB or more free space.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section install" id="install">
+      <div class="container">
+        <div class="section-label">03 / Step-by-step tutorial</div>
+        <h2>How to download Android Studio on Mac</h2>
+
+        <p class="section-intro">
+          Follow these steps to download the official installer
+          and complete the initial installation.
+        </p>
+
+        <div class="timeline">
+
+          <article class="install-step">
+            <div class="step-number">01</div>
+            <div>
+              <h3>Open the Official Android Studio Website</h3>
+              <p>
+                Launch Safari, Chrome or another browser on your Mac.
+                Visit Google's official Android Studio download page:
+                <a class="inline-link"
+                   href="https://developer.android.com/studio"
+                   target="_blank" rel="noopener">
+                  developer.android.com/studio
+                </a>.
+              </p>
+              <ul>
+                <li>Find the latest stable Android Studio release.</li>
+                <li>Review the download terms and conditions.</li>
+                <li>Choose the installer that matches your Mac.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="install-step">
+            <div class="step-number">02</div>
+            <div>
+              <h3>Choose the Correct Mac Installer</h3>
+              <p>
+                Android Studio provides different DMG downloads
+                for Apple silicon and Intel processors.
+              </p>
+              <ul>
+                <li>Choose Mac with Apple chip for M-series Macs.</li>
+                <li>Choose Mac with Intel chip for supported Intel Macs.</li>
+                <li>Save the downloaded DMG file to your Mac.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="install-step">
+            <div class="step-number">03</div>
+            <div>
+              <h3>Open the DMG Installer</h3>
+              <p>
+                After the download finishes, open Finder and go
+                to your Downloads folder. Double-click the
+                Android Studio DMG file to open the installer.
+              </p>
+              <ul>
+                <li>Wait for the installer window to appear.</li>
+                <li>Locate the Android Studio application icon.</li>
+                <li>Keep the installer open while copying the app.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="install-step">
+            <div class="step-number">04</div>
+            <div>
+              <h3>Move Android Studio into Applications</h3>
+              <p>
+                Drag the Android Studio application icon into
+                the Applications folder shown in the installer
+                window. Wait for the copy process to finish.
+              </p>
+              <ul>
+                <li>Open Finder and select Applications.</li>
+                <li>Find Android Studio in the application list.</li>
+                <li>Launch the app to begin setup.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="install-step">
+            <div class="step-number">05</div>
+            <div>
+              <h3>Complete the Setup Wizard</h3>
+              <p>
+                When Android Studio starts for the first time,
+                choose whether to import previous settings.
+                Continue through the Setup Wizard.
+              </p>
+              <ul>
+                <li>Review the setup options.</li>
+                <li>Choose the recommended installation type if suitable.</li>
+                <li>Accept the required SDK licenses.</li>
+                <li>Allow the required development components to download.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="install-step">
+            <div class="step-number">06</div>
+            <div>
+              <h3>Finish Installation and Start Coding</h3>
+              <p>
+                Once the required components are installed,
+                open Android Studio and create a new project.
+                Select a template and configure your application.
+              </p>
+              <ul>
+                <li>Choose a project template.</li>
+                <li>Set the project name and package details.</li>
+                <li>Wait for Gradle synchronization to finish.</li>
+                <li>Start building your Android application.</li>
+              </ul>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="section architecture">
+      <div class="container">
+        <div class="section-label">04 / Select your installer</div>
+        <h2>Apple silicon or Intel: which version do you need?</h2>
+
+        <p class="section-intro">
+          Your Mac's processor determines which Android Studio
+          installer you should choose. Selecting the correct
+          package helps avoid compatibility problems.
+        </p>
+
+        <div class="architecture-grid">
+          <article class="architecture-card">
+            <h3>Mac with Apple chip</h3>
+            <p>
+              Choose this version if your Mac uses an Apple M-series
+              processor, such as M1, M2, M3, M4 or a newer generation.
+            </p>
+            <span class="chip">APPLE SILICON / ARM64</span>
+          </article>
+
+          <article class="architecture-card">
+            <h3>Mac with Intel chip</h3>
+            <p>
+              Choose the Intel DMG if you have a supported Intel Mac.
+              Google is phasing out Intel Mac support, so check
+              the latest compatibility requirements.
+            </p>
+            <span class="chip">INTEL / X86_64</span>
+          </article>
+        </div>
+
+        <div class="note" style="margin-top:20px">
+          <strong>How to check your processor:</strong>
+          Click the Apple menu in the top-left corner of your screen,
+          select About This Mac and look for the Chip or Processor
+          information.
+        </div>
+      </div>
+    </section>
+
+    <section class="section sdk">
+      <div class="container">
+        <div class="section-label">05 / After installation</div>
+        <h2>Set up the Android SDK and Emulator</h2>
+
+        <p class="section-intro">
+          Installing the IDE is only the first part of the process.
+          Android Studio also needs the appropriate development
+          packages to build and test Android applications.
+        </p>
+
+        <div class="sdk-grid">
+          <article class="sdk-card">
+            <h3>Android SDK</h3>
+            <p>
+              Provides the platform tools, APIs and development
+              components required to build Android applications.
+            </p>
+          </article>
+
+          <article class="sdk-card">
+            <h3>SDK Platform Tools</h3>
+            <p>
+              Includes tools such as ADB for communicating with
+              Android devices and managing development tasks.
+            </p>
+          </article>
+
+          <article class="sdk-card">
+            <h3>Android Emulator</h3>
+            <p>
+              Lets you run and test Android apps using virtual
+              device configurations without requiring a physical phone.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-label">06 / Helpful advice</div>
+        <h2>Tips for a smoother Android Studio installation</h2>
+
+        <div class="tips-grid">
+          <article class="tip">
+            <h3>Use the Official Download</h3>
+            <p>
+              Download the installer from Google's Android
+              Developers website to get the genuine release.
+            </p>
+          </article>
+
+          <article class="tip">
+            <h3>Keep Enough Storage Available</h3>
+            <p>
+              SDK packages, project files and virtual devices
+              need additional disk space beyond the IDE itself.
+            </p>
+          </article>
+
+          <article class="tip">
+            <h3>Use a Physical Android Device</h3>
+            <p>
+              If your Mac has limited memory, connecting a real
+              Android phone can be an alternative to running
+              the Emulator.
+            </p>
+          </article>
+
+          <article class="tip">
+            <h3>Keep Development Tools Updated</h3>
+            <p>
+              Check for Android Studio updates and install
+              supported SDK tools to maintain your development
+              environment.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section faq" id="faq">
+      <div class="container">
+        <div class="section-label">07 / Frequently asked questions</div>
+        <h2>Android Studio on Mac: FAQs</h2>
+
+        <div class="faq-list">
+          <article class="faq-item">
+            <h3>1. Is Android Studio available for Mac?</h3>
+            <p>
+              Yes. Android Studio is available for macOS.
+              Google provides separate download options for
+              Apple silicon and supported Intel Macs.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>2. Is Android Studio free to download?</h3>
+            <p>
+              Android Studio is available as a free download
+              from the official Android Developers website.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>3. How much RAM do I need?</h3>
+            <p>
+              Google's listed minimum is 8 GB for Android Studio
+              alone and 16 GB for Android Studio with the
+              Android Emulator. More memory is recommended
+              for larger projects.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>4. Can I install Android Studio on an M1 Mac?</h3>
+            <p>
+              Yes. Choose the Mac with Apple chip installer
+              for an Apple silicon Mac.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>5. Can I use Android Studio without an Emulator?</h3>
+            <p>
+              Yes. You can deploy and test applications on a
+              compatible physical Android device instead of
+              using a virtual device.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>6. Why does Android Studio download SDK components?</h3>
+            <p>
+              The SDK includes the APIs and tools needed to
+              compile, build, debug and test Android applications.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>7. Where should I download Android Studio?</h3>
+            <p>
+              Use the official Google Android Developers
+              website at developer.android.com/studio.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="download">
+      <div class="container">
+        <div class="section-label">08 / Download resources</div>
+
+        <h2>Ready to set up Android Studio on your Mac?</h2>
+
+        <p>
+          Get started with Android development by choosing
+          the correct macOS installer, completing the setup
+          wizard and configuring your Android SDK.
+        </p>
+
+        <div class="actions" style="justify-content:center">
+          <a href="https://gitapp.download/"
+             target="_blank" rel="noopener"
+             class="btn btn-green">
+            Explore GitApp Download ↗
+          </a>
+
+          <a href="https://developer.android.com/studio"
+             target="_blank" rel="noopener"
+             class="btn btn-outline">
+            Download from Google ↗
+          </a>
+        </div>
+
+        <p class="disclaimer">
+          The GitApp button is a promotional link to
+          https://gitapp.download/ and is not a verified
+          direct Android Studio installer. For the genuine
+          Android Studio application, use Google's official
+          Android Developers download page.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>
+      <strong>MacDev Guide</strong> · Independent Android Studio
+      installation tutorial.
+    </p>
+    <p style="margin-top:8px">
+      Android Studio, Android and related trademarks belong to Google.
+      Product versions and requirements may change.
+      Visit <a href="https://developer.android.com/studio"
+      target="_blank" rel="noopener">Android Developers</a>
+      for current information.
+    </p>
+  </footer>
+
+</body>
+</html>
