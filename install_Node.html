@@ -1,0 +1,595 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>How to Install Node.js on Mac – Step-by-Step Guide</title>
+<meta name="description" content="Learn how to install Node.js on Mac using the official installer, Homebrew, or NVM. Verify Node.js and npm and start building JavaScript applications.">
+<meta name="keywords" content="How to install Node.js on Mac, Node.js Mac download, install npm on Mac, Node.js macOS tutorial">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #f1f5f2;
+    color: #202c27;
+    line-height: 1.8;
+}
+
+header {
+    padding: 20px 8%;
+    background: #17251f;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: #a3e6b7;
+    font-size: 25px;
+    font-weight: 800;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.hero {
+    display: grid;
+    grid-template-columns: 1.3fr 0.7fr;
+    align-items: center;
+    gap: 35px;
+    padding: 85px 9%;
+    background: #dcefe2;
+}
+
+.hero-label {
+    color: #21834c;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.hero h1 {
+    font-size: clamp(35px, 5vw, 57px);
+    line-height: 1.15;
+    margin: 18px 0;
+    color: #172b21;
+}
+
+.hero p {
+    color: #586c60;
+    font-size: 17px;
+    max-width: 620px;
+}
+
+.hero-visual {
+    background: #17251f;
+    border-radius: 25px;
+    padding: 35px 25px;
+    color: #a3e6b7;
+    text-align: center;
+    box-shadow: 15px 15px 0 #b4ddc0;
+}
+
+.node-icon {
+    font-size: 85px;
+    font-weight: 900;
+    margin-bottom: 10px;
+}
+
+.hero-visual p {
+    color: #d4e8d9;
+    margin: auto;
+}
+
+.btn {
+    display: inline-block;
+    background: #278b50;
+    color: white;
+    text-decoration: none;
+    padding: 13px 25px;
+    border-radius: 7px;
+    font-weight: 700;
+    margin-top: 22px;
+    transition: .3s;
+}
+
+.btn:hover {
+    background: #176b3a;
+    transform: translateY(-3px);
+}
+
+.btn-light {
+    background: #a3e6b7;
+    color: #17251f;
+}
+
+.wrapper {
+    max-width: 1100px;
+    padding: 55px 22px;
+    margin: auto;
+}
+
+.intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 40px;
+}
+
+.intro h2 {
+    font-size: 32px;
+    color: #1b3828;
+    margin-bottom: 12px;
+}
+
+.article {
+    background: white;
+    border-radius: 14px;
+    padding: 32px;
+    margin-bottom: 25px;
+    box-shadow: 0 5px 22px rgba(25, 65, 42, .05);
+}
+
+.article h2 {
+    font-size: 25px;
+    color: #1c6039;
+    margin-bottom: 14px;
+}
+
+.article h3 {
+    color: #2d6945;
+    margin: 22px 0 10px;
+}
+
+.article p {
+    color: #627168;
+    margin-bottom: 14px;
+}
+
+.article ul,
+.article ol {
+    padding-left: 25px;
+    color: #627168;
+}
+
+.article li {
+    padding: 4px 0;
+}
+
+code {
+    background: #e7f3e9;
+    color: #16733c;
+    padding: 3px 7px;
+    border-radius: 4px;
+}
+
+pre {
+    background: #18251f;
+    color: #a8e7b8;
+    padding: 20px;
+    border-radius: 9px;
+    overflow-x: auto;
+    margin: 15px 0;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin: 25px 0;
+}
+
+.info-box {
+    background: #edf7ef;
+    padding: 23px;
+    border-radius: 12px;
+    border-bottom: 4px solid #42a567;
+}
+
+.info-box h3 {
+    color: #236b3d;
+    margin-bottom: 8px;
+}
+
+.info-box p {
+    font-size: 14px;
+    margin: 0;
+}
+
+.note {
+    background: #e7f5ea;
+    border-left: 4px solid #278b50;
+    padding: 17px 20px;
+    margin: 20px 0;
+    color: #315b3e;
+    border-radius: 5px;
+}
+
+.promo {
+    background: #17251f;
+    color: white;
+    text-align: center;
+    padding: 65px 25px;
+    border-radius: 20px;
+    margin: 45px 0;
+}
+
+.promo h2 {
+    font-size: 32px;
+    color: #a3e6b7;
+    margin-bottom: 15px;
+}
+
+.promo p {
+    color: #d0ded4;
+    max-width: 650px;
+    margin: auto;
+}
+
+footer {
+    background: #101a15;
+    color: #b6c8bc;
+    text-align: center;
+    padding: 28px 15px;
+    font-size: 14px;
+}
+
+footer a {
+    color: #a3e6b7;
+    text-decoration: none;
+}
+
+@media(max-width: 750px) {
+    .hero {
+        grid-template-columns: 1fr;
+        padding: 60px 7%;
+    }
+
+    .hero-visual {
+        max-width: 400px;
+        width: 100%;
+        margin: auto;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .article {
+        padding: 23px;
+    }
+
+    header {
+        padding: 18px 5%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">DevSpace.</div>
+    <nav>
+        <a href="https://gitapp.download/">Explore Software</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div>
+        <span class="hero-label">MAC DEVELOPMENT TUTORIAL</span>
+        <h1>How to Install Node.js on Mac: A Complete Guide</h1>
+        <p>
+            Get started with JavaScript development on macOS.
+            Learn how to download Node.js, install npm, configure
+            your development environment, and run your first program.
+        </p>
+        <a href="https://nodejs.org/en/download" class="btn">
+            Download Node.js Officially →
+        </a>
+    </div>
+
+    <div class="hero-visual">
+        <div class="node-icon">JS</div>
+        <h2>Node.js for macOS</h2>
+        <p>Build, develop, and run JavaScript applications.</p>
+    </div>
+</section>
+
+<main class="wrapper">
+
+    <section class="intro">
+        <h2>Your Journey to Node.js Starts Here</h2>
+        <p>
+            Whether you are a beginner or an experienced developer,
+            installing Node.js on your Mac is an important step
+            toward building modern web applications.
+        </p>
+    </section>
+
+    <article class="article">
+        <h2>What Is Node.js?</h2>
+        <p>
+            Node.js is an open-source JavaScript runtime environment
+            that allows developers to execute JavaScript outside
+            a web browser. It is commonly used to build web servers,
+            APIs, command-line tools, and backend applications.
+        </p>
+        <p>
+            Node.js uses Google's V8 JavaScript engine and provides
+            tools that make it possible to create fast and scalable
+            applications.
+        </p>
+    </article>
+
+    <article class="article">
+        <h2>Why Install Node.js on Mac?</h2>
+        <p>
+            macOS provides a convenient development environment.
+            Node.js makes it easier to create and test JavaScript
+            projects directly from your Mac.
+        </p>
+
+        <div class="info-grid">
+            <div class="info-box">
+                <h3>Web Development</h3>
+                <p>Create modern websites and full-stack applications.</p>
+            </div>
+            <div class="info-box">
+                <h3>Package Management</h3>
+                <p>Use npm to install and manage JavaScript packages.</p>
+            </div>
+            <div class="info-box">
+                <h3>Backend Development</h3>
+                <p>Build APIs, servers, and backend services.</p>
+            </div>
+        </div>
+    </article>
+
+    <article class="article">
+        <h2>Step 1: Check Your Mac Architecture</h2>
+        <p>
+            Before installing Node.js, identify which processor
+            your Mac uses.
+        </p>
+        <ol>
+            <li>Click the Apple menu in the top-left corner.</li>
+            <li>Select About This Mac.</li>
+            <li>Check whether your Mac uses Apple Silicon or Intel.</li>
+        </ol>
+        <p>
+            This helps you select the correct installation package
+            when downloading Node.js.
+        </p>
+    </article>
+
+    <article class="article">
+        <h2>Step 2: Download Node.js for Mac</h2>
+        <p>
+            Visit the official Node.js website to download the
+            macOS installer. For most users, the LTS (Long-Term
+            Support) release is the recommended starting point.
+        </p>
+        <ol>
+            <li>Open the official Node.js download website.</li>
+            <li>Select the macOS download option.</li>
+            <li>Choose the appropriate installer for your Mac.</li>
+            <li>Download the installer package.</li>
+        </ol>
+
+        <div class="note">
+            <strong>Important:</strong> Download Node.js from the
+            official website to ensure you get a trusted installer.
+        </div>
+
+        <a class="btn" href="https://nodejs.org/en/download" target="_blank" rel="noopener noreferrer">
+            Get Node.js for Mac →
+        </a>
+    </article>
+
+    <article class="article">
+        <h2>Step 3: Install Node.js on macOS</h2>
+        <p>
+            After downloading the installer, follow these steps
+            to complete the installation.
+        </p>
+        <ol>
+            <li>Open the downloaded .pkg installer file.</li>
+            <li>Read the installation introduction.</li>
+            <li>Accept the software license agreement.</li>
+            <li>Select the installation destination if prompted.</li>
+            <li>Click Install and provide administrator permission if required.</li>
+            <li>Wait for the installation to finish.</li>
+            <li>Close the installer when the process is complete.</li>
+        </ol>
+        <p>
+            Node.js and npm should now be available through Terminal.
+        </p>
+    </article>
+
+    <article class="article">
+        <h2>Step 4: Verify Node.js Installation</h2>
+        <p>
+            Open Terminal on your Mac. You can find it through
+            Spotlight Search or inside Applications and Utilities.
+        </p>
+        <p>Enter this command:</p>
+
+        <pre><code>node -v</code></pre>
+
+        <p>
+            This displays your installed Node.js version.
+            Next, check npm:
+        </p>
+
+        <pre><code>npm -v</code></pre>
+
+        <p>
+            If both commands display version numbers, the
+            installation was successful.
+        </p>
+    </article>
+
+    <article class="article">
+        <h2>Step 5: Install Node.js Using Homebrew</h2>
+        <p>
+            Homebrew is a popular package manager for macOS.
+            If you already have Homebrew installed, you can
+            install Node.js through Terminal.
+        </p>
+
+        <h3>Check Homebrew</h3>
+        <pre><code>brew --version</code></pre>
+
+        <h3>Install Node.js</h3>
+        <pre><code>brew install node</code></pre>
+
+        <h3>Verify Installation</h3>
+        <pre><code>node -v
+npm -v</code></pre>
+
+        <p>
+            Homebrew is convenient for developers who prefer
+            managing software through Terminal.
+        </p>
+        <a class="btn" href="https://brew.sh/" target="_blank" rel="noopener noreferrer">
+            Visit Homebrew →
+        </a>
+    </article>
+
+    <article class="article">
+        <h2>Step 6: Install Node.js Using NVM</h2>
+        <p>
+            NVM (Node Version Manager) lets you install and
+            switch between multiple Node.js versions. It is
+            especially useful when working on projects that
+            require different Node.js releases.
+        </p>
+
+        <h3>Install NVM</h3>
+        <p>
+            Follow the official NVM installation instructions
+            to install and configure it on macOS.
+        </p>
+        <a href="https://github.com/nvm-sh/nvm" target="_blank" rel="noopener noreferrer">
+            Official NVM Documentation
+        </a>
+
+        <h3>Install the Latest LTS Version</h3>
+        <pre><code>nvm install --lts</code></pre>
+
+        <h3>Use the Installed LTS Version</h3>
+        <pre><code>nvm use --lts</code></pre>
+
+        <h3>Check Node.js Version</h3>
+        <pre><code>node -v</code></pre>
+
+        <div class="note">
+            NVM is a useful choice when you need to manage
+            different Node.js versions for different projects.
+        </div>
+    </article>
+
+    <article class="article">
+        <h2>Step 7: Create Your First Node.js Program</h2>
+        <p>
+            Once Node.js is installed, you can create a simple
+            JavaScript application.
+        </p>
+
+        <h3>Create a Project Folder</h3>
+        <pre><code>mkdir my-node-project
+cd my-node-project</code></pre>
+
+        <h3>Create a JavaScript File</h3>
+        <pre><code>touch app.js</code></pre>
+
+        <h3>Add This Code to app.js</h3>
+        <pre><code>console.log("Hello from Node.js on Mac!");</code></pre>
+
+        <h3>Run Your Program</h3>
+        <pre><code>node app.js</code></pre>
+
+        <p>
+            You should see the message displayed in Terminal.
+            Congratulations! Your first Node.js program is running.
+        </p>
+    </article>
+
+    <article class="article">
+        <h2>Common Node.js Installation Problems</h2>
+
+        <h3>1. Command Not Found</h3>
+        <p>
+            If Terminal displays a command-not-found message,
+            check whether Node.js is installed correctly and
+            whether its installation directory is available
+            in your PATH.
+        </p>
+
+        <h3>2. npm Permission Errors</h3>
+        <p>
+            Permission errors can occur when installing global
+            npm packages. Consider using NVM to manage Node.js
+            and npm without changing system directory permissions.
+        </p>
+
+        <h3>3. Wrong Node.js Version</h3>
+        <p>
+            Some projects require a specific Node.js version.
+            Use a version manager such as NVM to switch between
+            compatible releases.
+        </p>
+    </article>
+
+    <article class="article">
+        <h2>Conclusion</h2>
+        <p>
+            Installing Node.js on Mac is a straightforward
+            process. You can use the official macOS installer,
+            Homebrew, or NVM depending on your development needs.
+        </p>
+        <p>
+            After installation, verify Node.js and npm through
+            Terminal and create your first JavaScript program.
+            With Node.js ready, you can begin building websites,
+            APIs, and modern software applications.
+        </p>
+    </article>
+
+    <section class="promo">
+        <h2>Explore More Software and Developer Tools</h2>
+        <p>
+            Looking for useful applications, software resources,
+            and tools to improve your digital workflow?
+            Visit GitApp Download and explore more.
+        </p>
+        <a class="btn btn-light"
+           href="https://gitapp.download/"
+           target="_blank"
+           rel="noopener noreferrer">
+            Visit GitApp Download →
+        </a>
+    </section>
+
+</main>
+
+<footer>
+    <p>© 2026 DevSpace. All Rights Reserved.</p>
+    <p>Discover more software at
+        <a href="https://gitapp.download/">gitapp.download</a>
+    </p>
+</footer>
+
+</body>
+</html>
