@@ -1,0 +1,688 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>How to Use WhisperKit for Local Transcription on Mac</title>
+  <meta name="description" content="Learn how to install WhisperKit on Mac and transcribe audio locally using AI. Follow this simple guide to convert audio files into text privately on your Mac.">
+  <meta name="keywords" content="WhisperKit Mac, local transcription Mac, WhisperKit tutorial, transcribe audio on Mac, offline speech to text">
+
+  <style>
+    :root {
+      --paper: #f7f5ed;
+      --white: #fffef9;
+      --ink: #202c24;
+      --muted: #69766b;
+      --green: #285c43;
+      --lime: #d8e8b8;
+      --line: #dce2d5;
+      --orange: #e98b55;
+      --shadow: 0 16px 45px rgba(35, 62, 43, .08);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.75;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .site-header {
+      padding: 22px 7%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 254, 249, .8);
+    }
+
+    .brand {
+      font-size: 22px;
+      font-weight: 850;
+      letter-spacing: -1px;
+      color: var(--green);
+    }
+
+    .brand span {
+      color: var(--orange);
+    }
+
+    .header-link {
+      color: var(--green);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .hero {
+      max-width: 1180px;
+      margin: 55px auto 35px;
+      padding: 0 25px;
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 35px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      background: var(--lime);
+      color: var(--green);
+      padding: 6px 13px;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-family: Georgia, serif;
+      font-size: clamp(38px, 5.3vw, 64px);
+      line-height: 1.08;
+      letter-spacing: -2px;
+      margin-bottom: 22px;
+    }
+
+    h1 em {
+      color: var(--green);
+      font-weight: 500;
+    }
+
+    .hero-copy {
+      max-width: 590px;
+      color: var(--muted);
+      font-size: 17px;
+      margin-bottom: 27px;
+    }
+
+    .button {
+      display: inline-block;
+      background: var(--green);
+      color: white;
+      padding: 13px 23px;
+      border-radius: 7px;
+      font-weight: 750;
+      font-size: 14px;
+      transition: .25s;
+    }
+
+    .button:hover {
+      background: #193d2c;
+      transform: translateY(-2px);
+    }
+
+    .button.secondary {
+      background: var(--orange);
+      color: #241b14;
+    }
+
+    .button.secondary:hover {
+      background: #d97942;
+    }
+
+    .hero-art {
+      min-height: 340px;
+      background: var(--green);
+      border-radius: 18px 70px 18px 70px;
+      padding: 35px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: white;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-art::before,
+    .hero-art::after {
+      content: "";
+      position: absolute;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 50%;
+      width: 260px;
+      height: 260px;
+      right: -65px;
+      top: -80px;
+    }
+
+    .hero-art::after {
+      width: 190px;
+      height: 190px;
+      right: -30px;
+      top: -45px;
+    }
+
+    .wave {
+      display: flex;
+      gap: 7px;
+      align-items: center;
+      height: 115px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .wave i {
+      display: block;
+      width: 7px;
+      border-radius: 10px;
+      background: var(--lime);
+      height: 30%;
+    }
+
+    .wave i:nth-child(3n) { height: 75%; }
+    .wave i:nth-child(4n) { height: 95%; }
+    .wave i:nth-child(5n) { height: 45%; }
+    .wave i:nth-child(2n) { height: 60%; }
+
+    .art-label {
+      position: relative;
+      z-index: 1;
+    }
+
+    .art-label strong {
+      display: block;
+      font-family: Georgia, serif;
+      font-size: 28px;
+    }
+
+    .art-label small {
+      color: #d9e6d8;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 55px auto;
+      padding: 0 25px;
+    }
+
+    .article-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 38px;
+      box-shadow: var(--shadow);
+    }
+
+    .article-card h2 {
+      font-family: Georgia, serif;
+      font-size: 31px;
+      line-height: 1.2;
+      margin: 35px 0 15px;
+      letter-spacing: -.6px;
+    }
+
+    .article-card h2:first-child {
+      margin-top: 0;
+    }
+
+    .article-card h3 {
+      color: var(--green);
+      font-size: 19px;
+      margin: 23px 0 9px;
+    }
+
+    .article-card p {
+      color: #59665d;
+      margin-bottom: 16px;
+    }
+
+    .article-card ul,
+    .article-card ol {
+      padding-left: 23px;
+      margin: 12px 0 20px;
+      color: #59665d;
+    }
+
+    .article-card li {
+      margin-bottom: 9px;
+    }
+
+    .note {
+      background: #edf3e4;
+      border-left: 4px solid var(--green);
+      padding: 17px 20px;
+      margin: 22px 0;
+      border-radius: 0 9px 9px 0;
+      color: #405544;
+    }
+
+    .code-title {
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 800;
+      margin: 18px 0 8px;
+    }
+
+    pre {
+      background: #202c24;
+      color: #e3efda;
+      padding: 20px;
+      border-radius: 9px;
+      overflow-x: auto;
+      font-size: 13px;
+      line-height: 1.8;
+      margin: 10px 0 20px;
+    }
+
+    code {
+      font-family: "SFMono-Regular", Consolas, monospace;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin: 22px 0;
+    }
+
+    .step {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 20px;
+      background: #fff;
+    }
+
+    .step-number {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--lime);
+      color: var(--green);
+      font-weight: 850;
+      margin-bottom: 12px;
+    }
+
+    .step h3 {
+      margin: 0 0 7px;
+    }
+
+    .step p {
+      font-size: 14px;
+      margin: 0;
+    }
+
+    .promo {
+      margin: 45px 0 10px;
+      padding: 34px;
+      background: var(--lime);
+      border-radius: 14px;
+      text-align: center;
+    }
+
+    .promo h2 {
+      font-family: Georgia, serif;
+      font-size: 30px;
+      margin: 0 0 10px;
+    }
+
+    .promo p {
+      max-width: 560px;
+      margin: 0 auto 20px;
+      color: #52634f;
+    }
+
+    .faq {
+      border-top: 1px solid var(--line);
+      padding: 18px 0 4px;
+    }
+
+    .faq h3 {
+      margin-top: 0;
+    }
+
+    .site-footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      font-size: 13px;
+    }
+
+    @media (max-width: 760px) {
+      .hero {
+        grid-template-columns: 1fr;
+        margin-top: 35px;
+      }
+
+      .hero-art {
+        min-height: 250px;
+      }
+
+      .article-card {
+        padding: 24px 20px;
+      }
+
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .site-header {
+        padding: 18px 6%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="site-header">
+    <a href="https://gitapp.download/" class="brand">GIT<span>APP.</span></a>
+    <a href="https://gitapp.download/" class="header-link">Explore Downloads ↗</a>
+  </header>
+
+  <section class="hero">
+    <div>
+      <span class="eyebrow">Mac Productivity · AI Tools</span>
+      <h1>Turn Your Audio Into Text With <em>WhisperKit</em></h1>
+      <p class="hero-copy">
+        Discover how to use WhisperKit for local transcription on Mac.
+        Convert recordings, interviews, meetings, and voice notes into
+        searchable text while keeping audio processing on your own device.
+      </p>
+      <a class="button" href="https://gitapp.download/" target="_blank" rel="noopener">
+        Explore Mac Downloads ↗
+      </a>
+    </div>
+
+    <div class="hero-art">
+      <div class="art-label">
+        <small>LOCAL SPEECH RECOGNITION</small>
+        <strong>Sound in.<br>Words out.</strong>
+      </div>
+      <div class="wave" aria-label="Decorative audio waveform">
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+      </div>
+      <div class="art-label">
+        <small>POWERED BY ON-DEVICE AI</small>
+      </div>
+    </div>
+  </section>
+
+  <main class="container">
+    <article class="article-card">
+
+      <h2>What Is WhisperKit?</h2>
+      <p>
+        WhisperKit is an open-source speech recognition toolkit designed
+        to run Whisper models locally on Apple devices. It uses Apple's
+        Core ML technology to perform speech-to-text processing on
+        compatible hardware.
+      </p>
+      <p>
+        Instead of sending every recording to an online transcription
+        service, you can process supported audio files directly on your
+        Mac after downloading the required model. This makes WhisperKit
+        useful for people who value privacy, offline workflows, and
+        control over their recordings.
+      </p>
+
+      <div class="note">
+        <strong>Privacy note:</strong> Local transcription means the audio
+        can be processed on your Mac. You still need an internet connection
+        initially to install the software and download model files.
+      </div>
+
+      <h2>Why Use WhisperKit for Local Transcription?</h2>
+      <p>
+        WhisperKit combines speech recognition with Apple's on-device
+        machine-learning framework. It can be useful for a range of
+        everyday and professional tasks.
+      </p>
+      <ul>
+        <li><strong>Local processing:</strong> Transcribe recordings on your Mac rather than relying on a cloud transcription service.</li>
+        <li><strong>Multiple audio formats:</strong> Work with common formats such as WAV, MP3, M4A, and FLAC.</li>
+        <li><strong>Language support:</strong> Use Whisper model capabilities for transcription across many languages.</li>
+        <li><strong>Developer friendly:</strong> Integrate the toolkit into Swift applications.</li>
+        <li><strong>Model choices:</strong> Select a suitable Whisper model for your accuracy and performance needs.</li>
+      </ul>
+
+      <h2>What You Need Before Getting Started</h2>
+      <p>
+        Before installing WhisperKit, make sure your Mac has the necessary
+        hardware and software. The command-line installation is designed
+        for Apple Silicon Macs.
+      </p>
+      <ul>
+        <li>An Apple Silicon Mac is recommended for the native local workflow.</li>
+        <li>A compatible version of macOS.</li>
+        <li>Homebrew installed on your Mac.</li>
+        <li>Available storage for the application and downloaded AI model.</li>
+        <li>An internet connection for initial installation and model downloads.</li>
+      </ul>
+
+      <div class="note">
+        <strong>Developer option:</strong> If you want to build WhisperKit
+        into your own Swift project, consult the official repository for
+        its current macOS and Xcode requirements.
+      </div>
+
+      <h2>How to Install WhisperKit on Mac</h2>
+      <p>
+        One convenient way to get started is through the WhisperKit
+        command-line tool distributed with Homebrew.
+      </p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Open Terminal</h3>
+          <p>Open the Terminal app from Applications or search for it with Spotlight.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Install Homebrew</h3>
+          <p>If Homebrew is not already installed, follow its official installation instructions.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Install WhisperKit CLI</h3>
+          <p>Run the Homebrew command below to install the command-line tool.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <h3>Check the Help Menu</h3>
+          <p>Review available transcription options before processing your first recording.</p>
+        </div>
+      </div>
+
+      <div class="code-title">INSTALL COMMAND</div>
+      <pre><code>brew install whisperkit-cli</code></pre>
+
+      <p>
+        Once installation finishes, check the available transcription
+        options with this command:
+      </p>
+
+      <div class="code-title">VIEW COMMAND OPTIONS</div>
+      <pre><code>whisperkit-cli transcribe --help</code></pre>
+
+      <h2>How to Transcribe an Audio File</h2>
+      <p>
+        After installing the CLI, you can start transcribing a recording.
+        Use the audio file's actual path in the command. On its first run,
+        WhisperKit may need to download the model and other required files.
+      </p>
+
+      <div class="code-title">BASIC TRANSCRIPTION COMMAND</div>
+      <pre><code>whisperkit-cli transcribe --audio-path /path/to/audio.mp3</code></pre>
+
+      <p>
+        Replace <code>/path/to/audio.mp3</code> with the location of your
+        own recording. For example, if a file named
+        <code>interview.m4a</code> is saved in your Downloads folder,
+        you can use:
+      </p>
+
+      <div class="code-title">EXAMPLE WITH A REAL FILE PATH</div>
+      <pre><code>whisperkit-cli transcribe --audio-path ~/Downloads/interview.m4a</code></pre>
+
+      <p>
+        WhisperKit will process the audio and produce transcription output
+        in the terminal. Depending on your selected model and setup,
+        the first run may take longer because required model files need
+        to be downloaded.
+      </p>
+
+      <h2>Choosing a Whisper Model</h2>
+      <p>
+        WhisperKit supports different model sizes and variants. Smaller
+        models can be useful when speed and resource usage are important,
+        while larger models may provide better recognition quality for
+        some recordings.
+      </p>
+      <p>
+        You can specify a model in the transcription command. For example:
+      </p>
+
+      <div class="code-title">USE THE LARGE-V3 MODEL</div>
+      <pre><code>whisperkit-cli transcribe --model large-v3 --audio-path ~/Downloads/interview.m4a --verbose</code></pre>
+
+      <p>
+        The best choice depends on your Mac's memory, processing power,
+        audio quality, and language. Test a few options with a short
+        recording before selecting a model for a large transcription job.
+      </p>
+
+      <h2>Tips for Better Transcription Results</h2>
+      <ul>
+        <li>Use recordings with clear voices and minimal background noise.</li>
+        <li>Keep the microphone close enough to capture speech clearly.</li>
+        <li>Choose a model that suits your hardware and accuracy requirements.</li>
+        <li>Use a supported audio format and check that the file path is correct.</li>
+        <li>Review names, technical terms, and numbers in the generated transcript.</li>
+        <li>Keep sufficient disk space available for model downloads.</li>
+      </ul>
+
+      <h2>Common Problems and How to Fix Them</h2>
+
+      <h3>1. Command Not Found</h3>
+      <p>
+        If Terminal cannot find the WhisperKit command, confirm that
+        Homebrew installation completed successfully. You can also
+        restart Terminal and check your shell's PATH configuration.
+      </p>
+
+      <h3>2. Audio File Cannot Be Opened</h3>
+      <p>
+        Check that the audio file exists and that you entered its complete
+        path correctly. Try dragging the audio file into Terminal to
+        insert its path automatically.
+      </p>
+
+      <h3>3. First Transcription Takes Too Long</h3>
+      <p>
+        The first run may download model files. Later runs can reuse
+        locally available files. Processing speed also depends on the
+        model size and your Mac's hardware.
+      </p>
+
+      <h3>4. Transcription Contains Errors</h3>
+      <p>
+        Speech recognition is not perfect. Background noise, overlapping
+        speakers, accents, and unclear pronunciation can affect the
+        output. Try a different model or a cleaner recording.
+      </p>
+
+      <h2>Is WhisperKit Worth Using on Mac?</h2>
+      <p>
+        If you regularly work with interviews, lectures, podcasts,
+        meetings, or voice recordings, WhisperKit is worth exploring.
+        Its local processing approach can help reduce dependence on
+        cloud transcription services and gives developers a way to
+        add speech recognition to Apple-platform applications.
+      </p>
+      <p>
+        It is especially interesting for users who are comfortable
+        working with Terminal and want more control over their
+        transcription workflow. Beginners may need a little time
+        to understand command-line installation and model selection.
+      </p>
+
+      <h2>Frequently Asked Questions</h2>
+
+      <div class="faq">
+        <h3>Can WhisperKit transcribe audio offline?</h3>
+        <p>
+          Yes. After the application and required model files have been
+          downloaded, supported audio can be processed locally without
+          needing a cloud transcription service.
+        </p>
+      </div>
+
+      <div class="faq">
+        <h3>Does WhisperKit require an API key?</h3>
+        <p>
+          The standard local CLI workflow does not require a cloud
+          transcription API key.
+        </p>
+      </div>
+
+      <div class="faq">
+        <h3>Which audio formats can I use?</h3>
+        <p>
+          Common supported formats include WAV, MP3, M4A, and FLAC.
+          Check the current documentation if you have a less common format.
+        </p>
+      </div>
+
+      <div class="faq">
+        <h3>Is WhisperKit suitable for beginners?</h3>
+        <p>
+          You can use its command-line tool without writing Swift code,
+          but you should be comfortable running basic commands in Terminal.
+        </p>
+      </div>
+
+      <div class="faq">
+        <h3>Can developers add WhisperKit to a Mac application?</h3>
+        <p>
+          Yes. WhisperKit is also available as a Swift package that
+          developers can integrate into compatible Apple-platform projects.
+        </p>
+      </div>
+
+      <section class="promo">
+        <h2>Discover More Tools for Your Mac</h2>
+        <p>
+          Looking for useful Mac applications and software? Visit
+          GitApp Download to explore more tools and discover software
+          that can improve your everyday workflow.
+        </p>
+        <a class="button secondary"
+           href="https://gitapp.download/"
+           target="_blank"
+           rel="noopener">
+          Visit GitApp Download ↗
+        </a>
+      </section>
+
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2026 GitApp Download · Explore useful software for your workflow.</p>
+  </footer>
+
+</body>
+</html>
+```
