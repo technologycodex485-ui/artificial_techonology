@@ -1,0 +1,583 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Adobe Photoshop - Professional Photo Editing Software</title>
+
+<meta name="description" content="Discover Adobe Photoshop, its professional photo editing tools, image manipulation features, graphic design capabilities, and creative possibilities.">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #101014;
+    color: #f4f4f7;
+    line-height: 1.7;
+}
+
+header {
+    padding: 20px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #17171d;
+    border-bottom: 1px solid #303039;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: #ff4545;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.hero {
+    min-height: 570px;
+    padding: 95px 8%;
+    display: flex;
+    align-items: center;
+    background:
+        radial-gradient(circle at 85% 40%, #792020 0%, transparent 30%),
+        linear-gradient(115deg, #101014, #241417);
+}
+
+.hero-content {
+    max-width: 850px;
+}
+
+.tag {
+    display: inline-block;
+    padding: 8px 17px;
+    border: 1px solid #ff4545;
+    color: #ff7777;
+    border-radius: 4px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+}
+
+h1 {
+    font-size: clamp(43px, 7vw, 78px);
+    line-height: 1.08;
+    letter-spacing: -2px;
+    margin-bottom: 25px;
+}
+
+h1 span {
+    color: #ff4545;
+}
+
+.hero p {
+    color: #c1bfc5;
+    max-width: 720px;
+    font-size: 18px;
+    margin-bottom: 32px;
+}
+
+.download-btn {
+    display: inline-block;
+    padding: 15px 32px;
+    background: #ed3535;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: .3s;
+    box-shadow: 0 8px 25px #ed353544;
+}
+
+.download-btn:hover {
+    background: #ff5555;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px #ed353566;
+}
+
+.container {
+    max-width: 1150px;
+    margin: auto;
+    padding: 80px 25px;
+}
+
+.section-title {
+    font-size: 36px;
+    color: #ff5555;
+    margin-bottom: 18px;
+}
+
+.description {
+    color: #b8b5bf;
+    font-size: 16px;
+    margin-bottom: 35px;
+}
+
+.about-box {
+    padding: 38px;
+    background: #1b1b22;
+    border-left: 4px solid #ef4141;
+    margin-top: 25px;
+}
+
+.about-box h3 {
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+
+.about-box p {
+    color: #bbb8c2;
+    margin-bottom: 14px;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 22px;
+}
+
+.feature-card {
+    background: #1a1a21;
+    padding: 30px;
+    border: 1px solid #303039;
+    border-radius: 8px;
+    transition: .3s;
+}
+
+.feature-card:hover {
+    border-color: #ff4545;
+    transform: translateY(-6px);
+}
+
+.icon {
+    font-size: 35px;
+    margin-bottom: 17px;
+}
+
+.feature-card h3 {
+    color: #ff6666;
+    margin-bottom: 12px;
+    font-size: 20px;
+}
+
+.feature-card p {
+    color: #b8b5bf;
+    font-size: 15px;
+}
+
+.workflow {
+    padding: 75px 8%;
+    background: #1d1518;
+}
+
+.workflow-inner {
+    max-width: 1100px;
+    margin: auto;
+}
+
+.workflow h2 {
+    font-size: 35px;
+    margin-bottom: 18px;
+    color: #ff6262;
+}
+
+.workflow p {
+    color: #c2b7ba;
+}
+
+.steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 20px;
+    margin-top: 35px;
+}
+
+.step {
+    padding: 25px;
+    background: #291c20;
+    border-bottom: 3px solid #ed4141;
+}
+
+.step strong {
+    display: block;
+    font-size: 28px;
+    color: #ff5959;
+    margin-bottom: 10px;
+}
+
+.step h3 {
+    margin-bottom: 10px;
+}
+
+.step p {
+    font-size: 14px;
+}
+
+.benefits {
+    background: #17171d;
+    padding: 45px;
+    margin-top: 35px;
+    border-radius: 8px;
+}
+
+.benefits h3 {
+    color: #ff6262;
+    margin-bottom: 15px;
+    font-size: 24px;
+}
+
+.benefits ul {
+    padding-left: 22px;
+    color: #c0bdc6;
+}
+
+.benefits li {
+    padding: 7px 0;
+}
+
+.cta {
+    text-align: center;
+    padding: 85px 20px;
+    background:
+        radial-gradient(circle at center, #812626, transparent 65%),
+        #170d10;
+}
+
+.cta h2 {
+    font-size: 38px;
+    margin-bottom: 15px;
+}
+
+.cta p {
+    color: #d0c2c5;
+    margin-bottom: 28px;
+}
+
+footer {
+    background: #09090c;
+    padding: 27px 15px;
+    text-align: center;
+    color: #88858f;
+    font-size: 14px;
+}
+
+@media(max-width: 650px) {
+    .hero {
+        padding: 65px 7%;
+    }
+
+    .container {
+        padding: 60px 20px;
+    }
+
+    .about-box {
+        padding: 25px;
+    }
+
+    .section-title,
+    .cta h2 {
+        font-size: 29px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">ADOBE <span>CREATIVE</span></div>
+
+    <a href="https://gitapp.download/" class="nav-link">
+        Explore Software →
+    </a>
+</header>
+
+<main>
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <span class="tag">PROFESSIONAL CREATIVE SOFTWARE</span>
+
+        <h1>Bring Your Ideas to Life with <span>Photoshop</span></h1>
+
+        <p>
+            Adobe Photoshop is a powerful image editing and graphic
+            design application used by photographers, designers,
+            digital artists, and creative professionals.
+            Explore advanced editing tools, creative effects,
+            photo manipulation, and professional design capabilities.
+        </p>
+
+        <a href="https://gitapp.download/" class="download-btn">
+            Explore Downloads →
+        </a>
+
+    </div>
+
+</section>
+
+<section class="container">
+
+    <h2 class="section-title">What Is Adobe Photoshop?</h2>
+
+    <p class="description">
+        Discover one of the world's best-known creative applications
+        and learn how it supports modern digital image editing.
+    </p>
+
+    <div class="about-box">
+
+        <h3>Explore Professional Image Editing</h3>
+
+        <p>
+            <strong>Adobe Photoshop</strong> is a professional
+            image editing and graphic design application developed
+            by Adobe. It provides a comprehensive collection
+            of tools for editing photographs, creating digital
+            artwork, designing graphics, and enhancing images.
+        </p>
+
+        <p>
+            Photoshop offers features such as layers, masks,
+            selection tools, filters, adjustment controls,
+            brushes, typography, and advanced image manipulation.
+            These capabilities allow users to make detailed
+            changes to their creative projects.
+        </p>
+
+        <p>
+            Whether you are a beginner learning photo editing
+            or an experienced designer working on complex
+            compositions, Photoshop offers a flexible environment
+            for creative work.
+        </p>
+
+    </div>
+
+</section>
+
+<section class="container">
+
+    <h2 class="section-title">Top Features of Adobe Photoshop</h2>
+
+    <p class="description">
+        Explore the tools that make Photoshop a versatile
+        choice for digital creativity and image editing.
+    </p>
+
+    <div class="features">
+
+        <div class="feature-card">
+            <div class="icon">🖼️</div>
+            <h3>Photo Editing</h3>
+            <p>
+                Enhance photographs with color adjustments,
+                exposure controls, retouching tools,
+                and image correction features.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon">🎨</div>
+            <h3>Digital Painting</h3>
+            <p>
+                Create original digital artwork using
+                customizable brushes, drawing tools,
+                and creative effects.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon">📚</div>
+            <h3>Layer Management</h3>
+            <p>
+                Organize creative projects with layers,
+                adjustment layers, masks, and blending
+                options for flexible editing.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon">✨</div>
+            <h3>AI-Powered Tools</h3>
+            <p>
+                Use available AI-assisted features,
+                including Generative Fill and other
+                creative editing capabilities.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon">✂️</div>
+            <h3>Background Editing</h3>
+            <p>
+                Select subjects, refine image edges,
+                remove backgrounds, and create
+                creative photo compositions.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon">🔤</div>
+            <h3>Typography & Graphics</h3>
+            <p>
+                Combine text, shapes, colors, and
+                graphic elements to design posters,
+                banners, and promotional content.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="benefits">
+
+        <h3>Why Do Designers Choose Photoshop?</h3>
+
+        <ul>
+            <li>Advanced image editing and photo retouching.</li>
+            <li>Professional tools for graphic design projects.</li>
+            <li>Flexible layers and non-destructive editing options.</li>
+            <li>Creative filters, brushes, and visual effects.</li>
+            <li>AI-assisted tools for supported creative workflows.</li>
+            <li>Support for a wide range of image formats.</li>
+        </ul>
+
+    </div>
+
+</section>
+
+<section class="workflow">
+
+    <div class="workflow-inner">
+
+        <h2>How to Start Using Photoshop</h2>
+
+        <p>
+            Begin your creative journey with a simple workflow.
+            Learn the basic tools and gradually explore
+            more advanced editing techniques.
+        </p>
+
+        <div class="steps">
+
+            <div class="step">
+                <strong>01</strong>
+                <h3>Open an Image</h3>
+                <p>
+                    Import a photograph or create a new
+                    document for your design project.
+                </p>
+            </div>
+
+            <div class="step">
+                <strong>02</strong>
+                <h3>Make Adjustments</h3>
+                <p>
+                    Use editing tools to adjust colors,
+                    brightness, contrast, and composition.
+                </p>
+            </div>
+
+            <div class="step">
+                <strong>03</strong>
+                <h3>Add Creative Elements</h3>
+                <p>
+                    Combine text, layers, graphics,
+                    masks, and visual effects.
+                </p>
+            </div>
+
+            <div class="step">
+                <strong>04</strong>
+                <h3>Export Your Work</h3>
+                <p>
+                    Save your finished project in
+                    a suitable image format.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="container">
+
+    <h2 class="section-title">Who Can Use Adobe Photoshop?</h2>
+
+    <div class="about-box">
+
+        <h3>A Creative Tool for Different Professionals</h3>
+
+        <p>
+            Photographers use Photoshop to enhance images
+            and perform detailed retouching. Graphic designers
+            use it to create advertisements, promotional graphics,
+            banners, and digital artwork.
+        </p>
+
+        <p>
+            Digital artists can create illustrations and
+            imaginative compositions, while content creators
+            can prepare thumbnails, social media graphics,
+            and other visual content.
+        </p>
+
+        <p>
+            Photoshop provides creative possibilities
+            for beginners, freelancers, businesses,
+            and experienced design professionals.
+        </p>
+
+    </div>
+
+</section>
+
+<section class="cta">
+
+    <h2>Discover More Software & Applications</h2>
+
+    <p>
+        Looking for useful software, creative applications,
+        and digital resources? Explore our website
+        and discover more tools.
+    </p>
+
+    <a href="https://gitapp.download/"
+       class="download-btn"
+       target="_blank"
+       rel="noopener noreferrer">
+        Visit GitApp & Explore Downloads →
+    </a>
+
+</section>
+
+</main>
+
+<footer>
+
+    <p>© 2026 Adobe Photoshop Guide. All Rights Reserved.</p>
+    <p>Explore More Software at gitapp.download</p>
+
+</footer>
+
+</body>
+</html>
