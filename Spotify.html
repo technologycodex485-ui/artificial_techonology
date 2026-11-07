@@ -1,0 +1,642 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Spotify - Music Streaming, Features & Listening Experience</title>
+<meta name="description" content="Discover Spotify, a popular music streaming platform for listening to songs, podcasts, playlists, and discovering new artists.">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #101010;
+    color: #ffffff;
+    line-height: 1.7;
+}
+
+header {
+    padding: 19px 8%;
+    background: #080808;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #242424;
+}
+
+.logo {
+    font-size: 27px;
+    font-weight: 900;
+    color: #1ed760;
+    letter-spacing: -1px;
+}
+
+.nav-link {
+    color: #1ed760;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.hero {
+    min-height: 580px;
+    padding: 90px 8%;
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: 45px;
+    align-items: center;
+    background:
+        radial-gradient(circle at 80% 30%, #245c35 0%, transparent 35%),
+        linear-gradient(120deg, #101010, #17251b);
+}
+
+.hero-content {
+    max-width: 700px;
+}
+
+.tag {
+    display: inline-block;
+    color: #1ed760;
+    border: 1px solid #1ed760;
+    padding: 8px 17px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    margin-bottom: 24px;
+}
+
+h1 {
+    font-size: clamp(43px, 6vw, 75px);
+    line-height: 1.1;
+    margin-bottom: 24px;
+    letter-spacing: -2px;
+}
+
+h1 span {
+    color: #1ed760;
+}
+
+.hero p {
+    color: #c2c9c3;
+    font-size: 18px;
+    margin-bottom: 32px;
+}
+
+.download-btn {
+    display: inline-block;
+    padding: 15px 30px;
+    background: #1ed760;
+    color: #07150b;
+    border-radius: 30px;
+    font-weight: 800;
+    text-decoration: none;
+    transition: .3s;
+}
+
+.download-btn:hover {
+    background: #ffffff;
+    transform: translateY(-4px);
+}
+
+.music-card {
+    max-width: 360px;
+    width: 100%;
+    margin: auto;
+    padding: 22px;
+    background: #202020;
+    border-radius: 18px;
+    box-shadow: 0 25px 60px #00000066;
+    transform: rotate(2deg);
+}
+
+.album-art {
+    height: 280px;
+    border-radius: 12px;
+    background:
+        radial-gradient(circle at 70% 25%, #b5ff70 0 10%, transparent 11%),
+        linear-gradient(140deg, #126b39, #1ed760, #163d28);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 70px;
+}
+
+.track {
+    margin-top: 20px;
+}
+
+.track h3 {
+    font-size: 21px;
+}
+
+.track p {
+    color: #a8afa9;
+    font-size: 14px;
+    margin: 3px 0 15px;
+}
+
+.progress {
+    height: 5px;
+    border-radius: 10px;
+    background: #444;
+    overflow: hidden;
+}
+
+.progress span {
+    display: block;
+    height: 100%;
+    width: 65%;
+    background: #1ed760;
+}
+
+.player-info {
+    display: flex;
+    justify-content: space-between;
+    color: #aaa;
+    font-size: 12px;
+    margin-top: 7px;
+}
+
+.container {
+    max-width: 1150px;
+    margin: auto;
+    padding: 80px 25px;
+}
+
+.section-title {
+    font-size: 35px;
+    margin-bottom: 18px;
+    color: #1ed760;
+}
+
+.description {
+    color: #b4bcb6;
+    margin-bottom: 35px;
+    font-size: 16px;
+}
+
+.about-box {
+    background: #1c1c1c;
+    padding: 38px;
+    border-radius: 14px;
+    border-left: 4px solid #1ed760;
+}
+
+.about-box h3 {
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+
+.about-box p {
+    color: #b5bdb7;
+    margin-bottom: 14px;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 22px;
+}
+
+.feature-card {
+    padding: 28px;
+    background: #1b1b1b;
+    border: 1px solid #303030;
+    border-radius: 14px;
+    transition: .3s;
+}
+
+.feature-card:hover {
+    border-color: #1ed760;
+    transform: translateY(-6px);
+}
+
+.icon {
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.feature-card h3 {
+    color: #1ed760;
+    margin-bottom: 12px;
+    font-size: 20px;
+}
+
+.feature-card p {
+    color: #b1b8b2;
+    font-size: 15px;
+}
+
+.playlist-section {
+    padding: 75px 8%;
+    background: #17251b;
+}
+
+.playlist-inner {
+    max-width: 1100px;
+    margin: auto;
+}
+
+.playlist-inner h2 {
+    font-size: 35px;
+    color: #1ed760;
+    margin-bottom: 18px;
+}
+
+.playlist-inner > p {
+    color: #bdc9bf;
+    margin-bottom: 30px;
+}
+
+.playlist-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 20px;
+}
+
+.playlist {
+    background: #24382a;
+    padding: 23px;
+    border-radius: 12px;
+}
+
+.playlist .symbol {
+    font-size: 35px;
+    margin-bottom: 12px;
+}
+
+.playlist h3 {
+    margin-bottom: 8px;
+}
+
+.playlist p {
+    color: #bdc9bf;
+    font-size: 14px;
+}
+
+.benefits {
+    background: #1b1b1b;
+    padding: 35px;
+    margin-top: 35px;
+    border-radius: 12px;
+}
+
+.benefits h3 {
+    color: #1ed760;
+    margin-bottom: 15px;
+    font-size: 23px;
+}
+
+.benefits ul {
+    padding-left: 22px;
+    color: #c0c7c1;
+}
+
+.benefits li {
+    padding: 7px 0;
+}
+
+.cta {
+    text-align: center;
+    padding: 85px 20px;
+    background:
+        radial-gradient(circle at center, #205b33, transparent 65%),
+        #080808;
+}
+
+.cta h2 {
+    font-size: 37px;
+    margin-bottom: 15px;
+}
+
+.cta p {
+    color: #bdc8bf;
+    margin-bottom: 28px;
+}
+
+footer {
+    background: #050505;
+    color: #929a93;
+    padding: 26px 15px;
+    text-align: center;
+    font-size: 14px;
+}
+
+@media(max-width: 750px) {
+    .hero {
+        grid-template-columns: 1fr;
+        padding: 65px 7%;
+        text-align: center;
+    }
+
+    .music-card {
+        margin-top: 15px;
+    }
+
+    .container {
+        padding: 60px 20px;
+    }
+
+    .section-title,
+    .cta h2 {
+        font-size: 29px;
+    }
+
+    .about-box {
+        padding: 25px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">♫ Spotify Guide</div>
+
+    <a href="https://gitapp.download/" class="nav-link">
+        Explore Apps →
+    </a>
+</header>
+
+<main>
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <span class="tag">MUSIC • PODCASTS • DISCOVERY</span>
+
+        <h1>Discover Your World of Music with <span>Spotify</span></h1>
+
+        <p>
+            Spotify is a popular digital music streaming platform
+            that gives listeners access to millions of songs,
+            podcasts, and audio experiences. Discover new artists,
+            explore playlists, and enjoy your favorite music
+            across supported devices.
+        </p>
+
+        <a href="https://gitapp.download/" class="download-btn">
+            Explore Downloads →
+        </a>
+
+    </div>
+
+    <div class="music-card">
+
+        <div class="album-art">♫</div>
+
+        <div class="track">
+            <h3>Your Music World</h3>
+            <p>Discover • Listen • Enjoy</p>
+
+            <div class="progress">
+                <span></span>
+            </div>
+
+            <div class="player-info">
+                <span>02:15</span>
+                <span>03:45</span>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="container">
+
+    <h2 class="section-title">What Is Spotify?</h2>
+
+    <p class="description">
+        Learn about a popular audio streaming service
+        that brings music, podcasts, and personalized
+        listening experiences together.
+    </p>
+
+    <div class="about-box">
+
+        <h3>A Complete Digital Music Experience</h3>
+
+        <p>
+            Spotify is a digital audio streaming service
+            that allows users to explore and listen to a
+            wide selection of music, podcasts, and other
+            audio content. It provides access to artists,
+            albums, playlists, and curated recommendations.
+        </p>
+
+        <p>
+            The platform offers personalized listening
+            experiences based on users' musical interests.
+            Its search tools and discovery features make
+            it easier to find new songs and revisit favorites.
+        </p>
+
+        <p>
+            Spotify is available on supported smartphones,
+            tablets, desktop computers, smart TVs, and
+            other compatible devices. Both free and
+            paid subscription options are available,
+            with features varying by plan and region.
+        </p>
+
+    </div>
+
+</section>
+
+<section class="container">
+
+    <h2 class="section-title">Top Features of Spotify</h2>
+
+    <p class="description">
+        Explore the features that make Spotify a convenient
+        destination for discovering and enjoying audio content.
+    </p>
+
+    <div class="features">
+
+        <div class="feature-card">
+            <div class="icon">🎵</div>
+            <h3>Music Streaming</h3>
+            <p>
+                Explore a large music catalog featuring
+                different artists, albums, genres,
+                and musical styles.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon">🎧</div>
+            <h3>Personalized Playlists</h3>
+            <p>
+                Discover playlists and music recommendations
+                based on your listening habits and preferences.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon">🎙️</div>
+            <h3>Podcasts</h3>
+            <p>
+                Find podcasts covering entertainment,
+                education, technology, news, and many
+                other subjects.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon">🔎</div>
+            <h3>Music Discovery</h3>
+            <p>
+                Explore new releases, emerging artists,
+                popular tracks, and recommendations
+                through discovery tools.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon">📱</div>
+            <h3>Cross-Device Access</h3>
+            <p>
+                Enjoy Spotify across supported mobile,
+                desktop, and connected devices.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon">⬇️</div>
+            <h3>Offline Listening</h3>
+            <p>
+                Eligible Premium subscribers can download
+                supported content for offline listening.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="benefits">
+
+        <h3>Why Do People Choose Spotify?</h3>
+
+        <ul>
+            <li>Access to a wide variety of music and podcasts.</li>
+            <li>Personalized recommendations and playlists.</li>
+            <li>Easy-to-use search and browsing experience.</li>
+            <li>Music discovery based on personal interests.</li>
+            <li>Compatibility with multiple supported devices.</li>
+            <li>Free and paid subscription options.</li>
+        </ul>
+
+    </div>
+
+</section>
+
+<section class="playlist-section">
+
+    <div class="playlist-inner">
+
+        <h2>Explore Different Music Categories</h2>
+
+        <p>
+            Spotify provides access to different genres
+            and audio categories for a variety of moods
+            and listening preferences.
+        </p>
+
+        <div class="playlist-grid">
+
+            <div class="playlist">
+                <div class="symbol">🎸</div>
+                <h3>Rock Music</h3>
+                <p>Explore classic and modern rock sounds.</p>
+            </div>
+
+            <div class="playlist">
+                <div class="symbol">🎹</div>
+                <h3>Pop Music</h3>
+                <p>Discover popular songs and trending artists.</p>
+            </div>
+
+            <div class="playlist">
+                <div class="symbol">🎤</div>
+                <h3>Hip-Hop</h3>
+                <p>Enjoy hip-hop tracks and rap music.</p>
+            </div>
+
+            <div class="playlist">
+                <div class="symbol">🎼</div>
+                <h3>Classical Music</h3>
+                <p>Listen to instrumental and orchestral music.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="container">
+
+    <h2 class="section-title">Spotify for Everyday Listening</h2>
+
+    <div class="about-box">
+
+        <h3>Entertainment Wherever You Go</h3>
+
+        <p>
+            Whether you enjoy music while studying,
+            working, exercising, relaxing, or traveling,
+            Spotify offers a convenient way to access
+            your favorite audio content.
+        </p>
+
+        <p>
+            Users can create personal playlists,
+            follow artists, explore podcast episodes,
+            and discover fresh music through the platform.
+        </p>
+
+    </div>
+
+</section>
+
+<section class="cta">
+
+    <h2>Discover More Apps & Software</h2>
+
+    <p>
+        Looking for useful applications, software guides,
+        and digital resources? Visit our website
+        and explore more downloads.
+    </p>
+
+    <a href="https://gitapp.download/"
+       class="download-btn"
+       target="_blank"
+       rel="noopener noreferrer">
+        Visit GitApp & Explore Downloads →
+    </a>
+
+</section>
+
+</main>
+
+<footer>
+
+    <p>© 2026 Spotify Guide. All Rights Reserved.</p>
+    <p>Explore More Software at gitapp.download</p>
+
+</footer>
+
+</body>
+</html>
