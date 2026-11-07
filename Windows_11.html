@@ -1,0 +1,341 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Windows 11 - Features, Performance & Experience</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #080d19;
+    color: #f5f7ff;
+    line-height: 1.7;
+}
+
+.hero {
+    min-height: 540px;
+    padding: 90px 8%;
+    display: flex;
+    align-items: center;
+    background:
+      radial-gradient(circle at 80% 30%, #0759b8 0%, transparent 35%),
+      linear-gradient(120deg, #080d19, #102b50);
+}
+
+.hero-content {
+    max-width: 850px;
+}
+
+.tag {
+    display: inline-block;
+    padding: 7px 16px;
+    border: 1px solid #38a7ff;
+    border-radius: 30px;
+    color: #65c2ff;
+    font-size: 13px;
+    margin-bottom: 22px;
+}
+
+h1 {
+    font-size: clamp(42px, 7vw, 76px);
+    line-height: 1.1;
+    margin-bottom: 22px;
+}
+
+h1 span {
+    color: #46b5ff;
+}
+
+.hero p {
+    color: #c1d2e8;
+    font-size: 18px;
+    max-width: 680px;
+    margin-bottom: 30px;
+}
+
+.download-btn {
+    display: inline-block;
+    text-decoration: none;
+    background: linear-gradient(90deg, #087cf5, #22b8ff);
+    color: white;
+    padding: 15px 32px;
+    border-radius: 8px;
+    font-weight: bold;
+    box-shadow: 0 8px 25px #087cf555;
+    transition: .3s;
+}
+
+.download-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 35px #087cf588;
+}
+
+.container {
+    max-width: 1150px;
+    margin: auto;
+    padding: 75px 25px;
+}
+
+.section-title {
+    font-size: 34px;
+    margin-bottom: 18px;
+    color: #58baff;
+}
+
+.intro {
+    color: #bdc9dc;
+    font-size: 17px;
+    margin-bottom: 40px;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 22px;
+}
+
+.feature-card {
+    padding: 28px;
+    background: linear-gradient(145deg, #14243c, #0c1728);
+    border: 1px solid #254365;
+    border-radius: 14px;
+    transition: .3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-6px);
+    border-color: #32aaff;
+}
+
+.feature-card .icon {
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.feature-card h3 {
+    color: #62bdff;
+    margin-bottom: 10px;
+}
+
+.feature-card p {
+    color: #b5c3d7;
+    font-size: 15px;
+}
+
+.highlight {
+    background: #102746;
+    border-left: 4px solid #28aaff;
+    padding: 30px;
+    border-radius: 8px;
+    margin-top: 35px;
+}
+
+.highlight h3 {
+    margin-bottom: 10px;
+    color: #61bcff;
+}
+
+.cta {
+    text-align: center;
+    padding: 75px 20px;
+    background: linear-gradient(120deg, #064b91, #102b50);
+}
+
+.cta h2 {
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.cta p {
+    color: #d5e7f9;
+    margin-bottom: 25px;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    background: #060b14;
+    color: #8293a9;
+    font-size: 14px;
+}
+
+@media(max-width:600px) {
+    .hero {
+        padding: 65px 7%;
+    }
+
+    .container {
+        padding: 55px 20px;
+    }
+
+    .cta h2 {
+        font-size: 28px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="hero">
+    <div class="hero-content">
+        <span class="tag">THE NEXT GENERATION OF WINDOWS</span>
+
+        <h1>Discover the Power of <span>Windows 11</span></h1>
+
+        <p>
+            Windows 11 brings a modern interface, improved productivity,
+            powerful security features, and an enhanced computing experience.
+            Discover how Microsoft's operating system makes everyday tasks
+            easier and more enjoyable.
+        </p>
+
+        <a href="https://gitapp.download/" class="download-btn">
+            Explore Downloads →
+        </a>
+    </div>
+</header>
+
+<main>
+
+<section class="container">
+    <h2 class="section-title">What Is Windows 11?</h2>
+
+    <p class="intro">
+        Windows 11 is Microsoft's modern desktop operating system,
+        designed to provide a cleaner interface, smoother navigation,
+        better multitasking, and advanced features. Its redesigned
+        Start Menu, centered taskbar, and updated window management
+        tools create a fresh experience for personal and professional use.
+    </p>
+
+    <div class="highlight">
+        <h3>A Modern Computing Experience</h3>
+        <p>
+            Whether you are studying, working, gaming, or creating
+            digital content, Windows 11 provides a versatile environment
+            with tools designed to help you stay organized and productive.
+        </p>
+    </div>
+</section>
+
+<section class="container">
+    <h2 class="section-title">Top Features of Windows 11</h2>
+
+    <p class="intro">
+        Explore some of the features that make Windows 11 a popular
+        choice for modern desktop and laptop computers.
+    </p>
+
+    <div class="feature-grid">
+
+        <div class="feature-card">
+            <div class="icon">🖥️</div>
+            <h3>Modern Interface</h3>
+            <p>
+                Enjoy a refreshed desktop with rounded corners,
+                modern icons, a redesigned Start Menu, and
+                a clean visual experience.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon">⚡</div>
+            <h3>Improved Performance</h3>
+            <p>
+                Benefit from system optimizations and efficient
+                resource management on compatible hardware.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon">🔒</div>
+            <h3>Enhanced Security</h3>
+            <p>
+                Take advantage of security technologies such as
+                Windows Hello, Secure Boot, and TPM 2.0 support.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon">🎮</div>
+            <h3>Gaming Experience</h3>
+            <p>
+                Supported hardware can benefit from features
+                such as Auto HDR and DirectStorage for gaming.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon">📂</div>
+            <h3>Snap Layouts</h3>
+            <p>
+                Organize multiple application windows on your
+                screen and manage different tasks more efficiently.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon">☁️</div>
+            <h3>Cloud Integration</h3>
+            <p>
+                Connect with Microsoft services and use OneDrive
+                to access and synchronize your files.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<section class="container">
+    <h2 class="section-title">Why Choose Windows 11?</h2>
+
+    <p class="intro">
+        Windows 11 combines a familiar desktop environment with
+        modern technology. Its multitasking tools, updated design,
+        compatibility options, and built-in security features make
+        it suitable for a wide range of computing needs.
+    </p>
+
+    <div class="highlight">
+        <h3>System Requirements</h3>
+        <p>
+            Windows 11 requires a compatible 64-bit processor,
+            at least 4 GB RAM, 64 GB storage, UEFI Secure Boot
+            capability, TPM 2.0, and a DirectX 12-compatible
+            graphics solution with a WDDM 2.0 driver.
+        </p>
+    </div>
+</section>
+
+<section class="cta">
+    <h2>Explore More Software & Apps</h2>
+
+    <p>
+        Looking for useful applications, software information,
+        and more digital resources? Visit our website today.
+    </p>
+
+    <a href="https://gitapp.download/" class="download-btn"
+       target="_blank" rel="noopener noreferrer">
+        Visit GitApp & Explore Downloads →
+    </a>
+</section>
+
+</main>
+
+<footer>
+    <p>© 2026 Windows 11 Guide. All Rights Reserved.</p>
+    <p>Explore more at gitapp.download</p>
+</footer>
+
+</body>
+</html>
