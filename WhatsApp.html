@@ -1,0 +1,568 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>WhatsApp Messenger - Features, Messaging & Communication</title>
+
+<meta name="description" content="Discover WhatsApp Messenger, its messaging features, voice and video calls, privacy tools, and convenient communication experience.">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f8f5;
+    color: #18372b;
+    line-height: 1.7;
+}
+
+header {
+    background: #ffffff;
+    padding: 20px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e7eee8;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 800;
+    color: #128c4a;
+}
+
+.nav-btn {
+    text-decoration: none;
+    background: #128c4a;
+    color: white;
+    padding: 11px 22px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.hero {
+    padding: 95px 8%;
+    background: linear-gradient(120deg, #d9f8e5, #f3fff6);
+    display: grid;
+    grid-template-columns: 1.2fr .8fr;
+    gap: 45px;
+    align-items: center;
+}
+
+.hero-content {
+    max-width: 700px;
+}
+
+.eyebrow {
+    display: inline-block;
+    color: #128c4a;
+    background: #ffffff;
+    padding: 8px 18px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 22px;
+}
+
+h1 {
+    font-size: clamp(42px, 6vw, 70px);
+    line-height: 1.13;
+    margin-bottom: 22px;
+    color: #123b29;
+}
+
+h1 span {
+    color: #18a558;
+}
+
+.hero p {
+    color: #526d5c;
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.main-btn {
+    display: inline-block;
+    padding: 15px 30px;
+    background: #128c4a;
+    color: white;
+    text-decoration: none;
+    border-radius: 7px;
+    font-weight: bold;
+    transition: .3s;
+}
+
+.main-btn:hover {
+    background: #086b37;
+    transform: translateY(-3px);
+}
+
+.phone {
+    max-width: 320px;
+    margin: auto;
+    background: #123b29;
+    border-radius: 35px;
+    padding: 15px;
+    box-shadow: 0 25px 50px #174c3025;
+}
+
+.phone-screen {
+    background: #e8f7eb;
+    min-height: 390px;
+    border-radius: 25px;
+    padding: 22px 15px;
+    color: #18372b;
+}
+
+.phone-top {
+    background: #128c4a;
+    color: white;
+    padding: 15px;
+    border-radius: 13px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.chat {
+    background: white;
+    padding: 12px;
+    border-radius: 12px;
+    margin: 13px 0;
+    font-size: 13px;
+    box-shadow: 0 3px 10px #00000008;
+}
+
+.chat.right {
+    background: #c9f5d5;
+    margin-left: 35px;
+}
+
+.container {
+    max-width: 1150px;
+    margin: auto;
+    padding: 80px 25px;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.section-heading h2 {
+    font-size: 37px;
+    color: #123b29;
+    margin-bottom: 12px;
+}
+
+.section-heading p {
+    color: #698073;
+    max-width: 650px;
+    margin: auto;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+}
+
+.card {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 16px;
+    border: 1px solid #e5eee7;
+    transition: .3s;
+}
+
+.card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 15px 35px #184d3012;
+}
+
+.card-icon {
+    width: 55px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e1f7e9;
+    color: #128c4a;
+    border-radius: 14px;
+    font-size: 27px;
+    margin-bottom: 20px;
+}
+
+.card h3 {
+    color: #128c4a;
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+
+.card p {
+    color: #667c6d;
+    font-size: 15px;
+}
+
+.about {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 45px;
+    margin-top: 45px;
+}
+
+.about h2 {
+    color: #128c4a;
+    font-size: 29px;
+    margin-bottom: 15px;
+}
+
+.about p {
+    color: #607668;
+    margin-bottom: 15px;
+}
+
+.benefits {
+    background: #e3f7e9;
+    padding: 70px 8%;
+}
+
+.benefit-inner {
+    max-width: 1100px;
+    margin: auto;
+}
+
+.benefits h2 {
+    font-size: 35px;
+    margin-bottom: 25px;
+    color: #123b29;
+}
+
+.benefits ul {
+    padding-left: 22px;
+    color: #466653;
+}
+
+.benefits li {
+    padding: 7px 0;
+}
+
+.cta {
+    text-align: center;
+    padding: 85px 20px;
+    background: #123b29;
+    color: white;
+}
+
+.cta h2 {
+    font-size: 38px;
+    margin-bottom: 15px;
+}
+
+.cta p {
+    color: #c7dfce;
+    margin-bottom: 28px;
+}
+
+.cta .main-btn {
+    background: #20b761;
+}
+
+footer {
+    background: #0b2619;
+    color: #a9c4b2;
+    text-align: center;
+    padding: 25px;
+    font-size: 14px;
+}
+
+@media(max-width: 750px) {
+    .hero {
+        grid-template-columns: 1fr;
+        padding: 65px 7%;
+        text-align: center;
+    }
+
+    .phone {
+        margin-top: 15px;
+    }
+
+    header {
+        padding: 17px 5%;
+    }
+
+    .section-heading h2,
+    .cta h2 {
+        font-size: 29px;
+    }
+
+    .about {
+        padding: 27px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">WhatsApp Guide</div>
+    <a href="https://gitapp.download/" class="nav-btn">
+        Explore Apps
+    </a>
+</header>
+
+<main>
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <span class="eyebrow">CONNECT • COMMUNICATE • SHARE</span>
+
+        <h1>Stay Connected with <span>WhatsApp</span></h1>
+
+        <p>
+            WhatsApp is a popular messaging application that helps
+            people stay connected with friends, family, and colleagues.
+            Send messages, share photos, make voice and video calls,
+            and enjoy convenient communication from your devices.
+        </p>
+
+        <a href="https://gitapp.download/" class="main-btn">
+            Explore Downloads →
+        </a>
+
+    </div>
+
+    <div class="phone">
+        <div class="phone-screen">
+
+            <div class="phone-top">
+                WhatsApp Messenger
+                <small style="display:block;font-weight:normal;">
+                    Your conversations
+                </small>
+            </div>
+
+            <div class="chat">
+                <strong>Alex</strong><br>
+                Hey! How are you today?
+            </div>
+
+            <div class="chat right">
+                I'm doing great! Thanks.
+            </div>
+
+            <div class="chat">
+                <strong>Sarah</strong><br>
+                Did you receive the photos?
+            </div>
+
+            <div class="chat right">
+                Yes, they look amazing!
+            </div>
+
+            <div class="chat">
+                <strong>Family Group</strong><br>
+                Good morning everyone!
+            </div>
+
+        </div>
+    </div>
+
+</section>
+
+<section class="container">
+
+    <div class="section-heading">
+        <h2>What Is WhatsApp?</h2>
+        <p>
+            Discover an easy way to communicate and share moments
+            with people around the world.
+        </p>
+    </div>
+
+    <div class="about">
+
+        <h2>Simple and Convenient Communication</h2>
+
+        <p>
+            WhatsApp Messenger is a communication platform developed
+            by Meta. It allows users to exchange text messages,
+            photographs, videos, voice messages, and documents.
+        </p>
+
+        <p>
+            The application also supports voice and video calling,
+            group conversations, status updates, and various privacy
+            settings. Its straightforward interface makes it accessible
+            to users with different levels of technical experience.
+        </p>
+
+        <p>
+            WhatsApp is available on supported Android and iOS devices,
+            as well as desktop and web platforms.
+        </p>
+
+    </div>
+
+</section>
+
+<section class="container">
+
+    <div class="section-heading">
+        <h2>Popular WhatsApp Features</h2>
+        <p>
+            Explore the useful tools that make everyday communication
+            easier and more convenient.
+        </p>
+    </div>
+
+    <div class="features">
+
+        <div class="card">
+            <div class="card-icon">💬</div>
+            <h3>Instant Messaging</h3>
+            <p>
+                Send and receive messages with your contacts
+                and keep conversations organized.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">📞</div>
+            <h3>Voice Calling</h3>
+            <p>
+                Make voice calls with other WhatsApp users
+                over an internet connection.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">🎥</div>
+            <h3>Video Calling</h3>
+            <p>
+                Connect face-to-face with friends, family,
+                and colleagues through video calls.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">👥</div>
+            <h3>Group Chats</h3>
+            <p>
+                Create group conversations to communicate
+                with multiple people in one place.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">📷</div>
+            <h3>Status Updates</h3>
+            <p>
+                Share photos, videos, and text updates
+                with your selected contacts.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">🔐</div>
+            <h3>Privacy Features</h3>
+            <p>
+                Manage privacy settings and benefit from
+                end-to-end encryption for personal messages
+                and calls.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="benefits">
+
+    <div class="benefit-inner">
+
+        <h2>Why Do People Use WhatsApp?</h2>
+
+        <ul>
+            <li>Easy communication with friends and family.</li>
+            <li>Convenient voice and video calling options.</li>
+            <li>Quick sharing of documents and media.</li>
+            <li>Group messaging for teams and communities.</li>
+            <li>Available across multiple supported platforms.</li>
+            <li>Privacy controls for managing personal conversations.</li>
+        </ul>
+
+    </div>
+
+</section>
+
+<section class="container">
+
+    <div class="section-heading">
+        <h2>WhatsApp for Everyday Life</h2>
+        <p>
+            From personal conversations to professional communication,
+            WhatsApp offers tools for different everyday needs.
+        </p>
+    </div>
+
+    <div class="about">
+
+        <h2>A Flexible Messaging Experience</h2>
+
+        <p>
+            Whether you are sharing family photographs, discussing
+            work projects, coordinating group activities, or staying
+            in touch with friends, WhatsApp provides a convenient
+            communication experience.
+        </p>
+
+        <p>
+            Its combination of messaging, calling, media sharing,
+            and group features makes it a useful application
+            for daily communication.
+        </p>
+
+    </div>
+
+</section>
+
+<section class="cta">
+
+    <h2>Explore More Apps and Software</h2>
+
+    <p>
+        Looking for more useful applications, software guides,
+        and digital resources? Visit our website today.
+    </p>
+
+    <a href="https://gitapp.download/"
+       class="main-btn"
+       target="_blank"
+       rel="noopener noreferrer">
+       Visit GitApp & Explore Downloads →
+    </a>
+
+</section>
+
+</main>
+
+<footer>
+
+    <p>© 2026 WhatsApp Guide. All Rights Reserved.</p>
+    <p>Explore More Software at gitapp.download</p>
+
+</footer>
+
+</body>
+</html>
