@@ -1,0 +1,386 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Discover Homebrew for Mac, the popular package manager that makes installing and managing software on macOS easier.">
+<title>Homebrew for Mac - The Ultimate Package Manager</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #101714;
+    color: #e9f1eb;
+    line-height: 1.7;
+}
+
+header {
+    padding: 22px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #29382e;
+}
+
+.logo {
+    color: #a3e6ae;
+    font-size: 25px;
+    font-weight: 800;
+}
+
+nav a {
+    color: #bdc9bf;
+    text-decoration: none;
+    margin-left: 25px;
+    font-size: 14px;
+}
+
+.hero {
+    padding: 100px 8%;
+    text-align: center;
+    background:
+      radial-gradient(ellipse at top, #254c32, transparent 65%),
+      #101714;
+}
+
+.tag {
+    display: inline-block;
+    border: 1px solid #4e9b62;
+    color: #a3e6ae;
+    padding: 6px 17px;
+    border-radius: 30px;
+    font-size: 13px;
+    margin-bottom: 25px;
+}
+
+.hero h1 {
+    font-size: clamp(38px, 6vw, 65px);
+    line-height: 1.15;
+    margin-bottom: 22px;
+}
+
+.hero h1 span {
+    color: #91e4a0;
+}
+
+.hero p {
+    color: #b4c2b7;
+    max-width: 700px;
+    margin: auto;
+    font-size: 17px;
+}
+
+.download-btn {
+    display: inline-block;
+    margin-top: 32px;
+    background: #a3e6ae;
+    color: #102017;
+    padding: 15px 34px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 750;
+    transition: .3s;
+}
+
+.download-btn:hover {
+    background: #c1f5c9;
+    transform: translateY(-3px);
+}
+
+section {
+    padding: 75px 8%;
+}
+
+.section-title {
+    font-size: 34px;
+    margin-bottom: 18px;
+    color: #a3e6ae;
+}
+
+.intro {
+    max-width: 900px;
+    color: #bdc9bf;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 22px;
+    margin-top: 35px;
+}
+
+.feature {
+    padding: 28px;
+    background: #19241d;
+    border: 1px solid #304436;
+    border-radius: 13px;
+    transition: .3s;
+}
+
+.feature:hover {
+    border-color: #8bd69a;
+    transform: translateY(-5px);
+}
+
+.feature h3 {
+    color: #a3e6ae;
+    margin-bottom: 12px;
+}
+
+.feature p {
+    color: #b6c3b9;
+    font-size: 15px;
+}
+
+.code-box {
+    background: #080e0a;
+    border: 1px solid #344b38;
+    padding: 25px;
+    border-radius: 10px;
+    margin-top: 25px;
+    overflow-x: auto;
+}
+
+code {
+    color: #a3e6ae;
+    font-size: 15px;
+}
+
+.note {
+    background: #1b2b20;
+    border-left: 4px solid #91e4a0;
+    padding: 20px;
+    margin-top: 25px;
+    color: #c5d4c8;
+}
+
+.cta {
+    text-align: center;
+    background: linear-gradient(120deg, #1d3a27, #14251b);
+    border-top: 1px solid #365640;
+    border-bottom: 1px solid #365640;
+}
+
+.cta h2 {
+    font-size: 35px;
+    margin-bottom: 15px;
+}
+
+.cta p {
+    color: #c0d0c4;
+}
+
+footer {
+    padding: 28px 8%;
+    text-align: center;
+    color: #829487;
+    font-size: 14px;
+}
+
+footer a {
+    color: #a3e6ae;
+    text-decoration: none;
+}
+
+@media(max-width: 600px) {
+    header {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    nav a {
+        margin: 0 8px;
+    }
+
+    .hero {
+        padding: 75px 6%;
+    }
+
+    section {
+        padding: 55px 6%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">⌘ Homebrew</div>
+    <nav>
+        <a href="#about">About</a>
+        <a href="#features">Features</a>
+        <a href="#install">Installation</a>
+    </nav>
+</header>
+
+<div class="hero">
+    <span class="tag">MACOS PACKAGE MANAGER</span>
+
+    <h1>Make Your Mac<br>
+    <span>More Powerful.</span></h1>
+
+    <p>
+        Homebrew is a popular open-source package manager
+        for macOS that helps developers and everyday users
+        install, update, and manage command-line tools
+        and applications with simple commands.
+    </p>
+
+    <a class="download-btn"
+       href="https://gitapp.download/"
+       target="_blank"
+       rel="noopener noreferrer">
+       Explore Downloads →
+    </a>
+</div>
+
+<section id="about">
+    <h2 class="section-title">What Is Homebrew for Mac?</h2>
+
+    <p class="intro">
+        Homebrew is a convenient package management system
+        designed for macOS. It allows users to install
+        thousands of useful tools, developer utilities,
+        libraries, and command-line applications without
+        manually downloading and configuring every package.
+        Instead of searching for individual installers,
+        you can use simple Terminal commands to manage
+        software on your Mac.
+    </p>
+
+    <div class="note">
+        Homebrew is especially useful for developers,
+        programmers, system administrators, and Mac users
+        who prefer a faster and more organized software
+        installation workflow.
+    </div>
+</section>
+
+<section id="features">
+    <h2 class="section-title">Why Choose Homebrew?</h2>
+
+    <div class="features">
+
+        <div class="feature">
+            <h3>Easy Installation</h3>
+            <p>
+                Install supported packages through
+                straightforward Terminal commands.
+            </p>
+        </div>
+
+        <div class="feature">
+            <h3>Package Management</h3>
+            <p>
+                Manage installed tools and applications
+                from one convenient package manager.
+            </p>
+        </div>
+
+        <div class="feature">
+            <h3>Developer Friendly</h3>
+            <p>
+                Get access to development utilities,
+                programming languages, and useful libraries.
+            </p>
+        </div>
+
+        <div class="feature">
+            <h3>Easy Updates</h3>
+            <p>
+                Update Homebrew package information and
+                installed software using Terminal.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<section id="install">
+    <h2 class="section-title">Getting Started with Homebrew</h2>
+
+    <p class="intro">
+        Homebrew is installed and managed through the macOS
+        Terminal. After installing it from its official
+        website, you can use commands to install and manage
+        supported packages.
+    </p>
+
+    <div class="code-box">
+        <code>brew --version</code>
+    </div>
+
+    <p class="intro" style="margin-top:20px;">
+        This command checks whether Homebrew is installed
+        and displays its current version.
+    </p>
+
+    <div class="code-box">
+        <code>brew update</code>
+    </div>
+
+    <p class="intro" style="margin-top:20px;">
+        This command updates Homebrew's local package
+        information.
+    </p>
+
+    <div class="code-box">
+        <code>brew upgrade</code>
+    </div>
+
+    <p class="intro" style="margin-top:20px;">
+        This command upgrades installed packages when
+        newer versions are available.
+    </p>
+
+    <div class="note">
+        Always download Homebrew from its official source
+        and review installation instructions before running
+        commands in Terminal.
+    </div>
+
+    <a class="download-btn"
+       href="https://brew.sh/"
+       target="_blank"
+       rel="noopener noreferrer">
+       Visit Official Homebrew Website
+    </a>
+</section>
+
+<div class="cta">
+    <section>
+        <h2>Discover More Mac Applications</h2>
+
+        <p>
+            Explore useful software, applications, and
+            digital tools through our website.
+        </p>
+
+        <a class="download-btn"
+           href="https://gitapp.download/"
+           target="_blank"
+           rel="noopener noreferrer">
+           Visit GitApp Downloads →
+        </a>
+    </section>
+</div>
+
+<footer>
+    <p>
+        © 2026 Homebrew for Mac Guide.
+        Explore more software at
+        <a href="https://gitapp.download/">
+        GitApp Downloads</a>.
+    </p>
+</footer>
+
+</body>
+</html>
