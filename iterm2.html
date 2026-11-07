@@ -1,0 +1,759 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>iTerm2 for Mac – Download, Features & Installation Guide</title>
+<meta name="description" content="Discover iTerm2 for Mac, a powerful terminal emulator featuring split panes, customizable themes, search, profiles, hotkeys, and advanced terminal tools.">
+<meta name="keywords" content="iTerm2, iTerm2 download, iTerm2 for Mac, macOS terminal, Mac terminal emulator, iTerm2 features">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #090d13;
+    color: #e5edf5;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.8;
+}
+
+header {
+    padding: 20px 8%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #0d131c;
+    border-bottom: 1px solid #1c3442;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 800;
+    color: #36e6e6;
+    letter-spacing: 1px;
+}
+
+nav a {
+    color: #b8cbd4;
+    text-decoration: none;
+    margin-left: 22px;
+    font-size: 14px;
+    transition: .3s;
+}
+
+nav a:hover {
+    color: #36e6e6;
+}
+
+.hero {
+    padding: 100px 8%;
+    background:
+      radial-gradient(ellipse at 80% 20%, #123d48, transparent 45%),
+      linear-gradient(135deg, #0a1018, #101b27);
+}
+
+.hero-content {
+    max-width: 1000px;
+    margin: auto;
+    text-align: center;
+}
+
+.label {
+    display: inline-block;
+    padding: 7px 18px;
+    border: 1px solid #27cfd3;
+    color: #36e6e6;
+    border-radius: 30px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-bottom: 24px;
+}
+
+.hero h1 {
+    font-size: clamp(40px, 7vw, 72px);
+    line-height: 1.15;
+    margin-bottom: 22px;
+}
+
+.hero h1 span {
+    color: #36e6e6;
+    text-shadow: 0 0 22px rgba(54,230,230,.3);
+}
+
+.hero p {
+    color: #aebfca;
+    max-width: 760px;
+    margin: auto;
+    font-size: 17px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 14px 30px;
+    margin-top: 30px;
+    background: #31dada;
+    color: #071116;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: .3s;
+}
+
+.btn:hover {
+    background: #a0ffff;
+    box-shadow: 0 0 20px rgba(49,218,218,.35);
+    transform: translateY(-4px);
+}
+
+.terminal-window {
+    max-width: 760px;
+    margin: 55px auto 0;
+    background: #050a10;
+    border: 1px solid #22606b;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 15px 45px rgba(0,0,0,.4);
+    text-align: left;
+}
+
+.terminal-header {
+    padding: 13px 20px;
+    background: #15232e;
+    color: #9bb2bf;
+    font-size: 13px;
+    border-bottom: 1px solid #23404d;
+}
+
+.terminal-content {
+    padding: 28px;
+    font-family: monospace;
+    font-size: 14px;
+    color: #b5c8d0;
+    overflow-x: auto;
+}
+
+.terminal-content .cyan {
+    color: #36e6e6;
+}
+
+.terminal-content .purple {
+    color: #c59cff;
+}
+
+section {
+    padding: 75px 8%;
+}
+
+.section-title {
+    font-size: 34px;
+    color: #36e6e6;
+    margin-bottom: 17px;
+}
+
+.intro {
+    color: #aebdc7;
+    max-width: 950px;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 23px;
+    margin-top: 38px;
+}
+
+.feature-card {
+    background: #101b25;
+    border: 1px solid #203c49;
+    border-radius: 10px;
+    padding: 28px;
+    transition: .3s;
+}
+
+.feature-card:hover {
+    border-color: #36e6e6;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,220,220,.08);
+}
+
+.feature-icon {
+    font-size: 32px;
+    margin-bottom: 14px;
+}
+
+.feature-card h3 {
+    color: #50e4e4;
+    margin-bottom: 10px;
+    font-size: 19px;
+}
+
+.feature-card p {
+    color: #a9bac4;
+    font-size: 14px;
+}
+
+.alternate {
+    background: #0d151e;
+}
+
+.step {
+    display: flex;
+    gap: 22px;
+    margin-top: 25px;
+    padding: 23px;
+    background: #111f2a;
+    border-left: 3px solid #36e6e6;
+    border-radius: 6px;
+}
+
+.step-number {
+    min-width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #36e6e6;
+    color: #071116;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.step h3 {
+    color: #36e6e6;
+    margin-bottom: 7px;
+}
+
+.step p {
+    color: #aebdc7;
+}
+
+.code-panel {
+    background: #03080d;
+    border: 1px solid #244a56;
+    padding: 24px;
+    border-radius: 8px;
+    margin-top: 25px;
+    overflow-x: auto;
+}
+
+.code-panel code {
+    color: #6fe6cb;
+    font-family: monospace;
+    font-size: 14px;
+}
+
+.note {
+    background: #102b30;
+    padding: 23px;
+    border-left: 4px solid #36e6e6;
+    border-radius: 5px;
+    color: #b7d3d6;
+    margin-top: 28px;
+}
+
+.comparison {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 22px;
+    margin-top: 35px;
+}
+
+.compare-card {
+    padding: 27px;
+    background: #101b25;
+    border: 1px solid #25404b;
+    border-radius: 10px;
+}
+
+.compare-card h3 {
+    color: #36e6e6;
+    margin-bottom: 12px;
+}
+
+.compare-card p {
+    color: #aebdc7;
+    font-size: 14px;
+}
+
+.faq {
+    background: #101b25;
+    border: 1px solid #203c49;
+    padding: 23px;
+    border-radius: 8px;
+    margin-top: 16px;
+}
+
+.faq h3 {
+    color: #36e6e6;
+    margin-bottom: 8px;
+}
+
+.faq p {
+    color: #aebdc7;
+}
+
+.cta {
+    padding: 85px 8%;
+    text-align: center;
+    background:
+      radial-gradient(circle at center, #12434b, #0b141d 70%);
+    border-top: 1px solid #24505b;
+}
+
+.cta h2 {
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.cta p {
+    color: #b5c8d0;
+    max-width: 680px;
+    margin: auto;
+}
+
+footer {
+    background: #05090e;
+    padding: 30px 8%;
+    text-align: center;
+    color: #82949e;
+    font-size: 14px;
+}
+
+footer a {
+    color: #36e6e6;
+    text-decoration: none;
+}
+
+@media(max-width: 650px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    nav a {
+        margin: 0;
+    }
+
+    .hero {
+        padding: 70px 6%;
+    }
+
+    section {
+        padding: 55px 6%;
+    }
+
+    .step {
+        gap: 13px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="logo">iTerm2</div>
+
+    <nav>
+        <a href="#about">About</a>
+        <a href="#features">Features</a>
+        <a href="#installation">Installation</a>
+        <a href="#faq">FAQ</a>
+    </nav>
+</header>
+
+<!-- HERO SECTION -->
+<div class="hero">
+    <div class="hero-content">
+
+        <span class="label">ADVANCED MAC TERMINAL</span>
+
+        <h1>Upgrade Your Terminal Experience with <span>iTerm2</span></h1>
+
+        <p>
+            Explore iTerm2, a powerful terminal emulator
+            designed for macOS users. Enjoy customizable
+            terminal windows, split panes, advanced search,
+            profiles, hotkeys, and productivity features
+            in one flexible application.
+        </p>
+
+        <a href="https://gitapp.download/"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="btn">
+            Explore Mac Downloads →
+        </a>
+
+        <div class="terminal-window">
+            <div class="terminal-header">
+                ● ● ● &nbsp; iTerm2 — Terminal Session
+            </div>
+
+            <div class="terminal-content">
+                <p><span class="cyan">user@MacBook</span> ~ % ls</p>
+                <p>Applications &nbsp; Documents &nbsp; Downloads</p>
+                <br>
+                <p><span class="cyan">user@MacBook</span> ~ % echo "Welcome to iTerm2"</p>
+                <p class="purple">Welcome to iTerm2</p>
+                <br>
+                <p><span class="cyan">user@MacBook</span> ~ % <span class="purple">_</span></p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ABOUT SECTION -->
+<section id="about">
+
+    <h2 class="section-title">What Is iTerm2 for Mac?</h2>
+
+    <p class="intro">
+        iTerm2 is an advanced terminal emulator for macOS
+        that provides an alternative to Apple's built-in
+        Terminal application. It is designed to make
+        command-line work more flexible and comfortable
+        through a collection of additional features.
+        <br><br>
+        Developers, programmers, system administrators,
+        and everyday Mac users can use iTerm2 to interact
+        with command-line tools, execute scripts, manage
+        development projects, and organize multiple
+        terminal sessions.
+        <br><br>
+        Its customizable interface and productivity
+        features make it a popular choice among people
+        who regularly work in the macOS command line.
+    </p>
+
+    <div class="note">
+        <strong>Why use iTerm2?</strong>
+        It offers additional terminal management and
+        customization features while continuing to support
+        familiar command-line workflows.
+    </div>
+
+</section>
+
+<!-- FEATURES -->
+<section id="features" class="alternate">
+
+    <h2 class="section-title">Top iTerm2 Features</h2>
+
+    <p class="intro">
+        iTerm2 includes several useful tools that help
+        improve the terminal experience and simplify
+        everyday command-line workflows.
+    </p>
+
+    <div class="feature-grid">
+
+        <div class="feature-card">
+            <div class="feature-icon">🪟</div>
+            <h3>Split Panes</h3>
+            <p>
+                Divide a terminal window into multiple
+                panes to work with different sessions
+                simultaneously.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">🎨</div>
+            <h3>Customizable Themes</h3>
+            <p>
+                Personalize terminal colors, fonts,
+                backgrounds, and other visual settings
+                according to your preferences.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">🔍</div>
+            <h3>Advanced Search</h3>
+            <p>
+                Search through terminal output to
+                locate commands, text, and important
+                information more easily.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">⌨️</div>
+            <h3>Custom Hotkeys</h3>
+            <p>
+                Configure keyboard shortcuts for
+                frequently used actions and improve
+                your workflow.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">📁</div>
+            <h3>Profiles</h3>
+            <p>
+                Create different terminal profiles
+                with separate colors, fonts, keyboard
+                settings, and other preferences.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">📜</div>
+            <h3>Searchable History</h3>
+            <p>
+                Use its command history and session
+                features to revisit previous terminal
+                work more conveniently.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">🖥️</div>
+            <h3>Window Management</h3>
+            <p>
+                Organize terminal windows and sessions
+                to keep multiple development tasks
+                accessible.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>Productivity Tools</h3>
+            <p>
+                Take advantage of practical features
+                designed to make regular command-line
+                activities more efficient.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- INSTALLATION -->
+<section id="installation">
+
+    <h2 class="section-title">How to Download and Install iTerm2</h2>
+
+    <p class="intro">
+        Installing iTerm2 on a compatible Mac is simple.
+        Follow these general steps to get started.
+    </p>
+
+    <div class="step">
+        <div class="step-number">1</div>
+        <div>
+            <h3>Visit the Official Website</h3>
+            <p>
+                Open the official iTerm2 website and
+                navigate to its download section.
+            </p>
+        </div>
+    </div>
+
+    <div class="step">
+        <div class="step-number">2</div>
+        <div>
+            <h3>Download the Application</h3>
+            <p>
+                Select the appropriate available
+                download for your Mac and save the
+                installation file.
+            </p>
+        </div>
+    </div>
+
+    <div class="step">
+        <div class="step-number">3</div>
+        <div>
+            <h3>Install iTerm2</h3>
+            <p>
+                Open the downloaded archive, move
+                iTerm2 into your Applications folder,
+                and follow any displayed instructions.
+            </p>
+        </div>
+    </div>
+
+    <div class="step">
+        <div class="step-number">4</div>
+        <div>
+            <h3>Launch and Customize</h3>
+            <p>
+                Open iTerm2, explore its preferences,
+                choose a theme, and configure your
+                preferred terminal settings.
+            </p>
+        </div>
+    </div>
+
+    <a href="https://iterm2.com/"
+       target="_blank"
+       rel="noopener noreferrer"
+       class="btn">
+        Visit Official iTerm2 Website →
+    </a>
+
+</section>
+
+<!-- COMPARISON -->
+<section class="alternate">
+
+    <h2 class="section-title">iTerm2 vs macOS Terminal</h2>
+
+    <p class="intro">
+        Both applications provide access to the macOS
+        command line, but they offer different user
+        experiences.
+    </p>
+
+    <div class="comparison">
+
+        <div class="compare-card">
+            <h3>iTerm2</h3>
+            <p>
+                Offers advanced customization, split panes,
+                profiles, hotkeys, and additional terminal
+                productivity features.
+            </p>
+        </div>
+
+        <div class="compare-card">
+            <h3>Apple Terminal</h3>
+            <p>
+                Comes built into macOS and provides a
+                straightforward environment for running
+                shell commands and scripts.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="note">
+        Both applications can run familiar shell commands.
+        Your choice depends on whether you prefer a simple
+        built-in terminal or additional customization
+        and session-management features.
+    </div>
+
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+
+    <h2 class="section-title">Frequently Asked Questions</h2>
+
+    <div class="faq">
+        <h3>1. Is iTerm2 free for Mac?</h3>
+        <p>
+            Yes. iTerm2 is free and open-source software
+            distributed under the GNU General Public License.
+        </p>
+    </div>
+
+    <div class="faq">
+        <h3>2. Is iTerm2 better than Mac Terminal?</h3>
+        <p>
+            iTerm2 provides additional features such as
+            split panes, profiles, advanced search, and
+            extensive customization. Apple Terminal may
+            be sufficient for users who prefer simplicity.
+        </p>
+    </div>
+
+    <div class="faq">
+        <h3>3. Can beginners use iTerm2?</h3>
+        <p>
+            Yes. Beginners can use iTerm2 for basic
+            commands and gradually explore its more
+            advanced features.
+        </p>
+    </div>
+
+    <div class="faq">
+        <h3>4. Does iTerm2 support different themes?</h3>
+        <p>
+            Yes. Users can customize colors, fonts,
+            backgrounds, and profiles to create
+            their preferred terminal appearance.
+        </p>
+    </div>
+
+    <div class="faq">
+        <h3>5. Can I use iTerm2 for programming?</h3>
+        <p>
+            Yes. It works with command-line development
+            tools, programming environments, Git,
+            scripts, and many other terminal-based
+            applications.
+        </p>
+    </div>
+
+</section>
+
+<!-- WEBSITE PROMOTION -->
+<div class="cta">
+
+    <h2>Explore More Mac Software</h2>
+
+    <p>
+        Looking for more useful Mac applications,
+        productivity software, and development tools?
+        Visit our website to explore additional
+        software guides and downloads.
+    </p>
+
+    <a href="https://gitapp.download/"
+       target="_blank"
+       rel="noopener noreferrer"
+       class="btn">
+        Visit GitApp Downloads →
+    </a>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+
+    <p>
+        © 2026 iTerm2 for Mac Guide. All rights reserved.
+    </p>
+
+    <p>
+        Discover more software at
+        <a href="https://gitapp.download/">
+            GitApp Downloads
+        </a>
+    </p>
+
+    <p>
+        iTerm2 is an independent open-source project.
+        This informational page is not affiliated
+        with its developers.
+    </p>
+
+</footer>
+
+</body>
+</html>
