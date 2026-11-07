@@ -1,0 +1,636 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Terminal Commands Mac – Essential macOS Commands Guide</title>
+
+<meta name="description" content="Learn the most useful Mac Terminal commands for managing files, folders, system information, networking, and everyday macOS tasks.">
+<meta name="keywords" content="Terminal Commands Mac, Mac Terminal commands, macOS commands, Mac command line, Terminal guide">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #faf7f0;
+    color: #292b2a;
+    line-height: 1.8;
+}
+
+header {
+    padding: 20px 8%;
+    background: #fffdf8;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #eee5d6;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 800;
+    color: #dc7138;
+}
+
+nav a {
+    text-decoration: none;
+    color: #555;
+    margin-left: 23px;
+    font-size: 14px;
+}
+
+.hero {
+    padding: 90px 8%;
+    background: #f2e8d8;
+}
+
+.hero-content {
+    max-width: 900px;
+}
+
+.tag {
+    color: #c15e28;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.hero h1 {
+    font-size: clamp(38px, 6vw, 64px);
+    line-height: 1.2;
+    margin: 20px 0;
+}
+
+.hero h1 span {
+    color: #dc7138;
+}
+
+.hero p {
+    color: #66645f;
+    font-size: 17px;
+    max-width: 730px;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 28px;
+    padding: 14px 29px;
+    border-radius: 6px;
+    background: #d96f36;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: .3s;
+}
+
+.btn:hover {
+    background: #ae4e22;
+    transform: translateY(-3px);
+}
+
+.terminal-preview {
+    max-width: 650px;
+    margin-top: 45px;
+    background: #242725;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,.15);
+}
+
+.terminal-top {
+    padding: 13px 18px;
+    background: #353a36;
+    color: #ddd;
+    font-size: 13px;
+}
+
+.dots {
+    color: #ed956b;
+    margin-right: 10px;
+}
+
+.terminal-body {
+    padding: 25px;
+    color: #d9e8d8;
+    font-family: monospace;
+    font-size: 14px;
+    overflow-x: auto;
+}
+
+.green {
+    color: #a5dc9c;
+}
+
+section {
+    padding: 70px 8%;
+}
+
+.section-title {
+    font-size: 34px;
+    margin-bottom: 15px;
+    color: #b95d2d;
+}
+
+.intro {
+    color: #696963;
+    max-width: 950px;
+}
+
+.command-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 22px;
+    margin-top: 35px;
+}
+
+.command-card {
+    background: #fffdf8;
+    padding: 25px;
+    border: 1px solid #eee5d6;
+    border-radius: 10px;
+    transition: .3s;
+}
+
+.command-card:hover {
+    transform: translateY(-5px);
+    border-color: #dc8b5f;
+}
+
+.command-card h3 {
+    color: #bd642f;
+    margin-bottom: 12px;
+}
+
+.command-card p {
+    color: #696963;
+    font-size: 14px;
+}
+
+.command {
+    display: block;
+    background: #282d29;
+    color: #b8e4a9;
+    padding: 12px;
+    border-radius: 6px;
+    margin: 15px 0;
+    font-family: monospace;
+    font-size: 14px;
+    overflow-x: auto;
+    white-space: pre;
+}
+
+.note {
+    padding: 22px;
+    background: #f5e8d7;
+    border-left: 4px solid #d96f36;
+    border-radius: 5px;
+    margin-top: 25px;
+    color: #60594e;
+}
+
+.tips {
+    background: #fffdf8;
+}
+
+.tip-row {
+    padding: 22px 0;
+    border-bottom: 1px solid #eee5d6;
+}
+
+.tip-row h3 {
+    color: #bd642f;
+    margin-bottom: 7px;
+}
+
+.tip-row p {
+    color: #696963;
+}
+
+.cta {
+    padding: 75px 8%;
+    background: #292e2a;
+    text-align: center;
+    color: white;
+}
+
+.cta h2 {
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.cta p {
+    color: #d2d7d0;
+    max-width: 650px;
+    margin: auto;
+}
+
+.faq {
+    padding: 23px;
+    margin-top: 16px;
+    background: #fffdf8;
+    border-radius: 8px;
+    border: 1px solid #eee5d6;
+}
+
+.faq h3 {
+    color: #bd642f;
+    margin-bottom: 8px;
+}
+
+.faq p {
+    color: #696963;
+}
+
+footer {
+    text-align: center;
+    padding: 28px;
+    background: #1e231f;
+    color: #c4c9c3;
+    font-size: 14px;
+}
+
+footer a {
+    color: #efa273;
+    text-decoration: none;
+}
+
+@media(max-width: 650px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav a {
+        margin: 0 7px;
+    }
+
+    .hero {
+        padding: 65px 6%;
+    }
+
+    section {
+        padding: 55px 6%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="logo">Mac Terminal Guide</div>
+
+    <nav>
+        <a href="#about">About</a>
+        <a href="#commands">Commands</a>
+        <a href="#tips">Tips</a>
+        <a href="#faq">FAQ</a>
+    </nav>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+    <div class="hero-content">
+
+        <span class="tag">MACOS COMMAND LINE GUIDE</span>
+
+        <h1>Master Your Mac with <span>Terminal Commands</span></h1>
+
+        <p>
+            Discover useful Mac Terminal commands that help
+            you manage files, navigate folders, check system
+            information, and perform everyday tasks more
+            efficiently. Learn the basics of macOS command-line
+            tools with practical examples.
+        </p>
+
+        <a href="https://gitapp.download/"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="btn">
+            Explore Software Downloads →
+        </a>
+
+        <div class="terminal-preview">
+            <div class="terminal-top">
+                <span class="dots">● ● ●</span>
+                Terminal — zsh
+            </div>
+
+            <div class="terminal-body">
+                <p><span class="green">user@MacBook</span> ~ % pwd</p>
+                <p>/Users/user</p>
+                <br>
+                <p><span class="green">user@MacBook</span> ~ % ls</p>
+                <p>Desktop Documents Downloads Pictures</p>
+                <br>
+                <p><span class="green">user@MacBook</span> ~ %</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+
+    <h2 class="section-title">What Is Mac Terminal?</h2>
+
+    <p class="intro">
+        Terminal is a built-in macOS application that provides
+        access to the command-line interface. It allows users
+        to communicate with their Mac by entering text-based
+        instructions instead of relying entirely on graphical
+        menus and buttons.
+        <br><br>
+        With Terminal, you can navigate directories, create
+        folders, manage files, inspect system details, and
+        perform many other operations. It is particularly
+        useful for programmers, developers, IT professionals,
+        and advanced Mac users.
+    </p>
+
+    <div class="note">
+        <strong>Beginner Tip:</strong> Start with basic commands
+        such as pwd, ls, and cd. Understand what each command
+        does before using advanced system operations.
+    </div>
+
+</section>
+
+<!-- BASIC COMMANDS -->
+<section id="commands">
+
+    <h2 class="section-title">Essential Mac Terminal Commands</h2>
+
+    <p class="intro">
+        Here are some frequently used macOS Terminal commands
+        that can make everyday computer tasks easier.
+    </p>
+
+    <div class="command-grid">
+
+        <div class="command-card">
+            <h3>1. Print Working Directory</h3>
+            <code class="command">pwd</code>
+            <p>
+                Displays the full path of the current directory
+                in your Terminal session.
+            </p>
+        </div>
+
+        <div class="command-card">
+            <h3>2. List Files</h3>
+            <code class="command">ls</code>
+            <p>
+                Displays files and folders inside the
+                current directory.
+            </p>
+        </div>
+
+        <div class="command-card">
+            <h3>3. Change Directory</h3>
+            <code class="command">cd Documents</code>
+            <p>
+                Moves your Terminal session into the
+                Documents folder.
+            </p>
+        </div>
+
+        <div class="command-card">
+            <h3>4. Create a Directory</h3>
+            <code class="command">mkdir Projects</code>
+            <p>
+                Creates a new folder named Projects
+                in the current directory.
+            </p>
+        </div>
+
+        <div class="command-card">
+            <h3>5. Create an Empty File</h3>
+            <code class="command">touch notes.txt</code>
+            <p>
+                Creates an empty text file called
+                notes.txt if it does not already exist.
+            </p>
+        </div>
+
+        <div class="command-card">
+            <h3>6. Copy a File</h3>
+            <code class="command">cp notes.txt backup.txt</code>
+            <p>
+                Copies notes.txt into a new file
+                named backup.txt.
+            </p>
+        </div>
+
+        <div class="command-card">
+            <h3>7. Move or Rename Files</h3>
+            <code class="command">mv old.txt new.txt</code>
+            <p>
+                Renames old.txt to new.txt in the
+                same directory.
+            </p>
+        </div>
+
+        <div class="command-card">
+            <h3>8. Read Text Files</h3>
+            <code class="command">cat notes.txt</code>
+            <p>
+                Displays the contents of a text file
+                directly in Terminal.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- SYSTEM COMMANDS -->
+<section class="tips">
+
+    <h2 class="section-title">Useful macOS System Commands</h2>
+
+    <p class="intro">
+        Terminal can also display useful information about
+        your Mac and its current environment.
+    </p>
+
+    <div class="tip-row">
+        <h3>Check macOS Version</h3>
+        <code class="command">sw_vers</code>
+        <p>Displays the installed macOS product and version information.</p>
+    </div>
+
+    <div class="tip-row">
+        <h3>Check Computer Name</h3>
+        <code class="command">scutil --get ComputerName</code>
+        <p>Displays the Mac's configured computer name.</p>
+    </div>
+
+    <div class="tip-row">
+        <h3>View Disk Space</h3>
+        <code class="command">df -h</code>
+        <p>Shows disk space usage in a human-readable format.</p>
+    </div>
+
+    <div class="tip-row">
+        <h3>Display Current Date</h3>
+        <code class="command">date</code>
+        <p>Displays the current system date and time.</p>
+    </div>
+
+    <div class="tip-row">
+        <h3>Check Network Configuration</h3>
+        <code class="command">ifconfig</code>
+        <p>Displays network interface configuration information.</p>
+    </div>
+
+</section>
+
+<!-- SHORTCUTS -->
+<section>
+
+    <h2 class="section-title">Helpful Terminal Shortcuts</h2>
+
+    <div class="command-grid">
+
+        <div class="command-card">
+            <h3>Clear Screen</h3>
+            <code class="command">clear</code>
+            <p>Clears the visible Terminal screen.</p>
+        </div>
+
+        <div class="command-card">
+            <h3>Command History</h3>
+            <code class="command">history</code>
+            <p>Displays previously entered commands.</p>
+        </div>
+
+        <div class="command-card">
+            <h3>Open Current Folder</h3>
+            <code class="command">open .</code>
+            <p>Opens the current directory in Finder.</p>
+        </div>
+
+        <div class="command-card">
+            <h3>Open a Website</h3>
+            <code class="command">open https://apple.com</code>
+            <p>Opens a website in your default browser.</p>
+        </div>
+
+    </div>
+
+    <div class="note">
+        <strong>Safety Reminder:</strong> Be careful when copying
+        commands from websites. Commands that use sudo, rm,
+        disk utilities, or system configuration tools can
+        change or permanently delete important data.
+        Always understand a command before executing it.
+    </div>
+
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+
+    <h2 class="section-title">Frequently Asked Questions</h2>
+
+    <div class="faq">
+        <h3>1. How do I open Terminal on Mac?</h3>
+        <p>
+            Press Command + Space to open Spotlight Search,
+            type Terminal, and press Enter.
+        </p>
+    </div>
+
+    <div class="faq">
+        <h3>2. Are Mac Terminal commands difficult to learn?</h3>
+        <p>
+            No. Beginners can start with simple commands
+            such as pwd, ls, cd, and mkdir. Regular practice
+            makes the command line easier to understand.
+        </p>
+    </div>
+
+    <div class="faq">
+        <h3>3. Can Terminal manage files and folders?</h3>
+        <p>
+            Yes. You can create, view, copy, move, and
+            organize files and directories through commands.
+        </p>
+    </div>
+
+    <div class="faq">
+        <h3>4. Is Terminal already installed on Mac?</h3>
+        <p>
+            Yes. Terminal is included with macOS, so you
+            generally do not need to download a separate
+            application to use it.
+        </p>
+    </div>
+
+    <div class="faq">
+        <h3>5. Can I use Terminal for programming?</h3>
+        <p>
+            Yes. Developers use Terminal to run scripts,
+            manage development tools, work with Git,
+            install packages, and execute programs.
+        </p>
+    </div>
+
+</section>
+
+<!-- WEBSITE PROMOTION -->
+<div class="cta">
+
+    <h2>Discover More Mac Applications</h2>
+
+    <p>
+        Looking for useful software, productivity tools,
+        and applications for your computer?
+        Visit our website to explore more software guides
+        and downloads.
+    </p>
+
+    <a href="https://gitapp.download/"
+       target="_blank"
+       rel="noopener noreferrer"
+       class="btn">
+        Visit GitApp Downloads →
+    </a>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+
+    <p>
+        © 2026 Mac Terminal Commands Guide.
+        All rights reserved.
+    </p>
+
+    <p>
+        Explore more software:
+        <a href="https://gitapp.download/">
+            GitApp Downloads
+        </a>
+    </p>
+
+    <p>
+        This is an independent educational guide
+        and is not affiliated with Apple Inc.
+    </p>
+
+</footer>
+
+</body>
+</html>
