@@ -1,0 +1,746 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>MindNode for Mac – Visual Mind Mapping and Brainstorming</title>
+  <meta name="description" content="Explore MindNode for Mac, a visual mind mapping and brainstorming app for organizing ideas, planning projects, and improving productivity.">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f7f9fc;
+      color: #243044;
+      line-height: 1.7;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .announcement {
+      background: #172b42;
+      color: #d9f8f1;
+      text-align: center;
+      padding: 9px 15px;
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      font-weight: 700;
+    }
+
+    header {
+      padding: 19px 8%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #fff;
+      border-bottom: 1px solid #e8edf2;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 900;
+      color: #18334b;
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      color: #f07d61;
+    }
+
+    nav {
+      display: flex;
+      gap: 26px;
+    }
+
+    nav a {
+      color: #586679;
+      font-size: 14px;
+      font-weight: 650;
+      transition: .2s;
+    }
+
+    nav a:hover {
+      color: #f07d61;
+    }
+
+    .hero {
+      padding: 85px 8%;
+      background: linear-gradient(135deg, #edf8f7 0%, #f4f6ff 55%, #fff2ed 100%);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 55px;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 7px 15px;
+      border-radius: 30px;
+      background: #d9f2ed;
+      color: #258a7b;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      margin-bottom: 21px;
+    }
+
+    .hero h1 {
+      font-size: clamp(39px, 5vw, 62px);
+      line-height: 1.12;
+      color: #19344c;
+      letter-spacing: -2px;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 span {
+      color: #ef795f;
+    }
+
+    .hero p {
+      color: #627084;
+      font-size: 17px;
+      max-width: 570px;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 25px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 750;
+      transition: .25s;
+    }
+
+    .btn-primary {
+      background: #ef795f;
+      color: #fff;
+      box-shadow: 0 8px 20px #ef795f30;
+    }
+
+    .btn-primary:hover {
+      background: #d85e46;
+      transform: translateY(-3px);
+    }
+
+    .btn-secondary {
+      color: #245e64;
+      border: 1px solid #a6d6ce;
+      background: #fff;
+    }
+
+    .btn-secondary:hover {
+      background: #e1f4ef;
+    }
+
+    /* Mind map illustration */
+
+    .map-art {
+      position: relative;
+      height: 390px;
+      max-width: 500px;
+      width: 100%;
+      margin: auto;
+    }
+
+    .map-lines {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .node {
+      position: absolute;
+      padding: 13px 18px;
+      border-radius: 13px;
+      font-size: 13px;
+      font-weight: 800;
+      box-shadow: 0 8px 22px #24304415;
+      white-space: nowrap;
+    }
+
+    .node-center {
+      background: #183b55;
+      color: #fff;
+      left: 34%;
+      top: 42%;
+      padding: 19px 23px;
+      font-size: 17px;
+      z-index: 2;
+    }
+
+    .node-one {
+      background: #ffe2d8;
+      color: #a74d39;
+      left: 4%;
+      top: 13%;
+    }
+
+    .node-two {
+      background: #d9f4ed;
+      color: #277c6e;
+      right: 2%;
+      top: 12%;
+    }
+
+    .node-three {
+      background: #e3e6ff;
+      color: #575fa6;
+      left: 2%;
+      bottom: 14%;
+    }
+
+    .node-four {
+      background: #fff0c9;
+      color: #98701e;
+      right: 0;
+      bottom: 13%;
+    }
+
+    .section {
+      padding: 85px 8%;
+    }
+
+    .section-heading {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 48px;
+    }
+
+    .section-heading span {
+      color: #e77b62;
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .section-heading h2 {
+      color: #19344c;
+      font-size: 37px;
+      line-height: 1.2;
+      margin: 12px 0;
+    }
+
+    .section-heading p {
+      color: #718096;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 23px;
+    }
+
+    .feature {
+      background: #fff;
+      padding: 30px;
+      border: 1px solid #e8edf2;
+      border-radius: 15px;
+      transition: .25s;
+    }
+
+    .feature:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 16px 35px #24304412;
+    }
+
+    .feature-icon {
+      width: 51px;
+      height: 51px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      font-size: 23px;
+      margin-bottom: 19px;
+    }
+
+    .orange {
+      background: #ffebe4;
+      color: #e16b51;
+    }
+
+    .green {
+      background: #def5ed;
+      color: #278d78;
+    }
+
+    .blue {
+      background: #e7eaff;
+      color: #6571c5;
+    }
+
+    .yellow {
+      background: #fff3d6;
+      color: #bb8b27;
+    }
+
+    .feature h3 {
+      color: #243b52;
+      font-size: 19px;
+      margin-bottom: 10px;
+    }
+
+    .feature p {
+      color: #738095;
+      font-size: 14px;
+    }
+
+    .split-section {
+      background: #19344c;
+      color: white;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 60px;
+    }
+
+    .split-section h2 {
+      font-size: 36px;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .split-section p {
+      color: #c2d0dc;
+      margin-bottom: 16px;
+    }
+
+    .idea-list {
+      background: #fff;
+      color: #26384c;
+      border-radius: 17px;
+      padding: 32px;
+    }
+
+    .idea-list h3 {
+      color: #19344c;
+      margin-bottom: 19px;
+      font-size: 21px;
+    }
+
+    .idea-item {
+      padding: 13px 15px;
+      border-radius: 8px;
+      margin: 10px 0;
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    .idea-item:nth-child(2) {
+      background: #ffebe4;
+    }
+
+    .idea-item:nth-child(3) {
+      background: #def5ed;
+    }
+
+    .idea-item:nth-child(4) {
+      background: #e7eaff;
+    }
+
+    .idea-item:nth-child(5) {
+      background: #fff3d6;
+    }
+
+    .workflow {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .workflow-card {
+      background: #fff;
+      border-top: 4px solid #54b7a7;
+      padding: 27px;
+      border-radius: 0 0 13px 13px;
+      box-shadow: 0 8px 25px #24304409;
+    }
+
+    .workflow-card:nth-child(2) {
+      border-color: #ef795f;
+    }
+
+    .workflow-card:nth-child(3) {
+      border-color: #818ce0;
+    }
+
+    .number {
+      color: #ef795f;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+
+    .workflow-card h3 {
+      color: #243b52;
+      margin: 10px 0;
+    }
+
+    .workflow-card p {
+      color: #738095;
+      font-size: 14px;
+    }
+
+    .cta {
+      margin: 15px 8% 85px;
+      padding: 70px 25px;
+      text-align: center;
+      background: linear-gradient(115deg, #e7f7f2, #fff0e9);
+      border-radius: 20px;
+    }
+
+    .cta h2 {
+      font-size: 36px;
+      color: #19344c;
+      margin-bottom: 13px;
+    }
+
+    .cta p {
+      color: #718096;
+      max-width: 620px;
+      margin: 0 auto 25px;
+    }
+
+    footer {
+      background: #12273b;
+      color: #c6d2dc;
+      text-align: center;
+      padding: 30px 15px;
+      font-size: 13px;
+    }
+
+    footer a {
+      color: #7ed6c5;
+    }
+
+    @media(max-width: 850px) {
+      .hero,
+      .split-section {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-grid,
+      .workflow {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      header {
+        flex-direction: column;
+      }
+    }
+
+    @media(max-width: 560px) {
+      header {
+        padding: 18px 5%;
+      }
+
+      nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      .hero,
+      .section {
+        padding: 60px 6%;
+      }
+
+      .feature-grid,
+      .workflow {
+        grid-template-columns: 1fr;
+      }
+
+      .map-art {
+        height: 310px;
+        transform: scale(.9);
+        transform-origin: center;
+      }
+
+      .node {
+        font-size: 11px;
+        padding: 10px 12px;
+      }
+
+      .node-center {
+        font-size: 14px;
+      }
+
+      .section-heading h2,
+      .split-section h2,
+      .cta h2 {
+        font-size: 29px;
+      }
+
+      .cta {
+        margin: 10px 5% 60px;
+        padding: 55px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="announcement">
+    THINK VISUALLY · PLAN CLEARLY · CREATE WITH PURPOSE
+  </div>
+
+  <header>
+    <div class="logo">Idea<span>Flow.</span></div>
+
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#features">Features</a>
+      <a href="#overview">Overview</a>
+      <a href="#workflow">Getting Started</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="hero" id="home">
+      <div>
+        <span class="tag">VISUAL THINKING FOR MAC</span>
+
+        <h1>Turn Your Ideas Into <span>Clear Plans.</span></h1>
+
+        <p>
+          MindNode for Mac is a visual brainstorming and mind mapping
+          application that helps you capture thoughts, connect ideas,
+          and organize complex projects into clear, easy-to-understand
+          structures.
+        </p>
+
+        <div class="buttons">
+          <a class="btn btn-primary"
+             href="https://gitapp.download/"
+             target="_blank" rel="noopener noreferrer">
+            Explore Download →
+          </a>
+
+          <a class="btn btn-secondary" href="#features">
+            Explore Features
+          </a>
+        </div>
+      </div>
+
+      <div class="map-art">
+        <svg class="map-lines" viewBox="0 0 500 390"
+             fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M245 190 C175 145 145 100 90 80"
+                stroke="#ed9b83" stroke-width="4" stroke-linecap="round"/>
+          <path d="M270 185 C330 130 365 100 425 78"
+                stroke="#55b8a5" stroke-width="4" stroke-linecap="round"/>
+          <path d="M235 215 C165 250 130 285 85 315"
+                stroke="#858fdb" stroke-width="4" stroke-linecap="round"/>
+          <path d="M275 215 C345 260 380 290 430 320"
+                stroke="#e6bd63" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="250" cy="195" r="7" fill="#ef795f"/>
+        </svg>
+
+        <div class="node node-center">MY IDEAS ✦</div>
+        <div class="node node-one">Creative Work</div>
+        <div class="node node-two">Planning</div>
+        <div class="node node-three">Research</div>
+        <div class="node node-four">Projects</div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="section-heading">
+        <span>Discover The Possibilities</span>
+        <h2>Tools That Help Your Ideas Grow</h2>
+        <p>
+          Explore the core capabilities of MindNode and see how
+          visual organization can support your daily workflow.
+        </p>
+      </div>
+
+      <div class="feature-grid">
+
+        <article class="feature">
+          <div class="feature-icon orange">✦</div>
+          <h3>Visual Mind Mapping</h3>
+          <p>
+            Build visual maps that connect related thoughts
+            and make complex subjects easier to understand.
+          </p>
+        </article>
+
+        <article class="feature">
+          <div class="feature-icon green">⌘</div>
+          <h3>Idea Organization</h3>
+          <p>
+            Arrange information into branches and categories
+            to create a clearer picture of your ideas.
+          </p>
+        </article>
+
+        <article class="feature">
+          <div class="feature-icon blue">▤</div>
+          <h3>Task Management</h3>
+          <p>
+            Turn selected ideas into actionable tasks and
+            organize project steps in a structured way.
+          </p>
+        </article>
+
+        <article class="feature">
+          <div class="feature-icon yellow">✎</div>
+          <h3>Customizable Styles</h3>
+          <p>
+            Use visual styling and layout options to make
+            mind maps easier to read and navigate.
+          </p>
+        </article>
+
+        <article class="feature">
+          <div class="feature-icon orange">⇄</div>
+          <h3>Flexible Workflows</h3>
+          <p>
+            Move between brainstorming, outlining, and
+            organizing information as your projects develop.
+          </p>
+        </article>
+
+        <article class="feature">
+          <div class="feature-icon green">↗</div>
+          <h3>Sharing and Export</h3>
+          <p>
+            Use supported sharing and export options to
+            present or transfer your work when needed.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="section split-section" id="overview">
+      <div>
+        <span class="tag">A NEW WAY TO THINK</span>
+        <h2>Make Complex Information Easier to Understand</h2>
+
+        <p>
+          Traditional notes often place information in long lists
+          and paragraphs. Mind mapping offers another approach:
+          connecting related ideas visually.
+        </p>
+
+        <p>
+          With MindNode for Mac, you can explore connections,
+          develop concepts, plan projects, and structure
+          brainstorming sessions in a visual workspace.
+        </p>
+
+        <a class="btn btn-primary"
+           href="https://gitapp.download/"
+           target="_blank" rel="noopener noreferrer">
+          Visit Our Website →
+        </a>
+      </div>
+
+      <div class="idea-list">
+        <h3>Example: Project Planning</h3>
+        <div class="idea-item">✦ Main Project Idea</div>
+        <div class="idea-item">↳ Research and Preparation</div>
+        <div class="idea-item">↳ Tasks and Deadlines</div>
+        <div class="idea-item">↳ Resources and Ideas</div>
+        <div class="idea-item">↳ Final Review</div>
+      </div>
+    </section>
+
+    <section class="section" id="workflow">
+      <div class="section-heading">
+        <span>Start Creating</span>
+        <h2>How to Get Started with MindNode on Mac</h2>
+        <p>
+          Follow these simple steps to begin organizing
+          your ideas in a visual workspace.
+        </p>
+      </div>
+
+      <div class="workflow">
+
+        <div class="workflow-card">
+          <span class="number">STEP 01</span>
+          <h3>Check Compatibility</h3>
+          <p>
+            Review the official system requirements and confirm
+            that your Mac supports the version you want to use.
+          </p>
+        </div>
+
+        <div class="workflow-card">
+          <span class="number">STEP 02</span>
+          <h3>Install MindNode</h3>
+          <p>
+            Obtain the application through an official,
+            trusted distribution source and follow its
+            installation instructions.
+          </p>
+        </div>
+
+        <div class="workflow-card">
+          <span class="number">STEP 03</span>
+          <h3>Create Your First Map</h3>
+          <p>
+            Start with a central topic, add related branches,
+            and organize your ideas into meaningful groups.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="cta">
+      <h2>Give Your Ideas a Clear Direction</h2>
+      <p>
+        Explore more software resources, useful applications,
+        and technology-related information on our website.
+        Start discovering today.
+      </p>
+
+      <a class="btn btn-primary"
+         href="https://gitapp.download/"
+         target="_blank" rel="noopener noreferrer">
+        Visit GitApp Website →
+      </a>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>
+      © 2026 IdeaFlow. All Rights Reserved.
+      | <a href="https://gitapp.download/">GitApp Website</a>
+    </p>
+    <p>
+      MindNode is a product of its respective owner.
+      This is an independent informational article.
+    </p>
+  </footer>
+
+</body>
+</html>
