@@ -1,0 +1,674 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Zotero for Mac – Organize Research & References</title>
+
+  <meta name="description" content="Explore Zotero for Mac, a research management tool for collecting sources, organizing references, managing PDFs, and creating citations.">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      background: #f8f5ee;
+      color: #292522;
+      line-height: 1.7;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .topbar {
+      background: #541f31;
+      color: #fff5e8;
+      padding: 14px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: Arial, sans-serif;
+    }
+
+    .brand {
+      font-size: 23px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .topbar span {
+      font-size: 12px;
+      color: #e8c9a5;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .hero {
+      padding: 100px 8% 90px;
+      background:
+        linear-gradient(110deg, rgba(45, 19, 30, .96), rgba(91, 34, 52, .88)),
+        #541f31;
+      color: #fff8ef;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "Z";
+      position: absolute;
+      right: 8%;
+      top: -95px;
+      font-size: 420px;
+      font-weight: bold;
+      color: rgba(255,255,255,.045);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      max-width: 850px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      color: #e8c18d;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font: 12px Arial, sans-serif;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 6vw, 70px);
+      line-height: 1.1;
+      margin-bottom: 24px;
+      max-width: 800px;
+    }
+
+    .hero p {
+      color: #e9d9d1;
+      font: 17px/1.8 Arial, sans-serif;
+      max-width: 650px;
+      margin-bottom: 35px;
+    }
+
+    .download-btn {
+      display: inline-block;
+      background: #e4bd83;
+      color: #351d25;
+      padding: 15px 29px;
+      border-radius: 3px;
+      text-decoration: none;
+      font: bold 14px Arial, sans-serif;
+      letter-spacing: .5px;
+      transition: .25s ease;
+    }
+
+    .download-btn:hover {
+      background: #fff0d8;
+      transform: translateY(-3px);
+    }
+
+    .hero-note {
+      display: block;
+      margin-top: 15px;
+      font: 12px Arial, sans-serif;
+      color: #d8c2bd;
+    }
+
+    .container {
+      max-width: 1150px;
+      margin: auto;
+      padding: 75px 25px;
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .section-label {
+      color: #98506a;
+      font: bold 12px Arial, sans-serif;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+    }
+
+    h2 {
+      font-size: 36px;
+      line-height: 1.25;
+      color: #542438;
+      margin-bottom: 20px;
+    }
+
+    .intro-text {
+      font: 16px/1.9 Arial, sans-serif;
+      color: #625b57;
+    }
+
+    .quote-card {
+      background: #eee5d9;
+      border-left: 4px solid #b27b4b;
+      padding: 35px;
+      color: #593b3c;
+      font-size: 22px;
+      font-style: italic;
+    }
+
+    .quote-card small {
+      display: block;
+      margin-top: 20px;
+      font: 11px Arial, sans-serif;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #98765e;
+    }
+
+    .features-section {
+      background: #eee8df;
+      padding: 85px 8%;
+    }
+
+    .section-heading {
+      max-width: 700px;
+      margin: 0 auto 45px;
+      text-align: center;
+    }
+
+    .section-heading p {
+      font: 15px/1.8 Arial, sans-serif;
+      color: #726761;
+    }
+
+    .features-grid {
+      max-width: 1150px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .feature-card {
+      background: #fffdf9;
+      border: 1px solid #e1d5c9;
+      padding: 30px;
+      transition: .3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 14px 30px rgba(65, 35, 39, .09);
+    }
+
+    .feature-icon {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      background: #f0e1d5;
+      color: #7b334e;
+      font: bold 20px Arial, sans-serif;
+      margin-bottom: 20px;
+    }
+
+    .feature-card h3 {
+      color: #59263a;
+      font-size: 21px;
+      margin-bottom: 12px;
+    }
+
+    .feature-card p {
+      color: #716965;
+      font: 14px/1.8 Arial, sans-serif;
+    }
+
+    .content-section {
+      max-width: 900px;
+      margin: auto;
+      padding: 80px 25px;
+    }
+
+    .content-section h2 {
+      margin-top: 35px;
+      font-size: 31px;
+    }
+
+    .content-section p {
+      color: #655d58;
+      font: 15px/1.9 Arial, sans-serif;
+      margin-bottom: 20px;
+    }
+
+    .steps {
+      margin: 25px 0;
+      border-top: 1px solid #dfd4c9;
+    }
+
+    .step {
+      display: flex;
+      gap: 20px;
+      padding: 20px 0;
+      border-bottom: 1px solid #dfd4c9;
+    }
+
+    .step-number {
+      color: #a66a53;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .step h3 {
+      color: #542438;
+      margin-bottom: 5px;
+    }
+
+    .step p {
+      margin: 0;
+    }
+
+    .cta {
+      background: #542438;
+      color: white;
+      text-align: center;
+      padding: 75px 25px;
+    }
+
+    .cta h2 {
+      color: #fff7ee;
+    }
+
+    .cta p {
+      color: #e4d3d4;
+      font: 15px/1.8 Arial, sans-serif;
+      max-width: 650px;
+      margin: 0 auto 28px;
+    }
+
+    .faq {
+      max-width: 850px;
+      margin: auto;
+      padding: 80px 25px;
+    }
+
+    .faq-item {
+      padding: 23px 0;
+      border-bottom: 1px solid #ded3c9;
+    }
+
+    .faq-item h3 {
+      color: #542438;
+      font-size: 19px;
+      margin-bottom: 9px;
+    }
+
+    .faq-item p {
+      font: 14px/1.8 Arial, sans-serif;
+      color: #6d625e;
+    }
+
+    footer {
+      background: #2d1c24;
+      color: #d8c8c7;
+      padding: 30px 8%;
+      text-align: center;
+      font: 12px/1.8 Arial, sans-serif;
+    }
+
+    footer a {
+      color: #e4bd83;
+      text-decoration: none;
+    }
+
+    @media(max-width: 800px) {
+      .intro-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero {
+        padding: 75px 7%;
+      }
+    }
+
+    @media(max-width: 550px) {
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar {
+        padding: 14px 6%;
+      }
+
+      .topbar span {
+        font-size: 9px;
+      }
+
+      .container {
+        padding: 55px 20px;
+      }
+
+      h2 {
+        font-size: 29px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="topbar">
+    <div class="brand">Research Journal</div>
+    <span>Mac Productivity Guide</span>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <div class="eyebrow">Research · Knowledge · Organization</div>
+
+      <h1>Zotero for Mac: A Smarter Way to Manage Research</h1>
+
+      <p>
+        Bring your research materials, academic references, and reading
+        workflow together. Discover how Zotero for Mac can help students,
+        educators, and researchers organize information more efficiently.
+      </p>
+
+      <a class="download-btn"
+         href="https://gitapp.download/"
+         target="_blank"
+         rel="noopener noreferrer">
+        Explore Download Options →
+      </a>
+
+      <span class="hero-note">
+        Visit our website to explore available download information.
+      </span>
+    </div>
+  </section>
+
+  <main>
+
+    <section class="container">
+      <div class="intro-grid">
+        <div>
+          <div class="section-label">An Introduction</div>
+
+          <h2>Keep Your Academic Research Organized</h2>
+
+          <p class="intro-text">
+            Managing research can become difficult when articles, books,
+            PDFs, and online sources are scattered across different folders
+            and applications. Zotero is a reference management tool designed
+            to help bring these resources into one organized workspace.
+            <br><br>
+            With Zotero for Mac, users can collect research materials,
+            organize bibliographic information, manage reading collections,
+            and prepare citations for academic writing. It is useful for
+            university students, teachers, researchers, and writers who
+            regularly work with multiple sources.
+          </p>
+        </div>
+
+        <div class="quote-card">
+          "Good research begins with organized information."
+          <small>A Better Research Workflow</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="features-section">
+      <div class="section-heading">
+        <div class="section-label">Core Capabilities</div>
+        <h2>What Makes Zotero Useful?</h2>
+        <p>
+          Explore practical features that help simplify reference
+          management and everyday academic research.
+        </p>
+      </div>
+
+      <div class="features-grid">
+
+        <article class="feature-card">
+          <div class="feature-icon">01</div>
+          <h3>Collect Research Sources</h3>
+          <p>
+            Save bibliographic information from compatible websites,
+            catalogs, and academic research databases.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">02</div>
+          <h3>Organize References</h3>
+          <p>
+            Arrange books, journal articles, reports, and other
+            materials into collections that suit your projects.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">03</div>
+          <h3>Manage Research PDFs</h3>
+          <p>
+            Store and organize attached research documents alongside
+            their related bibliographic records.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">04</div>
+          <h3>Create Citations</h3>
+          <p>
+            Generate citations and bibliographies using supported
+            citation styles in compatible writing applications.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">05</div>
+          <h3>Sync Your Library</h3>
+          <p>
+            Synchronize library data across devices with a Zotero
+            account and supported syncing options.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">06</div>
+          <h3>Collaborate on Research</h3>
+          <p>
+            Use group libraries to share selected research materials
+            and work with other members of a research team.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="section-label">Getting Started</div>
+      <h2>How to Start Using Zotero on Mac</h2>
+
+      <p>
+        Getting started with a reference manager is straightforward.
+        After installing Zotero from an official or trusted source,
+        you can begin building a personal research library.
+      </p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">01</div>
+          <div>
+            <h3>Install the Application</h3>
+            <p>
+              Check the official system requirements and install the
+              Mac version compatible with your computer.
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-number">02</div>
+          <div>
+            <h3>Create Your Research Library</h3>
+            <p>
+              Add books, journal articles, web pages, and other
+              research sources to your collection.
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-number">03</div>
+          <div>
+            <h3>Organize Your Materials</h3>
+            <p>
+              Create folders and collections to separate research
+              by topic, assignment, or project.
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-number">04</div>
+          <div>
+            <h3>Use References in Your Writing</h3>
+            <p>
+              Explore Zotero's supported word processor integrations
+              to insert citations and build bibliographies.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <h2>Who Should Use Zotero for Mac?</h2>
+
+      <p>
+        Zotero can be useful for university students preparing essays,
+        graduate students working on dissertations, academics writing
+        journal papers, and independent researchers collecting
+        information about a particular subject.
+      </p>
+
+      <p>
+        Anyone who regularly needs to track sources and maintain
+        accurate bibliographies may benefit from a dedicated
+        reference management workflow.
+      </p>
+
+      <h2>Why Choose a Dedicated Reference Manager?</h2>
+
+      <p>
+        Keeping references in ordinary text documents or scattered
+        folders can make it harder to find sources and maintain
+        consistent citations. A dedicated tool provides a structured
+        way to store bibliographic details and connect them with
+        research documents.
+      </p>
+
+      <p>
+        Zotero offers a practical approach to organizing research
+        information, helping users spend less time searching for
+        references and more time developing their ideas.
+      </p>
+    </section>
+
+    <section class="cta">
+      <div class="section-label">Explore More</div>
+
+      <h2>Discover Your Next Research Tool</h2>
+
+      <p>
+        Looking for software and productivity resources for your Mac?
+        Visit our website to explore available information and
+        download options.
+      </p>
+
+      <a class="download-btn"
+         href="https://gitapp.download/"
+         target="_blank"
+         rel="noopener noreferrer">
+        Visit Download Website →
+      </a>
+    </section>
+
+    <section class="faq">
+      <div class="section-label">Common Questions</div>
+      <h2>Frequently Asked Questions</h2>
+
+      <div class="faq-item">
+        <h3>What is Zotero for Mac?</h3>
+        <p>
+          Zotero for Mac is a reference management application
+          that helps users collect, organize, cite, and share
+          research materials.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Is Zotero useful for students?</h3>
+        <p>
+          Yes. Students can use it to organize academic sources,
+          manage reading materials, and create citations for
+          assignments and research papers.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Can Zotero create bibliographies?</h3>
+        <p>
+          Yes. Zotero supports bibliography generation and
+          integration with compatible word processors.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Can I organize PDF research papers?</h3>
+        <p>
+          Yes. You can attach and organize PDF documents alongside
+          their corresponding reference records.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Where can I learn more about Zotero?</h3>
+        <p>
+          Visit the official Zotero website for product information,
+          installation instructions, documentation, and support.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>
+      © 2026 Research Journal. All rights reserved.
+    </p>
+    <p>
+      Explore more software resources at
+      <a href="https://gitapp.download/"
+         target="_blank"
+         rel="noopener noreferrer">gitapp.download</a>.
+    </p>
+    <p>
+      This independent informational page is not affiliated with
+      or endorsed by Zotero.
+    </p>
+  </footer>
+
+</body>
+</html>
