@@ -1,0 +1,535 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Scrivener for Mac – Complete Writing Software Guide</title>
+<meta name="description" content="Discover Scrivener for Mac, a powerful writing tool for authors, novelists, researchers, and content creators. Explore its features and benefits.">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: #f5f3ec;
+    color: #26372e;
+    line-height: 1.8;
+}
+
+header {
+    background: #173e32;
+    padding: 20px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: #f2e8cb;
+    font-family: Arial, sans-serif;
+    font-size: 26px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+nav a {
+    color: #e9e2cf;
+    text-decoration: none;
+    margin-left: 22px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+nav a:hover {
+    color: #d7bd82;
+}
+
+.hero {
+    padding: 100px 8%;
+    background: #e9e5d8;
+    display: grid;
+    grid-template-columns: 1.3fr 0.7fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.hero-label {
+    color: #66806b;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.hero h1 {
+    font-size: clamp(42px, 5vw, 68px);
+    line-height: 1.15;
+    margin: 20px 0;
+    color: #183d30;
+}
+
+.hero h1 span {
+    color: #a17b3e;
+    font-style: italic;
+}
+
+.hero p {
+    color: #59675c;
+    font-size: 17px;
+    max-width: 650px;
+}
+
+.hero-art {
+    min-height: 300px;
+    background: linear-gradient(145deg, #244f3e, #102e25);
+    border-radius: 4px 70px 4px 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #f2e8cb;
+    text-align: center;
+    padding: 30px;
+    box-shadow: 15px 15px 0 #d2c5a8;
+}
+
+.hero-art div {
+    font-family: Arial, sans-serif;
+}
+
+.hero-art .book {
+    font-size: 70px;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.hero-art h2 {
+    font-size: 27px;
+}
+
+.btn {
+    display: inline-block;
+    background: #1d4b39;
+    color: white;
+    padding: 13px 27px;
+    margin-top: 25px;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    border-radius: 3px;
+    transition: .3s;
+}
+
+.btn:hover {
+    background: #a17b3e;
+    transform: translateY(-3px);
+}
+
+.container {
+    max-width: 1120px;
+    margin: auto;
+    padding: 75px 25px;
+}
+
+.section-label {
+    font-family: Arial, sans-serif;
+    color: #9b7944;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.section-title {
+    font-size: 38px;
+    color: #1b4434;
+    margin: 10px 0 25px;
+    line-height: 1.3;
+}
+
+.description {
+    color: #5d685e;
+    font-size: 17px;
+}
+
+.quote {
+    margin-top: 35px;
+    padding: 30px;
+    background: #e8e4d7;
+    border-left: 5px solid #a17b3e;
+    font-size: 20px;
+    font-style: italic;
+    color: #345443;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 22px;
+    margin-top: 35px;
+}
+
+.feature-card {
+    background: #fffefa;
+    padding: 30px;
+    border: 1px solid #e5e0d3;
+    border-radius: 5px;
+    transition: .3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 25px #183d3015;
+}
+
+.feature-card .icon {
+    font-size: 34px;
+    margin-bottom: 12px;
+}
+
+.feature-card h3 {
+    color: #204b38;
+    font-size: 21px;
+    margin-bottom: 10px;
+}
+
+.feature-card p {
+    color: #6b756b;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+.two-column {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 45px;
+    align-items: start;
+}
+
+.info-box {
+    background: #214b39;
+    color: #f5f0e3;
+    padding: 35px;
+    border-radius: 5px;
+}
+
+.info-box h3 {
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+
+.info-box p {
+    color: #e0e6dc;
+}
+
+.audience-list {
+    list-style: none;
+    margin-top: 20px;
+}
+
+.audience-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid #ffffff25;
+}
+
+.audience-list li::before {
+    content: "✓ ";
+    color: #d7bd82;
+    font-weight: bold;
+}
+
+.download {
+    text-align: center;
+    background: #173e32;
+    color: #f4efdf;
+    padding: 85px 20px;
+}
+
+.download h2 {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.download p {
+    max-width: 650px;
+    margin: auto;
+    color: #d8e0d5;
+}
+
+.download .btn {
+    background: #d6b77c;
+    color: #183d30;
+}
+
+.download .btn:hover {
+    background: #f3e7cc;
+}
+
+footer {
+    background: #102b22;
+    color: #c7d0c5;
+    text-align: center;
+    padding: 25px;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+}
+
+@media(max-width: 750px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav a {
+        margin: 0 7px;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+        padding: 65px 7%;
+    }
+
+    .hero-art {
+        min-height: 230px;
+    }
+
+    .two-column {
+        grid-template-columns: 1fr;
+    }
+
+    .section-title {
+        font-size: 31px;
+    }
+
+    .download h2 {
+        font-size: 32px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">WRITE & CREATE</div>
+    <nav>
+        <a href="#about">Overview</a>
+        <a href="#features">Features</a>
+        <a href="#audience">Who It's For</a>
+    </nav>
+</header>
+
+<!-- HERO SECTION -->
+<section class="hero">
+    <div>
+        <div class="hero-label">THE WRITER'S WORKSPACE</div>
+
+        <h1>Bring Your Biggest Ideas to Life with <span>Scrivener</span></h1>
+
+        <p>
+            Discover Scrivener for Mac, a powerful writing application
+            designed to help authors, novelists, researchers, and
+            content creators organize complex projects and turn
+            scattered ideas into complete manuscripts.
+        </p>
+
+        <a href="https://gitapp.download/" class="btn">
+            Explore Download Options →
+        </a>
+    </div>
+
+    <div class="hero-art">
+        <div>
+            <span class="book">📖</span>
+            <h2>Your Ideas.<br>Your Story.</h2>
+            <p>Plan · Organize · Write</p>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section class="container" id="about">
+    <div class="section-label">01 — INTRODUCTION</div>
+
+    <h2 class="section-title">What Is Scrivener for Mac?</h2>
+
+    <div class="description">
+        <p>
+            Scrivener is a comprehensive writing application developed
+            for people working on large and complex writing projects.
+            Unlike basic text editors, it combines writing, research,
+            outlining, and document organization in one workspace.
+        </p>
+
+        <br>
+
+        <p>
+            Whether you are planning a novel, preparing an academic
+            paper, developing a screenplay, or creating a detailed
+            research document, Scrivener provides tools to manage
+            different parts of your work without losing sight of
+            the bigger picture.
+        </p>
+    </div>
+
+    <div class="quote">
+        "Great writing begins with organized ideas and a workspace
+        that supports creativity."
+    </div>
+</section>
+
+<!-- FEATURES SECTION -->
+<section class="container" id="features">
+    <div class="section-label">02 — POWERFUL TOOLS</div>
+
+    <h2 class="section-title">Key Features of Scrivener</h2>
+
+    <p class="description">
+        Scrivener offers a collection of writing and organization
+        tools that make managing long-form projects easier.
+    </p>
+
+    <div class="features">
+
+        <div class="feature-card">
+            <div class="icon">📂</div>
+            <h3>Project Organization</h3>
+            <p>
+                Organize chapters, scenes, notes, research materials,
+                and other documents within a single project.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon">📝</div>
+            <h3>Flexible Writing Editor</h3>
+            <p>
+                Write and edit individual sections while keeping
+                your entire manuscript organized.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon">📌</div>
+            <h3>Outlining Tools</h3>
+            <p>
+                Plan your project, rearrange sections, and develop
+                your ideas using visual outlining features.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon">🔍</div>
+            <h3>Research Management</h3>
+            <p>
+                Keep reference materials, notes, images, and
+                research documents alongside your writing.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon">📊</div>
+            <h3>Writing Statistics</h3>
+            <p>
+                Monitor word counts and use writing targets
+                to measure progress on your projects.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon">📄</div>
+            <h3>Compile and Export</h3>
+            <p>
+                Combine project sections and prepare manuscripts
+                for export in supported formats.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<!-- WHO SHOULD USE IT -->
+<section class="container" id="audience">
+    <div class="two-column">
+
+        <div>
+            <div class="section-label">03 — TARGET USERS</div>
+
+            <h2 class="section-title">
+                Who Can Benefit from Scrivener?
+            </h2>
+
+            <p class="description">
+                Scrivener is particularly useful for people who
+                regularly work with lengthy documents and need
+                more than a simple word processor.
+            </p>
+
+            <ul class="audience-list">
+                <li>Novelists and fiction writers</li>
+                <li>Bloggers and professional authors</li>
+                <li>Students and academic researchers</li>
+                <li>Screenwriters and storytellers</li>
+                <li>Content creators and journalists</li>
+            </ul>
+        </div>
+
+        <div class="info-box">
+            <h3>A Better Way to Manage Large Projects</h3>
+
+            <p>
+                One of Scrivener's biggest advantages is its
+                project-based workflow. You can work on separate
+                sections, move content around, store research,
+                and assemble everything into a complete document.
+            </p>
+
+            <br>
+
+            <p>
+                This makes it especially valuable when a writing
+                project contains multiple chapters, drafts,
+                references, and supporting materials.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="download">
+    <div class="section-label">START YOUR NEXT PROJECT</div>
+
+    <h2>Make Your Writing Process More Organized</h2>
+
+    <p>
+        Explore software information and available download
+        options through our website. Discover useful tools
+        for your next creative project.
+    </p>
+
+    <a href="https://gitapp.download/"
+       class="btn"
+       target="_blank"
+       rel="noopener noreferrer">
+        Visit Download Website →
+    </a>
+</section>
+
+<footer>
+    <p>© 2026 Scrivener for Mac Guide. All Rights Reserved.</p>
+    <p>
+        This is an independent informational article.
+        Scrivener is a trademark of its respective owner.
+        This page is not affiliated with or endorsed by its developer.
+    </p>
+</footer>
+
+</body>
+</html>
