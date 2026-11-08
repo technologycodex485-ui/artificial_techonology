@@ -1,0 +1,516 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Highland Pro for Mac - Features, Tools & Complete Guide</title>
+
+<meta name="description" content="Explore Highland Pro for Mac, a professional writing application for screenwriters, authors, and storytellers. Discover its features and writing workflow.">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #0d1020;
+    color: #f5f4ff;
+    line-height: 1.7;
+}
+
+header {
+    padding: 22px 8%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #11152a;
+    border-bottom: 1px solid #303252;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #c3a6ff;
+}
+
+.header-label {
+    color: #aaa9c6;
+    font-size: 13px;
+}
+
+.hero {
+    min-height: 490px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 85px 7%;
+    background:
+      radial-gradient(ellipse at top, #563b8b 0%, transparent 55%),
+      linear-gradient(135deg, #19172f, #101327 70%);
+}
+
+.hero-content {
+    max-width: 850px;
+}
+
+.eyebrow {
+    color: #c3a6ff;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.hero h1 {
+    font-size: clamp(40px, 6vw, 67px);
+    line-height: 1.15;
+    margin: 20px 0;
+}
+
+.hero p {
+    font-size: 17px;
+    color: #c3c1dc;
+    max-width: 700px;
+    margin: auto;
+}
+
+.button {
+    display: inline-block;
+    padding: 15px 32px;
+    margin-top: 28px;
+    background: linear-gradient(90deg, #a77aff, #d18cff);
+    color: #171026;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: .3s;
+}
+
+.button:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px #a77aff55;
+}
+
+.container {
+    max-width: 1120px;
+    width: 88%;
+    margin: 65px auto;
+}
+
+.section-heading {
+    font-size: 31px;
+    margin-bottom: 20px;
+    color: #c3a6ff;
+}
+
+.description {
+    color: #c5c4d8;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.intro-box {
+    background: linear-gradient(120deg, #242344, #191a32);
+    padding: 35px;
+    border-radius: 18px;
+    border: 1px solid #45406b;
+    margin-bottom: 60px;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 20px;
+    margin: 35px 0 65px;
+}
+
+.feature {
+    background: #191c34;
+    border: 1px solid #343655;
+    padding: 27px;
+    border-radius: 15px;
+    transition: .3s;
+}
+
+.feature:hover {
+    transform: translateY(-7px);
+    border-color: #b18aff;
+    background: #242343;
+}
+
+.feature-icon {
+    font-size: 30px;
+    margin-bottom: 13px;
+}
+
+.feature h3 {
+    color: #d0b7ff;
+    margin-bottom: 10px;
+    font-size: 19px;
+}
+
+.feature p {
+    font-size: 14px;
+    color: #bdbbd1;
+}
+
+.split-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 35px;
+    align-items: center;
+    margin: 60px 0;
+}
+
+.info-panel {
+    background: #1c1e38;
+    padding: 30px;
+    border-radius: 15px;
+    border-left: 4px solid #b18aff;
+}
+
+.info-panel h3 {
+    color: #d0b7ff;
+    margin-bottom: 12px;
+}
+
+.check-list {
+    list-style: none;
+    color: #c6c4d9;
+}
+
+.check-list li {
+    margin: 12px 0;
+    padding-left: 25px;
+    position: relative;
+}
+
+.check-list li::before {
+    content: "✦";
+    color: #bd9aff;
+    position: absolute;
+    left: 0;
+}
+
+.steps {
+    counter-reset: step;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 18px;
+    margin: 30px 0;
+}
+
+.step {
+    background: #1b1e37;
+    padding: 23px;
+    border-radius: 12px;
+    border-bottom: 3px solid #a77aff;
+}
+
+.step h3 {
+    color: #d0b7ff;
+    margin-bottom: 9px;
+}
+
+.step p {
+    font-size: 14px;
+    color: #bdbbd1;
+}
+
+.cta {
+    background:
+      radial-gradient(circle at 90% 20%, #62429a, transparent 45%),
+      linear-gradient(120deg, #272044, #15182d);
+    text-align: center;
+    padding: 65px 25px;
+    border-radius: 22px;
+    border: 1px solid #514277;
+    margin: 65px 0;
+}
+
+.cta h2 {
+    font-size: 34px;
+    margin-bottom: 12px;
+}
+
+.cta p {
+    color: #c7c1de;
+}
+
+footer {
+    background: #080b17;
+    text-align: center;
+    padding: 28px 15px;
+    color: #9998b4;
+    font-size: 13px;
+    border-top: 1px solid #282a43;
+}
+
+@media(max-width: 700px) {
+    header {
+        padding: 18px 5%;
+    }
+
+    .container {
+        width: 90%;
+    }
+
+    .split-section {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        padding: 65px 6%;
+    }
+
+    .intro-box {
+        padding: 24px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">WRITE SPACE</div>
+    <div class="header-label">Mac Creative Software Guide</div>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <div class="eyebrow">Professional Writing Software</div>
+
+        <h1>Highland Pro for Mac</h1>
+
+        <p>
+            Discover a focused writing environment designed for
+            screenwriters, authors, and creative storytellers.
+            Explore how Highland Pro can help organize ideas
+            and turn creative concepts into polished scripts.
+        </p>
+
+        <a href="https://gitapp.download/" class="button">
+            Explore Download Options →
+        </a>
+    </div>
+</section>
+
+<main class="container">
+
+    <section class="intro-box">
+        <h2 class="section-heading">What Is Highland Pro for Mac?</h2>
+
+        <p class="description">
+            Highland Pro is a writing application for macOS that
+            focuses on screenwriting and long-form creative writing.
+            It provides a streamlined workspace where writers can
+            develop scripts, organize their thoughts, and concentrate
+            on storytelling.
+        </p>
+
+        <p class="description">
+            Instead of relying entirely on traditional word-processing
+            layouts, Highland uses a writing-focused approach that
+            helps users work with screenplay formatting and other
+            creative document styles.
+        </p>
+    </section>
+
+    <section>
+        <h2 class="section-heading">Main Features of Highland Pro</h2>
+
+        <p class="description">
+            Highland Pro brings together writing and formatting
+            capabilities that can support different creative projects.
+            Here are some areas worth exploring.
+        </p>
+
+        <div class="feature-grid">
+
+            <div class="feature">
+                <div class="feature-icon">📝</div>
+                <h3>Screenwriting Tools</h3>
+                <p>
+                    Work on screenplay projects with writing tools
+                    designed around script development and formatting.
+                </p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">📚</div>
+                <h3>Document Organization</h3>
+                <p>
+                    Manage your writing projects and keep your
+                    creative material organized in one workspace.
+                </p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <h3>Focused Writing</h3>
+                <p>
+                    Enjoy a writing-oriented environment that helps
+                    reduce distractions while developing ideas.
+                </p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">🎬</div>
+                <h3>Story Development</h3>
+                <p>
+                    Develop scenes, dialogue, characters, and
+                    storytelling concepts for creative projects.
+                </p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">📄</div>
+                <h3>Formatting Workflow</h3>
+                <p>
+                    Work with structured writing formats suitable
+                    for screenplays and other supported documents.
+                </p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">💡</div>
+                <h3>Creative Productivity</h3>
+                <p>
+                    Keep your attention on ideas and storytelling
+                    with a dedicated writing application.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="split-section">
+
+        <div>
+            <h2 class="section-heading">
+                Why Writers Explore Highland Pro
+            </h2>
+
+            <p class="description">
+                Writing a screenplay requires more than simply
+                typing words. Writers need a practical way to
+                organize scenes, structure dialogue, and develop
+                their stories.
+            </p>
+
+            <p class="description">
+                Highland Pro aims to make these creative tasks
+                more manageable through a writing-focused
+                macOS application.
+            </p>
+        </div>
+
+        <div class="info-panel">
+            <h3>Potential Benefits</h3>
+
+            <ul class="check-list">
+                <li>A dedicated creative writing environment</li>
+                <li>Tools for screenplay development</li>
+                <li>Organized writing projects</li>
+                <li>A streamlined document workflow</li>
+                <li>Useful options for creative professionals</li>
+            </ul>
+        </div>
+
+    </section>
+
+    <section>
+        <h2 class="section-heading">How to Get Started</h2>
+
+        <p class="description">
+            Follow these general steps to explore Highland Pro
+            on your Mac.
+        </p>
+
+        <div class="steps">
+
+            <div class="step">
+                <h3>01. Research</h3>
+                <p>
+                    Visit the official Highland website and
+                    review the software information.
+                </p>
+            </div>
+
+            <div class="step">
+                <h3>02. Check Compatibility</h3>
+                <p>
+                    Confirm the macOS requirements and available
+                    application version.
+                </p>
+            </div>
+
+            <div class="step">
+                <h3>03. Install</h3>
+                <p>
+                    Obtain the application from a trusted source
+                    and follow the installation instructions.
+                </p>
+            </div>
+
+            <div class="step">
+                <h3>04. Start Writing</h3>
+                <p>
+                    Create a project, explore the available tools,
+                    and begin developing your story.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <h2 class="section-heading">Who Should Use Highland Pro?</h2>
+
+        <p class="description">
+            Highland Pro may be worth exploring for screenwriters,
+            independent filmmakers, authors, students, and creative
+            professionals who regularly work on scripts or structured
+            writing projects.
+        </p>
+
+        <p class="description">
+            Whether you are outlining your first screenplay or
+            developing a larger writing project, choosing the right
+            writing environment can make your workflow more organized.
+        </p>
+    </section>
+
+    <section class="cta">
+        <h2>Ready to Explore More Mac Software?</h2>
+
+        <p>
+            Visit our website to discover more software resources,
+            application guides, and helpful information for Mac users.
+        </p>
+
+        <a href="https://gitapp.download/"
+           class="button"
+           target="_blank"
+           rel="noopener noreferrer">
+            Visit GitApp Download →
+        </a>
+    </section>
+
+</main>
+
+<footer>
+    <p>© 2026 Write Space | Mac Software Guides</p>
+    <p>Independent software information and educational content.</p>
+</footer>
+
+</body>
+</html>
