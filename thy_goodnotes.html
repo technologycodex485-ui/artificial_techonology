@@ -1,0 +1,691 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Goodnotes for Mac – Digital Note-Taking Made Easy</title>
+  <meta name="description" content="Discover Goodnotes for Mac, a digital note-taking app for handwritten notes, PDF annotation, document organization, and productive study workflows.">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f7f5f1;
+      color: #282536;
+      line-height: 1.7;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .topbar {
+      background: #29243c;
+      color: #eee9ff;
+      text-align: center;
+      padding: 10px 15px;
+      font-size: 13px;
+      letter-spacing: 1px;
+    }
+
+    header {
+      background: #fffefa;
+      border-bottom: 1px solid #e9e4ed;
+      padding: 20px 8%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 800;
+      color: #55418a;
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      color: #b28bc9;
+    }
+
+    nav a {
+      color: #514c5d;
+      margin-left: 24px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    nav a:hover {
+      color: #8964b5;
+    }
+
+    .hero {
+      padding: 90px 8%;
+      background:
+        radial-gradient(circle at 85% 20%, #e8d8f5 0, transparent 30%),
+        linear-gradient(125deg, #f4effa, #fffaf0 75%);
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      align-items: center;
+      gap: 55px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      background: #e8def3;
+      color: #694c8c;
+      padding: 7px 15px;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(38px, 5vw, 61px);
+      line-height: 1.12;
+      letter-spacing: -2px;
+      color: #302942;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 span {
+      color: #9870b8;
+    }
+
+    .hero p {
+      max-width: 570px;
+      color: #696475;
+      font-size: 17px;
+      margin-bottom: 30px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 25px;
+      border-radius: 9px;
+      font-weight: 700;
+      font-size: 14px;
+      transition: .25s;
+    }
+
+    .btn-primary {
+      background: #705292;
+      color: white;
+      box-shadow: 0 9px 20px #70529230;
+    }
+
+    .btn-primary:hover {
+      background: #543a78;
+      transform: translateY(-3px);
+    }
+
+    .btn-outline {
+      border: 1px solid #c9b8d8;
+      color: #654d80;
+      background: #fff;
+    }
+
+    .btn-outline:hover {
+      background: #eee5f5;
+    }
+
+    .notebook {
+      background: #fffefa;
+      border: 1px solid #e5dce9;
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 18px 22px 55px #4b3b5b18;
+      transform: rotate(2deg);
+      max-width: 430px;
+      width: 100%;
+      margin: auto;
+    }
+
+    .notebook-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #eee8f0;
+      padding-bottom: 15px;
+      margin-bottom: 20px;
+      color: #8c75a0;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .note-title {
+      color: #49365d;
+      font-family: Georgia, serif;
+      font-size: 26px;
+      margin-bottom: 12px;
+    }
+
+    .note-line {
+      height: 1px;
+      background: #e8e0ed;
+      margin: 19px 0;
+    }
+
+    .note-text {
+      color: #777080;
+      font-size: 13px;
+    }
+
+    .note-highlight {
+      background: #eee1f7;
+      color: #68478a;
+      padding: 2px 5px;
+      border-radius: 3px;
+    }
+
+    .section {
+      padding: 85px 8%;
+    }
+
+    .section-heading {
+      text-align: center;
+      max-width: 690px;
+      margin: 0 auto 48px;
+    }
+
+    .section-heading small {
+      color: #9870b8;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .section-heading h2 {
+      font-size: 36px;
+      line-height: 1.2;
+      color: #302942;
+      margin: 12px 0;
+    }
+
+    .section-heading p {
+      color: #777181;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .feature-card {
+      background: #fff;
+      border: 1px solid #eee8f0;
+      border-radius: 15px;
+      padding: 29px;
+      transition: .25s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 15px 30px #4b3b5b12;
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      background: #f0e7f7;
+      color: #765295;
+      font-size: 23px;
+      margin-bottom: 19px;
+    }
+
+    .feature-card h3 {
+      font-size: 19px;
+      color: #393149;
+      margin-bottom: 10px;
+    }
+
+    .feature-card p {
+      color: #777181;
+      font-size: 14px;
+    }
+
+    .about {
+      background: #eee8f3;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 55px;
+    }
+
+    .about h2 {
+      font-size: 35px;
+      color: #302942;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .about p {
+      color: #6f6879;
+      margin-bottom: 16px;
+    }
+
+    .about-panel {
+      background: #fffefa;
+      padding: 35px;
+      border-radius: 18px;
+      box-shadow: 0 15px 35px #4b3b5b12;
+    }
+
+    .about-panel h3 {
+      color: #684b83;
+      margin-bottom: 18px;
+    }
+
+    .about-panel ul {
+      list-style: none;
+    }
+
+    .about-panel li {
+      padding: 12px 0;
+      border-bottom: 1px solid #eee8f0;
+      color: #655d70;
+      font-size: 14px;
+    }
+
+    .about-panel li::before {
+      content: "✓";
+      color: #9870b8;
+      font-weight: 900;
+      margin-right: 10px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .step {
+      border-left: 3px solid #b28bc9;
+      padding: 8px 20px;
+    }
+
+    .step-number {
+      color: #a17cba;
+      font-weight: 900;
+      font-size: 13px;
+      letter-spacing: 2px;
+    }
+
+    .step h3 {
+      color: #393149;
+      margin: 9px 0;
+    }
+
+    .step p {
+      font-size: 14px;
+      color: #777181;
+    }
+
+    .cta {
+      margin: 25px 8% 85px;
+      padding: 65px 25px;
+      border-radius: 20px;
+      text-align: center;
+      color: white;
+      background: linear-gradient(120deg, #554071, #9471ad);
+    }
+
+    .cta h2 {
+      font-size: 35px;
+      margin-bottom: 13px;
+    }
+
+    .cta p {
+      color: #eee6f5;
+      max-width: 620px;
+      margin: 0 auto 25px;
+    }
+
+    .cta .btn {
+      background: #fffefa;
+      color: #60477d;
+    }
+
+    footer {
+      background: #29243c;
+      color: #d8d0e1;
+      text-align: center;
+      padding: 30px 15px;
+      font-size: 13px;
+    }
+
+    footer a {
+      color: #d7b9ed;
+    }
+
+    @media (max-width: 850px) {
+      .hero, .about {
+        grid-template-columns: 1fr;
+      }
+
+      .features, .steps {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      header {
+        flex-direction: column;
+      }
+
+      nav a {
+        margin: 0 9px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .hero {
+        padding: 65px 6%;
+      }
+
+      .section {
+        padding: 65px 6%;
+      }
+
+      .features, .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .section-heading h2,
+      .about h2,
+      .cta h2 {
+        font-size: 29px;
+      }
+
+      nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+      }
+
+      nav a {
+        margin: 0;
+      }
+
+      .cta {
+        margin: 10px 5% 60px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="topbar">
+    A SMARTER WAY TO ORGANIZE YOUR DIGITAL NOTES
+  </div>
+
+  <header>
+    <div class="logo">Note<span>Space.</span></div>
+
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#features">Features</a>
+      <a href="#about">Overview</a>
+      <a href="#getting-started">Getting Started</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div>
+        <span class="eyebrow">DIGITAL NOTE-TAKING</span>
+
+        <h1>Make Every Idea <span>Worth Keeping.</span></h1>
+
+        <p>
+          Goodnotes for Mac offers a digital space for handwritten notes,
+          document annotation, study materials, and everyday organization.
+          Bring your ideas together and create a more structured workflow
+          right from your Mac.
+        </p>
+
+        <div class="actions">
+          <a class="btn btn-primary"
+             href="https://gitapp.download/"
+             target="_blank" rel="noopener noreferrer">
+            Explore Download →
+          </a>
+
+          <a class="btn btn-outline" href="#features">
+            Discover Features
+          </a>
+        </div>
+      </div>
+
+      <div class="notebook">
+        <div class="notebook-top">
+          <span>MY DIGITAL NOTEBOOK</span>
+          <span>✦ NOTES</span>
+        </div>
+
+        <h3 class="note-title">Ideas & Planning</h3>
+
+        <p class="note-text">
+          A place for thoughts, study notes, creative ideas,
+          and important reminders.
+        </p>
+
+        <div class="note-line"></div>
+
+        <p class="note-text">
+          ✎ Organize your thoughts
+        </p>
+
+        <div class="note-line"></div>
+
+        <p class="note-text">
+          ✦ Highlight <span class="note-highlight">important details</span>
+        </p>
+
+        <div class="note-line"></div>
+
+        <p class="note-text">
+          ✓ Keep your documents organized
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="section-heading">
+        <small>What Makes It Useful</small>
+        <h2>Features for a More Organized Workflow</h2>
+        <p>
+          Explore the tools that make digital note-taking,
+          studying, and document management more convenient.
+        </p>
+      </div>
+
+      <div class="features">
+        <article class="feature-card">
+          <div class="feature-icon">✍</div>
+          <h3>Handwritten Notes</h3>
+          <p>
+            Create handwritten notes with a compatible input device
+            and keep your ideas in a convenient digital format.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">▤</div>
+          <h3>PDF Annotation</h3>
+          <p>
+            Review documents, mark important passages,
+            and add notes while working with PDF materials.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">▦</div>
+          <h3>Notebook Organization</h3>
+          <p>
+            Arrange notes and notebooks into a structure
+            that makes information easier to find.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">⌕</div>
+          <h3>Find Your Notes</h3>
+          <p>
+            Search and revisit information in your notebooks
+            using the search tools available in the app.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">☁</div>
+          <h3>Sync Across Devices</h3>
+          <p>
+            Depending on your account and settings, supported
+            synchronization options can help keep notes available
+            across compatible devices.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">▧</div>
+          <h3>Study and Planning</h3>
+          <p>
+            Use digital notebooks for class notes, project planning,
+            meeting records, and personal organization.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section about" id="about">
+      <div>
+        <span class="eyebrow">A DIGITAL NOTEBOOK EXPERIENCE</span>
+
+        <h2>Bring Your Notes, Documents, and Ideas Together</h2>
+
+        <p>
+          Goodnotes is designed for people who prefer a flexible
+          digital workspace. On Mac, it can help you review notes,
+          manage study resources, and work with documents from
+          a single application.
+        </p>
+
+        <p>
+          Whether you are preparing for classes, organizing a project,
+          or collecting personal ideas, digital notebooks can make
+          your information easier to manage.
+        </p>
+
+        <a class="btn btn-primary"
+           href="https://gitapp.download/"
+           target="_blank" rel="noopener noreferrer">
+          Visit Our Website →
+        </a>
+      </div>
+
+      <div class="about-panel">
+        <h3>Why Explore Goodnotes?</h3>
+        <ul>
+          <li>Keep digital notes in one workspace</li>
+          <li>Review and annotate supported documents</li>
+          <li>Organize notebooks for different projects</li>
+          <li>Build a more consistent study routine</li>
+          <li>Access supported features on compatible devices</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="getting-started">
+      <div class="section-heading">
+        <small>Simple Workflow</small>
+        <h2>How to Get Started with Goodnotes on Mac</h2>
+        <p>
+          Follow these general steps to begin exploring
+          a digital note-taking workflow.
+        </p>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <span class="step-number">STEP 01</span>
+          <h3>Check Compatibility</h3>
+          <p>
+            Review the official Goodnotes system requirements
+            and confirm that your Mac supports the version you need.
+          </p>
+        </div>
+
+        <div class="step">
+          <span class="step-number">STEP 02</span>
+          <h3>Install the App</h3>
+          <p>
+            Get Goodnotes through an official, trusted distribution
+            source and follow the installation instructions.
+          </p>
+        </div>
+
+        <div class="step">
+          <span class="step-number">STEP 03</span>
+          <h3>Create Your Notebook</h3>
+          <p>
+            Open the app, create a notebook, and start organizing
+            your notes, documents, and ideas.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <h2>Ready to Explore Better Note-Taking?</h2>
+      <p>
+        Discover more software information and explore our website
+        for additional app-related resources.
+      </p>
+
+      <a class="btn"
+         href="https://gitapp.download/"
+         target="_blank" rel="noopener noreferrer">
+        Visit GitApp Website →
+      </a>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      © 2026 NoteSpace. All Rights Reserved.
+      | <a href="https://gitapp.download/">Visit GitApp</a>
+    </p>
+    <p>
+      Goodnotes is a product of its respective owner.
+      This page is an independent informational article.
+    </p>
+  </footer>
+
+</body>
+</html>
