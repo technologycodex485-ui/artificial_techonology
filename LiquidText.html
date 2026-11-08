@@ -1,0 +1,822 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>LiquidText for Mac – Smarter Research and Document Review</title>
+  <meta name="description" content="Discover LiquidText for Mac, a document research and annotation tool for reviewing PDFs, connecting ideas, organizing information, and managing research projects.">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      background: #f5f0e7;
+      color: #292521;
+      line-height: 1.7;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .topline {
+      background: #3b202b;
+      color: #e9d8bd;
+      text-align: center;
+      padding: 10px;
+      font: 11px Arial, sans-serif;
+      letter-spacing: 2.5px;
+    }
+
+    header {
+      padding: 22px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #faf7f0;
+      border-bottom: 1px solid #e6ddce;
+    }
+
+    .brand {
+      font-size: 27px;
+      font-weight: bold;
+      color: #542d3b;
+      letter-spacing: -1px;
+    }
+
+    .brand span {
+      color: #b58c53;
+    }
+
+    nav {
+      display: flex;
+      gap: 27px;
+      font-family: Arial, sans-serif;
+    }
+
+    nav a {
+      color: #65594f;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: #a46d43;
+    }
+
+    .hero {
+      padding: 90px 8%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 65px;
+      align-items: center;
+      background:
+        radial-gradient(circle at 90% 10%, #e8d8c5, transparent 32%),
+        #f5f0e7;
+    }
+
+    .eyebrow {
+      color: #a47740;
+      font: bold 11px Arial, sans-serif;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 5vw, 65px);
+      line-height: 1.08;
+      color: #452633;
+      letter-spacing: -2px;
+      margin-bottom: 25px;
+    }
+
+    .hero h1 em {
+      color: #ad8050;
+      font-weight: normal;
+    }
+
+    .hero p {
+      color: #71665d;
+      font: 16px/1.9 Arial, sans-serif;
+      max-width: 560px;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 13px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 15px 24px;
+      font: bold 13px Arial, sans-serif;
+      border-radius: 4px;
+      transition: .25s;
+    }
+
+    .btn-main {
+      background: #693b4b;
+      color: #fff;
+      box-shadow: 0 8px 20px #542d3b25;
+    }
+
+    .btn-main:hover {
+      background: #452633;
+      transform: translateY(-3px);
+    }
+
+    .btn-light {
+      border: 1px solid #c7b59e;
+      color: #603e37;
+      background: #faf7f0;
+    }
+
+    .btn-light:hover {
+      background: #e9dfd1;
+    }
+
+    /* Document research illustration */
+
+    .research-board {
+      max-width: 480px;
+      width: 100%;
+      min-height: 390px;
+      margin: auto;
+      position: relative;
+      background: #e7ddce;
+      border-radius: 5px;
+      padding: 25px;
+      box-shadow: 15px 20px 45px #49312620;
+    }
+
+    .paper {
+      background: #fffdf8;
+      padding: 25px 23px;
+      width: 72%;
+      min-height: 320px;
+      box-shadow: 4px 7px 20px #30251c16;
+    }
+
+    .paper-label {
+      color: #a47a48;
+      font: bold 10px Arial, sans-serif;
+      letter-spacing: 2px;
+      margin-bottom: 17px;
+    }
+
+    .paper h3 {
+      color: #4d3038;
+      font-size: 22px;
+      line-height: 1.3;
+      margin-bottom: 15px;
+    }
+
+    .paper-line {
+      height: 6px;
+      background: #e8e2d9;
+      margin: 12px 0;
+      border-radius: 5px;
+    }
+
+    .paper-line.short {
+      width: 65%;
+    }
+
+    .paper-highlight {
+      background: #f3dfad;
+      height: 9px;
+      width: 90%;
+      margin: 15px 0;
+    }
+
+    .research-note {
+      position: absolute;
+      right: 15px;
+      bottom: 38px;
+      width: 47%;
+      padding: 20px;
+      background: #f8e9d1;
+      border-left: 4px solid #ad8050;
+      box-shadow: 0 8px 20px #30251c20;
+      transform: rotate(3deg);
+    }
+
+    .research-note small {
+      color: #9a7144;
+      font: bold 9px Arial, sans-serif;
+      letter-spacing: 1.5px;
+    }
+
+    .research-note h4 {
+      color: #583542;
+      font-size: 18px;
+      margin: 8px 0;
+    }
+
+    .research-note p {
+      color: #78685a;
+      font: 11px/1.6 Arial, sans-serif;
+    }
+
+    .section {
+      padding: 85px 8%;
+    }
+
+    .heading {
+      max-width: 700px;
+      margin: 0 auto 48px;
+      text-align: center;
+    }
+
+    .heading span {
+      color: #a47740;
+      font: bold 11px Arial, sans-serif;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .heading h2 {
+      color: #452633;
+      font-size: 38px;
+      line-height: 1.2;
+      margin: 13px 0;
+    }
+
+    .heading p {
+      color: #796d62;
+      font: 14px/1.8 Arial, sans-serif;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .feature {
+      background: #fffdf8;
+      border: 1px solid #e7ddcf;
+      padding: 30px;
+      transition: .25s;
+    }
+
+    .feature:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 30px #4c332012;
+    }
+
+    .feature-icon {
+      font-size: 26px;
+      color: #a47740;
+      margin-bottom: 17px;
+    }
+
+    .feature h3 {
+      color: #542d3b;
+      font-size: 19px;
+      margin-bottom: 10px;
+    }
+
+    .feature p {
+      color: #786e64;
+      font: 13px/1.8 Arial, sans-serif;
+    }
+
+    .dark-section {
+      background: #3b202b;
+      color: #fff;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 55px;
+    }
+
+    .dark-section h2 {
+      font-size: 39px;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      color: #f7e9d4;
+    }
+
+    .dark-section p {
+      color: #d5c5bb;
+      font: 14px/1.9 Arial, sans-serif;
+      margin-bottom: 16px;
+    }
+
+    .dark-section .eyebrow {
+      color: #d2ae72;
+    }
+
+    .workflow-panel {
+      background: #f8f2e8;
+      color: #3b202b;
+      padding: 30px;
+      border-radius: 4px;
+    }
+
+    .workflow-panel h3 {
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+
+    .workflow-item {
+      padding: 15px;
+      margin: 10px 0;
+      background: #fffdf8;
+      border-left: 3px solid #b58c53;
+      font: bold 13px Arial, sans-serif;
+      color: #665148;
+    }
+
+    .workflow-item:nth-child(3) {
+      border-color: #895668;
+    }
+
+    .workflow-item:nth-child(4) {
+      border-color: #b5a079;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .step {
+      border-top: 2px solid #b58c53;
+      padding-top: 22px;
+    }
+
+    .step-number {
+      color: #a47740;
+      font: bold 11px Arial, sans-serif;
+      letter-spacing: 2px;
+    }
+
+    .step h3 {
+      color: #542d3b;
+      margin: 12px 0;
+      font-size: 20px;
+    }
+
+    .step p {
+      color: #786e64;
+      font: 13px/1.8 Arial, sans-serif;
+    }
+
+    .benefits {
+      background: #eae1d5;
+      padding: 65px 8%;
+    }
+
+    .benefit-content {
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .benefit-content h2 {
+      text-align: center;
+      font-size: 35px;
+      color: #452633;
+      margin-bottom: 28px;
+    }
+
+    .benefit-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .benefit {
+      background: #f9f5ed;
+      padding: 17px;
+      color: #65574c;
+      font: 13px Arial, sans-serif;
+      border-radius: 3px;
+    }
+
+    .benefit strong {
+      color: #875b43;
+      margin-right: 8px;
+    }
+
+    .cta {
+      margin: 80px 8%;
+      padding: 70px 25px;
+      text-align: center;
+      background: #d9c6b1;
+      border: 1px solid #c9b398;
+    }
+
+    .cta h2 {
+      color: #452633;
+      font-size: 37px;
+      margin-bottom: 15px;
+    }
+
+    .cta p {
+      color: #6f5c50;
+      font: 14px/1.8 Arial, sans-serif;
+      max-width: 610px;
+      margin: 0 auto 25px;
+    }
+
+    footer {
+      background: #281922;
+      color: #d8c8c1;
+      padding: 30px 15px;
+      text-align: center;
+      font: 12px/2 Arial, sans-serif;
+    }
+
+    footer a {
+      color: #d2ae72;
+    }
+
+    @media(max-width: 850px) {
+      .hero,
+      .dark-section {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-grid,
+      .steps {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      header {
+        flex-direction: column;
+        gap: 17px;
+      }
+    }
+
+    @media(max-width: 560px) {
+      nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 13px;
+      }
+
+      .hero,
+      .section {
+        padding: 60px 6%;
+      }
+
+      .feature-grid,
+      .steps,
+      .benefit-list {
+        grid-template-columns: 1fr;
+      }
+
+      .research-board {
+        min-height: 330px;
+        padding: 17px;
+      }
+
+      .paper {
+        min-height: 280px;
+        padding: 18px;
+      }
+
+      .research-note {
+        bottom: 23px;
+        right: 8px;
+      }
+
+      .heading h2,
+      .dark-section h2,
+      .benefit-content h2,
+      .cta h2 {
+        font-size: 29px;
+      }
+
+      .cta {
+        margin: 55px 5%;
+        padding: 50px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="topline">
+    READ DEEPLY · CONNECT IDEAS · RESEARCH SMARTER
+  </div>
+
+  <header>
+    <div class="brand">Research<span>Studio.</span></div>
+
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#features">Features</a>
+      <a href="#overview">Overview</a>
+      <a href="#workflow">How It Works</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="hero" id="home">
+
+      <div>
+        <span class="eyebrow">DOCUMENT RESEARCH FOR MAC</span>
+
+        <h1>Make Research <em>More Connected.</em></h1>
+
+        <p>
+          LiquidText for Mac is a document research and annotation
+          application designed to help users explore information,
+          highlight important passages, connect ideas, and organize
+          insights from documents in a visual workspace.
+        </p>
+
+        <div class="buttons">
+          <a class="btn btn-main"
+             href="https://gitapp.download/"
+             target="_blank" rel="noopener noreferrer">
+            Explore Download →
+          </a>
+
+          <a class="btn btn-light" href="#features">
+            Discover Features
+          </a>
+        </div>
+      </div>
+
+      <div class="research-board">
+        <div class="paper">
+          <div class="paper-label">RESEARCH DOCUMENT</div>
+          <h3>Understanding Complex Ideas</h3>
+
+          <div class="paper-line"></div>
+          <div class="paper-line short"></div>
+          <div class="paper-highlight"></div>
+          <div class="paper-line"></div>
+          <div class="paper-line"></div>
+          <div class="paper-line short"></div>
+          <div class="paper-highlight" style="width:70%"></div>
+          <div class="paper-line"></div>
+        </div>
+
+        <div class="research-note">
+          <small>KEY INSIGHT</small>
+          <h4>Connected Ideas</h4>
+          <p>
+            Collect important information and organize
+            related thoughts in one research space.
+          </p>
+        </div>
+      </div>
+
+    </section>
+
+    <section class="section" id="features">
+
+      <div class="heading">
+        <span>Explore The Toolkit</span>
+        <h2>Features Designed for Better Research</h2>
+        <p>
+          LiquidText offers a range of document-focused tools
+          that can support reading, reviewing, and organizing
+          information for different research projects.
+        </p>
+      </div>
+
+      <div class="feature-grid">
+
+        <article class="feature">
+          <div class="feature-icon">▤</div>
+          <h3>PDF Annotation</h3>
+          <p>
+            Highlight important passages, mark key information,
+            and add notes while reviewing supported documents.
+          </p>
+        </article>
+
+        <article class="feature">
+          <div class="feature-icon">✎</div>
+          <h3>Extract Important Ideas</h3>
+          <p>
+            Collect useful excerpts and insights from your
+            reading materials for easier reference.
+          </p>
+        </article>
+
+        <article class="feature">
+          <div class="feature-icon">⌘</div>
+          <h3>Connect Information</h3>
+          <p>
+            Bring related ideas together and explore connections
+            between different parts of your research.
+          </p>
+        </article>
+
+        <article class="feature">
+          <div class="feature-icon">▧</div>
+          <h3>Document Workspace</h3>
+          <p>
+            Work with supported documents and research notes
+            in a flexible environment.
+          </p>
+        </article>
+
+        <article class="feature">
+          <div class="feature-icon">◎</div>
+          <h3>Research Organization</h3>
+          <p>
+            Arrange your findings and notes into a structure
+            that makes complex projects easier to manage.
+          </p>
+        </article>
+
+        <article class="feature">
+          <div class="feature-icon">⇢</div>
+          <h3>Export and Sharing</h3>
+          <p>
+            Use available export and sharing features to
+            prepare research materials for further work.
+          </p>
+        </article>
+
+      </div>
+
+    </section>
+
+    <section class="section dark-section" id="overview">
+
+      <div>
+        <span class="eyebrow">A DIFFERENT RESEARCH EXPERIENCE</span>
+
+        <h2>Move Beyond Reading. Start Connecting Ideas.</h2>
+
+        <p>
+          Research often involves reviewing multiple documents,
+          comparing information, and keeping track of useful
+          details. A well-organized digital workspace can make
+          this process easier to manage.
+        </p>
+
+        <p>
+          LiquidText provides a document-centered approach to
+          collecting notes and connecting information. It can
+          be useful for students, academics, professionals,
+          and anyone working with substantial reading material.
+        </p>
+
+        <a class="btn btn-main"
+           href="https://gitapp.download/"
+           target="_blank" rel="noopener noreferrer">
+          Visit Our Website →
+        </a>
+      </div>
+
+      <div class="workflow-panel">
+        <h3>Your Research Workspace</h3>
+
+        <div class="workflow-item">
+          01 — Review your source documents
+        </div>
+
+        <div class="workflow-item">
+          02 — Highlight important passages
+        </div>
+
+        <div class="workflow-item">
+          03 — Collect useful research notes
+        </div>
+
+        <div class="workflow-item">
+          04 — Connect related information
+        </div>
+      </div>
+
+    </section>
+
+    <section class="section" id="workflow">
+
+      <div class="heading">
+        <span>Getting Started</span>
+        <h2>How to Start Using LiquidText on Mac</h2>
+        <p>
+          Follow these general steps to begin building
+          a more organized document research workflow.
+        </p>
+      </div>
+
+      <div class="steps">
+
+        <div class="step">
+          <span class="step-number">STEP 01</span>
+          <h3>Check Mac Compatibility</h3>
+          <p>
+            Review the official system requirements and confirm
+            that your Mac supports the version you intend to use.
+          </p>
+        </div>
+
+        <div class="step">
+          <span class="step-number">STEP 02</span>
+          <h3>Install the Application</h3>
+          <p>
+            Obtain LiquidText from an official or trusted
+            distribution source and follow the installation
+            instructions.
+          </p>
+        </div>
+
+        <div class="step">
+          <span class="step-number">STEP 03</span>
+          <h3>Begin Your Research</h3>
+          <p>
+            Open a supported document, review its contents,
+            collect useful passages, and organize your findings.
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="benefits">
+
+      <div class="benefit-content">
+        <h2>Who Can Benefit from LiquidText?</h2>
+
+        <div class="benefit-list">
+          <div class="benefit">
+            <strong>✦ Students</strong>
+            Organize study materials and lecture documents.
+          </div>
+
+          <div class="benefit">
+            <strong>✦ Researchers</strong>
+            Collect insights and compare information.
+          </div>
+
+          <div class="benefit">
+            <strong>✦ Professionals</strong>
+            Review reports, contracts, and reference documents.
+          </div>
+
+          <div class="benefit">
+            <strong>✦ Writers</strong>
+            Gather research notes for articles and projects.
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <section class="cta">
+
+      <span class="eyebrow">EXPLORE MORE SOFTWARE</span>
+
+      <h2>Make Your Next Research Project More Organized</h2>
+
+      <p>
+        Discover more software resources, application guides,
+        and useful technology information on our website.
+        Explore the collection and find tools for your workflow.
+      </p>
+
+      <a class="btn btn-main"
+         href="https://gitapp.download/"
+         target="_blank" rel="noopener noreferrer">
+        Visit GitApp Website →
+      </a>
+
+    </section>
+
+  </main>
+
+  <footer>
+    <p>
+      © 2026 ResearchStudio. All Rights Reserved.
+      | <a href="https://gitapp.download/">GitApp Website</a>
+    </p>
+
+    <p>
+      LiquidText is a product of its respective owner.
+      This page is an independent informational article.
+    </p>
+  </footer>
+
+</body>
+</html>
